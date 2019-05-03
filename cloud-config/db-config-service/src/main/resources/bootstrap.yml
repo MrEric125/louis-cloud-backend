@@ -1,0 +1,7 @@
+spring:
+  cloud:
+    config:
+      profile: dev
+      uri: http://localhost:9999/
+  application:
+    name: db-config-service
