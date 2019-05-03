@@ -1,4 +1,6 @@
-package com.louis.service;
+package com.dubbo.service;
+
+import com.alibaba.dubbo.config.annotation.Service;
 
 /**
  * @author Eric
@@ -7,7 +9,5 @@ package com.louis.service;
 public interface UserService {
 
     String getUser(String id);
-
-
 
 }

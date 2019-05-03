@@ -1,15 +1,19 @@
 package com.louis.dubbo.service;
 
 import com.alibaba.dubbo.config.annotation.Service;
+import com.dubbo.service.UserService;
 import com.louis.User;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Component;
 
 /**
  * @author Eric
  * @date create in 2019/5/3
  */
-@Service(version = "1.0.0")
+//@Service(version = "1.0.0")
 @Slf4j
+@Service(interfaceClass = UserService.class)
+@Component
 public class UserServiceImpl implements UserService {
 
 
