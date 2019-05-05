@@ -1,3 +1,5 @@
+#记得这个地方一定要用bootstrap文件，这样，在系统启动的时候就会读取它
+
 spring:
   cloud:
     config:
