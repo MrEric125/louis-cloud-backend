@@ -15,7 +15,6 @@
         <artifactId>spring-cloud-project</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
-    <groupId>com.louis</groupId>
     <artifactId>cloud-config</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>cloud-config</name>
