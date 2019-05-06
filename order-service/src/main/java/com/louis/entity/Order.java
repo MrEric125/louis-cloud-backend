@@ -16,7 +16,7 @@ import java.util.Date;
 @Setter
 @Getter
 @Entity
-@Table
+@Table(name = "order")
 public class Order {
 
 

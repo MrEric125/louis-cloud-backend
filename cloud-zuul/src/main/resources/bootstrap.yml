@@ -1,0 +1,25 @@
+#eureka:
+#  instance:
+#    prefer-ip-address: true
+#  client:
+#    register-with-eureka: true
+#    fetch-registry: true
+    #    service-url:
+#      defaultZone: http://192.168.1.118:${server.port}/eureka/
+
+
+spring:
+  application:
+    name: zuul-gateway-A
+server:
+  port: 5555
+
+zuul:
+  routes:
+    orderService: /orders/** # 订单路由
+    goodsService: /goods/**  #  产品路由
+    transportService: /transport/ # 运输路由
+
+
+  prefix: /api  # 所有已定义的服务都添加前缀
+#  ignored-services: *   # 是否忽略服务，* 表示所有服务全部忽略

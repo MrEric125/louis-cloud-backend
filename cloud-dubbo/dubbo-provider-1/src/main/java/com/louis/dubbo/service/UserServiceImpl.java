@@ -2,7 +2,7 @@ package com.louis.dubbo.service;
 
 import com.alibaba.dubbo.config.annotation.Service;
 import com.dubbo.service.UserService;
-import com.louis.User;
+import com.louis.common.entity.User;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
@@ -15,10 +15,15 @@ import org.springframework.stereotype.Component;
 @Service(interfaceClass = UserService.class)
 @Component
 public class UserServiceImpl implements UserService {
-
-
     @Override
     public String getUser(String id) {
-        return new User(id,"zhangsan","22岁").toString();
+        return null;
     }
+
+
+//    @Override
+//    public String getUser(String id) {
+//        return new User(id,"zhangsan","22岁").toString();
+//    }
+
 }
