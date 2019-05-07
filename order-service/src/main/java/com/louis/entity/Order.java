@@ -1,5 +1,6 @@
 package com.louis.entity;
 
+import com.louis.common.entity.BaseEntity;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -17,10 +18,9 @@ import java.util.Date;
 @Getter
 @Entity
 @Table(name = "order")
-public class Order {
+public class Order extends BaseEntity<String> {
 
 
-    private String id;
 
     private String orderCode;
 

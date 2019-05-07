@@ -1,5 +1,6 @@
 package com.louis.service;
 
+import com.louis.entity.Order;
 import org.springframework.stereotype.Service;
 
 /**
@@ -9,5 +10,5 @@ import org.springframework.stereotype.Service;
  * Description:
  */
 @Service
-public class OrderService {
+public class OrderService extends BaseService<Order,String>{
 }
