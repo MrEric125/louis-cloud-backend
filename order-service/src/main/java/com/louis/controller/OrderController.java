@@ -1,9 +1,11 @@
 package com.louis.controller;
 
+import com.exception.NotFoundEntityException;
 import com.louis.common.response.ResponseData;
 import com.louis.entity.Order;
 import com.louis.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -27,6 +29,12 @@ public class OrderController {
     public OrderController(OrderService orderService) {
         this.orderService = orderService;
     }
+
+
+    /**
+     * 新增订单，新增完成->调用支付系统->调用库存系统->调用积分系统
+     * @return
+     */
     @RequestMapping("/add")
     public ResponseData add() {
         return new ResponseData("success");
@@ -46,6 +54,12 @@ public class OrderController {
     public ResponseData findAllOrder() {
         List<Order> all = orderService.findAll();
        return new ResponseData("success", all);
+    }
+
+    @RequestMapping("/findById/{id}")
+    public ResponseData findOrderById(@PathVariable("id") String id) throws NotFoundEntityException {
+        Order byId = orderService.findById(id);
+        return new ResponseData("success", byId);
     }
 
 
