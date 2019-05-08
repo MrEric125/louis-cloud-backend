@@ -1,4 +1,4 @@
-package com.louis.common.response;
+package com.louis.response;
 
 import lombok.Getter;
 import lombok.Setter;

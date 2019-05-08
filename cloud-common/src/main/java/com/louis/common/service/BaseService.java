@@ -1,20 +1,21 @@
-package com.louis.service;
+package com.louis.common.service;
 
 import com.exception.NotFoundEntityException;
 import com.louis.common.entity.AbstractEntity;
-import com.louis.repository.BaseRepository;
+import com.louis.common.repository.BaseRepository;
 import com.louis.search.Searchable;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.io.Serializable;
 import java.util.List;
 
 /**
- * @author 80003996
+ * @author louis
  * <p>
  * Date: 2019/5/6
  * Description:
@@ -22,10 +23,11 @@ import java.util.List;
  * 类中方法的顺序从上到下分别是增删改查
  */
 @Transactional
+@Service
 public abstract class BaseService <T extends AbstractEntity,ID extends Serializable>{
 
 
-    BaseRepository<T, ID> baseRepository;
+    private BaseRepository<T, ID> baseRepository;
 
     @Autowired
     public void setBaseRepository(BaseRepository<T, ID> baseRepository) {
@@ -44,12 +46,17 @@ public abstract class BaseService <T extends AbstractEntity,ID extends Serializa
      * 通过id来查找
      * @param id 唯一id
      * @return 对应的实体
-     * @throws NotFoundEntityException
+     *
      */
-    public T findById(ID id) throws NotFoundEntityException {
-        return baseRepository
-                .findById(id)
-                .orElseThrow(()->new NotFoundEntityException("没有找到实体对象"));
+    public T findById(ID id)  {
+        try {
+            return baseRepository
+                    .findById(id)
+                    .orElseThrow(()->new NotFoundEntityException("没有找到实体对象"));
+        } catch (NotFoundEntityException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
 
@@ -105,6 +112,15 @@ public abstract class BaseService <T extends AbstractEntity,ID extends Serializa
      */
     public void delete(T t) {
         baseRepository.delete(t);
+    }
+
+    /**
+     * 通过id删除
+     * @param id id
+     */
+    public void deleteById(ID id) {
+        baseRepository.deleteById(id);
+
     }
 
     /**

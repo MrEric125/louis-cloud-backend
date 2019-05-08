@@ -1,4 +1,4 @@
-package com.louis.repository;
+package com.louis.common.repository;
 
 import com.louis.search.Searchable;
 import org.springframework.data.domain.Page;
@@ -9,7 +9,7 @@ import java.io.Serializable;
 import java.util.List;
 
 /**
- * @author 80003996
+ * @author louis
  * <p>
  * Date: 2019/5/6
  * Description:
