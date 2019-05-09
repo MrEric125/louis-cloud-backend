@@ -8,37 +8,38 @@ import lombok.Setter;
  * <p>
  * Date: 2019/5/7
  * Description:
+ * 返回前端json数据格式
  */
 @Setter
 @Getter
 public class ResponseData {
 
-    public String responseCode;
+    public int responseCode;
 
     public String message;
 
     public Object data;
 
-    public ResponseData(String responseCode) {
-        this.responseCode = responseCode;
+    public ResponseData(int responseCode) {
+        this(responseCode, "success", null);
     }
 
-    public ResponseData(String responseCode, String message) {
-        this.responseCode = responseCode;
-        this.message = message;
+    public ResponseData(int responseCode, String message) {
+        this(responseCode, message, null);
     }
 
-    public ResponseData(String responseCode, String message, Object o) {
+    public ResponseData(int responseCode, String message, Object o) {
         this.responseCode = responseCode;
         this.message = message;
         this.data = o;
     }
 
-    
-
     public ResponseData(String message, Object data) {
-        this.message = message;
-        this.data = data;
+        this(200, message, data);
+    }
+
+    public ResponseData(Object data) {
+        this("success", data);
     }
     
     
