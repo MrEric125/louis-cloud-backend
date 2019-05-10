@@ -110,9 +110,9 @@ public class lambdaDemo {
     public void test2() throws Exception {
         Callable<Apple> aNew = Apple::new;
         Supplier<Apple> appleSupplier = Apple::new;
-        System.out.println(appleSupplier.get().country);
+        System.out.println(appleSupplier.get().getCountry());
         Apple call = aNew.call();
-        System.out.println(call.weight);
+        System.out.println(call.getWeight());
         process(this::get);
 
     }
@@ -162,7 +162,7 @@ public class lambdaDemo {
             sum += integer;
         }
         System.out.println(sum);
-        Integer reduce = integerList.stream().reduce(0, Integer::sum);
+        Integer reduce = integerList.stream().reduce(0, (a, b) -> a + b);
         System.out.println(reduce);
         //计算流所消耗的时间是否为线性增加的
         test4();
@@ -299,17 +299,7 @@ public class lambdaDemo {
 
 
 
-    @Setter
-    @Getter
-    @AllArgsConstructor
-    @NoArgsConstructor
-    private class Apple{
 
-
-        private int weight;
-
-        private String country;
-    }
 }
 
 class WordCounter {
