@@ -1,4 +1,4 @@
-package com.louis.service;
+package com.louis.common.service;
 
 import com.louis.entity.Payment;
 import org.springframework.stereotype.Service;

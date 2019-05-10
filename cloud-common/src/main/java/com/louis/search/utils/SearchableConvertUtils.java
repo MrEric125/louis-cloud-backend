@@ -1,8 +1,4 @@
-/**
- * Copyright (c) 2005-2012 https://github.com/zhangkaitao
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- */
+
 package com.louis.search.utils;
 
 import com.google.common.collect.Lists;
@@ -38,13 +34,13 @@ public final class SearchableConvertUtils {
      * <property name="arguments" ref="conversionService"/>
      * </bean>
      *
-     * @param conversionService
+     * @param conversionService 设置用于类型转换的conversionService
      */
     public static void setConversionService(ConversionService conversionService) {
         SearchableConvertUtils.conversionService = conversionService;
     }
 
-    public static ConversionService getConversionService() {
+    private static ConversionService getConversionService() {
         if (conversionService == null) {
             synchronized (SearchableConvertUtils.class) {
                 if (conversionService == null) {
@@ -127,7 +123,7 @@ public final class SearchableConvertUtils {
 
         Object value = condition.getValue();
 
-        Object newValue = null;
+        Object newValue ;
         boolean isCollection = value instanceof Collection;
         boolean isArray = value != null && value.getClass().isArray();
         if (isCollection || isArray) {
@@ -166,45 +162,6 @@ public final class SearchableConvertUtils {
 
         return newValue;
     }
-
-/*    public static <T> void convertSearchValueToEntityValue(SearchRequest search, Class<T> domainClass) {
-        List<Condition> searchFilters = search.getSearchFilters();
-        for (Condition searchFilter : searchFilters) {
-            String property = searchFilter.getSearchProperty();
-            Class<? extends Comparable> targetPropertyType = getPropertyType(domainClass, property);
-            Object value = searchFilter.getValue();
-            Comparable newValue = convert(value, targetPropertyType);
-            searchFilter.setValue(newValue);
-        }
-    }*/
-/*
-    private static <T> Class getPropertyType(Class<T> domainClass, String property) {
-        String[] names = StringUtils.split(property, ".");
-        Class<?> clazz = null;
-
-        for (String name : names) {
-            if (clazz == null) {
-                clazz = BeanUtils.findPropertyType(name, ArrayUtils.toArray(domainClass));
-            } else {
-                clazz = BeanUtils.findPropertyType(name, ArrayUtils.toArray(clazz));
-            }
-        }
-
-        return clazz;
-    }*/
-
-/*
-
-    public static <S, T> T convert(S sourceValue, Class<T> targetClass) {
-        ConversionService conversionService = getConversionService();
-        if (!conversionService.canConvert(sourceValue.getClass(), targetClass)) {
-            throw new IllegalArgumentException(
-                    "search param can not convert value:[" + sourceValue + "] to target type:[" + targetClass + "]");
-        }
-
-        return conversionService.convert(sourceValue, targetClass);
-    }
-*/
 
 
 }

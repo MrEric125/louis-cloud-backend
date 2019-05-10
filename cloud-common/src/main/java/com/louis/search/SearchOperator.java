@@ -1,8 +1,4 @@
-/**
- * Copyright (c) 2005-2012 https://github.com/zhangkaitao
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- */
+
 package com.louis.search;
 
 import com.alibaba.dubbo.common.utils.StringUtils;
@@ -45,8 +41,8 @@ public enum SearchOperator {
     /**
      * 操作符是否允许为空
      *
-     * @param operator
-     * @return
+     * @param operator 操作符
+     * @return boolean
      */
     public static boolean isAllowBlankValue(final SearchOperator operator) {
         return operator == SearchOperator.isNotNull || operator == SearchOperator.isNull;

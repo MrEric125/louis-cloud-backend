@@ -1,4 +1,4 @@
-package com.louis.repository;
+package com.louis.common.repository;
 
 import com.louis.entity.Payment;
 import org.springframework.stereotype.Repository;

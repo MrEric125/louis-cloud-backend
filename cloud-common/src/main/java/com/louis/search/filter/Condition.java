@@ -1,12 +1,8 @@
-/**
- * Copyright (c) 2005-2012 https://github.com/zhangkaitao
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- */
+
 package com.louis.search.filter;
 
 import com.louis.search.SearchOperator;
-import com.louis.search.exception.InvlidSearchOperatorException;
+import com.louis.search.exception.InvalidSearchOperatorException;
 import com.louis.search.exception.SearchException;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.util.Assert;
@@ -50,7 +46,7 @@ public final class Condition implements SearchFilter {
             try {
                 operator = SearchOperator.valueOf(searchs[1]);
             } catch (IllegalArgumentException e) {
-                throw new InvlidSearchOperatorException(searchProperty, searchs[1]);
+                throw new InvalidSearchOperatorException(searchProperty, searchs[1]);
             }
         }
 
@@ -107,7 +103,7 @@ public final class Condition implements SearchFilter {
      *
      * @return
      */
-    public SearchOperator getOperator() throws InvlidSearchOperatorException {
+    public SearchOperator getOperator() throws InvalidSearchOperatorException {
         return operator;
     }
 

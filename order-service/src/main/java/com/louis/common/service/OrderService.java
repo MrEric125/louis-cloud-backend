@@ -1,7 +1,7 @@
-package com.louis.service;
+package com.louis.common.service;
 
 import com.louis.entity.Order;
-import com.louis.repository.OrderRepository;
+import com.louis.common.repository.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

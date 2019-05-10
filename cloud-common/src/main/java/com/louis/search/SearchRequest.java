@@ -1,8 +1,4 @@
-/**
- * Copyright (c) 2005-2012 https://github.com/zhangkaitao
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- */
+
 package com.louis.search;
 
 import com.google.common.collect.Lists;
@@ -37,7 +33,7 @@ public final class SearchRequest extends Searchable {
     private boolean converted;
 
     /**
-     * @param searchParams
+     * @param searchParams 查询参数组
      * @see SearchRequest#SearchRequest(Map< String, Object>)
      */
     public SearchRequest(final Map<String, Object> searchParams) {
@@ -49,7 +45,7 @@ public final class SearchRequest extends Searchable {
     }
 
     /**
-     * @param searchParams
+     * @param searchParams 查询参数组
      * @see SearchRequest#SearchRequest(Map< String, Object>)
      */
     public SearchRequest(final Map<String, Object> searchParams, final Pageable page) {
@@ -57,7 +53,7 @@ public final class SearchRequest extends Searchable {
     }
 
     /**
-     * @param searchParams
+     * @param searchParams 查询参数组
      * @see SearchRequest#SearchRequest(Map< String, Object>)
      */
     public SearchRequest(final Map<String, Object> searchParams, final Sort sort) throws SearchException {
@@ -171,8 +167,8 @@ public final class SearchRequest extends Searchable {
         return this;
     }
     /**
-     * @param key
-     * @return
+     * @param key 查询条件
+     * @return searchable
      */
     @Override
     public Searchable removeSearchFilter(final String key) {

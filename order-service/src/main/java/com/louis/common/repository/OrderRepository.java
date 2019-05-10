@@ -1,4 +1,4 @@
-package com.louis.repository;
+package com.louis.common.repository;
 
 import com.louis.entity.Order;
 import org.springframework.data.jpa.repository.JpaRepository;

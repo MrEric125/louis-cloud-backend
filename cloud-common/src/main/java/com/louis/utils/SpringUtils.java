@@ -7,7 +7,7 @@ import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
 
 /**
  * @author Eric
- * @date create in 2019/5/6
+ * data create in 2019/5/6
  */
 public final class SpringUtils implements BeanFactoryPostProcessor {
 
@@ -21,7 +21,7 @@ public final class SpringUtils implements BeanFactoryPostProcessor {
     /**
      * 获取对象
      *
-     * @param name
+     * @param name beanName
      * @return Object 一个以所给名字注册的bean的实例
      * @throws org.springframework.beans.BeansException
      *
