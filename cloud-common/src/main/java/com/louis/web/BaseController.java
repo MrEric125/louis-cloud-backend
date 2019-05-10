@@ -1,4 +1,4 @@
-package com.louis.common.controller;
+package com.louis.web;
 
 import com.louis.common.entity.AbstractEntity;
 import com.louis.common.service.BaseService;
@@ -38,7 +38,7 @@ public  abstract class BaseController<T extends AbstractEntity,ID extends Serial
     @RequestMapping(value = "/add",method = RequestMethod.POST)
     public ResponseData add(T t) {
         T save = baseService.save(t);
-        return new ResponseData("success", save);
+        return new ResponseData(save);
     }
 
 
@@ -61,7 +61,7 @@ public  abstract class BaseController<T extends AbstractEntity,ID extends Serial
     @RequestMapping(value = "/all",method = RequestMethod.GET)
     public ResponseData findAll() {
         List<T> all = baseService.findAll();
-        return new ResponseData("success", all);
+        return new ResponseData(all);
     }
 
     /**
@@ -72,7 +72,7 @@ public  abstract class BaseController<T extends AbstractEntity,ID extends Serial
     @RequestMapping(value = "/find/{id}",method = RequestMethod.GET)
     public ResponseData findById(@PathVariable ID id) {
         T byId = baseService.findById(id);
-        return new ResponseData("success", byId);
+        return new ResponseData( byId);
     }
 
     /**
@@ -83,7 +83,7 @@ public  abstract class BaseController<T extends AbstractEntity,ID extends Serial
     @RequestMapping(value = "/all", method = RequestMethod.GET)
     public ResponseData findAll(Searchable searchable) {
         Page<T> all = baseService.findAll(searchable);
-        return new ResponseData("success", all.getContent());
+        return new ResponseData( all.getContent());
     }
 
 }

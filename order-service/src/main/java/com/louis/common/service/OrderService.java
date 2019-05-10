@@ -1,5 +1,6 @@
 package com.louis.common.service;
 
+import com.louis.common.service.BaseService;
 import com.louis.entity.Order;
 import com.louis.common.repository.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +15,7 @@ import java.util.List;
  * Description:
  */
 @Service
-public class OrderService extends BaseService<Order,String>{
+public class OrderService extends BaseService<Order,String> {
 
     private final OrderRepository orderRepository;
 
