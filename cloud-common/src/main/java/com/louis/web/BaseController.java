@@ -1,6 +1,7 @@
 package com.louis.web;
 
 import com.louis.common.entity.AbstractEntity;
+import com.louis.common.entity.BaseEntity;
 import com.louis.common.service.BaseService;
 import com.louis.response.ResponseData;
 import com.louis.search.Searchable;
@@ -21,7 +22,7 @@ import java.util.List;
  *   封装的一些基本的controller
  *
  */
-public  abstract class BaseController<T extends AbstractEntity,ID extends Serializable>{
+public  abstract class BaseController<T extends BaseEntity,ID extends Serializable>{
 
     private BaseService<T, ID> baseService;
 

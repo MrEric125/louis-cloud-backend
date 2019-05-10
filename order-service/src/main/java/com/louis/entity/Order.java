@@ -19,7 +19,9 @@ import java.util.Date;
 @Getter
 @Entity
 @Table(name = "order")
-public class Order extends BaseEntity<String> {
+public class Order extends BaseEntity<Long> {
+
+
 
 
 

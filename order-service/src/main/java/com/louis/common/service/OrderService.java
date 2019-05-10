@@ -14,7 +14,7 @@ import java.util.List;
  * Description:
  */
 @Service
-public class OrderService extends BaseService<Order,String> {
+public class OrderService extends BaseService<Order,Long> {
 
     private final OrderRepository orderRepository;
 
@@ -24,6 +24,8 @@ public class OrderService extends BaseService<Order,String> {
     }
 
     public List<Order> findByUserId(String userId) {
+        Order order = new Order();
+        order.getId();
 
         return orderRepository.findAllByOrderUser(userId);
 

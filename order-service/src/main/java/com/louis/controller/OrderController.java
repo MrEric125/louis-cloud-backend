@@ -21,7 +21,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/order")
-public class OrderController extends BaseController<Order,String > {
+public class OrderController extends BaseController<Order,Long > {
 
 
     private final OrderService orderService;
@@ -58,7 +58,7 @@ public class OrderController extends BaseController<Order,String > {
     }
 
     @RequestMapping("/findById/{id}")
-    public ResponseData findOrderById(@PathVariable("id") String id) throws NotFoundEntityException {
+    public ResponseData findOrderById(@PathVariable("id") Long id) throws NotFoundEntityException {
         Order byId = orderService.findById(id);
         return new ResponseData("success", byId);
     }

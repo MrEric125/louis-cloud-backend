@@ -13,8 +13,10 @@ import java.util.List;
  * Description:
  */
 @Repository
-public interface OrderRepository extends JpaRepository<Order,String> {
+public interface OrderRepository extends JpaRepository<Order,Long> {
 
 
     List<Order> findAllByOrderUser(String userId);
+
+
 }

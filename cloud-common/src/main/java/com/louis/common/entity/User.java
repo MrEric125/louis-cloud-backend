@@ -17,12 +17,10 @@ import java.util.Date;
 @NoArgsConstructor
 @Entity
 @Table(name = "sys_user")
-public class User {
+public class User extends BaseEntity<Long>{
 
 
 
-    @Column(name = "id")
-    private String id;
 
     @Column(name = "user_name")
     private String userName;
