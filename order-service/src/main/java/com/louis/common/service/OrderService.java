@@ -1,6 +1,5 @@
 package com.louis.common.service;
 
-import com.louis.common.service.BaseService;
 import com.louis.entity.Order;
 import com.louis.common.repository.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;

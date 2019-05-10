@@ -1,9 +1,10 @@
 package com.louis.controller;
 
 import com.exception.NotFoundEntityException;
+import com.louis.common.service.OrderService;
 import com.louis.entity.Order;
 import com.louis.response.ResponseData;
-import com.louis.service.OrderService;
+import com.louis.web.BaseController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,7 +21,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/order")
-public class OrderController {
+public class OrderController extends BaseController<Order,String > {
 
 
     private final OrderService orderService;
