@@ -18,7 +18,7 @@ import java.util.Date;
 @Setter
 @Getter
 @Entity
-@Table(name = "order")
+@Table(name = "sys_order")
 public class Order extends BaseEntity<Long> {
 
 

@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
 
 
 /**
@@ -51,11 +50,7 @@ public class OrderController extends BaseController<Order,Long > {
         return new ResponseData("success");
     }
 
-    @RequestMapping("/all")
-    public ResponseData findAllOrder() {
-        List<Order> all = orderService.findAll();
-       return new ResponseData("success", all);
-    }
+
 
     @RequestMapping("/findById/{id}")
     public ResponseData findOrderById(@PathVariable("id") Long id) throws NotFoundEntityException {

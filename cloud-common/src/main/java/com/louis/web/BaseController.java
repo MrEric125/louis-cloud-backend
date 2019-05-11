@@ -81,8 +81,13 @@ public  abstract class BaseController<T extends BaseEntity,ID extends Serializab
      * @param searchable 查询条件
      * @return 返回数据
      */
-    @RequestMapping(value = "/all", method = RequestMethod.GET)
+    @RequestMapping(value = "/list", method = RequestMethod.GET)
+
     public ResponseData findAll(Searchable searchable) {
+        searchable = searchable == null ?  Searchable.newSearchable() : searchable;
+        if (!searchable.hasPageable())
+            searchable.setPage(0, 10);
+
         Page<T> all = baseService.findAll(searchable);
         return new ResponseData( all.getContent());
     }

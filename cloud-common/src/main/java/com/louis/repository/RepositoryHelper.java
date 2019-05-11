@@ -80,11 +80,13 @@ public class RepositoryHelper {
 		searchCallback.prepareQL(s, searchable);
 		searchCallback.prepareOrder(s, searchable);
 		Query query = getEntityManager().createQuery(s.toString());
+
 		//applyEnableQueryCache(query);
 		searchCallback.setValues(query, searchable);
 		searchCallback.setPageable(query, searchable);
 
-		return query.getResultList();
+		List<M> resultList = query.getResultList();
+		return resultList;
 	}
 
 	/**

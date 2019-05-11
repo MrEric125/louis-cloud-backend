@@ -27,7 +27,7 @@ import java.util.List;
 public abstract class BaseService <T extends BaseEntity,ID extends Serializable>{
 
 
-    private BaseRepository<T, ID> baseRepository;
+    BaseRepository<T, ID> baseRepository;
 
     @Autowired
     public void setBaseRepository(BaseRepository<T, ID> baseRepository) {

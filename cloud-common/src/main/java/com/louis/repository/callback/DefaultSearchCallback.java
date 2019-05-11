@@ -175,7 +175,8 @@ public class DefaultSearchCallback implements SearchCallback {
         if (search.hasPageable()) {
             Pageable pageable = search.getPage();
 //            query.setFirstResult(pageable.getOffset());
-            query.setFirstResult(pageable.getPageSize());
+//            query.setFirstResult(pageable.getPageSize());
+            query.setFirstResult((int) pageable.getOffset());
             query.setMaxResults(pageable.getPageSize());
         }
     }

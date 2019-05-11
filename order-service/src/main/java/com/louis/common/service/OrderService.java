@@ -16,12 +16,9 @@ import java.util.List;
 @Service
 public class OrderService extends BaseService<Order,Long> {
 
-    private final OrderRepository orderRepository;
 
     @Autowired
-    public OrderService(OrderRepository orderRepository) {
-        this.orderRepository = orderRepository;
-    }
+    OrderRepository orderRepository;
 
     public List<Order> findByUserId(String userId) {
         Order order = new Order();

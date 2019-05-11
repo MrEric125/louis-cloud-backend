@@ -39,24 +39,23 @@ public final class SearchableConvertUtils {
     public static void setConversionService(ConversionService conversionService) {
         SearchableConvertUtils.conversionService = conversionService;
     }
-
-    private static ConversionService getConversionService() {
-        if (conversionService == null) {
-            synchronized (SearchableConvertUtils.class) {
-                if (conversionService == null) {
-                    try {
-                        conversionService = SpringUtils.getBean(ConversionService.class);
-                    } catch (Exception e) {
-                        throw new SearchException("conversionService is null, " +
-                                "search param convert must use conversionService. " +
-                                "please see [com.sishuok.es.common.entity.search.utils." +
-                                "SearchableConvertUtils#setConversionService]");
-                    }
-                }
-            }
-        }
-        return conversionService;
-    }
+//
+//    private static ConversionService getConversionService() {
+//        if (conversionService == null) {
+//            synchronized (SearchableConvertUtils.class) {
+//                if (conversionService == null) {
+//                    try {
+//                        conversionService = SpringUtils.getBean(ConversionService.class);
+//                    } catch (Exception e) {
+//                        throw new SearchException("conversionService is null, " +
+//                                "search param convert must use conversionService. " +
+//                                "");
+//                    }
+//                }
+//            }
+//        }
+//        return conversionService;
+//    }
 
     /**
      * @param search      查询条件
@@ -72,7 +71,7 @@ public final class SearchableConvertUtils {
         Collection<SearchFilter> searchFilters = search.getSearchFilters();
         BeanWrapperImpl beanWrapper = new BeanWrapperImpl(entityClass);
         beanWrapper.setAutoGrowNestedPaths(true);
-        beanWrapper.setConversionService(getConversionService());
+//        beanWrapper.setConversionService(getConversionService());
 
         for (SearchFilter searchFilter : searchFilters) {
             convertSearchValueToEntityValue(beanWrapper, searchFilter);
