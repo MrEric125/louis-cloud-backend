@@ -8,6 +8,10 @@
         <module>cloud-dubbo</module>
         <module>cloud-common</module>
         <module>payment-service</module>
+        <module>cloud-comment-service</module>
+        <module>cloud-goods-service</module>
+        <module>cloud-voucher-service</module>
+        <module>cloud-oauth</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -33,11 +37,11 @@
         </dependency>
 
 
-        <!--<dependency>-->
-            <!--<groupId>org.springframework.boot</groupId>-->
-            <!--<artifactId>spring-boot-devtools</artifactId>-->
-            <!--<scope>runtime</scope>-->
-        <!--</dependency>-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <scope>runtime</scope>
+        </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
@@ -60,18 +64,12 @@
             <version>2.6.1</version>
         </dependency>
 
-
-
-
         <dependency>
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>
             <version>21.0</version>
         </dependency>
     </dependencies>
-
-
-
 
     <dependencyManagement>
         <dependencies>
