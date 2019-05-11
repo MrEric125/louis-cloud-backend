@@ -4,12 +4,12 @@ import com.louis.repository.SimpleBaseRepository;
 import com.louis.web.bind.annotation.method.SearchableMethodArgumentResolver;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.context.annotation.Bean;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @SpringBootApplication
-@EnableEurekaClient
+@EnableDiscoveryClient
 @EnableJpaRepositories(repositoryBaseClass = SimpleBaseRepository.class)
 public class OrderServiceApplication {
 

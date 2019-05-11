@@ -1,8 +1,4 @@
-/**
- * Copyright (c) 2005-2012 https://github.com/zhangkaitao
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- */
+
 package com.louis.web.bind.annotation.method;
 
 import com.google.common.collect.Lists;
@@ -70,7 +66,7 @@ import java.util.*;
  */
 public class PageableMethodArgumentResolver extends BaseMethodArgumentResolver {
 
-    private static final Pageable DEFAULT_PAGE_REQUEST = new PageRequest(0, 10);
+    private static final Pageable DEFAULT_PAGE_REQUEST = PageRequest.of(0, 10);
     private static final String DEFAULT_PAGE_PREFIX = "page";
     private static final String DEFAULT_SORT_PREFIX = "sort";
 
@@ -102,7 +98,7 @@ public class PageableMethodArgumentResolver extends BaseMethodArgumentResolver {
 
     /**
      * Setter to configure a fallback instance of {@link Pageable} that is being used to back missing parameters. Defaults
-     * to {@value #DEFAULT_PAGE_REQUEST}.
+     * to {@link #DEFAULT_PAGE_REQUEST}.
      *
      * @param fallbackPagable the fallbackPagable to set
      */
@@ -130,7 +126,7 @@ public class PageableMethodArgumentResolver extends BaseMethodArgumentResolver {
     }
 
     @Override
-    public Object resolveArgument(MethodParameter parameter, ModelAndViewContainer mavContainer, NativeWebRequest webRequest, WebDataBinderFactory binderFactory) throws Exception {
+    public Object resolveArgument(MethodParameter parameter, ModelAndViewContainer mavContainer, NativeWebRequest webRequest, WebDataBinderFactory binderFactory) {
 
         PageableDefaults pageableDefaults = getPageableDefaults(parameter);
         //默认的page request
@@ -143,13 +139,13 @@ public class PageableMethodArgumentResolver extends BaseMethodArgumentResolver {
 
         Sort sort = getSort(sortNamePrefix, sortMap, defaultPageRequest, webRequest);
         if (pageableMap.size() == 0) {
-            return new PageRequest(defaultPageRequest.getPageNumber(), defaultPageRequest.getPageSize(), sort == null ? defaultPageRequest.getSort() : sort);
+            return PageRequest.of(defaultPageRequest.getPageNumber(), defaultPageRequest.getPageSize(), sort == null ? defaultPageRequest.getSort() : sort);
         }
 
         int pn = getPn(pageableMap, defaultPageRequest);
         int pageSize = getPageSize(pageableMap, defaultPageRequest);
 
-        return new PageRequest(pn - 1, pageSize, sort);
+        return PageRequest.of(pn - 1, pageSize, sort);
 
     }
 
@@ -168,6 +164,7 @@ public class PageableMethodArgumentResolver extends BaseMethodArgumentResolver {
                     order = Integer.valueOf(orderStr);
                 }
             } catch (Exception e) {
+                e.printStackTrace();
             }
 
             String property = name.substring(propertyIndex);
@@ -206,7 +203,7 @@ public class PageableMethodArgumentResolver extends BaseMethodArgumentResolver {
     }
 
     private int getPageSize(Map<String, String[]> pageableMap, Pageable defaultPageRequest) {
-        int pageSize = 0;
+        int pageSize ;
         try {
             String pageSizeStr = pageableMap.get("size")[0];
             if (pageSizeStr != null) {
@@ -229,7 +226,7 @@ public class PageableMethodArgumentResolver extends BaseMethodArgumentResolver {
     }
 
     private int getPn(Map<String, String[]> pageableMap, Pageable defaultPageRequest) {
-        int pn = 1;
+        int pn ;
         try {
             String pnStr = pageableMap.get("pn")[0];
             if (pnStr != null) {
@@ -261,7 +258,7 @@ public class PageableMethodArgumentResolver extends BaseMethodArgumentResolver {
         Qualifier qualifier = parameter.getParameterAnnotation(Qualifier.class);
 
         if (qualifier != null) {
-            return new StringBuilder(((Qualifier) qualifier).value()).append("_").append(pagePrefix).toString();
+            return ( qualifier).value() + "_" + pagePrefix;
         }
 
         return pagePrefix;
@@ -273,7 +270,7 @@ public class PageableMethodArgumentResolver extends BaseMethodArgumentResolver {
         Qualifier qualifier = parameter.getParameterAnnotation(Qualifier.class);
 
         if (qualifier != null) {
-            return new StringBuilder(qualifier.value()).append("_").append(sortPrefix).toString();
+            return qualifier.value() + "_" + sortPrefix;
         }
 
         return sortPrefix;
@@ -321,7 +318,7 @@ public class PageableMethodArgumentResolver extends BaseMethodArgumentResolver {
                 sort = sort.and(newSort);
             }
         }
-        return new PageRequest(pageNumber, pageSize, sort);
+        return PageRequest.of(pageNumber, pageSize, sort);
     }
 
 
@@ -417,7 +414,7 @@ public class PageableMethodArgumentResolver extends BaseMethodArgumentResolver {
     static class OrderedSort implements Comparable<OrderedSort> {
         private String property;
         private Sort.Direction direction;
-        private int order = 0; //默认0 即无序
+        private int order ; //默认0 即无序
 
         OrderedSort(String property, Sort.Direction direction, int order) {
             this.property = property;
@@ -430,13 +427,7 @@ public class PageableMethodArgumentResolver extends BaseMethodArgumentResolver {
             if (o == null) {
                 return -1;
             }
-            if (this.order > o.order) {
-                return 1;
-            } else if (this.order < o.order) {
-                return -1;
-            } else {
-                return 0;
-            }
+            return Integer.compare(this.order, o.order);
         }
     }
 

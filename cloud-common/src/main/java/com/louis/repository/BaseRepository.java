@@ -1,4 +1,4 @@
-package com.louis.common.repository;
+package com.louis.repository;
 
 import com.louis.search.Searchable;
 import org.springframework.data.domain.Page;

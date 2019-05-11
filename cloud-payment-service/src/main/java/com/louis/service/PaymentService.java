@@ -1,7 +1,8 @@
-package com.louis.common.service;
+package com.louis.service;
 
 import com.louis.entity.Payment;
 import org.springframework.stereotype.Service;
+
 
 /**
  * @author 80003996
@@ -10,7 +11,7 @@ import org.springframework.stereotype.Service;
  * Description:
  */
 @Service
-public class PaymentService extends BaseService<Payment,Long > {
+public class PaymentService extends CRUDService<Payment,Long > {
 
 
 }

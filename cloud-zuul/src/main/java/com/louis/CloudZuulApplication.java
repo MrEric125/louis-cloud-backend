@@ -1,7 +1,6 @@
 package com.louis;
 
 
-import com.spring4all.swagger.EnableSwagger2Doc;
 import org.jboss.logging.Logger;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -11,7 +10,6 @@ import org.springframework.context.annotation.Bean;
 
 @SpringBootApplication
 @EnableZuulProxy
-@EnableSwagger2Doc
 //@EnableZuulServer
 public class CloudZuulApplication {
 

@@ -22,7 +22,7 @@ public class RepositoryHelper {
 	
 	private static EntityManager entityManager;
 	private Class<?> entityClass;
-	private boolean enableQueryCache = false;
+	private boolean enableQueryCache ;
 
 	/**
 	 * @param entityClass 是否开启查询缓存
@@ -85,8 +85,7 @@ public class RepositoryHelper {
 		searchCallback.setValues(query, searchable);
 		searchCallback.setPageable(query, searchable);
 
-		List<M> resultList = query.getResultList();
-		return resultList;
+		return (List<M>) query.getResultList();
 	}
 
 	/**
@@ -209,7 +208,7 @@ public class RepositoryHelper {
 	 */
 	public <M> M findOne(final String ql, final Object... params) {
 
-		List<M> list = findAll(ql, new PageRequest(0, 1), params);
+		List<M> list = findAll(ql, PageRequest.of(0, 1), params);
 
 		if (list.size() > 0) {
 			return list.get(0);
@@ -276,10 +275,9 @@ public class RepositoryHelper {
 		if (sort == null || !sort.iterator().hasNext()) {
 			return "";
 		}
-		StringBuilder orderBy = new StringBuilder("");
-		orderBy.append(" order by ");
-		orderBy.append(sort.toString().replace(":", " "));
-		return orderBy.toString();
+		String orderBy = "" + " order by " +
+				sort.toString().replace(":", " ");
+		return orderBy;
 	}
 
 

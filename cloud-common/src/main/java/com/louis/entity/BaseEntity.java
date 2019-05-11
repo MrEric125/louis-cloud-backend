@@ -1,4 +1,5 @@
-package com.louis.common.entity;
+package com.louis.entity;
+
 
 
 import javax.persistence.GeneratedValue;
@@ -14,6 +15,7 @@ import java.io.Serializable;
 @MappedSuperclass
 public abstract class BaseEntity<ID extends Serializable> extends AbstractEntity<ID> {
 
+    private static final long serialVersionUID = -2430797350775093998L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private ID id;

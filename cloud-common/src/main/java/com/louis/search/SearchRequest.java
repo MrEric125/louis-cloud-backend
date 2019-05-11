@@ -203,7 +203,7 @@ public final class SearchRequest extends Searchable {
 
     @Override
     public Searchable setPage(int pageNumber, int pageSize) {
-        merge(sort, new PageRequest(pageNumber, pageSize));
+        merge(sort,  PageRequest.of(pageNumber, pageSize));
         return this;
     }
 
@@ -264,7 +264,7 @@ public final class SearchRequest extends Searchable {
     public void removeSort() {
         this.sort = null;
         if (this.page != null) {
-            this.page = new PageRequest(page.getPageNumber(), page.getPageSize(), null);
+            this.page = PageRequest.of(page.getPageNumber(), page.getPageSize(), null);
         }
     }
 
@@ -355,7 +355,7 @@ public final class SearchRequest extends Searchable {
         }
         //把排序合并到page中
         if (page != null) {
-            this.page = new PageRequest(page.getPageNumber(), page.getPageSize(), this.sort);
+            this.page =PageRequest.of(page.getPageNumber(), page.getPageSize(), this.sort);
         } else {
             this.page = null;
         }

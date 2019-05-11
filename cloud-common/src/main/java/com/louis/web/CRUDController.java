@@ -1,8 +1,6 @@
 package com.louis.web;
-
-import com.louis.common.entity.AbstractEntity;
-import com.louis.common.entity.BaseEntity;
-import com.louis.common.service.BaseService;
+import com.louis.entity.BaseEntity;
+import com.louis.service.CRUDService;
 import com.louis.response.ResponseData;
 import com.louis.search.Searchable;
 import io.swagger.annotations.ApiOperation;
@@ -23,13 +21,13 @@ import java.util.List;
  *   封装的一些基本的controller
  *
  */
-public  abstract class BaseController<T extends BaseEntity,ID extends Serializable>{
+public  abstract class CRUDController<T extends BaseEntity,ID extends Serializable>{
 
-    private BaseService<T, ID> baseService;
+    private CRUDService<T, ID> crudService;
 
     @Autowired
-    public void setBaseService(BaseService<T, ID> baseService) {
-        this.baseService = baseService;
+    public void setBaseService(CRUDService<T, ID> baseService) {
+        this.crudService = baseService;
     }
 
     /**
@@ -40,7 +38,7 @@ public  abstract class BaseController<T extends BaseEntity,ID extends Serializab
     @ApiOperation("新增操作")
     @RequestMapping(value = "/add",method = RequestMethod.POST)
     public ResponseData add(T t) {
-        T save = baseService.save(t);
+        T save = crudService.save(t);
         return new ResponseData(save);
     }
 
@@ -53,7 +51,7 @@ public  abstract class BaseController<T extends BaseEntity,ID extends Serializab
     @ApiOperation("通过id 删除")
     @RequestMapping(value = "/delete", method = RequestMethod.POST)
     public ResponseData delete(ID id) {
-         baseService.deleteById(id);
+        crudService.deleteById(id);
 
         return new ResponseData("success");
     }
@@ -65,7 +63,7 @@ public  abstract class BaseController<T extends BaseEntity,ID extends Serializab
     @ApiOperation("查询所有")
     @RequestMapping(value = "/all",method = RequestMethod.GET)
     public ResponseData findAll() {
-        List<T> all = baseService.findAll();
+        List<T> all = crudService.findAll();
         return new ResponseData(all);
     }
 
@@ -77,7 +75,7 @@ public  abstract class BaseController<T extends BaseEntity,ID extends Serializab
     @ApiOperation("通过id查询，如果没有回抛出异常")
     @RequestMapping(value = "/find/{id}",method = RequestMethod.GET)
     public ResponseData findById(@PathVariable ID id) {
-        T byId = baseService.findById(id);
+        T byId = crudService.findById(id);
         return new ResponseData( byId);
     }
 
@@ -94,7 +92,7 @@ public  abstract class BaseController<T extends BaseEntity,ID extends Serializab
         if (!searchable.hasPageable())
             searchable.setPage(0, 10);
 
-        Page<T> all = baseService.findAll(searchable);
+        Page<T> all = crudService.findAll(searchable);
         return new ResponseData( all.getContent());
     }
 

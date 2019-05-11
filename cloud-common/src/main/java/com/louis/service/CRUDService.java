@@ -1,15 +1,13 @@
-package com.louis.common.service;
+package com.louis.service;
 
 import com.exception.NotFoundEntityException;
-import com.louis.common.entity.AbstractEntity;
-import com.louis.common.entity.BaseEntity;
-import com.louis.common.repository.BaseRepository;
+import com.louis.entity.BaseEntity;
+import com.louis.repository.BaseRepository;
 import com.louis.search.Searchable;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
-import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.io.Serializable;
@@ -24,7 +22,7 @@ import java.util.List;
  * 类中方法的顺序从上到下分别是增删改查
  */
 @Transactional
-public abstract class BaseService <T extends BaseEntity,ID extends Serializable>{
+public abstract class CRUDService <T extends BaseEntity,ID extends Serializable>{
 
 
     BaseRepository<T, ID> baseRepository;

@@ -17,7 +17,7 @@ public class DateUtils {
 	public static String YYYYMMDDHHMM = "yyyyMMddHHmm";
 	public static String YYYYMMDDHHMMSS = "yyyyMMddHHmmss";
 	public static String YYYYMMDDHHMMSSSSS = "yyyyMMddHHmmssSSS";
-	public static String YYYY_MM_DD_HH_MM_SS = "yyyy-MM-dd HH:mm:ss";
+	public static final String YYYY_MM_DD_HH_MM_SS = "yyyy-MM-dd HH:mm:ss";
 
 	/**
 	 * 将字符串时间改成Date类型

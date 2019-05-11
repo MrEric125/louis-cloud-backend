@@ -1,5 +1,5 @@
 
-package com.louis.common.entity;
+package com.louis.entity;
 
 /**
  * <p>实体实现该接口表示想要逻辑删除

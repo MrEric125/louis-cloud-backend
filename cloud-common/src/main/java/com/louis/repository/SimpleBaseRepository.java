@@ -2,8 +2,7 @@
 package com.louis.repository;
 
 import com.google.common.collect.Sets;
-import com.louis.common.entity.LogicDeleteable;
-import com.louis.common.repository.BaseRepository;
+import com.louis.entity.LogicDeleteable;
 import com.louis.repository.callback.SearchCallback;
 import com.louis.search.Searchable;
 import org.apache.commons.beanutils.BeanUtils;

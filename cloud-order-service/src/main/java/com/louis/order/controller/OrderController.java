@@ -1,10 +1,9 @@
 package com.louis.order.controller;
 
-import com.exception.NotFoundEntityException;
-import com.louis.order.common.service.OrderService;
-import com.louis.order.entity.Order;
+import com.louis.order.entity.OmsOrder;
+import com.louis.order.service.OmsOrderService;
 import com.louis.response.ResponseData;
-import com.louis.web.BaseController;
+import com.louis.web.CRUDController;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,13 +18,13 @@ import org.springframework.web.bind.annotation.*;
  */
 @Api(tags = "orderController",description = "订单服务相关操作")
 @RestController
-public class OrderController extends BaseController<Order,Long > {
+public class OrderController extends CRUDController<OmsOrder,Long > {
 
 
-    private final OrderService orderService;
+    private final OmsOrderService orderService;
 
     @Autowired
-    public OrderController(OrderService orderService) {
+    public OrderController(OmsOrderService orderService) {
         this.orderService = orderService;
     }
 
@@ -36,7 +35,7 @@ public class OrderController extends BaseController<Order,Long > {
      */
     @ApiOperation("新增订单")
     @PostMapping("/add")
-    public ResponseData add() {
+    public ResponseData add(OmsOrder order) {
         return new ResponseData("success");
     }
 
@@ -56,8 +55,8 @@ public class OrderController extends BaseController<Order,Long > {
 
     @ApiOperation("通过id查找")
     @GetMapping("/findById/{id}")
-    public ResponseData findOrderById(@PathVariable("id") Long id) throws NotFoundEntityException {
-        Order byId = orderService.findById(id);
+    public ResponseData findOrderById(@PathVariable("id") Long id)  {
+        OmsOrder byId = orderService.findById(id);
         return new ResponseData("success", byId);
     }
 

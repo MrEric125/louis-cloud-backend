@@ -1,6 +1,7 @@
 package com.louis.common.repository;
 
 import com.louis.entity.Payment;
+import com.louis.repository.BaseRepository;
 import org.springframework.stereotype.Repository;
 
 /**

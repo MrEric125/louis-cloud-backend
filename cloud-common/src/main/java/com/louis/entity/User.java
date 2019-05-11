@@ -1,4 +1,4 @@
-package com.louis.common.entity;
+package com.louis.entity;
 
 import lombok.*;
 
@@ -20,8 +20,7 @@ import java.util.Date;
 public class User extends BaseEntity<Long>{
 
 
-
-
+    private static final long serialVersionUID = -1956704870031131518L;
     @Column(name = "user_name")
     private String userName;
 

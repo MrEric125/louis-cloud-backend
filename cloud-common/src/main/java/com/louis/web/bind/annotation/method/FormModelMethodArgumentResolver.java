@@ -49,7 +49,7 @@ public class FormModelMethodArgumentResolver extends BaseMethodArgumentResolver 
     /**
      * 提取索引的模式 如[0].
      */
-    private final Pattern INDEX_PATTERN = Pattern.compile("\\[(\\d+)\\]\\.?");
+    private final Pattern INDEX_PATTERN = Pattern.compile("\\[(\\d+)]\\.?");
 
     private int autoGrowCollectionLimit = Integer.MAX_VALUE;
 
@@ -58,10 +58,7 @@ public class FormModelMethodArgumentResolver extends BaseMethodArgumentResolver 
 
     @Override
     public boolean supportsParameter(MethodParameter parameter) {
-        if (parameter.hasParameterAnnotation(FormModel.class)) {
-            return true;
-        }
-        return false;
+        return parameter.hasParameterAnnotation(FormModel.class);
     }
 
     /**
@@ -207,7 +204,7 @@ public class FormModelMethodArgumentResolver extends BaseMethodArgumentResolver 
             NativeWebRequest request,
             MethodParameter parameter) throws Exception {
 
-        Map<String, Boolean> hasProcessedPrefixMap = new HashMap<String, Boolean>();
+        Map<String, Boolean> hasProcessedPrefixMap = new HashMap<>();
 
         Class<?> targetType = binder.getTarget().getClass();
         ServletRequest servletRequest = prepareServletRequest(binder.getTarget(), request, parameter);
@@ -256,7 +253,7 @@ public class FormModelMethodArgumentResolver extends BaseMethodArgumentResolver 
                         targetList.set(index, simpleBinder.convertIfNecessary(paramValues.values(), componentType));
                     }
                 } else { //处理如 votes[1].title=votes[1].title&votes[0].title=votes[0].title&votes[0].id=0&votes[1].id=1
-                    Object component = null;
+                    Object component ;
                     //先查找老的 即已经在集合中的数据（而不是新添加一个）
                     Matcher matcher = INDEX_PATTERN.matcher(prefixName);
                     if(!matcher.matches()) {
@@ -273,7 +270,7 @@ public class FormModelMethodArgumentResolver extends BaseMethodArgumentResolver 
                     component = iterator.next();
 
                     if(component == null) {
-                        component = BeanUtils.instantiate(componentType);
+                        component = BeanUtils.instantiateClass(componentType);
                     }
 
                     WebDataBinder componentBinder = binderFactory.createBinder(request, component, null);
@@ -336,7 +333,7 @@ public class FormModelMethodArgumentResolver extends BaseMethodArgumentResolver 
 
                     Object component = target.get(keyValue);
                     if(component == null) {
-                        component = BeanUtils.instantiate(valueType);
+                        component = BeanUtils.instantiateClass(valueType);
                     }
 
                     WebDataBinder componentBinder = binderFactory.createBinder(request, component, null);
@@ -370,10 +367,10 @@ public class FormModelMethodArgumentResolver extends BaseMethodArgumentResolver 
     private Object getMapKey(String prefixName) {
         String key = prefixName;
         if (key.startsWith("['")) {
-            key = key.replaceAll("\\[\'", "").replaceAll("\'\\]", "");
+            key = key.replaceAll("\\[\'", "").replaceAll("\']", "");
         }
         if (key.startsWith("[\"")) {
-            key = key.replaceAll("\\[\"", "").replaceAll("\"\\]", "");
+            key = key.replaceAll("\\[\"", "").replaceAll("\"]", "");
         }
         if (key.endsWith(".")) {
             key = key.substring(0, key.length() - 1);
@@ -391,7 +388,7 @@ public class FormModelMethodArgumentResolver extends BaseMethodArgumentResolver 
 
         int end = name.indexOf("]") + 1;
 
-        if (name.indexOf("].") >= 0) {
+        if (name.contains("].")) {
             end = end + 1;
         }
 
@@ -405,7 +402,7 @@ public class FormModelMethodArgumentResolver extends BaseMethodArgumentResolver 
         HttpServletRequest nativeRequest = (HttpServletRequest) request.getNativeRequest();
         MultipartRequest multipartRequest = WebUtils.getNativeRequest(nativeRequest, MultipartRequest.class);
 
-        MockHttpServletRequest mockRequest = null;
+        MockHttpServletRequest mockRequest ;
         if (multipartRequest != null) {
             MockMultipartHttpServletRequest mockMultipartRequest = new MockMultipartHttpServletRequest();
             for(MultipartFile file : multipartRequest.getFileMap().values()) {
@@ -461,13 +458,10 @@ public class FormModelMethodArgumentResolver extends BaseMethodArgumentResolver 
         }
 
 
-        char ch = (char) parameterName.charAt(modelPrefixNameLength);
+        char ch = parameterName.charAt(modelPrefixNameLength);
 
-        if (ch == '.' || ch == '[') {
-            return true;
-        }
+        return ch == '.' || ch == '[';
 
-        return false;
     }
 
     protected void validateComponent(WebDataBinder binder, MethodParameter parameter) throws BindException {

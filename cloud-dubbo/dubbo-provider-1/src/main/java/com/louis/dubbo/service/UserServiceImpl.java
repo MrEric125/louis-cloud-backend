@@ -2,7 +2,7 @@ package com.louis.dubbo.service;
 
 import com.alibaba.dubbo.config.annotation.Service;
 import com.dubbo.service.UserService;
-import com.louis.common.entity.User;
+import com.louis.entity.User;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
