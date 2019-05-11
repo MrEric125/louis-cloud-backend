@@ -10,5 +10,5 @@ import org.springframework.stereotype.Repository;
  * Description:
  */
 @Repository
-public interface PaymentRepository extends BaseRepository<Payment,String> {
+public interface PaymentRepository extends BaseRepository<Payment,Long> {
 }

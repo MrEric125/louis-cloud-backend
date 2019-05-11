@@ -94,9 +94,9 @@ public class RepositoryHelper {
 	 * 测试用例请参考：{@see com.sishuok.es.common.repository.UserRepositoryImplForCustomSearchIT}
 	 * 和{@see com.sishuok.es.common.repository.UserRepositoryImplForDefaultSearchIT}
 	 *
-	 * @param ql
-	 * @param searchable
-	 * @param searchCallback
+	 * @param ql 查询sql语句
+	 * @param searchable 条件
+	 * @param searchCallback 将searchable中的值设置到query中去
 	 * @return
 	 */
 	public long count(final String ql, final Searchable searchable, final SearchCallback searchCallback) {
@@ -115,9 +115,9 @@ public class RepositoryHelper {
 	/**
 	 * 按条件查询一个实体
 	 *
-	 * @param ql
-	 * @param searchable
-	 * @param searchCallback
+	 * @param ql 查询sql语句
+	 * @param searchable 条件
+	 * @param searchCallback 将searchable中的值设置到query中去
 	 * @return
 	 */
 	public <M> M findOne(final String ql, final Searchable searchable, final SearchCallback searchCallback) {

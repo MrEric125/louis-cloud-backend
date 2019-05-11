@@ -1,7 +1,7 @@
-package com.louis.common.repository;
+package com.louis.order.common.repository;
 
-import com.louis.entity.Order;
-import org.springframework.data.jpa.repository.JpaRepository;
+import com.louis.common.repository.BaseRepository;
+import com.louis.order.entity.Order;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;

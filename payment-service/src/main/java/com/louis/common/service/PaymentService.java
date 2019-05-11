@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
  * Description:
  */
 @Service
-public class PaymentService extends BaseService<Payment,String > {
+public class PaymentService extends BaseService<Payment,Long > {
 
 
 }

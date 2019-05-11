@@ -5,6 +5,7 @@ import com.louis.common.entity.BaseEntity;
 import com.louis.common.service.BaseService;
 import com.louis.response.ResponseData;
 import com.louis.search.Searchable;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -36,6 +37,7 @@ public  abstract class BaseController<T extends BaseEntity,ID extends Serializab
      * @param t 实体
      * @return 返回数据
      */
+    @ApiOperation("新增操作")
     @RequestMapping(value = "/add",method = RequestMethod.POST)
     public ResponseData add(T t) {
         T save = baseService.save(t);
@@ -48,6 +50,7 @@ public  abstract class BaseController<T extends BaseEntity,ID extends Serializab
      * @param id id
      * @return 返回数据
      */
+    @ApiOperation("通过id 删除")
     @RequestMapping(value = "/delete", method = RequestMethod.POST)
     public ResponseData delete(ID id) {
          baseService.deleteById(id);
@@ -59,6 +62,7 @@ public  abstract class BaseController<T extends BaseEntity,ID extends Serializab
      * 查询所有数据
      * @return 返回数据
      */
+    @ApiOperation("查询所有")
     @RequestMapping(value = "/all",method = RequestMethod.GET)
     public ResponseData findAll() {
         List<T> all = baseService.findAll();
@@ -70,6 +74,7 @@ public  abstract class BaseController<T extends BaseEntity,ID extends Serializab
      * @param id id
      * @return 返回数据
      */
+    @ApiOperation("通过id查询，如果没有回抛出异常")
     @RequestMapping(value = "/find/{id}",method = RequestMethod.GET)
     public ResponseData findById(@PathVariable ID id) {
         T byId = baseService.findById(id);
@@ -81,6 +86,7 @@ public  abstract class BaseController<T extends BaseEntity,ID extends Serializab
      * @param searchable 查询条件
      * @return 返回数据
      */
+    @ApiOperation("通过searchable条件查询")
     @RequestMapping(value = "/list", method = RequestMethod.GET)
 
     public ResponseData findAll(Searchable searchable) {

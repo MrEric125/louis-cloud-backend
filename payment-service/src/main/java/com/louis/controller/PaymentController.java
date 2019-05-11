@@ -1,5 +1,7 @@
 package com.louis.controller;
 
+import com.louis.entity.Payment;
+import com.louis.web.BaseController;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -9,5 +11,6 @@ import org.springframework.web.bind.annotation.RestController;
  * Description:
  */
 @RestController
-public class PaymentController {
+public class PaymentController extends BaseController<Payment, Long> {
+
 }
