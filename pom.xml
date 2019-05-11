@@ -7,11 +7,12 @@
         <module>cloud-dubbo</module>
         <module>cloud-dubbo</module>
         <module>cloud-common</module>
-        <module>payment-service</module>
+        <module>cloud-payment-service</module>
         <module>cloud-comment-service</module>
         <module>cloud-goods-service</module>
         <module>cloud-voucher-service</module>
         <module>cloud-oauth</module>
+        <module>cloud-search-service</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
