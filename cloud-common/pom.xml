@@ -15,6 +15,7 @@
         <module>louiscloud-common-core</module>
         <module>louiscloud-common-api</module>
         <module>louiscloud-common-web</module>
+        <module>louiscloud-common-feign</module>
     </modules>
 
     <dependencies>

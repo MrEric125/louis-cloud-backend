@@ -19,7 +19,7 @@ import java.io.Serializable;
 
 
 @Slf4j
-public class BaseController <T extends BaseEntity,ID extends Serializable> {
+public class BaseController  {
 
 
 
@@ -43,7 +43,7 @@ public class BaseController <T extends BaseEntity,ID extends Serializable> {
 	 *
 	 * @return the wrapper
 	 */
-	protected  Wrapper<T> handleResult(T result) {
+	protected <T> Wrapper<T> handleResult(T result) {
 		boolean flag = isFlag(result);
 
 		if (flag) {
@@ -62,7 +62,7 @@ public class BaseController <T extends BaseEntity,ID extends Serializable> {
 	 *
 	 * @return the wrapper
 	 */
-	protected  Wrapper<T> handleResult(T result, String errorMsg) {
+	protected <T> Wrapper<T> handleResult(T result, String errorMsg) {
 		boolean flag = isFlag(result);
 
 		if (flag) {

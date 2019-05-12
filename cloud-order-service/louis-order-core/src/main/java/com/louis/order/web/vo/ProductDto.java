@@ -11,6 +11,7 @@
 
 package com.louis.order.web.vo;
 
+import com.louis.core.dto.BaseDto;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -25,10 +26,9 @@ import java.math.BigDecimal;
  */
 @Data
 @ApiModel
-public class ProductDto implements Serializable {
+public class ProductDto extends BaseDto<Long> {
 	private static final long serialVersionUID = 6932649538854879183L;
-	@ApiModelProperty("货品ID")
-	private Long id;
+
 	@ApiModelProperty("分类ID")
 	private Long categoryId;
 	private String name;
