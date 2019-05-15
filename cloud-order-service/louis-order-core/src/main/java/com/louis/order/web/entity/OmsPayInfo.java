@@ -7,12 +7,14 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.Table;
 
 
 @EqualsAndHashCode(callSuper = true)
 @Table(name = "oms_pay_info")
 @Data
+@Entity
 public class OmsPayInfo extends MallEntity<Long> {
 
 	private static final long serialVersionUID = 7949091072343450552L;

@@ -17,7 +17,7 @@ import java.util.List;
 public interface OmsOrderRepository extends BaseRepository<OmsOrder,Long> {
 
 
-    List<OmsOrder> findAllByOrderUser(String userId);
+    List<OmsOrder> findAllByUserId(Long userId);
 
 
 }

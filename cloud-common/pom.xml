@@ -16,6 +16,7 @@
         <module>louiscloud-common-api</module>
         <module>louiscloud-common-web</module>
         <module>louiscloud-common-feign</module>
+        <module>louis-common-dubbo</module>
     </modules>
 
     <dependencies>

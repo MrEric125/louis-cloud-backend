@@ -22,10 +22,10 @@ public class OmsOrderService extends CRUDService<OmsOrder,Long> {
     @Autowired
     OmsOrderRepository omsOrderRepository;
 
-    public List<OmsOrder> findByUserId(String userId) {
+    public List<OmsOrder> findByUserId(Long userId) {
 
 
-        return omsOrderRepository.findAllByOrderUser(userId);
+        return omsOrderRepository.findAllByUserId(userId);
 
     }
 }

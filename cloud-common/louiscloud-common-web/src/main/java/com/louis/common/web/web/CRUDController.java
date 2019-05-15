@@ -36,7 +36,7 @@ public  abstract class CRUDController<T extends BaseEntity,ID extends Serializab
      * @return 返回数据
      */
     @ApiOperation("新增操作")
-    @RequestMapping(value = "/add",method = RequestMethod.POST)
+    @RequestMapping(value = "/addBy",method = RequestMethod.POST)
     public ResponseData add(T t) {
         T save = crudService.save(t);
         return new ResponseData(save);
@@ -49,7 +49,7 @@ public  abstract class CRUDController<T extends BaseEntity,ID extends Serializab
      * @return 返回数据
      */
     @ApiOperation("通过id 删除")
-    @RequestMapping(value = "/delete", method = RequestMethod.POST)
+    @RequestMapping(value = "/deleteBy", method = RequestMethod.POST)
     public ResponseData delete(ID id) {
         crudService.deleteById(id);
 
@@ -61,7 +61,7 @@ public  abstract class CRUDController<T extends BaseEntity,ID extends Serializab
      * @return 返回数据
      */
     @ApiOperation("查询所有")
-    @RequestMapping(value = "/all",method = RequestMethod.GET)
+    @RequestMapping(value = "/allBy",method = RequestMethod.GET)
     public ResponseData findAll() {
         List<T> all = crudService.findAll();
         return new ResponseData(all);
@@ -73,7 +73,7 @@ public  abstract class CRUDController<T extends BaseEntity,ID extends Serializab
      * @return 返回数据
      */
     @ApiOperation("通过id查询，如果没有回抛出异常")
-    @RequestMapping(value = "/find/{id}",method = RequestMethod.GET)
+    @RequestMapping(value = "/findBy/{id}",method = RequestMethod.GET)
     public ResponseData findById(@PathVariable ID id) {
         T byId = crudService.findById(id);
         return new ResponseData( byId);
@@ -85,7 +85,7 @@ public  abstract class CRUDController<T extends BaseEntity,ID extends Serializab
      * @return 返回数据
      */
     @ApiOperation("通过searchable条件查询")
-    @RequestMapping(value = "/list", method = RequestMethod.GET)
+    @RequestMapping(value = "/listBy", method = RequestMethod.GET)
 
     public ResponseData findAll(Searchable searchable) {
         searchable = searchable == null ?  Searchable.newSearchable() : searchable;

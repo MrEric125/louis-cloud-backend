@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.Table;
 
 /**
@@ -16,7 +17,8 @@ import javax.persistence.Table;
  */
 @EqualsAndHashCode(callSuper = true)
 @Data
-@Table(name = "pc_oms_cart")
+@Entity
+@Table(name = "oms_cart")
 public class OmsCart extends MallEntity<Long> {
 
 	private static final long serialVersionUID = 5333646386138778574L;
@@ -34,5 +36,5 @@ public class OmsCart extends MallEntity<Long> {
 	/**
 	 * 是否选择,1=已勾选,0=未勾选
 	 */
-	private Integer checked;
+	private boolean checked;
 }

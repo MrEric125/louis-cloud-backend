@@ -8,5 +8,5 @@ import com.louis.core.dto.BaseDto;
  * Date: 2019/5/15
  * Description:
  */
-public class OmsShipping extends BaseDto<Long> {
+public class OmsShippingDto extends BaseDto<Long> {
 }

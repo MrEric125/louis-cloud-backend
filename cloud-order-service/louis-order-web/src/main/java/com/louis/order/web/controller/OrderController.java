@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.*;
  */
 @Api(tags = "orderController",description = "订单服务相关操作")
 @RestController
+
 public class OrderController extends CRUDController<OmsOrder,Long > {
 
 
@@ -34,23 +35,6 @@ public class OrderController extends CRUDController<OmsOrder,Long > {
      * 新增订单，新增完成->调用支付系统->调用库存系统->调用积分系统
      * @return
      */
-    @ApiOperation("新增订单")
-    @PostMapping("/add")
-    public ResponseData add(OmsOrder order) {
-        return new ResponseData("success");
-    }
-
-    @ApiOperation("删除订单")
-    @GetMapping("/delete")
-    public ResponseData delete() {
-
-        return new ResponseData("success");
-    }
-    @ApiOperation("编辑订单")
-    @GetMapping("/edit")
-    public ResponseData edit() {
-        return new ResponseData("success");
-    }
 
 
 

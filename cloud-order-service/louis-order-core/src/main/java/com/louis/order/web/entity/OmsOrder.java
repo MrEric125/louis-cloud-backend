@@ -37,6 +37,7 @@ public class OmsOrder extends MallEntity<Long> {
     private BigDecimal payment;
 
     @ApiModelProperty(value = "订单状态",notes ="订单状态:0-已取消-10-未付款, 20-已付款, 40-已发货, 50-交易成功, 60-交易关闭" )
+    @Column(name = "order_status")
     private Integer orderStatus;
 
 
@@ -45,7 +46,7 @@ public class OmsOrder extends MallEntity<Long> {
 
     @ApiModelProperty("创建订单用户")
     @Column(name = "user_id")
-    private String userId;
+    private Long userId;
 
     @ApiModelProperty("订单创建时间")
     @Column(name = "began_time")
@@ -56,8 +57,8 @@ public class OmsOrder extends MallEntity<Long> {
     private Date endTime;
 
     @ApiModelProperty("商品编码")
-    @Column(name = "goods_code")
-    private String goodsCode;
+    @Column(name = "product_id")
+    private String ProductId;
 
 
     @ApiModelProperty("订单支付时间")

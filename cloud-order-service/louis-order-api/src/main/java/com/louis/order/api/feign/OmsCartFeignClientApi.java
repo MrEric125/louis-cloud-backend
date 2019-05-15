@@ -1,18 +1,17 @@
 package com.louis.order.api.feign;
 
 import com.louis.common.feign.BaseFeignClient;
-import com.louis.core.dto.BaseDto;
-import com.louis.core.entity.BaseEntity;
+import com.louis.order.web.dto.OmsCartDto;
+import com.louis.order.web.entity.OmsCart;
 import org.springframework.cloud.openfeign.FeignClient;
 
-import java.io.Serializable;
+
 
 /**
  * @author Eric
  * @date create in 2019/5/12
  */
 @FeignClient(value = "louis-order-web")
-public interface OmsCartFeignClientApi<E extends BaseEntity, D extends BaseDto<ID>, ID extends Serializable> extends BaseFeignClient<E, D, ID> {
-
+public interface OmsCartFeignClientApi extends BaseFeignClient<OmsCart, OmsCartDto,Long> {
 
 }

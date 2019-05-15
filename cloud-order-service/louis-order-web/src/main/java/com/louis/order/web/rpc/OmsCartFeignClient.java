@@ -1,12 +1,13 @@
 package com.louis.order.web.rpc;
 
 
+import com.louis.common.api.response.wrapper.WrapMapper;
 import com.louis.common.api.response.wrapper.Wrapper;
-import com.louis.common.feign.BaseFeignClient;
 import com.louis.common.web.web.BaseController;
+import com.louis.order.api.feign.OmsCartFeignClientApi;
 import com.louis.order.api.service.OmsCartService;
+import com.louis.order.web.dto.OmsCartDto;
 import com.louis.order.web.entity.OmsCart;
-import com.louis.order.web.vo.ProductDto;
 import io.swagger.annotations.Api;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,29 +24,26 @@ import java.util.List;
 @RestController
 @Api(value = "OmsCartFeignClient", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 @Slf4j
-public class OmsCartFeignClient extends BaseController implements com.louis.common.feign.BaseFeignClient<OmsCart, ProductDto, Long> {
+public class OmsCartFeignClient extends BaseController implements OmsCartFeignClientApi {
 
     @Autowired
     OmsCartService cartService;
 
 
-    /**
-     * 更新购物车中的产品
-     * @param eList 对象集合
-     * @return
-     */
     @Override
-    public Wrapper updateList(List<ProductDto> eList) {
+
+    public Wrapper updateList(List<OmsCartDto> eList) {
+
         return null;
     }
 
     @Override
-    public Wrapper update(ProductDto e) {
+    public Wrapper update(OmsCartDto e) {
         return null;
     }
 
     @Override
-    public Wrapper add(ProductDto e) {
+    public Wrapper add(OmsCartDto e) {
         return null;
     }
 
@@ -61,8 +59,7 @@ public class OmsCartFeignClient extends BaseController implements com.louis.comm
 
     @Override
     public Wrapper findAll() {
-        List<OmsCart> all = cartService.findAll();
-        return handleResult(all);
-    }
+        return WrapMapper.wrap(Wrapper.SUCCESS_CODE, Wrapper.SUCCESS_MESSAGE,"this is find All FeignClient");
 
+    }
 }

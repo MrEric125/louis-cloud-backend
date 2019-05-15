@@ -40,7 +40,7 @@ public interface BaseFeignClient<E extends BaseEntity,D extends BaseDto,ID exten
      * @return
      */
     @PostMapping(value = "/add")
-    Wrapper add(D e);
+    Wrapper add(@RequestBody D e);
 
 
     /**
@@ -48,8 +48,8 @@ public interface BaseFeignClient<E extends BaseEntity,D extends BaseDto,ID exten
      * @param id 主鍵
      * @return
      */
-    @GetMapping("/delete")
-    Wrapper deleteById(ID id);
+    @GetMapping("/delete/{id}")
+    Wrapper deleteById(@PathVariable("id") ID id);
 
 
     /**
@@ -57,8 +57,8 @@ public interface BaseFeignClient<E extends BaseEntity,D extends BaseDto,ID exten
      * @param id
      * @return
      */
-    @GetMapping("/findOne")
-    Wrapper findOne(ID id);
+    @GetMapping("/findOne/{id}")
+    Wrapper findOne(@PathVariable("id") ID id);
 
 
     /**

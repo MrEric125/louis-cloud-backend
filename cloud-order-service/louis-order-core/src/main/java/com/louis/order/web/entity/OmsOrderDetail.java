@@ -7,11 +7,13 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.Table;
 import java.math.BigDecimal;
 
 @EqualsAndHashCode(callSuper = true)
 @Data
+@Entity
 @Table(name = "oms_order_detail")
 public class OmsOrderDetail extends MallEntity<Long> {
 
