@@ -2,6 +2,7 @@ package com.louis.order.web.rpc;
 
 
 import com.louis.common.api.response.wrapper.Wrapper;
+import com.louis.common.feign.BaseFeignClient;
 import com.louis.common.web.web.BaseController;
 import com.louis.order.api.service.OmsCartService;
 import com.louis.order.web.entity.OmsCart;
