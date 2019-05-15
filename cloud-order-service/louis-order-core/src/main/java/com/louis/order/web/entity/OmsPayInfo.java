@@ -11,9 +11,9 @@ import javax.persistence.Table;
 
 
 @EqualsAndHashCode(callSuper = true)
-@Table(name = "ptc_pay_info")
+@Table(name = "oms_pay_info")
 @Data
-public class PtcPayInfo extends MallEntity<Long> {
+public class OmsPayInfo extends MallEntity<Long> {
 
 	private static final long serialVersionUID = 7949091072343450552L;
 	/**

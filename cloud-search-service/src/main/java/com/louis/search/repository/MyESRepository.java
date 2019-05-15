@@ -1,8 +1,8 @@
 package com.louis.search.repository;
 
 import com.louis.search.entity.ESEntity;
-import org.springframework.data.elasticsearch.repository.ElasticsearchRepository;
 import org.springframework.data.elasticsearch.repository.support.AbstractElasticsearchRepository;
+import org.springframework.stereotype.Repository;
 
 
 /**
@@ -11,6 +11,7 @@ import org.springframework.data.elasticsearch.repository.support.AbstractElastic
  * Date: 2019/5/14
  * Description:
  */
+@Repository
 public class MyESRepository extends AbstractElasticsearchRepository<ESEntity,Long> {
 
 
