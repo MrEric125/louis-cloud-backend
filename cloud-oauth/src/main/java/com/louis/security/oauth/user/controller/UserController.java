@@ -1,0 +1,109 @@
+package com.louis.security.oauth.user.controller;
+
+import com.google.common.collect.Maps;
+
+import com.louis.security.oauth.common.ResponseCode;
+import com.louis.security.oauth.config.TokenProperties;
+import com.louis.security.oauth.exception.InvalidTokenException;
+import com.louis.security.oauth.model.UserContext;
+import com.louis.security.oauth.model.token.RawAccessToken;
+import com.louis.security.oauth.model.token.RefreshToken;
+import com.louis.security.oauth.model.token.Token;
+import com.louis.security.oauth.model.token.TokenFactory;
+import com.louis.security.oauth.oauth.token.extractor.TokenExtractor;
+import com.louis.security.oauth.oauth.token.verifier.TokenVerifier;
+import com.louis.security.oauth.user.entity.UserInfo;
+import com.louis.security.oauth.user.entity.UserRole;
+import com.louis.security.oauth.user.service.UserRoleService;
+import com.louis.security.oauth.user.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.InsufficientAuthenticationException;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.AuthorityUtils;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.oauth2.provider.OAuth2Authentication;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+import java.util.stream.Collectors;
+
+/**
+ * @author Eric
+ * @date create in 2019/4/14
+ */
+@RestController
+@RequestMapping("/user")
+public class UserController {
+
+    @Autowired
+    TokenProperties tokenProperties;
+
+    @Autowired
+    TokenVerifier tokenVerifier;
+    @Autowired
+    TokenFactory tokenFactory;
+
+    @Autowired
+    TokenExtractor tokenExtractor;
+
+    @Autowired
+    UserService userService;
+
+    @Autowired
+    UserRoleService userRoleService;
+
+
+    @GetMapping("/test1")
+    public String test1() {
+        return "test1";
+    }
+
+    @GetMapping("/api/test2")
+    public String test2() {
+        return "test2";
+    }
+
+    @GetMapping("/manage/test3")
+    public String test3() {
+        return "test3";
+    }
+
+    @GetMapping("/api/auth/refresh_token")
+    public Token test4( ) {
+//        String tokenPayload = tokenExtractor.extract(request.getHeader(WebSecurityConfig.TOKEN_HEADER_PARAM));
+        String tokenPayload = tokenExtractor.extract("");
+        RawAccessToken rawToken = new RawAccessToken(tokenPayload);
+        RefreshToken refreshToken = RefreshToken.create(rawToken, tokenProperties.getSigningKey()).orElseThrow(() -> new InvalidTokenException("Token验证失败"));
+
+        String jti = refreshToken.getJti();
+        if (!tokenVerifier.verify(jti)) {
+            throw new InvalidTokenException("Token验证失败");
+        }
+
+        String subject = refreshToken.getSubject();
+        UserInfo user = Optional.ofNullable(userService.findByUserName(subject)).orElseThrow(() -> new UsernameNotFoundException("用户未找到: " + subject));
+        List<UserRole> roles = Optional.ofNullable(userRoleService.getRoleByUser(user)).orElseThrow(() -> new InsufficientAuthenticationException("用户没有分配角色"));
+        List<GrantedAuthority> authorities = roles.stream()
+                .map(authority -> new SimpleGrantedAuthority(authority.authority()))
+                .collect(Collectors.toList());
+
+        UserContext userContext = UserContext.create(user.getUserName(), authorities);
+        return tokenFactory.createAccessToken(userContext);
+    }
+
+
+
+    @RequestMapping(value = "/message",produces = "application/json")
+    public ResponseCode user(OAuth2Authentication user) {
+        Map<String, Object> userInfo = Maps.newHashMap();
+        userInfo.put("user", user.getUserAuthentication().getPrincipal());
+        userInfo.put("authorities", AuthorityUtils.authorityListToSet(user.getUserAuthentication().getAuthorities()));
+        return new ResponseCode("200", userInfo);
+
+    }
+}
