@@ -19,17 +19,13 @@ import com.louis.security.oauth.service.UserRoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.InsufficientAuthenticationException;
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.oauth2.provider.OAuth2Authentication;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -38,25 +34,29 @@ import java.util.stream.Collectors;
  * @date create in 2019/4/14
  */
 @RestController
-@RequestMapping("/")
 public class UserController {
 
-    @Autowired
-    TokenProperties tokenProperties;
+    private final TokenProperties tokenProperties;
+
+    private final TokenVerifier tokenVerifier;
+
+    private final TokenFactory tokenFactory;
+
+    private final TokenExtractor tokenExtractor;
+
+    private final SysUserService userService;
+
+    private final UserRoleService userRoleService;
 
     @Autowired
-    TokenVerifier tokenVerifier;
-    @Autowired
-    TokenFactory tokenFactory;
-
-    @Autowired
-    TokenExtractor tokenExtractor;
-
-    @Autowired
-    SysUserService userService;
-
-    @Autowired
-    UserRoleService userRoleService;
+    public UserController(TokenProperties tokenProperties, TokenVerifier tokenVerifier, TokenFactory tokenFactory, TokenExtractor tokenExtractor, SysUserService userService, UserRoleService userRoleService) {
+        this.tokenProperties = tokenProperties;
+        this.tokenVerifier = tokenVerifier;
+        this.tokenFactory = tokenFactory;
+        this.tokenExtractor = tokenExtractor;
+        this.userService = userService;
+        this.userRoleService = userRoleService;
+    }
 
 
     @GetMapping("/test1")
@@ -99,12 +99,12 @@ public class UserController {
 
 
 
-    @RequestMapping(value = "/message",produces = "application/json")
-    public ResponseCode user(OAuth2Authentication user) {
-        Map<String, Object> userInfo = Maps.newHashMap();
-        userInfo.put("user", user.getUserAuthentication().getPrincipal());
-        userInfo.put("authorities", AuthorityUtils.authorityListToSet(user.getUserAuthentication().getAuthorities()));
-        return new ResponseCode("200", userInfo);
-
-    }
+//    @RequestMapping(value = "/message",produces = "application/json")
+//    public ResponseCode user(OAuth2Authentication user) {
+//        Map<String, Object> userInfo = Maps.newHashMap();
+//        userInfo.put("user", user.getUserAuthentication().getPrincipal());
+//        userInfo.put("authorities", AuthorityUtils.authorityListToSet(user.getUserAuthentication().getAuthorities()));
+//        return new ResponseCode("200", userInfo);
+//
+//    }
 }

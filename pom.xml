@@ -7,7 +7,7 @@
         <module>cloud-dubbo</module>
         <module>cloud-dubbo</module>
         <module>cloud-common</module>
-        <module>cloud-payment-service</module>
+        
         <module>cloud-comment-service</module>
         <module>cloud-goods-service</module>
         <module>cloud-voucher-service</module>
