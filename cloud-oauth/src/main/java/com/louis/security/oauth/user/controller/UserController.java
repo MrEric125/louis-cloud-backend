@@ -4,6 +4,7 @@ import com.google.common.collect.Maps;
 
 import com.louis.security.oauth.common.ResponseCode;
 import com.louis.security.oauth.config.TokenProperties;
+import com.louis.security.oauth.config.WebSecurityConfig;
 import com.louis.security.oauth.exception.InvalidTokenException;
 import com.louis.security.oauth.model.UserContext;
 import com.louis.security.oauth.model.token.RawAccessToken;
@@ -12,10 +13,10 @@ import com.louis.security.oauth.model.token.Token;
 import com.louis.security.oauth.model.token.TokenFactory;
 import com.louis.security.oauth.oauth.token.extractor.TokenExtractor;
 import com.louis.security.oauth.oauth.token.verifier.TokenVerifier;
-import com.louis.security.oauth.user.entity.UserInfo;
+import com.louis.security.oauth.user.entity.SysUserInfo;
 import com.louis.security.oauth.user.entity.UserRole;
+import com.louis.security.oauth.user.service.SysUserService;
 import com.louis.security.oauth.user.service.UserRoleService;
-import com.louis.security.oauth.user.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.InsufficientAuthenticationException;
 import org.springframework.security.core.GrantedAuthority;
@@ -27,6 +28,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -52,7 +54,7 @@ public class UserController {
     TokenExtractor tokenExtractor;
 
     @Autowired
-    UserService userService;
+    SysUserService userService;
 
     @Autowired
     UserRoleService userRoleService;
@@ -74,9 +76,9 @@ public class UserController {
     }
 
     @GetMapping("/api/auth/refresh_token")
-    public Token test4( ) {
-//        String tokenPayload = tokenExtractor.extract(request.getHeader(WebSecurityConfig.TOKEN_HEADER_PARAM));
-        String tokenPayload = tokenExtractor.extract("");
+    public Token test4(HttpServletRequest request) {
+        String tokenPayload = tokenExtractor.extract(request.getHeader(WebSecurityConfig.TOKEN_HEADER_PARAM));
+//        String tokenPayload = tokenExtractor.extract("");
         RawAccessToken rawToken = new RawAccessToken(tokenPayload);
         RefreshToken refreshToken = RefreshToken.create(rawToken, tokenProperties.getSigningKey()).orElseThrow(() -> new InvalidTokenException("Token验证失败"));
 
@@ -86,7 +88,7 @@ public class UserController {
         }
 
         String subject = refreshToken.getSubject();
-        UserInfo user = Optional.ofNullable(userService.findByUserName(subject)).orElseThrow(() -> new UsernameNotFoundException("用户未找到: " + subject));
+        SysUserInfo user = Optional.ofNullable(userService.findByUserName(subject)).orElseThrow(() -> new UsernameNotFoundException("用户未找到: " + subject));
         List<UserRole> roles = Optional.ofNullable(userRoleService.getRoleByUser(user)).orElseThrow(() -> new InsufficientAuthenticationException("用户没有分配角色"));
         List<GrantedAuthority> authorities = roles.stream()
                 .map(authority -> new SimpleGrantedAuthority(authority.authority()))

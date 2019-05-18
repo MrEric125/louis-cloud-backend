@@ -2,10 +2,9 @@ package com.louis.core.entity;
 
 
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.MappedSuperclass;
+import lombok.NonNull;
+
+import javax.persistence.*;
 import java.io.Serializable;
 
 /**
@@ -22,6 +21,7 @@ public abstract class BaseEntity<ID extends Serializable> extends AbstractEntity
 
 
     @Override
+    @NonNull
     public ID getId() {
         return id;
     }

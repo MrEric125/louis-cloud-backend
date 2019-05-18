@@ -20,7 +20,7 @@ public class HeaderTokenExtractor implements TokenExtractor{
         if (header.length() < HEADER_PREFIX.length()) {
             throw new AuthenticationServiceException("Invalid authorization header size.");
         }
-        return header.substring(HEADER_PREFIX.length(), header.length());
+        return header.substring(HEADER_PREFIX.length());
     }
 
 }

@@ -2,10 +2,10 @@ package com.louis.security.oauth.oauth.login;
 
 import com.alibaba.fastjson.JSON;
 import com.louis.security.oauth.model.UserContext;
-import com.louis.security.oauth.user.entity.UserInfo;
+import com.louis.security.oauth.user.entity.SysUserInfo;
 import com.louis.security.oauth.user.entity.UserRole;
+import com.louis.security.oauth.user.service.SysUserService;
 import com.louis.security.oauth.user.service.UserRoleService;
-import com.louis.security.oauth.user.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.security.authentication.AuthenticationProvider;
@@ -27,16 +27,18 @@ import java.util.stream.Collectors;
 /**
  * @author Eric
  * @date create in 2019/4/14
+ *
+ * 登录验证
  */
 @Slf4j
 @Component
 public class LoginAuthenticationProvider implements AuthenticationProvider {
 
     private final BCryptPasswordEncoder encoder;
-    private final UserService userService;
+    private final SysUserService userService;
     private final UserRoleService roleService;
 
-    public LoginAuthenticationProvider(BCryptPasswordEncoder encoder, UserService userService, UserRoleService roleService) {
+    public LoginAuthenticationProvider(BCryptPasswordEncoder encoder, SysUserService userService, UserRoleService roleService) {
         this.encoder = encoder;
         this.userService = userService;
         this.roleService = roleService;
@@ -48,7 +50,7 @@ public class LoginAuthenticationProvider implements AuthenticationProvider {
         log.debug("[authentication info] - [{}]", JSON.toJSONString(authentication));
         String username = (String) authentication.getPrincipal();
         String password = (String) authentication.getCredentials();
-        UserInfo user = userService.findByUserName(username);
+        SysUserInfo user = userService.findByUserName(username);
         if(user == null) throw new UsernameNotFoundException("User not found: " + username);
         if (!StringUtils.equals(password, user.getPassword())) {
             throw new BadCredentialsException("Authentication Failed. Username or Password not valid.");
@@ -58,8 +60,7 @@ public class LoginAuthenticationProvider implements AuthenticationProvider {
 
         List<GrantedAuthority> authorities = roles.stream()
                 .map(authority -> new SimpleGrantedAuthority(
-                "" //todo 假数据后期加上
-//                        authority.authority()
+                        authority.authority()
                 ))
                 .collect(Collectors.toList());
 

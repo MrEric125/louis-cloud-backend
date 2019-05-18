@@ -28,6 +28,8 @@ import java.util.List;
 /**
  * @author Eric
  * @date create in 2019/4/14
+ *
+ * 为应用程序定义用户id 密码，和角色
  */
 @Configuration
 @EnableWebSecurity
@@ -80,6 +82,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         auth.authenticationProvider(tokenAuthenticationProvider);
     }
 
+    /**
+     * 项目在启动的时候就选软这个实现，后期登录的时候就可以直接登录{@link FORM_BASED_LOGIN_ENTRY_POINT}
+     * @param http
+     * @throws Exception
+     */
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
