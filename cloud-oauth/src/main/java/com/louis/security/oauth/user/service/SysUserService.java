@@ -18,7 +18,8 @@ public class SysUserService extends CRUDService<SysUserInfo, Long> {
     private SysUserRepository sysUserRepository;
 
     public SysUserInfo findByUserName(String userName) {
-        return sysUserRepository.findByUserName(userName);
+        return sysUserRepository.findByUsername(userName);
+
     }
 
 

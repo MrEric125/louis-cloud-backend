@@ -12,6 +12,7 @@ import org.springframework.data.jpa.provider.PersistenceProvider;
 import org.springframework.data.jpa.repository.support.CrudMethodMetadata;
 import org.springframework.data.jpa.repository.support.JpaEntityInformation;
 import org.springframework.data.jpa.repository.support.SimpleJpaRepository;
+import org.springframework.lang.NonNullApi;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
 
@@ -138,7 +139,7 @@ public class SimpleBaseRepository<M, ID extends Serializable> extends SimpleJpaR
 	 */
 	@Transactional
 	@Override
-	public void delete(final M m) {
+	public void delete( M m) {
 		if (m == null) {
 			return;
 		}
@@ -230,7 +231,7 @@ public class SimpleBaseRepository<M, ID extends Serializable> extends SimpleJpaR
 	public Page<M> findAll(final Searchable searchable) {
 		List<M> list = repositoryHelper.findAll(findAllQL, searchable, searchCallback);
 		long total = searchable.hasPageable() ? count(searchable) : list.size();
-		return new PageImpl<M>(
+		return new PageImpl<>(
 				list,
 				searchable.getPage(),
 				total

@@ -125,9 +125,9 @@ public abstract class CRUDService <T extends BaseEntity,ID extends Serializable>
      * 删除集合Id
      * @param ids 实体ids
      */
-    public void delete(List<ID> ids) {
+    /*public void delete(List<ID> ids) {
         baseRepository.delete(ids);
-    }
+    }*/
 
     /**
      * 删除所有

@@ -39,7 +39,7 @@ import java.util.stream.Collectors;
  * @date create in 2019/4/14
  */
 @RestController
-@RequestMapping("/user")
+@RequestMapping("/")
 public class UserController {
 
     @Autowired
@@ -94,7 +94,7 @@ public class UserController {
                 .map(authority -> new SimpleGrantedAuthority(authority.authority()))
                 .collect(Collectors.toList());
 
-        UserContext userContext = UserContext.create(user.getUserName(), authorities);
+        UserContext userContext = UserContext.create(user.getUsername(), authorities);
         return tokenFactory.createAccessToken(userContext);
     }
 

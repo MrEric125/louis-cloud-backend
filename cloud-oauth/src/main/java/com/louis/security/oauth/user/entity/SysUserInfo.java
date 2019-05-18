@@ -1,10 +1,7 @@
 package com.louis.security.oauth.user.entity;
 
 import com.louis.core.entity.BaseEntity;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.Entity;
 import javax.persistence.Table;
@@ -15,6 +12,7 @@ import javax.persistence.Table;
  */
 @Setter
 @Getter
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
@@ -24,7 +22,9 @@ public class SysUserInfo extends BaseEntity<Long> {
 
     private static final long serialVersionUID = 256121294003669340L;
     //这个地方的用户名必须保证唯一性
-    private String userName;
+    private String username;
 
     private String password;
+
+    private String phone;
 }
