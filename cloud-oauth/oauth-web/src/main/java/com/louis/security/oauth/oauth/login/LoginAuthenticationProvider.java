@@ -1,8 +1,8 @@
 package com.louis.security.oauth.oauth.login;
 
 import com.alibaba.fastjson.JSON;
+import com.louis.security.oauth.entity.SysUser;
 import com.louis.security.oauth.model.UserContext;
-import com.louis.security.oauth.entity.SysUserInfo;
 import com.louis.security.oauth.entity.UserRole;
 import com.louis.security.oauth.service.SysUserService;
 import com.louis.security.oauth.service.UserRoleService;
@@ -50,7 +50,7 @@ public class LoginAuthenticationProvider implements AuthenticationProvider {
         log.debug("[authentication info] - [{}]", JSON.toJSONString(authentication));
         String username = (String) authentication.getPrincipal();
         String password = (String) authentication.getCredentials();
-        SysUserInfo user = userService.findByUserName(username);
+        SysUser user = userService.findByUserName(username);
         if(user == null) throw new UsernameNotFoundException("User not found: " + username);
         if (!StringUtils.equals(password, user.getPassword())) {
             throw new BadCredentialsException("Authentication Failed. Username or Password not valid.");

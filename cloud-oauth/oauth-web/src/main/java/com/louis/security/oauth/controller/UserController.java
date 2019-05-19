@@ -4,6 +4,7 @@ import com.google.common.collect.Maps;
 import com.louis.security.oauth.common.ResponseCode;
 import com.louis.security.oauth.config.TokenProperties;
 import com.louis.security.oauth.config.WebSecurityConfig;
+import com.louis.security.oauth.entity.SysUser;
 import com.louis.security.oauth.exception.InvalidTokenException;
 import com.louis.security.oauth.model.UserContext;
 import com.louis.security.oauth.oauth.extractor.TokenExtractor;
@@ -12,7 +13,6 @@ import com.louis.security.oauth.oauth.token.RefreshToken;
 import com.louis.security.oauth.oauth.token.Token;
 import com.louis.security.oauth.oauth.token.TokenFactory;
 import com.louis.security.oauth.oauth.verifier.TokenVerifier;
-import com.louis.security.oauth.entity.SysUserInfo;
 import com.louis.security.oauth.entity.UserRole;
 import com.louis.security.oauth.service.SysUserService;
 import com.louis.security.oauth.service.UserRoleService;
@@ -87,7 +87,7 @@ public class UserController {
         }
 
         String subject = refreshToken.getSubject();
-        SysUserInfo user = Optional.ofNullable(userService.findByUserName(subject)).orElseThrow(() -> new UsernameNotFoundException("用户未找到: " + subject));
+        SysUser user = Optional.ofNullable(userService.findByUserName(subject)).orElseThrow(() -> new UsernameNotFoundException("用户未找到: " + subject));
         List<UserRole> roles = Optional.ofNullable(userRoleService.getRoleByUser(user)).orElseThrow(() -> new InsufficientAuthenticationException("用户没有分配角色"));
         List<GrantedAuthority> authorities = roles.stream()
                 .map(authority -> new SimpleGrantedAuthority(authority.authority()))

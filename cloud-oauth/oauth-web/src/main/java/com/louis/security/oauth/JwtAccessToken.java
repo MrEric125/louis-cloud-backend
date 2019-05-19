@@ -1,7 +1,7 @@
 package com.louis.security.oauth;
 
 
-import com.louis.security.oauth.entity.SysUserInfo;
+import com.louis.security.oauth.entity.SysUser;
 import org.springframework.security.oauth2.common.DefaultOAuth2AccessToken;
 import org.springframework.security.oauth2.common.OAuth2AccessToken;
 import org.springframework.security.oauth2.provider.OAuth2Authentication;
@@ -19,7 +19,7 @@ public class JwtAccessToken extends JwtAccessTokenConverter {
     @Override
     public OAuth2AccessToken enhance(OAuth2AccessToken accessToken, OAuth2Authentication authentication) {
         DefaultOAuth2AccessToken token = new DefaultOAuth2AccessToken(accessToken);
-        SysUserInfo user = ((SysUserInfo) authentication.getPrincipal());
+        SysUser user = ((SysUser) authentication.getPrincipal());
         return null;
     }
 

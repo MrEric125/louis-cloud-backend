@@ -1,7 +1,7 @@
 package com.louis.security.oauth.service;
 
 import com.louis.common.api.service.CRUDService;
-import com.louis.security.oauth.entity.SysUserInfo;
+import com.louis.security.oauth.entity.SysUser;
 import com.louis.security.oauth.entity.UserRole;
 import com.louis.security.oauth.repository.UserRoleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,12 +22,12 @@ public class UserRoleService extends CRUDService<UserRole, Long> {
     private UserRoleRepository userRoleRepository;
 
 
-    public List<UserRole> getRoleByUser(@NotNull SysUserInfo userInfo) {
+    public List<UserRole> getRoleByUser(@NotNull SysUser user) {
         /*if ("test".equals(userInfo.getUserName())) {
             return Lists.newArrayList(new UserRole("ROLE_ADMIN"));
         }
         return null;*/
-        return userRoleRepository.findByUserId(userInfo.getId());
+        return userRoleRepository.findByUserId(user.getId());
 
 
     }

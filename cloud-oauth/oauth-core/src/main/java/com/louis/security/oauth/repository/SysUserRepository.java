@@ -1,7 +1,7 @@
 package com.louis.security.oauth.repository;
 
 import com.louis.common.api.repository.BaseRepository;
-import com.louis.security.oauth.entity.SysUserInfo;
+import com.louis.security.oauth.entity.SysUser;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -9,9 +9,9 @@ import org.springframework.stereotype.Repository;
  * @date create in 2019/5/18
  */
 @Repository
-public interface SysUserRepository extends BaseRepository<SysUserInfo, Long> {
+public interface SysUserRepository extends BaseRepository<SysUser, Long> {
 
 
-    SysUserInfo findByUsername(String userName);
+    SysUser findByUsername(String userName);
 
 }

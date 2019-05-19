@@ -3,7 +3,6 @@ package com.louis.core.dto;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.io.Serializable;
 
 /**
  * @author Eric
@@ -11,7 +10,7 @@ import java.io.Serializable;
  */
 @Setter
 @Getter
-public class BaseDto<ID extends Serializable> implements Serializable {
+public class BaseDto<ID>  {
 
 
     private static final long serialVersionUID = -1221154456530058105L;
