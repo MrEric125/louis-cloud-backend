@@ -1,0 +1,8 @@
+server:
+  port: 9872
+  servlet:
+    context-path: /comment/
+
+spring:
+  application:
+    name: comment-server-A

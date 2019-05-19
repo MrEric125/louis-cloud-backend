@@ -1,0 +1,10 @@
+zuul:
+  routes:
+#    订单路由
+    order-service:
+      serviceId: louis-order-web:
+      path: /orders/**
+#    权限认证
+    oauth-service:
+      serviceId: oauth-web
+      path: /oauth/**

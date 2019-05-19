@@ -1,7 +1,7 @@
 server:
   port: 9871
   servlet:
-    context-path: /cloud/order/
+    context-path: /orders/
 spring:
   application:
     name: @pom.artifactId@

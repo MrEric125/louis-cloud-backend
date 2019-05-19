@@ -1,7 +1,7 @@
 server:
   port: 9879
-#  servlet:
-#    context-path: /cloud/order/
+  servlet:
+    context-path: /oauth/
 spring:
   application:
     name: @pom.artifactId@
