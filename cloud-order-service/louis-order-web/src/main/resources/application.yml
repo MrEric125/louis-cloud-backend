@@ -1,10 +1,18 @@
+
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
 server:
   port: 9871
-  servlet:
-    context-path: /orders/
+
 spring:
   application:
-    name: @pom.artifactId@
+    name: order-service-A
   jpa:
     database: MYSQL
     show-sql: true
@@ -14,10 +22,7 @@ spring:
       username: root
       password: Root
       driver-class-name: com.mysql.cj.jdbc.Driver
+#    The bean 'louis-order-web.FeignClientSpecification', defined in null, could not be registered.
   main:
     allow-bean-definition-overriding: true
-eureka:
-  client:
-    service-url:
-      defaultZone:
-        http://localhost:8761/eureka/
+

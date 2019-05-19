@@ -1,6 +1,7 @@
 package com.louis.security.oauth.oauth.login;
 
 import com.louis.security.oauth.exception.AuthMethodNotSupportedException;
+import com.louis.security.oauth.utils.IpUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.http.HttpMethod;
@@ -42,13 +43,14 @@ public class LoginProcessingFilter extends AbstractAuthenticationProcessingFilte
 
     @Override
     public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response)
-            throws AuthenticationException, IOException, ServletException {
+            throws AuthenticationException {
         if (!HttpMethod.POST.name().equals(request.getMethod())) {
             if (logger.isDebugEnabled()) {
                 logger.debug("Authentication method not supported. Request method: " + request.getMethod());
             }
             throw new AuthMethodNotSupportedException("Authentication method not supported");
         }
+        String ipAddr = IpUtils.getIpAddr(request);
         String username = request.getParameter("username");
         String password = request.getParameter("password");
         LoginRequest loginRequest = new LoginRequest(username, password);
@@ -64,6 +66,7 @@ public class LoginProcessingFilter extends AbstractAuthenticationProcessingFilte
     protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain chain,
                                             Authentication authResult) throws IOException, ServletException {
         successHandler.onAuthenticationSuccess(request, response, authResult);
+        
     }
 
     @Override

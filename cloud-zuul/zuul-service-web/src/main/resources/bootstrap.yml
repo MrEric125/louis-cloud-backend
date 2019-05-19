@@ -2,9 +2,21 @@ zuul:
   routes:
 #    订单路由
     order-service:
-      serviceId: louis-order-web:
-      path: /orders/**
+      serviceId: order-service-A
+      path: /orders/**  # 通过这个路径路由到order-service-a这个服务的根路径
 #    权限认证
     oauth-service:
       serviceId: oauth-web
       path: /oauth/**
+    comment-service:
+      serviceId: comment-server-A
+      path: /comment/**
+    goods-service:
+      serviceId: goods-service-A
+      path: /goods/**
+    voucher-service:
+      serviceId: voucher-service-A
+      path: /voucher/**
+    search-service:
+      serviceId: search-service-A
+      path: /search/**

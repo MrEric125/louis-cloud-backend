@@ -1,0 +1,2 @@
+当启动了`zuul-service-web`之后，我们就可以通过配置路径中的`bootstarp.yml`文件
+中的path路径找到serviceId中的这个服务，然后如果有根路径要求那也得把更路经带上才能访问url

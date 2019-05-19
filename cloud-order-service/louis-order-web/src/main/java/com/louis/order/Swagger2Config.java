@@ -16,13 +16,13 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
  * @author Eric
  * @date create in 2019/5/12
  */
-@Configuration
-@EnableSwagger2
+
 public class Swagger2Config {
 
-    @Bean(name = "swagger_docket")
+//    @Bean(name = "swagger_docket")
     public Docket api(Environment env) {
         //测试环境则返回接口信息
+        //只扫描这些包下面的可用url
         String basePackage = "com.louis.order";
         if( SwaggerUtil.showApi(env) ){
             return new Docket(DocumentationType.SWAGGER_2)

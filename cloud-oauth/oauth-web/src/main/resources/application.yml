@@ -1,7 +1,5 @@
 server:
   port: 9879
-  servlet:
-    context-path: /oauth/
 spring:
   application:
     name: @pom.artifactId@

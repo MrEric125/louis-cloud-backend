@@ -4,7 +4,7 @@ server:
     context-path:
 spring:
   application:
-    name: @pom.artifactId@
+    name: goods-service-A
   jpa:
     database: MYSQL
     show-sql: true
