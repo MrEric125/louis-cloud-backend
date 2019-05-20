@@ -8,3 +8,7 @@
 - cloud-eureka  :注册中心系统
 - cloud-config : 配置中心系统
 - cloud-zuul :  服务路由系统
+
+2019年5月20日19:13:21
+工作任务计划完成顺序
+cloud-zuul-----> cloud-oauth------> order service--->goods service---> payment service---> comment service
