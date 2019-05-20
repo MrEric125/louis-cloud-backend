@@ -1,4 +1,7 @@
 zuul:
+  host:
+    connect-timeout-millis: 20000
+    socket-timeout-millis: 20000
   routes:
 #    订单路由
     order-service:
@@ -20,3 +23,16 @@ zuul:
     search-service:
       serviceId: search-service-A
       path: /search/**
+# 设置一个公共的前缀
+#  prefix: /api
+security:
+  oauth2:
+    resource:
+      prefer-token-info: true
+      user-info-uri:
+      token-info-uri:
+      jwt:
+        key-alias:
+ribbon:
+  eureka:
+    enabled: false

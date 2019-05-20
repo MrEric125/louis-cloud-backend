@@ -69,7 +69,7 @@ public class WrapMapper {
 	}
 
 	/**
-	 * Un wrapper.
+	 * Un wrapper.仅仅只返回包装类中需要返回的对象
 	 *
 	 * @param <E>     the element type
 	 * @param wrapper the wrapper
