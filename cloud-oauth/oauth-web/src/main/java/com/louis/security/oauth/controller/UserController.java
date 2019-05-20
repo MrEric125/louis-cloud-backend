@@ -18,14 +18,19 @@ import com.louis.security.oauth.service.SysUserService;
 import com.louis.security.oauth.service.UserRoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.InsufficientAuthenticationException;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.oauth2.provider.OAuth2Authentication;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -99,12 +104,12 @@ public class UserController {
 
 
 
-//    @RequestMapping(value = "/message",produces = "application/json")
-//    public ResponseCode user(OAuth2Authentication user) {
-//        Map<String, Object> userInfo = Maps.newHashMap();
-//        userInfo.put("user", user.getUserAuthentication().getPrincipal());
-//        userInfo.put("authorities", AuthorityUtils.authorityListToSet(user.getUserAuthentication().getAuthorities()));
-//        return new ResponseCode("200", userInfo);
-//
-//    }
+    @RequestMapping(value = "/manage/user",produces = "application/json")
+    public ResponseCode user(Authentication user) {
+        Map<String, Object> userInfo = Maps.newHashMap();
+        userInfo.put("user", user.getPrincipal());
+        userInfo.put("authorities", AuthorityUtils.authorityListToSet(user.getAuthorities()));
+        return new ResponseCode("200", userInfo);
+
+    }
 }
