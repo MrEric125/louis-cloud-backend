@@ -39,6 +39,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     private static final String TOKEN_BASED_AUTH_ENTRY_POINT = "/api/**";
     private static final String MANAGE_TOKEN_BASED_AUTH_ENTRY_POINT = "/manage/**";
     private static final String TOKEN_REFRESH_ENTRY_POINT = "/api/auth/refresh_token";
+    private static final String OAUTH = "/oauth/**";
 
     @Autowired
     private RestAuthenticationEntryPoint authenticationEntryPoint;
@@ -101,6 +102,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(TOKEN_REFRESH_ENTRY_POINT).permitAll() // Token refresh end-point
                 .and()
                 .authorizeRequests()
+                .antMatchers(OAUTH).permitAll()
                 .antMatchers(TOKEN_BASED_AUTH_ENTRY_POINT).authenticated() // Protected API End-points
                 .antMatchers(MANAGE_TOKEN_BASED_AUTH_ENTRY_POINT).permitAll()
                 .and()

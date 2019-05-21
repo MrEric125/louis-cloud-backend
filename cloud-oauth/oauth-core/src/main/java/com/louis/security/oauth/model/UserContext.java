@@ -14,6 +14,8 @@ public class UserContext {
     private final String username;
     private final List<GrantedAuthority> authorities;
 
+
+
     private UserContext(String username, List<GrantedAuthority> authorities) {
         this.username = username;
         this.authorities = authorities;
