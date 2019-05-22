@@ -1,7 +1,7 @@
 package com.louis.security.oauth.service;
 
-import com.louis.common.api.service.CRUDService;
-import com.louis.security.oauth.dto.IdName;
+import com.louis.core.service.CRUDService;
+import com.louis.common.api.dto.IdName;
 import com.louis.security.oauth.entity.UserLogin;
 import com.louis.security.oauth.repository.LoginRepository;
 import org.springframework.beans.factory.annotation.Autowired;

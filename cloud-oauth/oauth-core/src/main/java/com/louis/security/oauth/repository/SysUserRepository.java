@@ -1,6 +1,6 @@
 package com.louis.security.oauth.repository;
 
-import com.louis.common.api.repository.BaseRepository;
+import com.louis.core.repository.BaseRepository;
 import com.louis.security.oauth.entity.SysUser;
 import org.springframework.stereotype.Repository;
 

@@ -3,7 +3,7 @@ package com.louis.comment.web;
 import com.louis.comment.dto.OrderCommentDto;
 import com.louis.comment.entity.OrderComment;
 import com.louis.comment.service.OrderCommentService;
-import com.louis.common.api.response.ResponseData;
+import com.louis.core.response.ResponseData;
 import com.louis.common.web.web.CRUDController;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;

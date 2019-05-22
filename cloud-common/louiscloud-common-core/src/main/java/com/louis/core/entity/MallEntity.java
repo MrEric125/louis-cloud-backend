@@ -3,7 +3,7 @@ package com.louis.core.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.louis.core.dto.LoginAuthDto;
+import com.louis.common.api.dto.LoginAuthDto;
 import com.louis.core.utils.DateUtils;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;

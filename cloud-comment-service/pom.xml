@@ -6,6 +6,7 @@
     <modules>
         <module>comment-service-core</module>
         <module>comment-service-web</module>
+        <module>comment-service-api</module>
     </modules>
     <parent>
         <artifactId>spring-cloud-project</artifactId>

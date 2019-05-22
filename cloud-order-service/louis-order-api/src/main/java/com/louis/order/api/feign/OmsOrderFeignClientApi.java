@@ -1,8 +1,5 @@
 package com.louis.order.api.feign;
 
-import com.louis.common.feign.BaseFeignClient;
-import com.louis.order.web.dto.OmsOrderDto;
-import com.louis.order.web.entity.OmsOrder;
 import org.springframework.cloud.openfeign.FeignClient;
 
 /**
@@ -12,6 +9,6 @@ import org.springframework.cloud.openfeign.FeignClient;
  * Description:
  */
 @FeignClient(value = "louis-order-web")
-public interface OmsOrderFeignClientApi extends BaseFeignClient<OmsOrder, OmsOrderDto, Long> {
+public interface OmsOrderFeignClientApi {
 
 }

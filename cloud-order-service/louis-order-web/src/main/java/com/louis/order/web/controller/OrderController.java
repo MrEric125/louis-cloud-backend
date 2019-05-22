@@ -1,10 +1,10 @@
 package com.louis.order.web.controller;
 
 
-import com.louis.common.api.response.ResponseData;
+import com.louis.core.response.ResponseData;
 import com.louis.common.web.web.CRUDController;
-import com.louis.order.api.service.OmsOrderService;
-import com.louis.order.web.entity.OmsOrder;
+import com.louis.order.service.OmsOrderService;
+import com.louis.order.entity.OmsOrder;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;

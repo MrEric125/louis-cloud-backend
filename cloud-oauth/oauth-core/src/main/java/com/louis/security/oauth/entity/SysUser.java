@@ -1,6 +1,6 @@
 package com.louis.security.oauth.entity;
 
-import com.louis.common.api.repository.EnableQueryCache;
+import com.louis.core.repository.EnableQueryCache;
 import com.louis.core.entity.BaseEntity;
 import com.louis.core.entity.LogicDeleteable;
 import lombok.*;

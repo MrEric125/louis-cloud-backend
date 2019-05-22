@@ -1,7 +1,7 @@
 package com.louis;
 
-import com.louis.common.api.repository.EnableQueryCache;
-import com.louis.common.api.repository.SimpleBaseRepository;
+import com.louis.core.repository.EnableQueryCache;
+import com.louis.core.repository.SimpleBaseRepository;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;

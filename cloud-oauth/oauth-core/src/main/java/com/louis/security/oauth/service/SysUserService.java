@@ -1,6 +1,6 @@
 package com.louis.security.oauth.service;
 
-import com.louis.common.api.service.CRUDService;
+import com.louis.core.service.CRUDService;
 import com.louis.security.oauth.entity.SysUser;
 import com.louis.security.oauth.repository.SysUserRepository;
 import lombok.extern.slf4j.Slf4j;

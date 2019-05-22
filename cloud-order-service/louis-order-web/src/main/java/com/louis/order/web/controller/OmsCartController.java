@@ -1,6 +1,6 @@
 package com.louis.order.web.controller;
 
-import com.louis.common.api.response.wrapper.Wrapper;
+import com.louis.core.response.wrapper.Wrapper;
 import com.louis.common.web.web.BaseController;
 import com.louis.order.api.feign.OmsCartFeignClientApi;
 import org.springframework.beans.factory.annotation.Autowired;

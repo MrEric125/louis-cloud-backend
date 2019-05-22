@@ -1,6 +1,6 @@
 package com.louis.order;
 
-import com.louis.common.api.repository.SimpleBaseRepository;
+import com.louis.core.repository.SimpleBaseRepository;
 import com.louis.common.web.web.bind.annotation.method.SearchableMethodArgumentResolver;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

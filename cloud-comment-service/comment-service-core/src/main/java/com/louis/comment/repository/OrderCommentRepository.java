@@ -1,7 +1,7 @@
 package com.louis.comment.repository;
 
 import com.louis.comment.entity.OrderComment;
-import com.louis.common.api.repository.BaseRepository;
+import com.louis.core.repository.BaseRepository;
 
 import java.util.List;
 

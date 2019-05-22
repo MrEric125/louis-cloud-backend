@@ -2,7 +2,7 @@ package com.louis.comment.service;
 
 import com.louis.comment.entity.OrderComment;
 import com.louis.comment.repository.OrderCommentRepository;
-import com.louis.common.api.service.CRUDService;
+import com.louis.core.service.CRUDService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

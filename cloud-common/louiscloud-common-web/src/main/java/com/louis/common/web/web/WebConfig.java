@@ -38,7 +38,7 @@ public class WebConfig extends WebMvcConfigurationSupport {
 //    @Bean
 //    public MethodInvokingFactoryBean methodInvokingFactoryBean() {
 //        MethodInvokingFactoryBean m = new MethodInvokingFactoryBean();
-//        m.setStaticMethod("com.louis.common.api.search.utils.SearchableConvertUtils.setConversionService");
+//        m.setStaticMethod("com.louis.core.search.utils.SearchableConvertUtils.setConversionService");
 //        m.setArguments(conversionService());
 //        return m;
 //    }

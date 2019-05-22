@@ -1,7 +1,7 @@
 package com.louis.security.oauth.entity;
 
 /**
- * <p>User: Zhang Kaitao
+ * <p>User:
  * <p>Date: 13-3-11 下午3:19
  * <p>Version: 1.0
  */

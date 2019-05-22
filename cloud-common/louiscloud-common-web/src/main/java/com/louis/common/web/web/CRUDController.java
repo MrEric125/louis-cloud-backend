@@ -1,8 +1,8 @@
 package com.louis.common.web.web;
 import com.louis.core.entity.BaseEntity;
-import com.louis.common.api.service.CRUDService;
-import com.louis.common.api.response.ResponseData;
-import com.louis.common.api.search.Searchable;
+import com.louis.core.service.CRUDService;
+import com.louis.core.response.ResponseData;
+import com.louis.core.search.Searchable;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
