@@ -1,6 +1,6 @@
 package com.louis.order.web.controller;
 
-import com.louis.core.response.wrapper.Wrapper;
+import com.louis.common.api.wrapper.Wrapper;
 import com.louis.common.web.web.BaseController;
 import com.louis.order.api.feign.OmsCartFeignClientApi;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +24,7 @@ public class OmsCartController extends BaseController {
 
 
     @PostMapping("addProduct/{productId}/{count}")
-    public Wrapper addProduct(@PathVariable Long productId,@PathVariable Integer count) {
+    public Wrapper addProduct(@PathVariable Long productId, @PathVariable Integer count) {
 
 
         return null;

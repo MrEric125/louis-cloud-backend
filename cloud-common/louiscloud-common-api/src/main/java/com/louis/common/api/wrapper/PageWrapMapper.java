@@ -1,9 +1,9 @@
 
 
-package com.louis.core.response.wrapper;
+package com.louis.common.api.wrapper;
 
 
-import com.louis.core.utils.PageUtil;
+import com.louis.common.api.util.PageUtil;
 
 /**
  * The class Page wrap mapper.

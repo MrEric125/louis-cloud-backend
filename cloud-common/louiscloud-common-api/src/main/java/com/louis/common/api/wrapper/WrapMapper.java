@@ -1,6 +1,6 @@
 
 
-package com.louis.core.response.wrapper;
+package com.louis.common.api.wrapper;
 
 import org.apache.commons.lang3.StringUtils;
 

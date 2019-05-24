@@ -1,4 +1,4 @@
-package com.louis.core.response.wrapper;
+package com.louis.common.api.wrapper;
 
 import java.io.Serializable;
 

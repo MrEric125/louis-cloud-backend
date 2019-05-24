@@ -12,7 +12,10 @@ import java.util.List;
  * feign client base class
  * @author Eric
  * @date create in 2019/5/12
+ *
+ * 其实这个类的作用不是很大，当我们在对某
  */
+@Deprecated
 public interface BaseFeignClient<D extends BaseDto,ID extends Serializable> {
 
 

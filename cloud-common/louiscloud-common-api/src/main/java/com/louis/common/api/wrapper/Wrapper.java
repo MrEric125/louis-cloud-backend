@@ -1,6 +1,6 @@
 
 
-package com.louis.core.response.wrapper;
+package com.louis.common.api.wrapper;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;

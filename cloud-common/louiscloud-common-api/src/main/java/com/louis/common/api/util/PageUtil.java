@@ -9,7 +9,7 @@
  * 项目官网: http://paascloud.net
  */
 
-package com.louis.core.utils;
+package com.louis.common.api.util;
 
 import lombok.Data;
 

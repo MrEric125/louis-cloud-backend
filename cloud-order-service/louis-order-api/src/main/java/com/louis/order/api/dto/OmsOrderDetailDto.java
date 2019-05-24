@@ -1,6 +1,7 @@
 package com.louis.order.api.dto;
 
-import com.louis.core.dto.BaseDto;
+
+import com.louis.common.api.dto.BaseDto;
 
 /**
  * @author louis

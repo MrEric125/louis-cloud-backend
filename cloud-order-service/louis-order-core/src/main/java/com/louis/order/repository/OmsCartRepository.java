@@ -11,7 +11,9 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface OmsCartRepository extends BaseRepository<OmsCart,Long> {
 
-    OmsCart findByProductIdAndUserId(long productId, Long userId);
+
+    OmsCart findByIdAndProductId(Long id, Long productId);
+
 
 
 }

@@ -2,8 +2,8 @@ package com.louis.order.service;
 
 
 import com.louis.core.service.CRUDService;
-import com.louis.order.api.repository.OmsOrderRepository;
 import com.louis.order.entity.OmsOrder;
+import com.louis.order.repository.OmsOrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

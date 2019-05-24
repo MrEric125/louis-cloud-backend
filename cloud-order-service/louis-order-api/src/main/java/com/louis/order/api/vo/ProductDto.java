@@ -11,7 +11,7 @@
 
 package com.louis.order.api.vo;
 
-import com.louis.core.dto.BaseDto;
+import com.louis.common.api.dto.BaseDto;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
