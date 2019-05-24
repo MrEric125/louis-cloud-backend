@@ -38,7 +38,7 @@ public class TokenAuthenticationProcessingFilter extends AbstractAuthenticationP
 
     @Override
     public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response)
-            throws AuthenticationException, IOException, ServletException {
+            throws AuthenticationException {
         String tokenPayload = request.getHeader(WebSecurityConfig.TOKEN_HEADER_PARAM);
         RawAccessToken token = new RawAccessToken(tokenExtractor.extract(tokenPayload));
         return getAuthenticationManager().authenticate(new AuthenticationToken(token));

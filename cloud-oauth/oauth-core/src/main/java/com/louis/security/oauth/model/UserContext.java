@@ -1,5 +1,6 @@
 package com.louis.security.oauth.model;
 
+import lombok.NoArgsConstructor;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.security.core.GrantedAuthority;
 
@@ -9,10 +10,11 @@ import java.util.List;
  * @author Eric
  * @date create in 2019/4/14
  */
+@NoArgsConstructor
 public class UserContext {
 
-    private final String username;
-    private final List<GrantedAuthority> authorities;
+    private  String username;
+    private  List<GrantedAuthority> authorities;
 
 
 
@@ -32,6 +34,46 @@ public class UserContext {
 
     public List<GrantedAuthority> getAuthorities() {
         return authorities;
+    }
+
+
+    public static final String CORRELATION_ID = "tmx-correlation-id";
+    public static final String AUTH_TOKEN     = "tmx-auth-token";
+    public static final String USER_ID        = "tmx-user-id";
+    public static final String ORG_ID         = "tmx-org-id";
+
+    private String correlationId= "";
+    private String authToken= "";
+    private String userId = "";
+    private String orgId = "";
+
+    public String getCorrelationId() { return correlationId;}
+    public void setCorrelationId(String correlationId) {
+        this.correlationId = correlationId;
+    }
+
+    public String getAuthToken() {
+        return authToken;
+    }
+
+    public void setAuthToken(String authToken) {
+        this.authToken = authToken;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
+
+    public String getOrgId() {
+        return orgId;
+    }
+
+    public void setOrgId(String orgId) {
+        this.orgId = orgId;
     }
 
 }

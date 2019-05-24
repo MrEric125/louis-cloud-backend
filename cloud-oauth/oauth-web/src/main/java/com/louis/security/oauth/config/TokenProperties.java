@@ -1,14 +1,17 @@
 package com.louis.security.oauth.config;
 
+import lombok.Builder;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.stereotype.Component;
 
 /**
  * @author Eric
  * @date create in 2019/4/14
  */
-@Configuration
-@ConfigurationProperties( prefix = "token")
+@ConfigurationProperties( prefix = "louis.token")
+
 public class TokenProperties {
 
 
