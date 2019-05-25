@@ -9,6 +9,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * @author Eric
@@ -16,33 +17,27 @@ import java.util.Date;
  */
 @Setter
 @Getter
-@ApiModel
+@ApiModel(description = "购物车")
 public class OmsCartDto extends BaseDto<Long> {
 
 
     @ApiModelProperty("用户id")
     private Long userId;
 
-    @ApiModelProperty("商品id")
-    private Long productId;
+    @ApiModelProperty("购物车中商品相关属性")
+    private List<ProductItemDto> itemDtoList;
 
-    /**
-     * 数量
-     */
-    @ApiModelProperty("数量")
-    private Integer quantity;
 
-    /**
-     * 是否选择,1=已勾选,0=未勾选
-     */
-    @ApiModelProperty("是否勾选")
-    private boolean checked;
 
-    @ApiModelProperty("创建时间")
-    private Date createdTime;
 
     @ApiModelProperty("跟新时间")
     private Date updateTime;
+
+    @ApiModelProperty("已选的商品总价=各个商品单价*件数")
+    private int totalAmount;
+
+
+
 
 
 }

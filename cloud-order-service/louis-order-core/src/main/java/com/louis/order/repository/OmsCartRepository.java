@@ -19,6 +19,6 @@ public interface OmsCartRepository extends BaseRepository<OmsCart,Long> {
 
 
     @SQLDelete(sql = "update oms_cart set deleted=1,update_time= now() where product_id in ?1")
-    void delProductIds(List<Long> productIds);
+    void delProductIds(List<Long> productIds,long userId);
 
 }

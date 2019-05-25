@@ -4,6 +4,7 @@ import com.louis.common.api.wrapper.PageWrapper;
 import com.louis.common.api.wrapper.Wrapper;
 import com.louis.order.api.dto.OmsCartDto;
 import com.louis.order.api.dto.OmsRequest;
+import com.louis.order.api.dto.ProductItemDto;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.*;
 
@@ -35,7 +36,7 @@ public interface OmsCartFeignClientApi  {
      * @return
      */
     @PostMapping(value = "/toCart")
-    Wrapper addProductToCart(@RequestBody OmsCartDto omsCartDto);
+    Wrapper addProductToCart(@RequestBody ProductItemDto omsCartDto);
 
 
     /**

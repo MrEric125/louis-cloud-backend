@@ -12,6 +12,7 @@ import com.louis.common.web.web.BaseController;
 import com.louis.core.search.Searchable;
 import com.louis.order.api.dto.OmsCartDto;
 import com.louis.order.api.dto.OmsRequest;
+import com.louis.order.api.dto.ProductItemDto;
 import com.louis.order.api.feign.OmsCartFeignClientApi;
 import com.louis.order.entity.OmsCart;
 import com.louis.order.service.OmsCartService;
@@ -55,14 +56,14 @@ public class OmsCartFeignClient extends BaseController implements OmsCartFeignCl
     }
 
     @Override
-    public Wrapper addProductToCart(OmsCartDto dto) {
+    public Wrapper addProductToCart(ProductItemDto dto) {
 
         log.info("oms add cart productId:{}", dto.getProductId());
         OmsCart omsCart = OmsCart
                 .builder()
                 .productId(dto.getProductId())
-                .quantity(dto.getQuantity())
-                .userId(dto.getUserId())
+                .quantity(dto.getProductNum())
+                .userId(getLoginAuthDto().getUserId())
                 .build();
 
         LoginAuthDto loginAuthDto = LoginAuthDto.builder().userId(5L).userName("zhangsan").build();
@@ -84,7 +85,7 @@ public class OmsCartFeignClient extends BaseController implements OmsCartFeignCl
         log.info("delete cart productds:{}", products);
 
 //        cartService.findById(omsRequest.getCartId()).markDeleted();
-        cartService.delByProductIds(products);
+        cartService.delByProductIds(products, getLoginAuthDto().getUserId());
 
         return WrapMapper.ok();
     }

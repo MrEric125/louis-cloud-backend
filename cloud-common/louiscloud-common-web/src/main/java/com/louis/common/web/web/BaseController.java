@@ -22,7 +22,7 @@ import java.util.List;
 
 
 @Slf4j
-public class BaseController<E extends BaseEntity,D extends BaseDto>  {
+public class BaseController  {
 
 
 
@@ -31,8 +31,8 @@ public class BaseController<E extends BaseEntity,D extends BaseDto>  {
 	 *
 	 * @return the login auth dto
 	 */
-	protected LoginAuthDto getLoginAuthDto() {
-		LoginAuthDto loginAuthDto = (LoginAuthDto) ThreadLocalMap.get(GlobalConstant.Sys.TOKEN_AUTH_DTO);
+	protected LoginAuthDto<Long> getLoginAuthDto() {
+		LoginAuthDto<Long> loginAuthDto = (LoginAuthDto) ThreadLocalMap.get(GlobalConstant.Sys.TOKEN_AUTH_DTO);
 		if (PublicUtil.isEmpty(loginAuthDto)) {
 			throw new BusinessException(ErrorCodeEnum.UAC10011041);
 		}

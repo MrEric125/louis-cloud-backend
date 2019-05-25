@@ -10,7 +10,12 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
-
+/**
+ * 送货信息
+ * @author john louis
+ * @date 2019年5月25日22:37:46
+ *
+ */
 @EqualsAndHashCode(callSuper = true)
 @Data
 @Entity

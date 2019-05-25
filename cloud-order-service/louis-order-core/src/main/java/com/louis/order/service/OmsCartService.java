@@ -38,8 +38,8 @@ public class OmsCartService extends CRUDService<OmsCart, Long> {
     /**
      * 通过商品id 来删除购物车中的产品
      */
-    public void delByProductIds(List<Long> productIds) {
-        omsCartRepository.delProductIds(productIds);
+    public void delByProductIds(List<Long> productIds,long userId) {
+        omsCartRepository.delProductIds(productIds,userId);
     }
 
 
