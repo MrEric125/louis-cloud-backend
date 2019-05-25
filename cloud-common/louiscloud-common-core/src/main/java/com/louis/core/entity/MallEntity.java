@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.louis.common.api.dto.LoginAuthDto;
 import com.louis.core.utils.DateUtils;
 import io.swagger.annotations.ApiModelProperty;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -42,18 +43,15 @@ public class MallEntity<ID extends Serializable> extends BaseEntity<ID> {
     private Date createdTime;
 
 
-    @ApiModelProperty("更新时间")
     @Column(name = "update_time")
     @DateTimeFormat(pattern = DateUtils.YYYY_MM_DD_HH_MM_SS)
     @JsonFormat(pattern = DateUtils.YYYY_MM_DD_HH_MM_SS, timezone = "GMT+8")
     private Date updateTime;
 
 
-    @ApiModelProperty("最近操作人")
     @Column(name = "last_operator")
     private String lastOperator;
 
-    @ApiModelProperty("最近操作人id")
     @Column(name = "last_operator_id")
     private ID lastOperatorId;
 

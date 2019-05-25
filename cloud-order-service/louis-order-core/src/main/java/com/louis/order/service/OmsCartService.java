@@ -11,6 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * @author Eric
  * @date create in 2019/5/11
@@ -31,6 +33,13 @@ public class OmsCartService extends CRUDService<OmsCart, Long> {
 
     public OmsCart findByIdAndProductId(long id ,long productId) {
        return omsCartRepository.findByIdAndProductId(id,productId);
+    }
+
+    /**
+     * 通过商品id 来删除购物车中的产品
+     */
+    public void delByProductIds(List<Long> productIds) {
+        omsCartRepository.delProductIds(productIds);
     }
 
 

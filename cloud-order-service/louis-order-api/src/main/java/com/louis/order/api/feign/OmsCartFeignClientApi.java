@@ -31,35 +31,29 @@ public interface OmsCartFeignClientApi  {
 
     /**
      * 添加购物车
-     * @param omsRequest
+     * @param omsCartDto
      * @return
      */
     @PostMapping(value = "/toCart")
-    Wrapper addProductToCart(@RequestBody OmsRequest omsRequest);
+    Wrapper addProductToCart(@RequestBody OmsCartDto omsCartDto);
 
-    /**
-     * 修改购物车
-     * @param omsRequest
-     * @return
-     */
-    @PostMapping(value = "/modifyCart")
-    Wrapper modifyCart(@RequestBody OmsRequest omsRequest);
 
     /**
      * 刪除购物车中的商品
      * @param omsRequest
      */
     @PostMapping(value = "/cleanCart")
-    Wrapper deleteCart(@RequestBody OmsRequest omsRequest);
+    Wrapper deleteCart(@RequestBody List<Long> productId);
 
 
     /**
      * 反选商品
-     * @param omsRequest
+     * @param cartId
+     * @param productId
      * @return
      */
-    @PostMapping(value = "/insertCart")
-    Wrapper inverseSelection(@RequestBody OmsRequest omsRequest);
+    @PostMapping(value = "/modifySelected/{cartId}")
+    Wrapper inverseSelection(@PathVariable("cartId") long cartId,long productId);
 
 
 

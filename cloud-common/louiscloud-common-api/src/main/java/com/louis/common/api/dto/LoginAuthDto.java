@@ -3,6 +3,7 @@ package com.louis.common.api.dto;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import lombok.Builder;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -14,6 +15,7 @@ import java.io.Serializable;
  */
 @Data
 @ApiModel(value = "登录人信息")
+@Builder
 public class LoginAuthDto<ID> implements Serializable {
 	private static final long serialVersionUID = -1137852221455042256L;
 	@ApiModelProperty(value = "用户ID")

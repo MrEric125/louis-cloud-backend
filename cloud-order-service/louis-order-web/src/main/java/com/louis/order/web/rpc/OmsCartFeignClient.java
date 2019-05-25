@@ -2,6 +2,7 @@ package com.louis.order.web.rpc;
 
 
 import com.google.common.collect.Lists;
+import com.louis.common.api.dto.LoginAuthDto;
 import com.louis.common.api.util.PageUtil;
 import com.louis.common.api.wrapper.PageWrapMapper;
 import com.louis.common.api.wrapper.PageWrapper;
@@ -54,45 +55,55 @@ public class OmsCartFeignClient extends BaseController implements OmsCartFeignCl
     }
 
     @Override
-    public Wrapper addProductToCart(OmsRequest omsRequest) {
-/*
-        log.info("oms add cart productId:{}", omsRequest.getProductId());
+    public Wrapper addProductToCart(OmsCartDto dto) {
+
+        log.info("oms add cart productId:{}", dto.getProductId());
         OmsCart omsCart = OmsCart
                 .builder()
-                .productId(omsRequest.getProductId())
-                .quantity(omsRequest.getNum())
-                .userId(omsRequest.getUserId())
+                .productId(dto.getProductId())
+                .quantity(dto.getQuantity())
+                .userId(dto.getUserId())
                 .build();
-        OmsCart save = cartService.save(omsCart);
-        return handleResult(save);*/
-        return null;
+
+        LoginAuthDto loginAuthDto = LoginAuthDto.builder().userId(5L).userName("zhangsan").build();
+        omsCart.setUpdateInfo(loginAuthDto);
+
+        OmsCart save = cartService.saveAndFlush(omsCart);
+
+        return handleResult(save);
     }
 
-    @Override
-    public Wrapper modifyCart(OmsRequest omsRequest) {
-        return null;
-    }
 
+    /**
+     * 可能是整个购物车都删掉，也可能是指删除其中部分商品
+     * @param omsRequest
+     * @return
+     */
     @Override
-    public Wrapper deleteCart(OmsRequest omsRequest) {
-        log.info("delete cart cartId:{}", omsRequest.getCartId());
-        cartService.findById(omsRequest.getCartId()).markDeleted();
+    public Wrapper deleteCart(List<Long> products) {
+        log.info("delete cart productds:{}", products);
+
+//        cartService.findById(omsRequest.getCartId()).markDeleted();
+        cartService.delByProductIds(products);
+
         return WrapMapper.ok();
     }
 
     @Override
-    public Wrapper inverseSelection(OmsRequest omsRequest) {
-        OmsCart omsCart = cartService.findByIdAndProductId(omsRequest.getCartId(), omsRequest.getProductId());
+    public Wrapper inverseSelection(long cartId,long productId) {
+        OmsCart omsCart = cartService.findByIdAndProductId(cartId, productId);
+
         Assert.notNull(omsCart,"沒有找到对应商品");
         if (omsCart.isChecked()) {
             omsCart.setChecked(false);
         } else {
             omsCart.setChecked(true);
         }
+        cartService.save(omsCart);
         return WrapMapper.ok();
     }
 
-    public List<OmsCartDto> convertEntitysToDtos(List<OmsCart> carts) {
+    private List<OmsCartDto> convertEntitysToDtos(List<OmsCart> carts) {
         List<OmsCartDto> cartDtos = Lists.newArrayList();
         carts.forEach(x->{
             OmsCartDto dto = new OmsCartDto();

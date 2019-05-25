@@ -57,6 +57,10 @@ public abstract class CRUDService <T extends BaseEntity,ID extends Serializable>
         return null;
     }
 
+    public T saveAndFlush(T t) {
+        return baseRepository.saveAndFlush(t);
+    }
+
 
     /**
      * 查询分页条件
