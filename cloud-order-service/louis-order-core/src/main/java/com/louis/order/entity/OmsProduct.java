@@ -8,6 +8,7 @@ import lombok.Setter;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
+import java.math.BigDecimal;
 
 /**
  * @author Eric
@@ -38,26 +39,33 @@ public class OmsProduct extends BaseEntity<Long> implements LogicDeleteable {
     @Column(name = "seller_id")
     private Long sellerId;
 
-
     @Column(name = "product_num")
     private int productNum;
 
     @Column(name = "bar_code")
     private String barCode;
 
+    /**
+     * 优惠券
+     */
     @Column(name = "coupon")
-    private int coupon;
+    private BigDecimal coupon;
 
     @Column(name = "unit_price")
-    private int unitPrice;
+    private BigDecimal unitPrice;
 
+    /**
+     * 折扣
+     */
     @Column(name = "discount")
-    private int discount;
+    private BigDecimal discount;
+
     /**
      * 商品的属性，
      */
-    @Column(name = "attr1")
-    private String attr1;
+    private String attr;
+
+
 
     @Column(name = "value1")
     private String value1;

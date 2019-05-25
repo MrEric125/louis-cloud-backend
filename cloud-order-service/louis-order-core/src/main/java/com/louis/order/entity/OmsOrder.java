@@ -30,20 +30,38 @@ public class OmsOrder extends MallEntity<Long> {
     @Column(name = "order_code")
     private String orderCode;
 
-    @OneToMany
-    private List<OrderProduct> productList;
+    /**
+     * 交易號
+     */
+    @Column(name = "tran_no")
+    private String transactionNumber;
 
-    @Column(name = "order_name")
-    private String orderName;
 
+
+    /**
+     * 支付多少钱
+     */
     private BigDecimal payment;
 
 
     @Column(name = "order_status")
     private Integer orderStatus;
 
+    /**
+     * 支付方式
+     */
+    @Column(name = "pay_channel")
+    private int payChannel;
 
-    @ApiModelProperty("运费金额")
+
+    /**
+     * 产生的积分
+     */
+    private int integral;
+
+    /**
+     * 運費
+     */
     private Integer postage;
 
     @Column(name = "user_id")
