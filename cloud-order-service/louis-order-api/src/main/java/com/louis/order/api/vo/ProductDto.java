@@ -15,6 +15,7 @@ import com.louis.common.api.dto.BaseDto;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import java.math.BigDecimal;
 
@@ -25,6 +26,7 @@ import java.math.BigDecimal;
  */
 @Data
 @ApiModel
+@EqualsAndHashCode(callSuper = false)
 public class ProductDto extends BaseDto<Long> {
 	private static final long serialVersionUID = 6932649538854879183L;
 

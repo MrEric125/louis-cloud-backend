@@ -4,9 +4,7 @@ package com.louis.order.entity;
 
 import com.louis.core.entity.LogicDeleteable;
 import com.louis.core.entity.MallEntity;
-import lombok.Builder;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import lombok.*;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -18,11 +16,9 @@ import javax.validation.constraints.NotNull;
  *
  * @author paascloud.net@gmail.com
  */
-@EqualsAndHashCode(callSuper = true)
 @Data
 @Entity
 @Table(name = "oms_cart")
-@Builder
 public class OmsCart extends MallEntity<Long> implements LogicDeleteable {
 
 	private static final long serialVersionUID = 5333646386138778574L;
@@ -46,6 +42,7 @@ public class OmsCart extends MallEntity<Long> implements LogicDeleteable {
 	/**
 	 * 是否选择,1=已勾选,0=未勾选
 	 */
+
 	private boolean checked=Boolean.TRUE;
 
 	@Override

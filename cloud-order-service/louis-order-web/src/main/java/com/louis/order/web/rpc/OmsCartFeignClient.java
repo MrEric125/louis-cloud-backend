@@ -19,6 +19,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+
+
 import org.springframework.http.MediaType;
 import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.RestController;
@@ -40,15 +42,21 @@ public class OmsCartFeignClient extends BaseController implements OmsCartFeignCl
 
 
     @Override
-    public PageWrapper<List<OmsCartDto>> queryOmsCartDetail(long userId, Searchable searchable) {
+    public PageWrapper<List<OmsCartDto>> queryOmsCartDetail(long userId, int currentPage, int pageSize) {
+
+        Searchable searchable = Searchable.newSearchable();
+        searchable.setPage(currentPage, pageSize);
         Page<OmsCart> cartByUserId = cartService.findCartByUserId(userId, searchable);
-        List<OmsCartDto> omsCartDtos = Lists.newArrayList();
-        BeanUtils.copyProperties(cartByUserId.getContent(), omsCartDtos);
-        return PageWrapMapper.wrap(omsCartDtos,new PageUtil(cartByUserId.getTotalPages(),cartByUserId.getSize()));
+        log.info("find cart by UserId:{}", userId);
+        List<OmsCartDto> omsCartDtos = convertEntitysToDtos(cartByUserId.getContent());
+
+        return PageWrapMapper.wrap(omsCartDtos, new PageUtil(cartByUserId.getTotalPages(), cartByUserId.getSize()));
     }
 
     @Override
     public Wrapper addProductToCart(OmsRequest omsRequest) {
+/*
+        log.info("oms add cart productId:{}", omsRequest.getProductId());
         OmsCart omsCart = OmsCart
                 .builder()
                 .productId(omsRequest.getProductId())
@@ -56,7 +64,8 @@ public class OmsCartFeignClient extends BaseController implements OmsCartFeignCl
                 .userId(omsRequest.getUserId())
                 .build();
         OmsCart save = cartService.save(omsCart);
-        return handleResult(save);
+        return handleResult(save);*/
+        return null;
     }
 
     @Override
@@ -66,6 +75,7 @@ public class OmsCartFeignClient extends BaseController implements OmsCartFeignCl
 
     @Override
     public Wrapper deleteCart(OmsRequest omsRequest) {
+        log.info("delete cart cartId:{}", omsRequest.getCartId());
         cartService.findById(omsRequest.getCartId()).markDeleted();
         return WrapMapper.ok();
     }
@@ -81,4 +91,15 @@ public class OmsCartFeignClient extends BaseController implements OmsCartFeignCl
         }
         return WrapMapper.ok();
     }
+
+    public List<OmsCartDto> convertEntitysToDtos(List<OmsCart> carts) {
+        List<OmsCartDto> cartDtos = Lists.newArrayList();
+        carts.forEach(x->{
+            OmsCartDto dto = new OmsCartDto();
+            BeanUtils.copyProperties(x, dto);
+            cartDtos.add(dto);
+        });
+        return cartDtos;
+    }
+
 }

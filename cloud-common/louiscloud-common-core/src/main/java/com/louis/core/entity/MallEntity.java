@@ -11,6 +11,7 @@ import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.Column;
+import javax.persistence.MappedSuperclass;
 import javax.persistence.Transient;
 import java.io.Serializable;
 import java.util.Date;
@@ -24,16 +25,17 @@ import java.util.Date;
 
 @Setter
 @Getter
+@MappedSuperclass
 public class MallEntity<ID extends Serializable> extends BaseEntity<ID> {
 
     private static final long serialVersionUID = 3729919427498817843L;
 
 
-    @ApiModelProperty("创建人id")
+
     @Column(name = "creator_id")
     private ID creatorId;
 
-    @ApiModelProperty("创建时间")
+
     @Column(name = "created_time")
     @DateTimeFormat(pattern = DateUtils.YYYY_MM_DD_HH_MM_SS)
     @JsonFormat(pattern = DateUtils.YYYY_MM_DD_HH_MM_SS, timezone = "GMT+8")

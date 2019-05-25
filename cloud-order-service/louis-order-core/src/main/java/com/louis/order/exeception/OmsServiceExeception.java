@@ -1,4 +1,4 @@
-package com.louis.order.api.exeception;
+package com.louis.order.exeception;
 
 import com.louis.exception.BusinessException;
 import com.louis.exception.ErrorCodeEnum;

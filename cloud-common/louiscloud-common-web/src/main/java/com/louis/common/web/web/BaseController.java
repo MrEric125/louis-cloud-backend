@@ -2,10 +2,12 @@
 
 package com.louis.common.web.web;
 
+import com.louis.common.api.dto.BaseDto;
 import com.louis.common.api.dto.LoginAuthDto;
 import com.louis.common.api.wrapper.WrapMapper;
 import com.louis.common.api.wrapper.Wrapper;
 import com.louis.common.api.wrapper.WrapperMassage;
+import com.louis.core.entity.BaseEntity;
 import com.louis.exception.BusinessException;
 import com.louis.exception.ErrorCodeEnum;
 import com.louis.core.constant.GlobalConstant;
@@ -14,10 +16,13 @@ import com.louis.core.entity.generator.UniqueIdGenerator;
 import com.louis.core.utils.PublicUtil;
 import com.louis.core.utils.ThreadLocalMap;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.BeanUtils;
+
+import java.util.List;
 
 
 @Slf4j
-public class BaseController  {
+public class BaseController<E extends BaseEntity,D extends BaseDto>  {
 
 
 
@@ -85,6 +90,8 @@ public class BaseController  {
 	protected long generateId() {
 		return UniqueIdGenerator.getInstance(IncrementIdGenerator.getServiceId()).nextId();
 	}
+
+
 
 }
   

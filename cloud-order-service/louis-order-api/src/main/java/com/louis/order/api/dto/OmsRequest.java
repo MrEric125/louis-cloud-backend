@@ -1,5 +1,7 @@
 package com.louis.order.api.dto;
 
+import com.louis.common.api.BaseRequest;
+import io.swagger.annotations.ApiModel;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -11,7 +13,8 @@ import lombok.Setter;
  */
 @Setter
 @Getter
-public class OmsRequest {
+@ApiModel
+public class OmsRequest extends BaseRequest {
 
     private long cartId;
 
@@ -20,5 +23,7 @@ public class OmsRequest {
     private long productId;
 
     private int num;
+
+
 
 }

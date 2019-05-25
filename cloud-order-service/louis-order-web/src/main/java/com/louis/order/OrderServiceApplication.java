@@ -10,7 +10,6 @@ import org.springframework.cloud.netflix.hystrix.dashboard.EnableHystrixDashboar
 import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.Bean;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
-import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 @SpringBootApplication
@@ -20,7 +19,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @EnableHystrixDashboard
 @EnableSwagger2
 //告訴cloud这个资源是受保护的资源，需要先到oauth2中获取token
-@EnableResourceServer
+//@EnableResourceServer
 @EnableJpaRepositories(repositoryBaseClass = SimpleBaseRepository.class)
 public class OrderServiceApplication {
 
