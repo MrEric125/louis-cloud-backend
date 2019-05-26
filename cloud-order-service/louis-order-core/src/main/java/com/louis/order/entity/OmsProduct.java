@@ -13,6 +13,7 @@ import java.math.BigDecimal;
 /**
  * @author Eric
  * @date create in 2019/5/12
+ * oms中商品详情，这个商品详情是跟着购物车-订单到-支付-配送走的
  */
 @Entity
 @Table(name = "oms_product")

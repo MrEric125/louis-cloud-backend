@@ -25,9 +25,7 @@ public class OmsCartDto extends BaseDto<Long> {
     private Long userId;
 
     @ApiModelProperty("购物车中商品相关属性")
-    private List<ProductItemDto> itemDtoList;
-
-
+    private List<OmsCartDetailDto> itemDtoList;
 
 
     @ApiModelProperty("跟新时间")

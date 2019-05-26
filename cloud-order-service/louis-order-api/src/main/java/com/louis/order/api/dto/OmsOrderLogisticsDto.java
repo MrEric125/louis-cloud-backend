@@ -14,7 +14,7 @@ import java.util.Date;
  */
 @Setter
 @Getter
-@ApiModel
+@ApiModel("物流相关信息")
 public class OmsOrderLogisticsDto extends BaseDto<Long> {
 
 

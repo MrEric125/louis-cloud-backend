@@ -11,7 +11,7 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 
 /**
- * 送货信息
+ * 收货地址信息，每个人可能会添加多个收货地址
  * @author john louis
  * @date 2019年5月25日22:37:46
  *
@@ -19,8 +19,8 @@ import javax.persistence.Table;
 @EqualsAndHashCode(callSuper = true)
 @Data
 @Entity
-@Table(name = "oms_shipping")
-public class OmsShipping extends MallEntity<Long> {
+@Table(name = "oms_delivery_info")
+public class DeliveryInformation extends MallEntity<Long> {
 
 	private static final long serialVersionUID = 7337074530378267740L;
 	/**
@@ -107,9 +107,5 @@ public class OmsShipping extends MallEntity<Long> {
 	@Column(name = "receiver_zip_code")
 	private String receiverZipCode;
 
-	/**
-	 * 邮编
-	 */
-	@Column(name = "default_address")
-	private Integer defaultAddress;
+
 }

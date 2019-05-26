@@ -17,11 +17,10 @@ import java.math.BigDecimal;
  */
 @Setter
 @Getter
-@ApiModel
+@ApiModel("订单详情")
 public class OmsOrderDetailDto extends BaseDto<Long> {
 
-    @ApiModelProperty("订单明细序列号")
-    private String detailNo;
+
 
     @ApiModelProperty("用户id")
     private Long userId;
@@ -39,9 +38,9 @@ public class OmsOrderDetailDto extends BaseDto<Long> {
     private String productImage;
 
     @ApiModelProperty("生成订单时候的订单单价")
-    private BigDecimal UnitPrice;
+    private BigDecimal unitPrice;
 
-    @ApiModelProperty("SKU码")
+    @ApiModelProperty("商品SKU码")
     private String sku;
 
     @ApiModelProperty("折扣率")

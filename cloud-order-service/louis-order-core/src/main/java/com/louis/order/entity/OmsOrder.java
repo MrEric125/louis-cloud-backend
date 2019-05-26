@@ -16,7 +16,7 @@ import java.util.List;
 /**
  * @author louis
  * Date: 2019/5/6
- * Description:todo 这里后期需要修改，订单与商品的关系，应该是多对多的关系
+ * Description: 这里后期需要修改，订单与商品的关系，是多对多的关系
  */
 @EqualsAndHashCode(callSuper = true)
 @Data

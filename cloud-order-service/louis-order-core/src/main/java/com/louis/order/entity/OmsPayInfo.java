@@ -9,6 +9,7 @@ import lombok.EqualsAndHashCode;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
+import java.math.BigDecimal;
 
 
 @EqualsAndHashCode(callSuper = true)
@@ -30,6 +31,9 @@ public class OmsPayInfo extends MallEntity<Long> {
 	@Column(name = "order_no")
 	private String orderNo;
 
+	@Column(name = "payment_amount")
+	private BigDecimal paymentAmount;
+
 	/**
 	 * 支付平台:1-支付宝,2-微信
 	 */
@@ -37,13 +41,13 @@ public class OmsPayInfo extends MallEntity<Long> {
 	private Integer payPlatform;
 
 	/**
-	 * 支付宝支付流水号
+	 * 支付流水号
 	 */
 	@Column(name = "platform_number")
 	private String platformNumber;
 
 	/**
-	 * 支付宝支付状态
+	 * 支付状态
 	 */
 	@Column(name = "platform_status")
 	private String platformStatus;

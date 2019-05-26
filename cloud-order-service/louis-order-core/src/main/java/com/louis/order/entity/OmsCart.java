@@ -35,12 +35,10 @@ public class OmsCart extends MallEntity<Long> implements LogicDeleteable {
 	@Column(name = "product_id")
 	private Long productId;
 
-
 	/**
 	 * 商家
 	 */
 	private Long merchant;
-
 
 	/**
 	 * 数量
