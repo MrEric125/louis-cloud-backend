@@ -2,6 +2,7 @@ package com.louis.order.api.feign;
 
 import com.louis.common.api.wrapper.PageWrapper;
 import com.louis.common.api.wrapper.Wrapper;
+import com.louis.order.api.dto.OmsCartDetailDto;
 import com.louis.order.api.dto.OmsCartDto;
 import com.louis.order.api.dto.OmsRequest;
 import com.louis.order.api.dto.ProductItemDto;
@@ -36,7 +37,7 @@ public interface OmsCartFeignClientApi  {
      * @return
      */
     @PostMapping(value = "/toCart")
-    Wrapper addProductToCart(@RequestBody ProductItemDto omsCartDto);
+    Wrapper addProductToCart(@RequestBody OmsCartDetailDto omsCartDto);
 
 
     /**

@@ -10,6 +10,7 @@ import com.louis.common.api.wrapper.WrapMapper;
 import com.louis.common.api.wrapper.Wrapper;
 import com.louis.common.web.web.BaseController;
 import com.louis.core.search.Searchable;
+import com.louis.order.api.dto.OmsCartDetailDto;
 import com.louis.order.api.dto.OmsCartDto;
 import com.louis.order.api.dto.OmsRequest;
 import com.louis.order.api.dto.ProductItemDto;
@@ -56,13 +57,11 @@ public class OmsCartFeignClient extends BaseController implements OmsCartFeignCl
     }
 
     @Override
-    public Wrapper addProductToCart(ProductItemDto dto) {
+    public Wrapper addProductToCart(OmsCartDetailDto dto) {
 
         log.info("oms add cart productId:{}", dto.getProductId());
         OmsCart omsCart = OmsCart
                 .builder()
-                .productId(dto.getProductId())
-                .quantity(dto.getProductNum())
                 .userId(getLoginAuthDto().getUserId())
                 .build();
 

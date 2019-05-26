@@ -11,6 +11,7 @@ import javax.persistence.Entity;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
+import java.util.List;
 
 /**
  *
@@ -23,7 +24,7 @@ import javax.validation.constraints.NotNull;
 @Entity
 @Table(name = "oms_cart")
 @Builder
-public class OmsCart extends MallEntity<Long> implements LogicDeleteable {
+public class OmsCart  implements LogicDeleteable {
 
 	private static final long serialVersionUID = 5333646386138778574L;
 
@@ -31,21 +32,8 @@ public class OmsCart extends MallEntity<Long> implements LogicDeleteable {
 	@Column(name = "user_id")
 	private Long userId;
 
-	@NotNull
-	@Column(name = "product_id")
-	private Long productId;
 
-	/**
-	 * 商家
-	 */
-	private Long merchant;
-
-	/**
-	 * 数量
-	 */
-	@Builder.Default
-	@Column(name = "quantity")
-	private Integer quantity=1;
+	private List<OmsCartDetail> cartDetailList;
 
 
 	@Column(name = "deleted")

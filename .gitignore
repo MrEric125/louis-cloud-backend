@@ -1,6 +1,6 @@
-HELP.md
+
 /target/
-!.mvn/wrapper/maven-wrapper.jar
+
 
 ### STS ###
 .apt_generated
@@ -16,7 +16,7 @@ HELP.md
 *.iws
 *.iml
 *.ipr
-*.mvn
+
 
 
 ### NetBeans ###
@@ -29,3 +29,5 @@ HELP.md
 
 ### VS Code ###
 .vscode/
+db-config-service/src/test/
+db-config-service/target/
