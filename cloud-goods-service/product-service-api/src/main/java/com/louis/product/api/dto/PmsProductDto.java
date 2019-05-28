@@ -60,6 +60,9 @@ public class PmsProductDto extends BaseDto {
     @ApiModelProperty("商品通过审核时间")
     private boolean audit;
 
+    @ApiModelProperty("商品庫存")
+    private int stock;
+
 
 
 
