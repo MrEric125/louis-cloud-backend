@@ -6,6 +6,7 @@ import lombok.*;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
+import java.util.Date;
 
 /**
  * @author Eric
@@ -28,6 +29,14 @@ public class SysRole extends BaseEntity<Long> {
 
     @Column(name = "role_des")
     private String roleDes;
+
+    @Column(name = "registry_time")
+    private Date registryTime;
+
+    @Column(name = "update_time")
+    private Date updateTime;
+
+
 
 
 

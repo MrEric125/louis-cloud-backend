@@ -84,23 +84,32 @@ public class SysUser extends BaseEntity<Long> implements LogicDeleteable,Compara
     @Column(name = "mobile_phone_number")
     private String phone;
 
+    @Column(name = "identify_number" )
+    @NotNull(message = "{not.null}")
+    private int userType;
+
+
+    @Column(name = "identify_number")
+    @NotNull(message = "{not.null}")
+    private String identityNumber;
+
     private Boolean deleted = Boolean.FALSE;
     @Override
     public Boolean getDeleted() {
         return this.deleted;
     }
 
+
     @Override
     public void setDeleted(Boolean deleted) {
         this.deleted = deleted;
-
     }
 
     @Override
     public void markDeleted() {
         this.deleted = true;
-
     }
+
 
     @Override
     public int compareTo(SysUser o) {
@@ -111,9 +120,7 @@ public class SysUser extends BaseEntity<Long> implements LogicDeleteable,Compara
      * 随机生成登录盐
      */
     public void randomSalt() {
-
         setSalt(RandomStringUtils.randomAlphabetic(10));
-
     }
 
 }
