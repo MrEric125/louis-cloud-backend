@@ -1,7 +1,7 @@
 package com.louis.security.oauth.service;
 
+import com.louis.core.utils.Md5Utils;
 import com.louis.security.oauth.entity.SysUser;
-import com.louis.security.oauth.util.Md5Utils;
 import org.springframework.stereotype.Service;
 
 /**

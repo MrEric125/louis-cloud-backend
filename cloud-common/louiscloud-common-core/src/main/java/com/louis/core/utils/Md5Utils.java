@@ -1,15 +1,12 @@
-package com.louis.security.oauth.util;
+package com.louis.core.utils;
 
 import lombok.extern.slf4j.Slf4j;
 
 import java.security.MessageDigest;
 
-/**
- * @author Eric
- * @date create in 2019/5/19
- */
 @Slf4j
 public class Md5Utils {
+
 
     private static byte[] md5(String s) {
         MessageDigest algorithm;
@@ -25,7 +22,7 @@ public class Md5Utils {
         return null;
     }
 
-    private static final String toHex(byte hash[]) {
+    private static String toHex(byte hash[]) {
         if (hash == null) {
             return null;
         }
@@ -45,8 +42,10 @@ public class Md5Utils {
         try {
             return new String(toHex(md5(s)).getBytes("UTF-8"), "UTF-8");
         } catch (Exception e) {
-            log.error("not supported charset...{}", e);
+            log.error("not supported charset... ", e);
             return s;
         }
     }
+
+
 }
