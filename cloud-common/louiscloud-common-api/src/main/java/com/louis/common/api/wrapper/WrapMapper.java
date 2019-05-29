@@ -31,6 +31,11 @@ public class WrapMapper {
 		return new Wrapper<>(code, message, o);
 	}
 
+
+	public static <E> Wrapper<E> wrap(E e) {
+		return wrap(WrapperMassage.SUCCESS_CODE, WrapperMassage.SUCCESS_MESSAGE, e);
+	}
+
 	/**
 	 * Wrap.
 	 *

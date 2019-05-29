@@ -1,6 +1,7 @@
 package com.louis.product.entity;
 
 import com.louis.core.entity.BaseEntity;
+import com.louis.core.entity.LogicDeleteable;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -18,7 +19,7 @@ import java.util.Date;
 @Getter
 @Entity
 @Table(name = "pms_product")
-public class PmsProduct extends BaseEntity<Long> {
+public class PmsProduct extends BaseEntity<Long> implements LogicDeleteable {
 
     private static final long serialVersionUID = -5326322245586530418L;
 
@@ -61,7 +62,21 @@ public class PmsProduct extends BaseEntity<Long> {
     @Column(name = "audit")
     private boolean audit;
 
+    private boolean deleted;
 
+    @Override
+    public Boolean getDeleted() {
+        return this.deleted;
+    }
 
+    @Override
+    public void setDeleted(Boolean deleted) {
 
+        this.deleted = deleted;
+    }
+
+    @Override
+    public void markDeleted() {
+        this.deleted = true;
+    }
 }

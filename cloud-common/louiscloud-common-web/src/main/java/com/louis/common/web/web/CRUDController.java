@@ -1,4 +1,5 @@
 package com.louis.common.web.web;
+import com.louis.common.api.wrapper.Wrapper;
 import com.louis.core.entity.BaseEntity;
 import com.louis.core.service.CRUDService;
 import com.louis.core.response.ResponseData;
@@ -6,9 +7,7 @@ import com.louis.core.search.Searchable;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
 import java.io.Serializable;
 import java.util.List;
@@ -21,13 +20,13 @@ import java.util.List;
  *   封装的一些基本的controller
  *
  */
-public  abstract class CRUDController<T extends BaseEntity,ID extends Serializable>{
+public  abstract class CRUDController<T extends BaseEntity,ID extends Serializable>extends BaseController{
 
     private CRUDService<T, ID> crudService;
 
     @Autowired
-    public void setBaseService(CRUDService<T, ID> baseService) {
-        this.crudService = baseService;
+    public void setBaseService(CRUDService<T, ID> crudService) {
+        this.crudService = crudService;
     }
 
     /**
@@ -36,10 +35,10 @@ public  abstract class CRUDController<T extends BaseEntity,ID extends Serializab
      * @return 返回数据
      */
     @ApiOperation("新增操作")
-    @RequestMapping(value = "/addBy",method = RequestMethod.POST)
-    public ResponseData add(T t) {
+    @PostMapping(value = "/addBy")
+    public Wrapper add(T t) {
         T save = crudService.save(t);
-        return new ResponseData(save);
+        return handleResult(save);
     }
 
 
@@ -49,11 +48,11 @@ public  abstract class CRUDController<T extends BaseEntity,ID extends Serializab
      * @return 返回数据
      */
     @ApiOperation("通过id 删除")
-    @RequestMapping(value = "/deleteBy", method = RequestMethod.POST)
-    public ResponseData delete(ID id) {
+    @PostMapping(value = "/deleteBy")
+    public Wrapper delete(ID id) {
         crudService.deleteById(id);
 
-        return new ResponseData("success");
+        return handleResult("success");
     }
 
     /**
@@ -61,10 +60,10 @@ public  abstract class CRUDController<T extends BaseEntity,ID extends Serializab
      * @return 返回数据
      */
     @ApiOperation("查询所有")
-    @RequestMapping(value = "/allBy",method = RequestMethod.GET)
-    public ResponseData findAll() {
+    @GetMapping(value = "/allBy")
+    public Wrapper findAll() {
         List<T> all = crudService.findAll();
-        return new ResponseData(all);
+        return handleResult(all);
     }
 
     /**
@@ -73,10 +72,10 @@ public  abstract class CRUDController<T extends BaseEntity,ID extends Serializab
      * @return 返回数据
      */
     @ApiOperation("通过id查询，如果没有回抛出异常")
-    @RequestMapping(value = "/findBy/{id}",method = RequestMethod.GET)
-    public ResponseData findById(@PathVariable ID id) {
+    @GetMapping(value = "/findBy/{id}")
+    public Wrapper findById(@PathVariable ID id) {
         T byId = crudService.findById(id);
-        return new ResponseData( byId);
+        return handleResult( byId);
     }
 
     /**
@@ -85,15 +84,14 @@ public  abstract class CRUDController<T extends BaseEntity,ID extends Serializab
      * @return 返回数据
      */
     @ApiOperation("通过searchable条件查询")
-    @RequestMapping(value = "/listBy", method = RequestMethod.GET)
-
-    public ResponseData findAll(Searchable searchable) {
+    @GetMapping(value = "/listBy")
+    public Wrapper findAll(Searchable searchable) {
         searchable = searchable == null ?  Searchable.newSearchable() : searchable;
         if (!searchable.hasPageable())
             searchable.setPage(0, 10);
 
         Page<T> all = crudService.findAll(searchable);
-        return new ResponseData( all.getContent());
+        return handleResult(all);
     }
 
 }
