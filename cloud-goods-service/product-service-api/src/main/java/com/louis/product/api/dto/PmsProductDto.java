@@ -6,6 +6,7 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 
@@ -16,7 +17,7 @@ import java.util.Date;
 @Setter
 @Getter
 @ApiModel
-public class PmsProductDto extends BaseDto {
+public class PmsProductDto<ID extends Serializable> extends BaseDto<ID> {
 
     @ApiModelProperty("商品类目")
     private int categoryId;
@@ -62,8 +63,6 @@ public class PmsProductDto extends BaseDto {
 
     @ApiModelProperty("商品庫存")
     private int stock;
-
-
 
 
 }

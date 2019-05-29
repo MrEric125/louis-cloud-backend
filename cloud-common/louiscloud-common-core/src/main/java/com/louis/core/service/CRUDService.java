@@ -4,6 +4,7 @@ import com.louis.exception.NotFoundEntityException;
 import com.louis.core.entity.BaseEntity;
 import com.louis.core.repository.BaseRepository;
 import com.louis.core.search.Searchable;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -22,6 +23,7 @@ import java.util.List;
  * 类中方法的顺序从上到下分别是增删改查
  */
 @Transactional
+@Slf4j
 public abstract class CRUDService <T extends BaseEntity,ID extends Serializable>{
 
 
@@ -52,7 +54,7 @@ public abstract class CRUDService <T extends BaseEntity,ID extends Serializable>
                     .findById(id)
                     .orElseThrow(()->new NotFoundEntityException("没有找到实体对象"));
         } catch (NotFoundEntityException e) {
-            e.printStackTrace();
+            log.error(" search by id error: {}", e.getStackTrace());
         }
         return null;
     }

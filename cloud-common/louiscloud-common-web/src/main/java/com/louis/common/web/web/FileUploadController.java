@@ -32,25 +32,25 @@ import java.util.Objects;
  */
 @Controller
 @Slf4j
-public class FileUploadController<Id extends Serializable,M extends BaseEntity> {
+public class FileUploadController<ID extends Serializable,M extends BaseEntity> {
 
-    @Value("{file.upload.dir}")
+    @Value(value = "${file.upload.dir}")
     private String uploadBasePath;
 
-    @Value("{file.upload.fileSize}")
+    @Value(value = "${file.upload.fileSize}")
     private long uploadFileSizeLimit;
 
     @Autowired
-    CRUDService<M, Id> crudService;
+    CRUDService<M, ID> crudService;
 
     @Autowired
     FileUploadService fileUploadService;
 
 
-    @ApiOperation("文件上傳用")
+    @ApiOperation("文件上专用")
     @ResponseBody
     @PostMapping(value = "/upload/{entityId}")
-    public Wrapper fileUpload(@PathVariable(name = "entityId") Id id,
+    public Wrapper fileUpload(@PathVariable(name = "entityId") ID id,
                                    @RequestParam(value = "file", required = false) MultipartFile[] files,
                                    HttpServletRequest request) {
         if (ArrayUtils.isEmpty(files)) {
@@ -63,6 +63,11 @@ public class FileUploadController<Id extends Serializable,M extends BaseEntity> 
             }
         }
         try {
+            for (MultipartFile file : files) {
+                if (file.getSize()> uploadFileSizeLimit) {
+                    return WrapMapper.wrap(WrapMapper.error("上传文件过大"));
+                }
+            }
             fileUploadService.upload(files, uploadBasePath);
         } catch (IOException e) {
             log.error("文件上传异常:{}", e);
