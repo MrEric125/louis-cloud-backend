@@ -19,6 +19,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 
 import java.util.List;
+import java.util.function.Supplier;
 
 
 @Slf4j
@@ -85,6 +86,10 @@ public class BaseController  {
 			flag = PublicUtil.isNotEmpty(result);
 		}
 		return flag;
+	}
+
+	protected <T> void resolve(Supplier<T> resolver){
+
 	}
 
 	protected long generateId() {

@@ -19,6 +19,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Optional;
+
 /**
  * @author Eric
  * @date create in 2019/5/26
@@ -30,8 +32,7 @@ import org.springframework.web.bind.annotation.*;
 @Slf4j
 public class PmsProductController extends CRUDController<PmsProduct,Long> {
 
-    final
-    PmsProductService productService;
+    private final PmsProductService productService;
 
     public PmsProductController(PmsProductService productService) {
         this.productService = productService;
@@ -62,9 +63,8 @@ public class PmsProductController extends CRUDController<PmsProduct,Long> {
     @PostMapping("/edit")
     public Wrapper editProduct(@RequestBody PmsProductDto<Long> dto) {
         PmsProduct product = productService.findById(dto.getId());
-        if (product == null) {
-            return WrapMapper.error("对应商品没有找到");
-        }
+
+        Optional.ofNullable(product).orElseThrow(()->new NullPointerException("对应商品没有找到"));
         BeanUtils.copyProperties(dto, product);
         PmsProduct save = productService.save(product);
         return handleResult(save);
@@ -96,9 +96,7 @@ public class PmsProductController extends CRUDController<PmsProduct,Long> {
     public Wrapper deleteProduct(long productId) {
         log.info("mark product as deleted");
         PmsProduct product = productService.findById(productId);
-        if (product == null) {
-            return handleResult(product, "对应商品没有找到");
-        }
+        Optional.ofNullable(product).orElseThrow(()->new NullPointerException("对应商品没有找到"));
         product.markDeleted();
         return WrapMapper.wrap(WrapperMassage.SUCCESS_CODE);
     }
