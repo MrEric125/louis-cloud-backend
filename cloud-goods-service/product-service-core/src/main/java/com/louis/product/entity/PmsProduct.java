@@ -65,6 +65,8 @@ public class PmsProduct extends BaseEntity<Long> implements LogicDeleteable {
     @Column(name = "deleted")
     private boolean deleted;
 
+
+
     @Override
     public Boolean getDeleted() {
         return this.deleted;
