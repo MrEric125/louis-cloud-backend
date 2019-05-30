@@ -5,6 +5,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Optional;
 import java.util.Random;
 
 public class DateUtils {
@@ -44,12 +45,13 @@ public class DateUtils {
 	 * 将Date时间转成字符串
 	 */
 	public static String DateToStr(String format, Date date) {
-		if(null==date){
-			return "";
-		}
-		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(format);
-		return simpleDateFormat.format(date);
+		return Optional.ofNullable(date).map(x -> {
+			SimpleDateFormat simpleDateFormat = new SimpleDateFormat(format);
+			return simpleDateFormat.format(date);
+
+		}).orElse("this is null");
 	}
+
 
 	/**
 	 * 获取2个字符日期的天数差
