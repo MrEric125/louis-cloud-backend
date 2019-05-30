@@ -11,7 +11,10 @@ import org.springframework.data.domain.Sort;
 import java.util.Collection;
 import java.util.Map;
 
-
+/**
+ * @author John·Louis
+ * @date 2019年5月30日22:53:36
+ */
 public abstract class Searchable {
 
 

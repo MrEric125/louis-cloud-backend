@@ -1,19 +1,10 @@
-/*
- * Copyright (c) 2018. paascloud.net All Rights Reserved.
- * 项目名称：paascloud快速搭建企业级分布式微服务平台
- * 类名称：GlobalConstant.java
- * 创建人：刘兆明
- * 联系方式：paascloud.net@gmail.com
- * 开源地址: https://github.com/paascloud
- * 博客地址: http://blog.paascloud.net
- * 项目官网: http://paascloud.net
- */
+
 package com.louis.core.constant;
 
 /**
  * The class Global constant.
  *
- * @author paascloud.net@gmail.com
+ * @author John·Louis
  */
 public class GlobalConstant {
 
@@ -22,6 +13,9 @@ public class GlobalConstant {
 	 */
 	public static final long FILE_MAX_SIZE = 5 * 1024 * 1024;
 	public static final String UNKNOWN = "unknown";
+
+
+	public static final String  ENCODING = "UTF-8";
 
 	public static final String X_FORWARDED_FOR = "X-Forwarded-For";
 	public static final String X_REAL_IP = "X-Real-IP";

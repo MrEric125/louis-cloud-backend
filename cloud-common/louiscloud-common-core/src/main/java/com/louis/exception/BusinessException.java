@@ -4,10 +4,13 @@ package com.louis.exception;
 
 import lombok.extern.slf4j.Slf4j;
 
+
 /**
- * 业务异常.
+ * @author John·Louis
  *
- * @author paascloud.net @gmail.com
+ * @date 2019年5月30日22:53:36
+ *
+ * description
  */
 @Slf4j
 public class BusinessException extends RuntimeException {

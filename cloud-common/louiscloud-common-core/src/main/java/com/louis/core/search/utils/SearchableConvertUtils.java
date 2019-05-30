@@ -18,7 +18,10 @@ import org.springframework.util.CollectionUtils;
 import java.util.Collection;
 import java.util.List;
 
-
+/**
+ * @author John·Louis
+ * @date 2019年5月30日22:53:36
+ */
 public final class SearchableConvertUtils {
 
     private static volatile ConversionService conversionService;

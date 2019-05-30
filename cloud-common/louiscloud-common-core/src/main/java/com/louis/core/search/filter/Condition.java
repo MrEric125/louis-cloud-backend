@@ -9,7 +9,10 @@ import org.springframework.util.Assert;
 
 import java.util.List;
 
-
+/**
+ * @author John·Louis
+ * @date 2019年5月30日22:53:36
+ */
 public final class Condition implements SearchFilter {
 
     //查询参数分隔符

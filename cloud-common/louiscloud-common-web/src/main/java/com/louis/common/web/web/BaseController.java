@@ -2,12 +2,12 @@
 
 package com.louis.common.web.web;
 
-import com.louis.common.api.dto.BaseDto;
 import com.louis.common.api.dto.LoginAuthDto;
 import com.louis.common.api.wrapper.WrapMapper;
 import com.louis.common.api.wrapper.Wrapper;
 import com.louis.common.api.wrapper.WrapperMassage;
 import com.louis.core.entity.BaseEntity;
+import com.louis.core.utils.ReflectUtils;
 import com.louis.exception.BusinessException;
 import com.louis.exception.ErrorCodeEnum;
 import com.louis.core.constant.GlobalConstant;
@@ -16,14 +16,28 @@ import com.louis.core.entity.generator.UniqueIdGenerator;
 import com.louis.core.utils.PublicUtil;
 import com.louis.core.utils.ThreadLocalMap;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.BeanUtils;
 
-import java.util.List;
+import java.io.Serializable;
+import java.util.Optional;
 import java.util.function.Supplier;
 
 
+/**
+ * @author John·Louis
+ *
+ * @date 2019年5月30日22:53:36
+ *
+ * description
+ */
 @Slf4j
-public class BaseController  {
+public abstract class BaseController<Entity extends BaseEntity,ID extends Serializable>  {
+
+
+	protected final Class<Entity> entityClass;
+
+	public BaseController() {
+		this.entityClass = ReflectUtils.findParameterizedType(getClass(), 0);
+	}
 
 
 
@@ -34,10 +48,7 @@ public class BaseController  {
 	 */
 	protected LoginAuthDto<Long> getLoginAuthDto() {
 		LoginAuthDto<Long> loginAuthDto = (LoginAuthDto) ThreadLocalMap.get(GlobalConstant.Sys.TOKEN_AUTH_DTO);
-		if (PublicUtil.isEmpty(loginAuthDto)) {
-			throw new BusinessException(ErrorCodeEnum.UAC10011041);
-		}
-		return loginAuthDto;
+		return Optional.ofNullable(loginAuthDto).orElseThrow(() -> new BusinessException(ErrorCodeEnum.UAC10011041));
 	}
 
 	/**

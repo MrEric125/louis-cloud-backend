@@ -2,9 +2,13 @@ package com.louis.exception;
 
 import org.apache.tomcat.util.http.fileupload.FileUploadException;
 
+
 /**
- * @author Eric
- * @date create in 2019/5/29
+ * @author John·Louis
+ *
+ * @date 2019年5月30日22:53:36
+ *
+ * description
  */
 public class FileNameLengthLimitExceededException extends FileUploadException {
     private static final long serialVersionUID = -1828008459456667538L;

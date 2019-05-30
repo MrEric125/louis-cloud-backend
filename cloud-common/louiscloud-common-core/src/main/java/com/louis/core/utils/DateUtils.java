@@ -8,6 +8,13 @@ import java.util.Date;
 import java.util.Optional;
 import java.util.Random;
 
+/**
+ * @author John·Louis
+ *
+ * @date 2019年5月30日22:53:36
+ *
+ * description
+ */
 public class DateUtils {
 
 	public static String YYYY_MM_DD = "yyyy-MM-dd";

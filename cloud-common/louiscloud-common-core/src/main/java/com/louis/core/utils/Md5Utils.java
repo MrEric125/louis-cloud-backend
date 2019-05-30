@@ -4,6 +4,14 @@ import lombok.extern.slf4j.Slf4j;
 
 import java.security.MessageDigest;
 
+
+/**
+ * @author John·Louis
+ *
+ * @date 2019年5月30日22:53:36
+ *
+ * description
+ */
 @Slf4j
 public class Md5Utils {
 

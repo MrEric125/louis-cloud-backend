@@ -3,12 +3,11 @@
 package com.louis.core.entity.generator;
 
 
-import com.louis.core.constant.GlobalConstant;
 
 /**
  * FrameworkID 的保存器.
  *
- * @author gaohongtao
+ * @author John·Louis
  */
 public class IncrementIdGenerator implements IdGenerator {
 

@@ -42,6 +42,9 @@ public class OrderComment extends BaseEntity<Long> {
     @Column(name = "oc_goods_id")
     private long goodsId;
 
+    @Column(name = "seller_id")
+    private long sellerId;
+
     @Column(name = "oc_content")
     private String  content;
 

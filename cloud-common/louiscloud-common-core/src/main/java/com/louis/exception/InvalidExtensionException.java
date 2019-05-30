@@ -4,9 +4,13 @@ import org.apache.tomcat.util.http.fileupload.FileUploadException;
 
 import java.util.Arrays;
 
+
 /**
- * @author Eric
- * @date create in 2019/5/29
+ * @author John·Louis
+ *
+ * @date 2019年5月30日22:53:36
+ *
+ * description
  */
 public class InvalidExtensionException extends FileUploadException {
 
