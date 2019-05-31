@@ -39,6 +39,7 @@ public abstract class CRUDService <T extends BaseEntity,ID extends Serializable>
      * @param t 实体
      */
     public T save(T t) {
+
        return baseRepository.save(t);
     }
 

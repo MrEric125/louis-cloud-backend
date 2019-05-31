@@ -10,5 +10,5 @@ import org.springframework.stereotype.Repository;
  * @date create in 2019/5/11
  */
 @Repository
-public interface PtcPayInfoRepository extends BaseRepository<OmsPayInfo,Long> {
+public interface OmsPayInfoRepository extends BaseRepository<OmsPayInfo,Long> {
 }

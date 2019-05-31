@@ -8,6 +8,7 @@ import com.louis.core.service.CRUDService;
 import com.louis.core.response.ResponseData;
 import com.louis.core.search.Searchable;
 import io.swagger.annotations.ApiOperation;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -25,6 +26,7 @@ import java.util.stream.Collectors;
  * Description:
  * 封装的一些简单的增删改查功能的controller
  */
+@Slf4j
 public abstract class CRUDController<Entity extends BaseEntity, Dto extends BaseDto, ID extends Serializable> extends BaseController<Entity, ID> {
 
 

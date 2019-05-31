@@ -4,7 +4,7 @@ package com.louis.order.service;
 import com.louis.core.service.CRUDService;
 import com.louis.order.entity.OmsOrder;
 import com.louis.order.repository.OmsOrderRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,11 +16,11 @@ import java.util.List;
  * Description:
  */
 @Service
+@Slf4j
 public class OmsOrderService extends CRUDService<OmsOrder,Long> {
 
 
-    @Autowired
-    OmsOrderRepository omsOrderRepository;
+
 
     public OmsOrderRepository getRepository() {
         return (OmsOrderRepository)baseRepository;
@@ -29,7 +29,7 @@ public class OmsOrderService extends CRUDService<OmsOrder,Long> {
     public List<OmsOrder> findByUserId(Long userId) {
 
 
-        return omsOrderRepository.findAllByUserId(userId);
+        return getRepository().findAllByUserId(userId);
 
     }
 }
