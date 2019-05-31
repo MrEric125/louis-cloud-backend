@@ -6,7 +6,10 @@ import com.louis.core.search.Searchable;
 
 import javax.persistence.Query;
 
-
+/**
+ * @author John·Louis
+ * @date 2019年5月30日22:53:36
+ */
 public final class NoneSearchCallback implements SearchCallback {
 
     @Override

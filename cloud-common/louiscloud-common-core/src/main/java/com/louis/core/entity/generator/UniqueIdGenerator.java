@@ -14,7 +14,7 @@ package com.louis.core.entity.generator;
 /**
  * 分布式唯一ID生成器
  *
- * @author paascloud.net@gmail.com
+ * @author John·Louis
  */
 public class UniqueIdGenerator implements IdGenerator {
 

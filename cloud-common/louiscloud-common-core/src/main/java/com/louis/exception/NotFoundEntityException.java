@@ -1,10 +1,12 @@
 package com.louis.exception;
 
+
 /**
- * @author 80003996
- * <p>
- * Date: 2019/5/6
- * Description:
+ * @author John·Louis
+ *
+ * @date 2019年5月30日22:53:36
+ *
+ * description
  */
 public class NotFoundEntityException extends Exception {
 

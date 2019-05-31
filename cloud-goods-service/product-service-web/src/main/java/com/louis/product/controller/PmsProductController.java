@@ -1,6 +1,5 @@
 package com.louis.product.controller;
 
-import com.louis.common.api.dto.LoginAuthDto;
 import com.louis.common.api.wrapper.WrapMapper;
 import com.louis.common.api.wrapper.Wrapper;
 import com.louis.common.api.wrapper.WrapperMassage;
@@ -15,6 +14,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -30,28 +30,16 @@ import java.util.Optional;
 @Api("pms 商品管理")
 @RequestMapping("/product")
 @Slf4j
-public class PmsProductController extends CRUDController<PmsProduct,Long> {
+public class PmsProductController extends CRUDController<PmsProduct,PmsProductDto,Long> {
 
     private final PmsProductService productService;
 
+    @Autowired
     public PmsProductController(PmsProductService productService) {
         this.productService = productService;
     }
 
-    /**
-     * 用于卖家新增商品
-     * @param dto
-     * @return
-     */
-    @ApiOperation("新增产品")
-    @PostMapping("/addproduct")
-    public Wrapper addProduct(@RequestBody PmsProductDto dto) {
-        LoginAuthDto<Long> loginAuthDto = getLoginAuthDto();
 
-        PmsProduct product = new PmsProduct();
-        BeanUtils.copyProperties(dto, product);
-        return this.add(product);
-    }
 
 
     /**
@@ -99,5 +87,15 @@ public class PmsProductController extends CRUDController<PmsProduct,Long> {
         Optional.ofNullable(product).orElseThrow(()->new NullPointerException("对应商品没有找到"));
         product.markDeleted();
         return WrapMapper.wrap(WrapperMassage.SUCCESS_CODE);
+    }
+
+    @Override
+    protected PmsProduct dtoToEntity(PmsProductDto d) {
+        return null;
+    }
+
+    @Override
+    protected PmsProductDto entityToDto(PmsProduct dto) {
+        return null;
     }
 }

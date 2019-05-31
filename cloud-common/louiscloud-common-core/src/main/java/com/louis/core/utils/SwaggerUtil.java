@@ -3,9 +3,13 @@ package com.louis.core.utils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.core.env.Environment;
 
+
 /**
- * @author Eric
- * @date create in 2019/5/11
+ * @author John·Louis
+ *
+ * @date 2019年5月30日22:53:36
+ *
+ * description
  */
 public class SwaggerUtil {
 

@@ -17,7 +17,10 @@ import java.util.List;
 import java.util.Map;
 
 
-
+/**
+ * @author John·Louis
+ * @date 2019年5月30日22:53:36
+ */
 public final class SearchRequest extends Searchable {
 
     private final Map<String, SearchFilter> searchFilterMap = Maps.newHashMap();

@@ -14,7 +14,7 @@ package com.louis.core.entity.generator;
 /**
  * The interface Id generator.
  *
- * @author paascloud.net @gmail.com
+ * @author John·Louis
  */
 public interface IdGenerator {
 

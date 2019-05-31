@@ -23,8 +23,8 @@ import java.util.List;
 import java.util.Set;
 
 /**
- * <p>抽象基础Custom Repository 实现</p>
-
+ * @author John·Louis
+ * @date 2019年5月30日22:53:36
  */
 public class SimpleBaseRepository<M, ID extends Serializable> extends SimpleJpaRepository<M, ID> implements BaseRepository<M, ID> {
 	

@@ -5,7 +5,7 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
 /**
- * @author Eric
+ * @author John·Louis
  * @date create in 2019/5/19
  */
 @Service

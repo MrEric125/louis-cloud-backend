@@ -5,7 +5,7 @@ import com.google.common.collect.Maps;
 import java.util.HashMap;
 
 /**
- * @author Eric
+ * @author John·Louis
  * @date create in 2019/5/19
  *
  * redis 键前缀工具类

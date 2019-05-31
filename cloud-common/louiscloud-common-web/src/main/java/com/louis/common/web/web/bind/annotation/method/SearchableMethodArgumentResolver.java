@@ -1,8 +1,4 @@
-/**
- * Copyright (c) 2005-2012 https://github.com/zhangkaitao
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- */
+
 package com.louis.common.web.web.bind.annotation.method;
 
 import com.google.common.collect.Lists;
@@ -45,8 +41,8 @@ import java.util.Map;
  *     3.1、禁用查询时分页及排序
  *          public void test(@Search(page = false, sort = false) Searchable searchable);
  * </pre>
- * <p>User: Zhang Kaitao
- * <p>Date: 13-1-22 下午8:48
+ * <p>User: Louis
+ * <p>Date: 2019年5月30日22:59:24
  * <p>Version: 1.0
  *
  * @since 3.1

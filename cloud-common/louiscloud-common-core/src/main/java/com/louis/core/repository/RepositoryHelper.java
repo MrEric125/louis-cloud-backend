@@ -17,7 +17,10 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Query;
 import java.util.List;
 
-
+/**
+ * @author John·Louis
+ * @date 2019年5月30日22:53:36
+ */
 public class RepositoryHelper {
 	
 	private static EntityManager entityManager;

@@ -5,7 +5,10 @@ import com.google.common.collect.Lists;
 
 import java.util.List;
 
-
+/**
+ * @author John·Louis
+ * @date 2019年5月30日22:53:36
+ */
 public class OrCondition implements SearchFilter {
 
     private List<SearchFilter> orFilters = Lists.newArrayList();

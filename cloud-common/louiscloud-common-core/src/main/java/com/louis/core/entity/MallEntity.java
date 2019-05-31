@@ -18,7 +18,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * @author Eric
+ * @author John·Louis
  * @date create in 2019/5/11
  * description:  这里会依赖LoginAuthDto 是设计成 继承MallEntity的实体
  * 如果没有登录的话那么那么久不让其看到这些信息

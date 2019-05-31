@@ -16,9 +16,10 @@ import org.springframework.web.bind.annotation.RestController;
  * @date create in 2019/5/18
  */
 @RestController
-public class OrderCommentController extends CRUDController<OrderComment, Long> {
+public class OrderCommentController extends CRUDController<OrderComment,OrderCommentDto, Long> {
     @Autowired
     private OrderCommentService orderCommentService;
+
 
 
     @RequestMapping("/getComment/{orderId}/{userId}")
@@ -31,4 +32,13 @@ public class OrderCommentController extends CRUDController<OrderComment, Long> {
     }
 
 
+    @Override
+    protected OrderComment dtoToEntity(OrderCommentDto d) {
+        return null;
+    }
+
+    @Override
+    protected OrderCommentDto entityToDto(OrderComment dto) {
+        return null;
+    }
 }

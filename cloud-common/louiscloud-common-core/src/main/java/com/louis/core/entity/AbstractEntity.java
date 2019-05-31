@@ -5,7 +5,7 @@ import org.springframework.data.domain.Persistable;
 import java.io.Serializable;
 
 /**
- * @author Eric
+ * @author John·Louis
  * @date create in 2019/5/6
  */
 public abstract class AbstractEntity <ID extends Serializable> implements Persistable<ID> ,Serializable {

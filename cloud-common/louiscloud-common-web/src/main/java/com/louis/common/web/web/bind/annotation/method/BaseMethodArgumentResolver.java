@@ -1,8 +1,4 @@
-/**
- * Copyright (c) 2005-2012 https://github.com/zhangkaitao
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- */
+
 package com.louis.common.web.web.bind.annotation.method;
 
 import org.springframework.web.context.request.NativeWebRequest;
@@ -15,10 +11,13 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
+
 /**
- * <p>User: Zhang Kaitao
- * <p>Date: 13-1-23 下午3:28
- * <p>Version: 1.0
+ * @author John·Louis
+ *
+ * @date 2019年5月30日22:53:36
+ *
+ * description
  */
 public abstract class BaseMethodArgumentResolver implements HandlerMethodArgumentResolver {
 

@@ -14,7 +14,10 @@ import org.springframework.util.StringUtils;
 
 import javax.persistence.Query;
 
-
+/**
+ * @author John·Louis
+ * @date 2019年5月30日22:53:14
+ */
 public class DefaultSearchCallback implements SearchCallback {
 
     private static final String paramPrefix = "param_";

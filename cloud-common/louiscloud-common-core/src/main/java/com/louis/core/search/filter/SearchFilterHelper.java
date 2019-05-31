@@ -7,7 +7,10 @@ import org.apache.commons.lang3.ArrayUtils;
 
 import java.util.Arrays;
 
-
+/**
+ * @author John·Louis
+ * @date 2019年5月30日22:53:36
+ */
 public final class SearchFilterHelper {
     /**
      * 根据查询key和值生成Condition

@@ -14,7 +14,7 @@
     <dependencies>
         <dependency>
             <groupId>com.louis</groupId>
-            <artifactId>louiscloud-common-feign</artifactId>
+            <artifactId>louiscloud-common-api</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
 
