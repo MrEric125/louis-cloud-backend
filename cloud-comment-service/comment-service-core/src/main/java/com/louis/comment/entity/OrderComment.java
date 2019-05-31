@@ -18,7 +18,7 @@ import java.util.Date;
 @AllArgsConstructor
 @Getter
 @Entity
-@Table(name = "order_comment")
+@Table(name = "shop_order_comment")
 public class OrderComment extends BaseEntity<Long> {
 
     private static final long serialVersionUID = -6124785159120672329L;

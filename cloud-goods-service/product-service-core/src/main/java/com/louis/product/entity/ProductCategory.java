@@ -9,8 +9,8 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 
 /**
- * @author Eric
- * @date create in 2019/5/26
+ * @author John louis
+ *  create in 2019/5/26
  */
 @Entity
 @Table(name = "product_category")
@@ -22,6 +22,17 @@ public class ProductCategory extends TreeEntity<Long> {
 
     @Column(name = "category_name")
     private String categoryName;
+
+    private int status;
+
+    private int sorted;
+
+    private String icon;
+
+    @Column(name = "url_path")
+    private String urlPath;
+
+
 
 
 
