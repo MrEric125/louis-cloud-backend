@@ -53,7 +53,7 @@ public class OmsCartDetail extends MallEntity<Long> {
     @Column(name = "checked")
     private int checked;
 
-    @Column(name = "商品单价")
+    @Column(name = "unit_price")
     private BigDecimal unitPrice;
 
     @Column(name = "discount")

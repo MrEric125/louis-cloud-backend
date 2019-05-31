@@ -27,7 +27,7 @@ import java.util.List;
 public abstract class CRUDService <T extends BaseEntity,ID extends Serializable>{
 
 
-    BaseRepository<T, ID> baseRepository;
+    protected BaseRepository<T, ID> baseRepository;
 
     @Autowired
     public void setBaseRepository(BaseRepository<T, ID> baseRepository) {

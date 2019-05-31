@@ -12,22 +12,22 @@ import java.io.Serializable;
  * @date create in 2019/5/6
  */
 @MappedSuperclass
-public abstract class BaseEntity<ID extends Serializable> extends AbstractEntity<ID> {
+public abstract class BaseEntity<ID extends Serializable> extends AbstractEntity<Long> {
 
     private static final long serialVersionUID = -2430797350775093998L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private ID id;
+    private Long id;
 
 
     @Override
     @NonNull
-    public ID getId() {
+    public Long getId() {
         return id;
     }
 
     @Override
-    public void setId(ID id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

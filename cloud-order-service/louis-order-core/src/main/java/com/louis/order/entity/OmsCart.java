@@ -2,6 +2,7 @@
 
 package com.louis.order.entity;
 
+import com.louis.core.entity.BaseEntity;
 import com.louis.core.entity.LogicDeleteable;
 import com.louis.core.entity.MallEntity;
 import lombok.*;
@@ -23,8 +24,8 @@ import java.util.List;
 @Data
 @Entity
 @Table(name = "oms_cart")
-@Builder
-public class OmsCart  implements LogicDeleteable {
+
+public class OmsCart extends BaseEntity<Long> implements LogicDeleteable {
 
 	private static final long serialVersionUID = 5333646386138778574L;
 
@@ -33,17 +34,17 @@ public class OmsCart  implements LogicDeleteable {
 	private Long userId;
 
 
-	private List<OmsCartDetail> cartDetailList;
+//	private List<OmsCartDetail> cartDetailList;
 
 
 	@Column(name = "deleted")
-	private boolean delete;
+	private boolean delete=Boolean.FALSE;
 
 	/**
 	 * 是否选择,1=已勾选,0=未勾选
 	 */
 
-	@Builder.Default
+//	@Builder.Default
 	@Column(name = "checked")
 	private boolean checked=Boolean.TRUE;
 

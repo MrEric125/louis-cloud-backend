@@ -38,7 +38,7 @@ import java.util.List;
 @RestController
 @Api(value = "OmsCartFeignClient", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 @Slf4j
-public class OmsCartFeignClient extends BaseController implements OmsCartFeignClientApi {
+public class OmsCartFeignClient extends BaseController<OmsCart,Long> implements OmsCartFeignClientApi {
 
     @Autowired
     OmsCartService cartService;
@@ -60,13 +60,14 @@ public class OmsCartFeignClient extends BaseController implements OmsCartFeignCl
     public Wrapper addProductToCart(OmsCartDetailDto dto) {
 
         log.info("oms add cart productId:{}", dto.getProductId());
-        OmsCart omsCart = OmsCart
-                .builder()
-                .userId(getLoginAuthDto().getUserId())
-                .build();
+//        OmsCart omsCart = OmsCart
+//                .builder()
+//                .userId(getLoginAuthDto().getUserId())
+//                .build();
 
+        OmsCart omsCart = new OmsCart();
         LoginAuthDto loginAuthDto = LoginAuthDto.builder().userId(5L).userName("zhangsan").build();
-        omsCart.setUpdateInfo(loginAuthDto);
+//        omsCart.setUpdateInfo(loginAuthDto);
 
         OmsCart save = cartService.saveAndFlush(omsCart);
 

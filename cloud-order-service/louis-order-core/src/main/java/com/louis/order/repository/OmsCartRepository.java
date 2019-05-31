@@ -15,10 +15,10 @@ import java.util.List;
 public interface OmsCartRepository extends BaseRepository<OmsCart,Long> {
 
 
-    OmsCart findByIdAndProductId(Long id, Long productId);
+//    OmsCart findByIdAndProductId(Long id, Long productId);
 
 
-    @SQLDelete(sql = "update oms_cart set deleted=1,update_time= now() where product_id in ?1")
-    void delProductIds(List<Long> productIds,long userId);
+//    @SQLDelete(sql = "update oms_cart set deleted=1,update_time= now() where product_id in ?1")
+//    void delProductIds(List<Long> productIds,long userId);
 
 }

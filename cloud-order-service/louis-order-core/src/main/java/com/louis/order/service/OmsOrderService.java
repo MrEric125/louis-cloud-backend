@@ -22,6 +22,10 @@ public class OmsOrderService extends CRUDService<OmsOrder,Long> {
     @Autowired
     OmsOrderRepository omsOrderRepository;
 
+    public OmsOrderRepository getRepository() {
+        return (OmsOrderRepository)baseRepository;
+    }
+
     public List<OmsOrder> findByUserId(Long userId) {
 
 

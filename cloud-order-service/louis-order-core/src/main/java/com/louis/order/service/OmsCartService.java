@@ -7,7 +7,6 @@ import com.louis.core.service.CRUDService;
 import com.louis.order.entity.OmsCart;
 import com.louis.order.repository.OmsCartRepository;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
@@ -21,25 +20,29 @@ import java.util.List;
 @Service
 public class OmsCartService extends CRUDService<OmsCart, Long> {
 
-    @Autowired
-    OmsCartRepository omsCartRepository;
+
+
+    public OmsCartRepository getRepository() {
+        return (OmsCartRepository)baseRepository;
+    }
 
 
     public Page<OmsCart> findCartByUserId(long userId, Searchable searchable) {
         searchable.addSearchFilter("userId", SearchOperator.eq, userId);
-        return omsCartRepository.findAll(searchable);
+        return getRepository().findAll(searchable);
 
     }
 
     public OmsCart findByIdAndProductId(long id ,long productId) {
-       return omsCartRepository.findByIdAndProductId(id,productId);
+//       return omsCartRepository.findByIdAndProductId(id,productId);
+        return null;
     }
 
     /**
      * 通过商品id 来删除购物车中的产品
      */
     public void delByProductIds(List<Long> productIds,long userId) {
-        omsCartRepository.delProductIds(productIds,userId);
+//        omsCartRepository.delProductIds(productIds,userId);
     }
 
 

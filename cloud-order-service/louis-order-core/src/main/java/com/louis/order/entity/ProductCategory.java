@@ -1,9 +1,11 @@
 package com.louis.order.entity;
 
 import com.louis.core.entity.BaseEntity;
+import com.louis.core.entity.TreeEntity;
 import lombok.Getter;
 import lombok.Setter;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
@@ -15,7 +17,16 @@ import javax.persistence.Table;
 @Getter
 @Entity
 @Table(name = "product_category")
-public class ProductCategory extends BaseEntity<Long> {
+public class ProductCategory extends TreeEntity<Long> {
+
+
+    @Column(name = "product_name")
+    private String productName;
+
+
+
+
+
 
 
     private static final long serialVersionUID = 9123120533901658690L;
