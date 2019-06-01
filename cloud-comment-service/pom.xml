@@ -11,6 +11,7 @@
     <parent>
         <artifactId>spring-cloud-project</artifactId>
         <groupId>com.louis</groupId>
+        <relativePath>../pom.xml</relativePath>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
     <artifactId>cloud-comment-service</artifactId>
@@ -27,11 +28,11 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter</artifactId>
         </dependency>
-        <dependency>
-            <groupId>com.louis</groupId>
-            <artifactId>cloud-common</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>com.louis</groupId>-->
+<!--            <artifactId>cloud-common</artifactId>-->
+<!--            <version>0.0.1-SNAPSHOT</version>-->
+<!--        </dependency>-->
 
 
     </dependencies>

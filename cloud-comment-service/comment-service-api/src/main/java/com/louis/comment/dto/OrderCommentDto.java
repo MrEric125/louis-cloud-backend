@@ -14,7 +14,7 @@ import java.util.Date;
  * Date: 2019/5/20
  * Description:
  */
-@Builder
+
 @Setter
 @Getter
 @NoArgsConstructor

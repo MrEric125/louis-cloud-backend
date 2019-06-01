@@ -5,6 +5,7 @@
     <parent>
         <artifactId>cloud-common</artifactId>
         <groupId>com.louis</groupId>
+        <relativePath>../pom.xml</relativePath>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
