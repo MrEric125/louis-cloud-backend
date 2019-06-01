@@ -21,7 +21,7 @@ public class WrapperMassage implements Serializable {
     /**
      * 错误码.
      */
-    public static final int ERROR_CODE = 500;
+    public static final int ERROR_CODE = 400;
 
     /**
      * 错误信息.

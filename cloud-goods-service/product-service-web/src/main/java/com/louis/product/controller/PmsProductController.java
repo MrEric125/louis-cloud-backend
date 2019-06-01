@@ -12,6 +12,7 @@ import com.louis.product.entity.PmsProduct;
 import com.louis.product.service.PmsProductService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import javafx.application.Application;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,9 +28,10 @@ import java.util.Optional;
  * description: todo 后期需要添加权限相关操作，这里主要都是交给seller操作的
  */
 @Controller
-@Api("pms 商品管理")
-@RequestMapping("/product")
+@Api(tags = "PmsProductController",description = "pms 商品管理")
+@RequestMapping(value = "/product",produces = "applicaton/json")
 @Slf4j
+@ResponseBody
 public class PmsProductController extends CRUDController<PmsProduct,PmsProductDto,Long> {
 
     private final PmsProductService productService;
@@ -48,8 +50,8 @@ public class PmsProductController extends CRUDController<PmsProduct,PmsProductDt
      * @return
      */
     @ApiOperation("修改操作")
-    @PostMapping("/edit")
-    public Wrapper editProduct(@RequestBody PmsProductDto<Long> dto) {
+    @PostMapping(value = "/edit")
+    public Wrapper editProduct(@RequestBody PmsProductDto dto) {
         PmsProduct product = productService.findById(dto.getId());
 
         Optional.ofNullable(product).orElseThrow(()->new NullPointerException("对应商品没有找到"));
@@ -66,7 +68,7 @@ public class PmsProductController extends CRUDController<PmsProduct,PmsProductDt
      * @return
      */
     @ApiOperation("通过条件查找，下架商品不显示")
-    @GetMapping("/searchProduct")
+    @GetMapping(value = "/searchProduct",produces = "application/json")
     public Wrapper searchProduct(Searchable searchable) {
         log.info("search product by searchable");
         searchable.addSearchFilter("deleted", SearchOperator.eq, Boolean.FALSE);
@@ -80,22 +82,26 @@ public class PmsProductController extends CRUDController<PmsProduct,PmsProductDt
      * @return
      */
     @ApiOperation("下架商品")
-    @PostMapping("/underTheShelf")
+    @PostMapping(value = "/underTheShelf",produces = "application/json")
     public Wrapper deleteProduct(long productId) {
         log.info("mark product as deleted");
-        PmsProduct product = productService.findById(productId);
-        Optional.ofNullable(product).orElseThrow(()->new NullPointerException("对应商品没有找到"));
-        product.markDeleted();
+
+        productService.delete(productId);
+
         return WrapMapper.wrap(WrapperMassage.SUCCESS_CODE);
     }
 
     @Override
     protected PmsProduct dtoToEntity(PmsProductDto d) {
-        return null;
+        PmsProduct product = new PmsProduct();
+        BeanUtils.copyProperties(d, product);
+        return product;
     }
 
     @Override
-    protected PmsProductDto entityToDto(PmsProduct dto) {
-        return null;
+    protected PmsProductDto entityToDto(PmsProduct entity) {
+        PmsProductDto dto = new PmsProductDto();
+        BeanUtils.copyProperties(entity, dto);
+        return dto;
     }
 }

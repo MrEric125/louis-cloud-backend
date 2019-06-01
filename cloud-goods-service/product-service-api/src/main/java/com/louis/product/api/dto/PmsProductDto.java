@@ -17,7 +17,7 @@ import java.util.Date;
 @Setter
 @Getter
 @ApiModel
-public class PmsProductDto<ID extends Serializable> extends BaseDto<ID> {
+public class PmsProductDto extends BaseDto<Long> {
 
     @ApiModelProperty("商品类目")
     private int categoryId;

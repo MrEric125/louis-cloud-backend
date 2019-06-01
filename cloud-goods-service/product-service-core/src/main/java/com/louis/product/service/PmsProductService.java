@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class PmsProductService extends CRUDService<PmsProduct, Long> {
 
-    @Autowired
-    private PmsProductRepository pmsProductRepository;
+    public PmsProductRepository getRepository() {
+        return (PmsProductRepository)baseRepository;
+    }
 }

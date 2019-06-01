@@ -50,14 +50,8 @@ public abstract class CRUDService <T extends BaseEntity,ID extends Serializable>
      *
      */
     public T findById(ID id)  {
-        try {
-            return baseRepository
-                    .findById(id)
-                    .orElseThrow(()->new NotFoundEntityException("没有找到实体对象"));
-        } catch (NotFoundEntityException e) {
-            log.error(" search by id error: {}", e.getStackTrace());
-        }
-        return null;
+        return baseRepository.findOne(id);
+
     }
 
     public T saveAndFlush(T t) {
@@ -117,6 +111,10 @@ public abstract class CRUDService <T extends BaseEntity,ID extends Serializable>
      */
     public void delete(T t) {
         baseRepository.delete(t);
+    }
+
+    public void delete(ID id) {
+        baseRepository.delete(id);
     }
 
     /**

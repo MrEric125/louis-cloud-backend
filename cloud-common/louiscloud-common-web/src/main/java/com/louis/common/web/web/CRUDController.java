@@ -12,9 +12,11 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
+import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.Serializable;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -53,8 +55,11 @@ public abstract class CRUDController<Entity extends BaseEntity, Dto extends Base
      * @return 返回数据
      */
     @ApiOperation("新增操作")
-    @PostMapping(value = "/add")
+    @PostMapping(value = "/add",produces = "application/json")
     public Wrapper add(@RequestBody Dto t) {
+        if (t != null) {
+            return handleResult(null,"您没有传入数据");
+        }
         Entity entity = dtoToEntity(t);
         Entity save = crudService.save(entity);
         return handleResult(save);
@@ -68,7 +73,7 @@ public abstract class CRUDController<Entity extends BaseEntity, Dto extends Base
      * @return 返回数据
      */
     @ApiOperation("通过id 删除")
-    @PostMapping(value = "/deleteBy")
+    @PostMapping(value = "/deleteBy",produces = "application/json")
     public Wrapper delete(ID id) {
         crudService.deleteById(id);
 
@@ -82,9 +87,12 @@ public abstract class CRUDController<Entity extends BaseEntity, Dto extends Base
      */
     @Deprecated
     @ApiOperation("查询所有")
-    @GetMapping(value = "/queryAll")
+    @GetMapping(value = "/queryAll",produces = "application/json" )
     public Wrapper findAll() {
         List<Entity> all = crudService.findAll();
+        if (CollectionUtils.isEmpty(all)) {
+            return returnNullResult();
+        }
         List<Dto> dtos = entitiesToDtos(all);
         return handleResult(dtos);
     }
@@ -96,9 +104,12 @@ public abstract class CRUDController<Entity extends BaseEntity, Dto extends Base
      * @return 返回数据
      */
     @ApiOperation("通过id查询，如果没有回抛出异常")
-    @GetMapping(value = "/findBy/{id}")
+    @GetMapping(value = "/findBy/{id}",produces = "application/json")
     public Wrapper findById(@PathVariable ID id) {
         Entity entity = crudService.findById(id);
+        if (entity == null) {
+            return returnNullResult();
+        }
         Dto dto = entityToDto(entity);
         return handleResult(dto);
     }
@@ -110,13 +121,17 @@ public abstract class CRUDController<Entity extends BaseEntity, Dto extends Base
      * @return 返回数据
      */
     @ApiOperation("通过searchable条件查询")
-    @GetMapping(value = "/listPageBy")
+    @GetMapping(value = "/listPageBy",produces = "application/json")
     public Wrapper findAll(Searchable searchable) {
         searchable = searchable == null ? Searchable.newSearchable() : searchable;
         if (!searchable.hasPageable())
             searchable.setPage(0, 10);
 
         Page<Entity> entityPage = crudService.findAll(searchable);
+        if (CollectionUtils.isEmpty(entityPage.getContent())) {
+            return returnNullResult();
+
+        }
         List<Dto> dtos = entitiesToDtos(entityPage.getContent());
         Map<String, Object> map = Maps.newHashMap();
         map.put("totalItems", entityPage.getTotalElements());

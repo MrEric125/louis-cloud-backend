@@ -123,12 +123,12 @@ public class SimpleBaseRepository<M, ID extends Serializable> extends SimpleJpaR
 	 *
 	 * @param id 主键
 	 */
-/*	@Transactional
+	@Transactional
 	@Override
 	public void delete( ID id) {
 		M m = findOne(id);
 		delete(m);
-	}*/
+	}
 
 
 	/**
@@ -215,13 +215,21 @@ public class SimpleBaseRepository<M, ID extends Serializable> extends SimpleJpaR
 		if (id == null) {
 			return null;
 		}
-		if (id instanceof Integer && ((Integer) id).intValue() == 0) {
+		if (id instanceof Integer && (Integer) id == 0) {
 			return null;
 		}
-		if (id instanceof Long && ((Long) id).longValue() == 0L) {
+		if (id instanceof Long && (Long) id == 0L) {
 			return null;
 		}
-		return super.findById(id).get();
+
+		M m = super.findById(id).orElseThrow(() -> new NullPointerException("要找的实体没有找到"));
+        if (m instanceof LogicDeleteable) {
+            Boolean isDeleted = ((LogicDeleteable) m).getDeleted();
+            return isDeleted ? null : m;
+        }
+        return m;
+
+
 	}
 
 

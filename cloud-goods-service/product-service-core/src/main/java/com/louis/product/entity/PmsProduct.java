@@ -7,6 +7,7 @@ import lombok.Setter;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Index;
 import javax.persistence.Table;
 import java.math.BigDecimal;
 import java.util.Date;
@@ -18,7 +19,7 @@ import java.util.Date;
 @Setter
 @Getter
 @Entity
-@Table(name = "pms_product")
+@Table(name = "pms_product",indexes ={@Index(name = "pms_p_category_id",columnList ="category_id" )})
 public class PmsProduct extends BaseEntity<Long> implements LogicDeleteable {
 
     private static final long serialVersionUID = -5326322245586530418L;

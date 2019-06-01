@@ -87,6 +87,41 @@ public abstract class BaseController<Entity extends BaseEntity,ID extends Serial
 		}
 	}
 
+
+	/**
+	 * special Scene ,should return null result
+	 *
+	 * @param result
+	 * @param errorMsg
+	 * @param <T>
+	 * @return
+	 */
+	protected <T> Wrapper<T> returnNullResult( String errorMsg) {
+
+		if (errorMsg == null) {
+			return WrapMapper.wrap(WrapperMassage.SUCCESS_CODE, "操作成功");
+		} else {
+			return WrapMapper.wrap(WrapperMassage.ERROR_CODE, errorMsg);
+		}
+	}
+
+	/**
+	 * special Scene ,should return null result
+	 *
+	 * @param result
+	 * @param errorMsg
+	 * @param <T>
+	 * @return
+	 */
+	protected <T> Wrapper<T> returnNullResult() {
+		return returnNullResult( null);
+	}
+
+	/**
+	 * 判断对象是否为空
+	 * @param result
+	 * @return
+	 */
 	private boolean isFlag(Object result) {
 		boolean flag;
 		if (result instanceof Integer) {

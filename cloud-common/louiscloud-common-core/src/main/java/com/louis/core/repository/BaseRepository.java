@@ -37,6 +37,8 @@ public interface BaseRepository <T, ID extends Serializable> extends JpaReposito
      */
     void delete(List<ID> ids);
 
+    void delete(ID id);
+
     boolean exists(ID id);
 
     T findOne(ID id);
