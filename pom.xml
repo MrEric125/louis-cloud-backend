@@ -45,6 +45,19 @@
             <artifactId>lombok</artifactId>
         </dependency>
 
+<!--访问方式http://服务:端口/项目名/monitoring-->
+        <dependency>
+            <groupId>net.bull.javamelody</groupId>
+            <artifactId>javamelody-core</artifactId>
+            <version>1.73.1</version>
+        </dependency>
+        <dependency>
+            <groupId>com.lowagie</groupId>
+            <artifactId>itext</artifactId>
+            <version>2.1.7</version>
+        </dependency>
+
+
     </dependencies>
 
     <dependencyManagement>

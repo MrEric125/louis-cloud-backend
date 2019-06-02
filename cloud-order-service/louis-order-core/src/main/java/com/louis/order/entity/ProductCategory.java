@@ -16,8 +16,8 @@ import javax.persistence.Table;
  */
 @Setter
 @Getter
-@NoArgsConstructor
-@Builder
+//@NoArgsConstructor
+//@Builder
 @Entity
 @Table(name = "product_category")
 public class ProductCategory extends TreeEntity<Long> {
