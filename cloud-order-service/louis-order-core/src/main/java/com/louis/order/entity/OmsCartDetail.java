@@ -10,7 +10,7 @@ import javax.persistence.Table;
 import java.math.BigDecimal;
 
 /**
- * @author Eric
+ * @author John·Louis
  * @date create in 2019/5/26
  * 购物车中的详情，和购物车是多对一的关系，和商品是一对一的关系，
  * 但有一点需要注意的是，订单详情中商品的信息是不会再变化的，但是购物车中的商品详情是可能会再变化的

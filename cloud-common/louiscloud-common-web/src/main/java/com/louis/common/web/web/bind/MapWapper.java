@@ -33,7 +33,7 @@ import java.util.Set;
  *
  * @param <K>
  * @param <V>
- * @author Louis
+ * @author John·Louis
  */
 public class MapWapper<K, V> {
 

@@ -34,4 +34,23 @@ public abstract class BaseEntity<ID extends Serializable> extends AbstractEntity
     public String getIdToString(){
         return String.valueOf(id);
     }
+
+    public static class Builder {
+        private final long id;
+        private int status;
+
+        public Builder(long id) {
+            this.id = id;
+        }
+
+        public Builder entity(int status) {
+            this.status = status;
+            return this;
+        }
+    }
+
+    private BaseEntity(Builder builder) {
+        this.id = builder.id;
+
+    }
 }

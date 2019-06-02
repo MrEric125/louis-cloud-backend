@@ -11,7 +11,7 @@ import javax.persistence.Table;
 import java.util.Date;
 
 /**
- * @author Eric
+ * @author John·Louis
  * @date create in 2019/5/26
  *
  * description: 物流信息
