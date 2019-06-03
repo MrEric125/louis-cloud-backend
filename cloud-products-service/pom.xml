@@ -9,11 +9,12 @@
         <module>product-service-web</module>
     </modules>
     <parent>
-        <artifactId>spring-cloud-project</artifactId>
+        <artifactId>cloud-mall-project</artifactId>
         <groupId>com.louis</groupId>
         <version>0.0.1-SNAPSHOT</version>
+        <relativePath>../pom.xml</relativePath>
     </parent>
-    <artifactId>cloud-goods</artifactId>
+    <artifactId>mall-product-service</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>cloud-goods</name>
     <description>Demo project for Spring Boot</description>
@@ -23,11 +24,6 @@
     </properties>
 
     <dependencies>
-
-
-
-
-
 
     </dependencies>
 

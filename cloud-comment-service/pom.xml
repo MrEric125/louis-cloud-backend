@@ -9,7 +9,7 @@
         <module>comment-service-api</module>
     </modules>
     <parent>
-        <artifactId>spring-cloud-project</artifactId>
+        <artifactId>cloud-mall-project</artifactId>
         <groupId>com.louis</groupId>
         <relativePath>../pom.xml</relativePath>
         <version>0.0.1-SNAPSHOT</version>

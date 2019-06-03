@@ -5,11 +5,16 @@
     <packaging>pom</packaging>
     <modules>
         <module>cloud-common</module>
-        <module>cloud-comment-service</module>
-        <module>cloud-goods-service</module>
-        <module>cloud-voucher-service</module>
         <module>cloud-oauth</module>
+        <module>cloud-hystrix</module>
+        <module>cloud-zuul</module>
+        <module>cloud-eureka</module>
+        <module>cloud-comment-service</module>
+        <module>cloud-products-service</module>
+        <module>cloud-voucher-service</module>
+        <module>cloud-order-service</module>
         <module>cloud-search-service</module>
+        <module>cloud-config-service</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -18,7 +23,7 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.louis</groupId>
-    <artifactId>spring-cloud-project</artifactId>
+    <artifactId>cloud-mall-project</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>spring-cloud-project</name>
     <description>Demo project for Spring Boot</description>

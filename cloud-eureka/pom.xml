@@ -8,13 +8,13 @@
     </modules>
     <parent>
         <groupId>com.louis</groupId>
-        <artifactId>spring-cloud-project</artifactId>
+        <artifactId>cloud-mall-project</artifactId>
         <version>0.0.1-SNAPSHOT</version>
-        <relativePath/>
+        <relativePath>../pom.xml</relativePath>
     </parent>
-    <artifactId>cloud-eureka</artifactId>
+    <artifactId>cloud-eureka-server</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>cloud-eureka</name>
+    <name>eureka-server</name>
     <description>Demo project for Spring Boot</description>
 
     <properties>

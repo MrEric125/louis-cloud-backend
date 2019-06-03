@@ -10,14 +10,14 @@
     </modules>
     <parent>
         <groupId>com.louis</groupId>
-        <artifactId>spring-cloud-project</artifactId>
+        <artifactId>cloud-mall-project</artifactId>
         <version>0.0.1-SNAPSHOT</version>
         <relativePath/>
     </parent>
 
-    <artifactId>cloud-zuul</artifactId>
+    <artifactId>cloud-zuul-service</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>cloud-zuul</name>
+    <name>cloud-zuul-service</name>
     <description>Demo project for Spring Boot</description>
 
     <properties>

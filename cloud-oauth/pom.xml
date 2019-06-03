@@ -9,13 +9,14 @@
         <module>oauth-web</module>
     </modules>
     <parent>
-        <artifactId>spring-cloud-project</artifactId>
+        <artifactId>cloud-mall-project</artifactId>
         <groupId>com.louis</groupId>
         <version>0.0.1-SNAPSHOT</version>
+        <relativePath>../pom.xml</relativePath>
     </parent>
-    <artifactId>cloud-oauth</artifactId>
+    <artifactId>mall-oauth-service</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>cloud-oauth</name>
+    <name>mall-oauth-service</name>
     <description>Demo project for Spring Boot</description>
 
     <properties>
