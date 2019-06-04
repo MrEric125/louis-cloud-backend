@@ -45,8 +45,8 @@ public class FileUploadController<ID extends Serializable,M extends BaseEntity> 
     private long uploadFileSizeLimit;
 
     private String[] allowedExtension = FileUploadUtils.DEFAULT_ALLOWED_EXTENSION;
-    @Autowired
-    CRUDService<M, ID> crudService;
+//    @Autowired
+//    CRUDService<M, ID> crudService;
 
     @Autowired
     FileUploadService fileUploadService;
@@ -61,10 +61,10 @@ public class FileUploadController<ID extends Serializable,M extends BaseEntity> 
         if (ArrayUtils.isEmpty(files)) {
             return  WrapMapper.wrap(ImmutableMap.of("flag", false, "message", "沒有收到文件"));
         }
-        boolean present = Optional.ofNullable(id).map(x -> crudService.findById(x)).isPresent();
-        if (present) {
-            return  WrapMapper.wrap(WrapperMassage.SUCCESS_CODE, WrapperMassage.ERROR_MESSAGE, "id对应的业务实体不存在");
-        }
+//        boolean present = Optional.ofNullable(id).map(x -> crudService.findById(x)).isPresent();
+//        if (present) {
+//            return  WrapMapper.wrap(WrapperMassage.SUCCESS_CODE, WrapperMassage.ERROR_MESSAGE, "id对应的业务实体不存在");
+//        }
 
         try {
             for (MultipartFile file : files) {

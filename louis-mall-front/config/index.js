@@ -10,7 +10,26 @@ module.exports = {
     // Paths
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
-    proxyTable: {},
+    proxyTable: {
+      '/views/pms':{
+        target:'localhost:9874/product',
+        changeOrigin:true,
+        secure:false,
+
+      },
+      '/views/oms':{
+        target:'localhost:9874/product',
+        changeOrigin:true,
+        secure:false,
+
+      },
+      '/views/sms':{
+        target:'localhost:9874/product',
+        changeOrigin:true,
+        secure:false,
+
+      }
+      },
 
     // Various Dev Server settings
     host: 'localhost', // can be overwritten by process.env.HOST

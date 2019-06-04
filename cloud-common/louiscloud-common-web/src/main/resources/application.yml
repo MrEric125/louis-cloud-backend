@@ -3,7 +3,7 @@ spring:
     host: localhost
     port: 6379
     database: 0
-    timeout: 100ms
+    timeout: 100
   jpa:
     database: mysql
     show-sql: true
