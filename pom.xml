@@ -11,7 +11,7 @@
         <module>cloud-eureka</module>
         <module>cloud-comment-service</module>
         <module>cloud-products-service</module>
-        <module>cloud-voucher-service</module>
+        <module>mall-voucher-service</module>
         <module>cloud-order-service</module>
         <module>cloud-search-service</module>
         <module>cloud-config-service</module>

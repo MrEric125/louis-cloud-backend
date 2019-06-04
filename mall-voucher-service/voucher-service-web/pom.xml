@@ -2,22 +2,15 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <packaging>pom</packaging>
-    <modules>
-        <module>search-service-core</module>
-        <module>search-service-api</module>
-        <module>search-service-web</module>
-    </modules>
     <parent>
+        <artifactId>mall-voucher-service</artifactId>
         <groupId>com.louis</groupId>
-        <artifactId>cloud-mall-project</artifactId>
         <version>0.0.1-SNAPSHOT</version>
-        <relativePath>../pom.xml</relativePath>
     </parent>
 
-    <artifactId>cloud-search-service</artifactId>
+    <artifactId>voucher-service-web</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>cloud-search-service</name>
+    <name>voucher-service-web</name>
     <description>Demo project for Spring Boot</description>
 
     <properties>
@@ -25,19 +18,19 @@
     </properties>
 
     <dependencies>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-elasticsearch</artifactId>
-        </dependency>
-
-
 
         <dependency>
             <groupId>com.louis</groupId>
-            <artifactId>louiscloud-common-core</artifactId>
+            <artifactId>louiscloud-common-web</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
 
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
 
     <build>
