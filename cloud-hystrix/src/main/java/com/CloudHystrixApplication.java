@@ -1,5 +1,6 @@
 package com;
 
+import com.louis.common.web.web.anontation.SpringCloudClient;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import com.netflix.hystrix.contrib.metrics.eventstream.HystrixMetricsStreamServlet;
 import org.springframework.boot.SpringApplication;
@@ -14,12 +15,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-@SpringBootApplication
-@EnableDiscoveryClient
-@EnableHystrix
-@EnableHystrixDashboard
 @RestController
-@EnableCircuitBreaker
+@SpringCloudClient
 public class CloudHystrixApplication {
 
     public static void main(String[] args) {
