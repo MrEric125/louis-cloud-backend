@@ -9,10 +9,12 @@ import javax.persistence.*;
 import java.util.Date;
 
 /**
- * @author Eric
+ * @author John·Louis
  * @date create in 2019/5/19
  *
  * 用于记录用户登录信息
+ *
+ * 后期优化：登录信息记录到redis中
  */
 @Entity
 @Table(name = "sys_login_info")

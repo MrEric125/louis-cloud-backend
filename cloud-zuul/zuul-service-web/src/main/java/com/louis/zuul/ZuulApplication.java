@@ -1,24 +1,21 @@
 package com.louis.zuul;
 
+import com.louis.common.web.web.anontation.SpringCloudClient;
+import com.louis.core.repository.SimpleBaseRepository;
 import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.cloud.client.SpringCloudApplication;
-import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
-import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 /**
  * @author Eric
  * @date create in 2019/5/19
  */
-@SpringBootApplication
 @EnableZuulProxy
-@EnableDiscoveryClient
-@EnableSwagger2
 @RestController
-@SpringCloudApplication
+@SpringCloudClient
+@EnableJpaRepositories(repositoryBaseClass = SimpleBaseRepository.class)
 public class ZuulApplication {
 
     public static void main(String[] args) {

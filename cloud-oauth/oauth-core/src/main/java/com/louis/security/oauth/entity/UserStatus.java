@@ -4,6 +4,7 @@ package com.louis.security.oauth.entity;
  * <p>User:
  * <p>Date: 13-3-11 下午3:19
  * <p>Version: 1.0
+ *  用户状态
  */
 public enum UserStatus {
 

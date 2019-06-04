@@ -1,24 +1,16 @@
 package com.louis;
 
-import com.louis.core.repository.EnableQueryCache;
+import com.louis.common.web.web.anontation.SpringCloudClient;
 import com.louis.core.repository.SimpleBaseRepository;
 import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
-import org.springframework.cloud.netflix.hystrix.EnableHystrix;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
-import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 /**
  * @author Eric
  * @date create in 2019/5/18
  */
-@SpringBootApplication
 @EnableJpaRepositories(repositoryBaseClass = SimpleBaseRepository.class)
-@EnableSwagger2
-@EnableDiscoveryClient
-@EnableHystrix
-@EnableQueryCache
+@SpringCloudClient
 public class CommentApplication {
 
     public static void main(String[] args) {

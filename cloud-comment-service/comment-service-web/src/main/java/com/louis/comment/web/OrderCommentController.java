@@ -16,13 +16,14 @@ import org.springframework.web.bind.annotation.RestController;
  * @date create in 2019/5/18
  */
 @RestController
+@RequestMapping("/comment")
 public class OrderCommentController extends CRUDController<OrderComment,OrderCommentDto, Long> {
     @Autowired
     private OrderCommentService orderCommentService;
 
 
 
-    @RequestMapping("/getComment/{orderId}/{userId}")
+    @RequestMapping("/{orderId}/{userId}")
     public ResponseData getCommentByOrderId(@PathVariable("orderId") long orderId,
                                             @PathVariable("userId") long userId) {
         OrderComment orderComment = orderCommentService.findByUserIdAndOrderId(userId, orderId);
