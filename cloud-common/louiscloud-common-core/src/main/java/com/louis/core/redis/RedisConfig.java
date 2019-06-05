@@ -27,22 +27,22 @@ public class RedisConfig {
 //        return new RedisTemplate();
 //    }
 
-    @Value("${spring.redis.host}")
-    private String host;
-
-    @Value("${spring.redis.port}")
-    private int port;
-    @Value("${spring.redis.timeout}")
-    private int timeout;
+//    @Value("${spring.redis.host}")
+//    private String host;
+//
+//    @Value("${spring.redis.port}")
+//    private int port;
+//    @Value("${spring.redis.timeout}")
+//    private int timeout;
 
     private int defaultExpiration;
 
-    @Bean
+   /* @Bean
     public CacheManager cacheManager(RedisTemplate redisTemplate) {
 //        RedisCacheManager cacheManager = new RedisCacheManager(redisTemplate);
 //        return cacheManager;
         return null;
-    }
+    }*/
 
     public RedisTemplate redisTemplate(RedisConnectionFactory factory) {
         StringRedisTemplate template = new StringRedisTemplate(factory);
