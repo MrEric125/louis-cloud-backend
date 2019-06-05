@@ -1,5 +1,6 @@
 package com.louis.security.oauth.oauth.login;
 
+import com.louis.security.oauth.entity.UserLogin;
 import com.louis.security.oauth.exception.AuthMethodNotSupportedException;
 import com.louis.security.oauth.utils.IpUtils;
 import lombok.extern.slf4j.Slf4j;
@@ -50,15 +51,15 @@ public class LoginProcessingFilter extends AbstractAuthenticationProcessingFilte
             }
             throw new AuthMethodNotSupportedException("Authentication method not supported");
         }
-        String ipAddr = IpUtils.getIpAddr(request);
+
         String username = request.getParameter("username");
         String password = request.getParameter("password");
-        LoginRequest loginRequest = new LoginRequest(username, password);
-        if (StringUtils.isBlank(loginRequest.getUsername()) || StringUtils.isBlank(loginRequest.getPassword())) {
+//        LoginRequest loginRequest = new LoginRequest(username, password);
+        if (StringUtils.isBlank(username) || StringUtils.isBlank(password)) {
             throw new AuthenticationServiceException("Username or Password not provided");
         }
-        UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(loginRequest.getUsername(),
-                loginRequest.getPassword());
+        UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(username,
+                password);
         return this.getAuthenticationManager().authenticate(token);
     }
 

@@ -86,7 +86,7 @@ public class SysUser extends BaseEntity<Long> implements LogicDeleteable,Compara
     @Column(name = "mobile_phone_number")
     private String phone;
 
-    @Column(name = "identify_number" )
+    @Column(name = "user_type" )
     @NotNull(message = "{not.null}")
     private int userType;
 

@@ -4,6 +4,7 @@ import com.louis.core.service.CRUDService;
 import com.louis.common.api.dto.IdName;
 import com.louis.security.oauth.entity.UserLogin;
 import com.louis.security.oauth.repository.LoginRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +15,7 @@ import java.util.Date;
  * @date create in 2019/5/19
  */
 @Service
+@Slf4j
 public class LoginService extends CRUDService<UserLogin, Long> {
 
     @Autowired
@@ -23,14 +25,17 @@ public class LoginService extends CRUDService<UserLogin, Long> {
      * 当登录的时候记录，如果最近一次的登录时间是此次登录时间1小时之内就不记录登录信息
      * @param user
      */
-    public void SaveloginMessage(IdName<Long> user,String ipAddr) {
+    public void saveLoginMessage(IdName<Long> user,String ipAddr) {
 
-        if (findByUserId(user.getId())==null) {
+        long gap = 60 * 60 * 1000L;
+        UserLogin userLogin = findByUserId(user.getId());
+        if (userLogin == null || (new Date().getTime() - userLogin.getLastLoginTime().getTime()) < gap) {
             UserLogin login = new UserLogin();
             login.setLastLoginTime(new Date());
             login.setUserId(user.getId());
             login.setUsername(user.getName());
             login.setIp(ipAddr);
+            log.info("记录登录信息成功，username:{}", user.getName());
             save(login);
         }
 

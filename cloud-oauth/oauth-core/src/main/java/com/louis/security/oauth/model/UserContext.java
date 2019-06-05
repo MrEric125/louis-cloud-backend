@@ -44,7 +44,7 @@ public class UserContext {
 
     private String correlationId= "";
     private String authToken= "";
-    private String userId = "";
+    private long userId ;
     private String orgId = "";
 
     public String getCorrelationId() { return correlationId;}
@@ -60,11 +60,11 @@ public class UserContext {
         this.authToken = authToken;
     }
 
-    public String getUserId() {
+    public Long getUserId() {
         return userId;
     }
 
-    public void setUserId(String userId) {
+    public void setUserId(Long userId) {
         this.userId = userId;
     }
 

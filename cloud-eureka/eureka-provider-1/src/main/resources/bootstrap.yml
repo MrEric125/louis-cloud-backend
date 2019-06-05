@@ -15,6 +15,6 @@ eureka:
     fetch-registry: true #是否从注册中心拉取注册服务列表
 
     service-url:
-      defaultZone: http://192.168.1.118:${server.port}/eureka/
+      defaultZone: http://localhost:${server.port}/eureka/
 
   server:

@@ -65,6 +65,7 @@ public class LoginAuthenticationProvider implements AuthenticationProvider {
                 .collect(Collectors.toList());
 
         UserContext userContext = UserContext.create(user.getUsername(), authorities);
+        userContext.setUserId(user.getId());
 
         return new UsernamePasswordAuthenticationToken(userContext, null, userContext.getAuthorities());
     }

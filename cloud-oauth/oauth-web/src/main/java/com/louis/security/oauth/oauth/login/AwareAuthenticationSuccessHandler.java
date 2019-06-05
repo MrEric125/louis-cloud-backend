@@ -2,10 +2,13 @@ package com.louis.security.oauth.oauth.login;
 
 import com.alibaba.fastjson.JSONObject;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.louis.common.api.dto.IdName;
 import com.louis.security.oauth.model.UserContext;
 import com.louis.security.oauth.oauth.token.AccessToken;
 import com.louis.security.oauth.oauth.token.Token;
 import com.louis.security.oauth.oauth.token.TokenFactory;
+import com.louis.security.oauth.service.LoginService;
+import com.louis.security.oauth.utils.IpUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -30,6 +33,9 @@ public class AwareAuthenticationSuccessHandler implements AuthenticationSuccessH
     private final TokenFactory tokenFactory;
 
     @Autowired
+    private LoginService loginService;
+
+    @Autowired
     public AwareAuthenticationSuccessHandler(final ObjectMapper mapper, final TokenFactory tokenFactory) {
         this.mapper = mapper;
         this.tokenFactory = tokenFactory;
@@ -42,6 +48,9 @@ public class AwareAuthenticationSuccessHandler implements AuthenticationSuccessH
 
         AccessToken accessToken = tokenFactory.createAccessToken(userContext);
         Token refreshToken = tokenFactory.createRefreshToken(userContext);
+        String ipAddr = IpUtils.getIpAddr(request);
+        loginService.saveLoginMessage(new IdName<>(userContext.getUserId(), userContext.getUsername()), ipAddr);
+
 
         JSONObject tokenMap = new JSONObject();
         tokenMap.put("claims", accessToken.getClaims());
