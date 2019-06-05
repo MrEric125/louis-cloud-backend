@@ -15,6 +15,7 @@
         <module>cloud-order-service</module>
         <module>cloud-search-service</module>
         <module>cloud-config-service</module>
+        <module>mall-stream-service</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
