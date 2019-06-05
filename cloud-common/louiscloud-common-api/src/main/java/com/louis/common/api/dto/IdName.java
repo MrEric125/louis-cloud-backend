@@ -1,6 +1,5 @@
 package com.louis.common.api.dto;
 
-import com.louis.common.api.dto.BaseDto;
 import lombok.Data;
 
 
@@ -13,6 +12,12 @@ public class IdName<E> extends BaseDto<E > {
 
 
     private String name;
+
+
+    public IdName(E id, String name) {
+        this.name = name;
+        this.id = id;
+    }
 
 
 

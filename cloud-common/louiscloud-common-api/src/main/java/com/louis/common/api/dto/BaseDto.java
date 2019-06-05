@@ -14,7 +14,7 @@ public class BaseDto<ID>  {
 
 
     private static final long serialVersionUID = -1221154456530058105L;
-    private ID id;
+    public ID id;
 
 
 }
