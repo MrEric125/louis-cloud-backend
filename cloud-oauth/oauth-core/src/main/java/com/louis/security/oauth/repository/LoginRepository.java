@@ -15,7 +15,7 @@ import java.util.Date;
 public interface LoginRepository extends BaseRepository<UserLogin, Long> {
 
 
-    @Query(nativeQuery = true, value = "select * from sys_login_info s where s.user_id=?1 and s.last_login<?2")
+    @Query(nativeQuery = true, value = "select * from sys_login_info s where s.user_id=?1 and s.last_login<?2 order by s.last_login desc limit 1")
     UserLogin findByUserId(Long userId, Date currentTime);
 
 }

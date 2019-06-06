@@ -1,8 +1,6 @@
 package com.louis.security.oauth.oauth.login;
 
-import com.louis.security.oauth.entity.UserLogin;
 import com.louis.security.oauth.exception.AuthMethodNotSupportedException;
-import com.louis.security.oauth.utils.IpUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.http.HttpMethod;
@@ -22,13 +20,12 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
- * 登录处理过滤器
+ * 登录处理过滤器, TODO 明天吧登录流程全都默一遍，2019年6月5日23:24:58
  *
  * @author Levin
  * @since
  */
 @Slf4j
-
 public class LoginProcessingFilter extends AbstractAuthenticationProcessingFilter {
 
 
