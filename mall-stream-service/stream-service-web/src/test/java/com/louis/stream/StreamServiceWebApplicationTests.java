@@ -1,4 +1,4 @@
-package com.louis.streamserviceweb;
+package com.louis.stream;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

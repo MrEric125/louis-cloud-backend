@@ -1,13 +1,13 @@
-package com.louis.streamserviceweb;
+package com.louis;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class StreamServiceWebApplication {
+public class StreamServiceWeb3Application {
 
     public static void main(String[] args) {
-        SpringApplication.run(StreamServiceWebApplication.class, args);
+        SpringApplication.run(StreamServiceWeb3Application.class, args);
     }
 
 }
