@@ -1,5 +1,6 @@
 package com.louis.security.oauth.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.louis.core.repository.EnableQueryCache;
 import com.louis.core.entity.BaseEntity;
 import com.louis.core.entity.LogicDeleteable;
@@ -27,6 +28,7 @@ import java.util.Date;
 @Entity
 @Table(name = "sys_user")
 @EnableQueryCache
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class SysUser extends BaseEntity<Long> implements LogicDeleteable,Comparable<SysUser> {
 
     public static final int PASSWORD_MAX_LENGTH = 50;
@@ -92,7 +94,6 @@ public class SysUser extends BaseEntity<Long> implements LogicDeleteable,Compara
 
 
     @Column(name = "identify_number")
-    @NotNull(message = "{not.null}")
     private String identityNumber;
 
     private Boolean deleted = Boolean.FALSE;

@@ -6,6 +6,7 @@ import com.louis.oauth.dto.RegistryUserDto;
 import com.louis.security.oauth.common.ResponseCode;
 import com.louis.security.oauth.config.TokenProperties;
 import com.louis.security.oauth.config.WebSecurityConfig;
+import com.louis.security.oauth.entity.SysRole;
 import com.louis.security.oauth.entity.SysUser;
 import com.louis.security.oauth.exception.InvalidTokenException;
 import com.louis.security.oauth.model.UserContext;
@@ -16,6 +17,7 @@ import com.louis.security.oauth.oauth.token.Token;
 import com.louis.security.oauth.oauth.token.TokenFactory;
 import com.louis.security.oauth.oauth.verifier.TokenVerifier;
 import com.louis.security.oauth.entity.UserRole;
+import com.louis.security.oauth.service.SysRoleService;
 import com.louis.security.oauth.service.SysUserService;
 import com.louis.security.oauth.service.UserRoleService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,6 +53,9 @@ public class UserController {
     private final SysUserService userService;
 
     private final UserRoleService userRoleService;
+
+    @Autowired
+    private SysRoleService sysRoleService;
 
     @Autowired
     public UserController(TokenProperties tokenProperties, TokenVerifier tokenVerifier, TokenFactory tokenFactory, TokenExtractor tokenExtractor, SysUserService userService, UserRoleService userRoleService) {
@@ -100,12 +105,23 @@ public class UserController {
     @RequestMapping(value = "/registryUser",method =RequestMethod.POST)
     public ResponseCode addUser(@RequestBody RegistryUserDto dto) {
         SysUser user = new SysUser();
+
         user.setUsername(dto.getUserName());
         user.setPassword(dto.getPassword());
         user.setEmail(dto.getEmail());
         user.setPhone(dto.getPhone());
         user.setRealName(dto.getRealName());
         userService.save(user);
+        //默认的角色
+        SysRole defaultRole = sysRoleService.findByRoleName(SysRole.DEFAULT_ROLE);
+        UserRole userRole = UserRole
+                .builder()
+                .roleId(defaultRole.getId())
+                .roleName(defaultRole.getRoleName())
+                .userId(user.getId())
+                .description("defaultRole")
+                .build();
+        userRoleService.save(userRole);
         return new ResponseCode("success", "保存用户成功", new IdName<>(user.getId(), user.getUsername()));
 
     }
@@ -116,7 +132,7 @@ public class UserController {
      * @param userName
      * @return
      */
-    @RequestMapping("byName/{userName}")
+    @GetMapping("byName/{userName}")
     public ResponseCode findByUserName(@PathVariable("userName") String userName) {
         SysUser sysUser = userService.findByUserName(userName);
         return Optional
@@ -129,7 +145,7 @@ public class UserController {
 
 
 
-    @RequestMapping(value = "/manage/user",produces = "application/json")
+    @GetMapping(value = "/manage/user",produces = "application/json")
     public ResponseCode user(Authentication user) {
         Map<String, Object> userInfo = Maps.newHashMap();
         userInfo.put("user", user.getPrincipal());

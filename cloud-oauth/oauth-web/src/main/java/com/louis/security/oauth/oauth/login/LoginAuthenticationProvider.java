@@ -8,8 +8,6 @@ import com.louis.security.oauth.service.PasswordService;
 import com.louis.security.oauth.service.SysUserService;
 import com.louis.security.oauth.service.UserRoleService;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang3.StringUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.InsufficientAuthenticationException;

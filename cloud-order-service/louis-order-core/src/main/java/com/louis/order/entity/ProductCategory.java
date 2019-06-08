@@ -1,5 +1,6 @@
 package com.louis.order.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.louis.core.entity.TreeEntity;
 import lombok.Builder;
 import lombok.Getter;
@@ -20,6 +21,7 @@ import javax.persistence.Table;
 //@Builder
 @Entity
 @Table(name = "product_category")
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class ProductCategory extends TreeEntity<Long> {
 
     private static final long serialVersionUID = 9123120533901658690L;

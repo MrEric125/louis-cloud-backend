@@ -1,5 +1,6 @@
 package com.louis.order.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.louis.core.entity.BaseEntity;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
@@ -20,6 +21,7 @@ import java.util.Date;
 @Getter
 @Entity
 @Table(name = "oms_order_logistics")
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class OmsOrderLogistics extends BaseEntity {
 
     private static final long serialVersionUID = -6708847003459578628L;

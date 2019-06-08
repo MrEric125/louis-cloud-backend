@@ -24,4 +24,4 @@ spring:
 #        http://localhost:8761/eureka/
 logging:
   level:
-    com.louis.security: INFO
+    com.louis.security: DEBUG
