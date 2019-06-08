@@ -2,6 +2,7 @@
 
 package com.louis.order.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.louis.core.entity.MallEntity;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -20,6 +21,7 @@ import javax.persistence.Table;
 @Data
 @Entity
 @Table(name = "oms_delivery_info")
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class DeliveryInformation extends MallEntity<Long> {
 
 	private static final long serialVersionUID = 7337074530378267740L;

@@ -1,5 +1,6 @@
 package com.louis.order.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.louis.core.entity.MallEntity;
 import lombok.Builder;
 import lombok.Getter;
@@ -21,6 +22,7 @@ import java.math.BigDecimal;
 @Table(name = "oms_cart_detail")
 @Setter
 @Getter
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class OmsCartDetail extends MallEntity<Long> {
 
 

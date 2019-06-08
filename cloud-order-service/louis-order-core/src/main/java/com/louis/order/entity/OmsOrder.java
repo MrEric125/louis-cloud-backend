@@ -1,5 +1,6 @@
 package com.louis.order.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.louis.core.entity.MallEntity;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -22,6 +23,7 @@ import java.util.List;
 @Data
 @Entity
 @Table(name = "oms_order")
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class OmsOrder extends MallEntity<Long> {
 
 

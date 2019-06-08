@@ -10,7 +10,8 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class HeaderTokenExtractor implements TokenExtractor{
-    private static String HEADER_PREFIX = "TOKEN_";
+
+    private static final String HEADER_PREFIX = "TOKEN_";
 
     @Override
     public String extract(String header) {

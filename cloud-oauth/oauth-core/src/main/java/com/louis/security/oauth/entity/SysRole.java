@@ -22,6 +22,9 @@ import java.util.Date;
 public class SysRole extends BaseEntity<Long> {
 
 
+    public static final String DEFAULT_ROLE="USER";
+
+
     private static final long serialVersionUID = 2816393346044758798L;
 
     @Column(name = "role_name")

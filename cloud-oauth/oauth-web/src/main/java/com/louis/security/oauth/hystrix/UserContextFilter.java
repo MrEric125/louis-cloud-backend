@@ -1,6 +1,7 @@
 package com.louis.security.oauth.hystrix;
 
 import com.louis.security.oauth.model.UserContext;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
 import javax.servlet.*;
@@ -12,6 +13,7 @@ import java.io.IOException;
  * @date create in 2019/5/21
  */
 @Component
+@Slf4j
 public class UserContextFilter implements Filter {
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain)
@@ -20,7 +22,7 @@ public class UserContextFilter implements Filter {
 
         HttpServletRequest httpServletRequest = (HttpServletRequest) servletRequest;
 
-        System.out.println("****** I am entering the licensing service id with auth token: " + httpServletRequest.getHeader("Authorization"));
+        log.info("****** UserContextFilter: {}" , httpServletRequest.getHeader("Authorization"));
 
 
         UserContextHolder.getContext().setCorrelationId(httpServletRequest.getHeader(UserContext.CORRELATION_ID));
