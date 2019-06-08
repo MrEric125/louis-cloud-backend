@@ -20,10 +20,10 @@ public class TokenProperties {
     /**
      * 发行人
      */
-    private String issuer="http:/blog.battcn.com";
+    private String issuer;
 
 
-    private String signingKey="battcn";
+    private String signingKey;
 
 
     private Integer refreshExpTime=10;

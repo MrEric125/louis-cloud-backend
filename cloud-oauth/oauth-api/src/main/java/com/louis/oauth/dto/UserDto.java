@@ -3,6 +3,7 @@ package com.louis.oauth.dto;
 import com.louis.common.api.dto.BaseDto;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.Date;
 
@@ -11,7 +12,7 @@ import java.util.Date;
  * @date create in 2019/5/19
  */
 @Data
-@Builder
+@NoArgsConstructor
 public class UserDto extends BaseDto<Long> {
 
     private String username;

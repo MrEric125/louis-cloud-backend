@@ -4,10 +4,12 @@ import com.alibaba.fastjson.JSON;
 import com.louis.security.oauth.entity.SysUser;
 import com.louis.security.oauth.model.UserContext;
 import com.louis.security.oauth.entity.UserRole;
+import com.louis.security.oauth.service.PasswordService;
 import com.louis.security.oauth.service.SysUserService;
 import com.louis.security.oauth.service.UserRoleService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.InsufficientAuthenticationException;
@@ -38,10 +40,17 @@ public class LoginAuthenticationProvider implements AuthenticationProvider {
     private final SysUserService userService;
     private final UserRoleService roleService;
 
-    public LoginAuthenticationProvider(BCryptPasswordEncoder encoder, SysUserService userService, UserRoleService roleService) {
+    private final PasswordService passwordService;
+
+
+    public LoginAuthenticationProvider(BCryptPasswordEncoder encoder,
+                                       SysUserService userService,
+                                       UserRoleService roleService,
+                                       PasswordService passwordService) {
         this.encoder = encoder;
         this.userService = userService;
         this.roleService = roleService;
+        this.passwordService = passwordService;
     }
 
     @Override
@@ -50,9 +59,11 @@ public class LoginAuthenticationProvider implements AuthenticationProvider {
         log.debug("[authentication info] - [{}]", JSON.toJSONString(authentication));
         String username = (String) authentication.getPrincipal();
         String password = (String) authentication.getCredentials();
+
         SysUser user = userService.findByUserName(username);
         if(user == null) throw new UsernameNotFoundException("User not found: " + username);
-        if (!StringUtils.equals(password, user.getPassword())) {
+        boolean matches = passwordService.matches(user, password);
+        if (!matches) {
             throw new BadCredentialsException("Authentication Failed. Username or Password not valid.");
         }
         List<UserRole> roles = roleService.getRoleByUser(user);

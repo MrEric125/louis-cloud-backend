@@ -1,6 +1,8 @@
 package com.louis.security.oauth.controller;
 
 import com.google.common.collect.Maps;
+import com.louis.common.api.dto.IdName;
+import com.louis.oauth.dto.RegistryUserDto;
 import com.louis.security.oauth.common.ResponseCode;
 import com.louis.security.oauth.config.TokenProperties;
 import com.louis.security.oauth.config.WebSecurityConfig;
@@ -23,10 +25,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.oauth2.provider.OAuth2Authentication;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
@@ -69,18 +68,9 @@ public class UserController {
         return "test1";
     }
 
-    @GetMapping("/api/test2")
-    public String test2() {
-        return "test2";
-    }
-
-    @GetMapping("/manage/test3")
-    public String test3() {
-        return "test3";
-    }
 
     @GetMapping("/api/auth/refresh_token")
-    public Token test4(HttpServletRequest request) {
+    public Token tokenRefresh(HttpServletRequest request) {
         String tokenPayload = tokenExtractor.extract(request.getHeader(WebSecurityConfig.TOKEN_HEADER_PARAM));
 //        String tokenPayload = tokenExtractor.extract("");
         RawAccessToken rawToken = new RawAccessToken(tokenPayload);
@@ -100,6 +90,41 @@ public class UserController {
 
         UserContext userContext = UserContext.create(user.getUsername(), authorities);
         return tokenFactory.createAccessToken(userContext);
+    }
+
+    /**
+     * 注册用户，不进行用户名验证，在之前输入的时候，异步验证
+     * @param dto
+     * @return
+     */
+    @RequestMapping(value = "/registryUser",method =RequestMethod.POST)
+    public ResponseCode addUser(@RequestBody RegistryUserDto dto) {
+        SysUser user = new SysUser();
+        user.setUsername(dto.getUserName());
+        user.setPassword(dto.getPassword());
+        user.setEmail(dto.getEmail());
+        user.setPhone(dto.getPhone());
+        user.setRealName(dto.getRealName());
+        userService.save(user);
+        return new ResponseCode("success", "保存用户成功", new IdName<>(user.getId(), user.getUsername()));
+
+    }
+
+
+    /**
+     * 通过用户名查找用户，可以再注册用户的时候用
+     * @param userName
+     * @return
+     */
+    @RequestMapping("byName/{userName}")
+    public ResponseCode findByUserName(@PathVariable("userName") String userName) {
+        SysUser sysUser = userService.findByUserName(userName);
+        return Optional
+                .ofNullable(sysUser)
+                .map(sysUser1 -> new ResponseCode("success", new IdName<>(sysUser.getId(), sysUser.getUsername())))
+                .orElse(new ResponseCode("success", "您查找的用戶爲空"));
+
+
     }
 
 

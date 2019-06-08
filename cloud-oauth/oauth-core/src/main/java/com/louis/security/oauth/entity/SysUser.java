@@ -118,6 +118,8 @@ public class SysUser extends BaseEntity<Long> implements LogicDeleteable,Compara
         return 0;
     }
 
+
+
     /**
      * 随机生成登录盐
      */

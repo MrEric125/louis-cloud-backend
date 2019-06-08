@@ -1,5 +1,5 @@
 server:
-  port: 9881
+  port: 9880
 spring:
   application:
     name: @pom.artifactId@
@@ -10,11 +10,11 @@ spring:
       ddl-auto: update
     generate-ddl: true
   datasource:
-      platform: MYSQL
-      url: jdbc:mysql://localhost:3306/spring_cloud?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=UTC
-      username: root
-      password: Root
-      driver-class-name: com.mysql.cj.jdbc.Driver
+    platform: MYSQL
+    url: jdbc:mysql://localhost:3306/spring_cloud?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=UTC
+    username: root
+    password: Root
+    driver-class-name: com.mysql.cj.jdbc.Driver
   main:
     allow-bean-definition-overriding: true
 #eureka:
