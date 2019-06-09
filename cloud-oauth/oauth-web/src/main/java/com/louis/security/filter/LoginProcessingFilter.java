@@ -1,4 +1,4 @@
-package com.louis.security.oauth.oauth.login;
+package com.louis.security.filter;
 
 import com.louis.security.oauth.exception.AuthMethodNotSupportedException;
 import lombok.extern.slf4j.Slf4j;

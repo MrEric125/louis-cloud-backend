@@ -15,5 +15,7 @@ public interface UserRoleRepository extends BaseRepository<UserRole, Long> {
 
     List<UserRole> findByUserId(long userId);
 
+    UserRole findByUserIdAndRoleName(Long userId, String roleName);
+
 
 }

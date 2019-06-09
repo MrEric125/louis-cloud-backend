@@ -1,4 +1,4 @@
-package com.louis.security.oauth.oauth;
+package com.louis.security.filter;
 
 import com.louis.security.oauth.config.WebSecurityConfig;
 import com.louis.security.oauth.oauth.AuthenticationToken;
