@@ -19,11 +19,11 @@ import java.util.concurrent.TimeUnit;
 public class RedisOperate<T> {
 
 
-    private final RedisTemplate<String, T> redisTemplate;
 
-    public RedisOperate(RedisTemplate<String, T> redisTemplate) {
-        this.redisTemplate = redisTemplate;
-    }
+    @Autowired
+    private  RedisTemplate<Object,T> redisTemplate;
+
+
 
 
     /**
@@ -79,7 +79,7 @@ public class RedisOperate<T> {
         try {
             return redisTemplate.hasKey(key);
         } catch (Exception e) {
-            log.error("get key error,key:{},e:", key, e);
+            log.error("get key error,key:{},e:{}", key, e.getMessage());
             return false;
         }
     }
@@ -152,7 +152,7 @@ public class RedisOperate<T> {
             redisTemplate.opsForHash().put(key, item, object);
             return true;
         } catch (Exception e) {
-            log.error("redis set map error ,key:{},value:{}", key, object);
+            log.error("redis set map error ,key:{},value:{},", key, object);
             return false;
         }
     }
@@ -174,7 +174,7 @@ public class RedisOperate<T> {
             }
             return true;
         } catch (Exception e) {
-            log.error(key, e);
+            log.error("redis hash put error:key {}, message {}", key, e.getMessage());
             return false;
         }
     }
@@ -230,7 +230,7 @@ public class RedisOperate<T> {
         try {
             return redisTemplate.opsForSet().members(key);
         } catch (Exception e) {
-            log.error(key, e);
+            log.error("redis sset get error:key {}, message {}", key, e.getMessage());
             return null;
         }
     }
@@ -246,7 +246,7 @@ public class RedisOperate<T> {
         try {
             return redisTemplate.opsForSet().isMember(key, value);
         } catch (Exception e) {
-            log.error(key, e);
+            log.error("redis sset check member error:key {}, message {}", key, e.getMessage());
             return false;
         }
     }
@@ -262,7 +262,7 @@ public class RedisOperate<T> {
         try {
             return redisTemplate.opsForSet().add(key, values);
         } catch (Exception e) {
-            log.error(key, e);
+            log.error("redis sset remove error:key {}, message {}", key, e.getMessage());
             return 0L;
         }
     }
@@ -281,7 +281,7 @@ public class RedisOperate<T> {
             if (time > 0) expire(key, time);
             return count;
         } catch (Exception e) {
-            log.error(key, e);
+            log.error("redis sset set error:key {}, message {}", key, e.getMessage());
             return 0L;
         }
     }
@@ -296,7 +296,7 @@ public class RedisOperate<T> {
         try {
             return redisTemplate.opsForSet().size(key);
         } catch (Exception e) {
-            log.error(key, e);
+            log.error("redis sset get size error:key {}, message {}", key, e.getMessage());
             return 0L;
         }
     }
@@ -312,7 +312,7 @@ public class RedisOperate<T> {
         try {
             return redisTemplate.opsForSet().remove(key, values);
         } catch (Exception e) {
-            log.error(key, e);
+            log.error("redis sset remove error:key {}, message {}", key, e.getMessage());
             return 0L;
         }
     } // ============================zset============================= /**
@@ -321,7 +321,7 @@ public class RedisOperate<T> {
         try {
             return redisTemplate.opsForSet().members(key);
         } catch (Exception e) {
-            log.error(key, e);
+            log.error("redis zset get error:key {}, message {}", key, e.getMessage());
             return null;
         }
     }
@@ -337,7 +337,7 @@ public class RedisOperate<T> {
         try {
             return redisTemplate.opsForSet().isMember(key, value);
         } catch (Exception e) {
-            log.error(key, e);
+            log.error("redis zset hashKey error:key {}, message {}", key, e.getMessage());
             return false;
         }
     }
@@ -346,7 +346,7 @@ public class RedisOperate<T> {
         try {
             return redisTemplate.opsForZSet().add(key, value, 2);
         } catch (Exception e) {
-            log.error(key, e);
+            log.error("redis zset set error:key {}, message {}", key, e.getMessage());
             return false;
         }
     }
@@ -365,7 +365,7 @@ public class RedisOperate<T> {
             if (time > 0) expire(key, time);
             return count;
         } catch (Exception e) {
-            log.error(key, e);
+            log.error("redis zset set  error:key {}, message {}", key, e.getMessage());
             return 0L;
         }
     }
@@ -380,7 +380,7 @@ public class RedisOperate<T> {
         try {
             return redisTemplate.opsForSet().size(key);
         } catch (Exception e) {
-            log.error(key, e);
+            log.error("redis zset get size error:key {}, message {}", key, e.getMessage());
             return 0L;
         }
     }
@@ -396,7 +396,7 @@ public class RedisOperate<T> {
         try {
             return redisTemplate.opsForSet().remove(key, values);
         } catch (Exception e) {
-            log.error(key, e);
+            log.error("redis zset remove error:key {}, message {}", key, e.getMessage());
             return 0L;
         }
     } // ===============================list================================= /**
@@ -414,7 +414,7 @@ public class RedisOperate<T> {
         try {
             return redisTemplate.opsForList().range(key, start, end);
         } catch (Exception e) {
-            log.error(key, e);
+            log.error("redis list get error:key {}, message {}", key, e.getMessage());
             return null;
         }
     }
@@ -429,7 +429,7 @@ public class RedisOperate<T> {
         try {
             return redisTemplate.opsForList().size(key);
         } catch (Exception e) {
-            log.error(key, e);
+            log.error("redis list get size  error:key {}, message {}", key, e.getMessage());
             return 0L;
         }
     }
@@ -445,7 +445,7 @@ public class RedisOperate<T> {
         try {
             return redisTemplate.opsForList().index(key, index);
         } catch (Exception e) {
-            log.error(key, e);
+            log.error("redis list get index error:key {}, message {}", key, e.getMessage());
             return null;
         }
     }
@@ -462,7 +462,7 @@ public class RedisOperate<T> {
             redisTemplate.opsForList().rightPush(key, value);
             return true;
         } catch (Exception e) {
-            log.error(key, e);
+            log.error("redis list set error:key {}, message {}", key, e.getMessage());
             return false;
         }
     }
@@ -481,27 +481,11 @@ public class RedisOperate<T> {
             if (time > 0) expire(key, time);
             return true;
         } catch (Exception e) {
-            log.error(key, e);
+            log.error("redis list set error:key {}, message {}", key, e.getMessage());
             return false;
         }
     }
 
-    /**
-     * 将list放入缓存
-     *
-     * @param key   键
-     * @param value 值
-     *
-     */
-    public boolean lSet(String key, List<T> value) {
-        try {
-            redisTemplate.opsForList().rightPushAll(key, value);
-            return true;
-        } catch (Exception e) {
-            log.error(key, e);
-            return false;
-        }
-    }
 
     /**
      * 将list放入缓存
@@ -518,7 +502,7 @@ public class RedisOperate<T> {
                 expire(key, time);
             return true;
         } catch (Exception e) {
-            log.error(key, e);
+            log.error("redis list set error:key {}, message {}", key, e.getMessage());
             return false;
         }
     }
@@ -536,7 +520,7 @@ public class RedisOperate<T> {
             redisTemplate.opsForList().set(key, index, value);
             return true;
         } catch (Exception e) {
-            log.error(key, e);
+            log.error("redis update index error:key {}, message {}", key, e.getMessage());
             return false;
         }
     }
