@@ -1,4 +1,4 @@
-package com.louis.searchserviceweb;
+package com.louis.search;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

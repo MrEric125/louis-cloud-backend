@@ -24,6 +24,12 @@
 
         <dependency>
             <groupId>com.louis</groupId>
+            <artifactId>search-service-core</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.louis</groupId>
             <artifactId>louiscloud-common-web</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
