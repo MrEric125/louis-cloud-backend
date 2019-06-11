@@ -15,6 +15,11 @@ public class BaseESService<D extends BaseDocument ,ID extends Serializable> {
     @Autowired
     BaseESRepository baseESRepository;
 
+    //查询当天产生的实体，用户定时任务，导入到es
+
+
+
+
 
 
 }

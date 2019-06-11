@@ -2,7 +2,6 @@ package com.louis.es;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.data.annotation.Id;
 
 import java.io.Serializable;
 
@@ -14,8 +13,11 @@ import java.io.Serializable;
  */
 @Setter
 @Getter
-public class AbstractDocument<ID extends Serializable> implements Serializable {
+public abstract class AbstractDocument<ID extends Serializable> implements Serializable {
 
-    @Id
-    private ID id;
+    private static final long serialVersionUID = 5071248879998994116L;
+
+    public abstract ID getId();
+
+    public abstract void setId(final ID id);
 }

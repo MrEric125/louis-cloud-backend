@@ -5,3 +5,5 @@ spring:
     elasticsearch:
       cluster-name: louis
       cluster-nodes: 127.0.0.1:9300
+      repositories:
+        enabled: true

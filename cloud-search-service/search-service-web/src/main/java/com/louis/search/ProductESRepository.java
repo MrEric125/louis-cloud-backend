@@ -13,4 +13,7 @@ import org.springframework.stereotype.Component;
 @Component
 public interface ProductESRepository extends BaseESRepository<ProductDocument, Long> {
 
+
+
+
 }
