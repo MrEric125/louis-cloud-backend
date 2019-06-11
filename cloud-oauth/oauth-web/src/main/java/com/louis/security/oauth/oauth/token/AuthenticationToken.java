@@ -1,4 +1,4 @@
-package com.louis.security.oauth.oauth;
+package com.louis.security.oauth.oauth.token;
 
 import com.louis.security.oauth.model.UserContext;
 import com.louis.security.oauth.oauth.token.RawAccessToken;

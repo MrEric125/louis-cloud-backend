@@ -1,9 +1,8 @@
-package com.louis.security.oauth.oauth;
+package com.louis.security.oauth.oauth.token;
 
 
 import com.louis.security.oauth.config.TokenProperties;
 import com.louis.security.oauth.model.UserContext;
-import com.louis.security.oauth.oauth.token.RawAccessToken;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jws;
 import lombok.extern.slf4j.Slf4j;
