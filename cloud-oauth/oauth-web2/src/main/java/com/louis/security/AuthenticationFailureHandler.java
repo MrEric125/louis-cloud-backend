@@ -18,8 +18,8 @@ import java.io.IOException;
  *
  * @author paascloud.net @gmail.com
  */
-@Component("pcAuthenticationFailureHandler")
-public class PcAuthenticationFailureHandler extends SimpleUrlAuthenticationFailureHandler {
+@Component("authenticationFailureHandler")
+public class AuthenticationFailureHandler extends SimpleUrlAuthenticationFailureHandler {
 
 	@Resource
 	private ObjectMapper objectMapper;

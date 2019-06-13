@@ -17,6 +17,12 @@
 
 
         <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-configuration-processor</artifactId>
+            <optional>true</optional>
+        </dependency>
+
+        <dependency>
             <groupId>com.louis</groupId>
             <artifactId>oauth-api</artifactId>
             <version>0.0.1-SNAPSHOT</version>
@@ -63,7 +69,6 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-autoconfigure</artifactId>
-            <version>1.5.13.RELEASE</version>
         </dependency>
         <dependency>
             <groupId>eu.bitwalker</groupId>

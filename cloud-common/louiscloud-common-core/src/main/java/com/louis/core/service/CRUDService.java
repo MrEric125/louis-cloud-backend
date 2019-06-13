@@ -1,6 +1,5 @@
 package com.louis.core.service;
 
-import com.louis.exception.NotFoundEntityException;
 import com.louis.core.entity.BaseEntity;
 import com.louis.core.repository.BaseRepository;
 import com.louis.core.search.Searchable;
