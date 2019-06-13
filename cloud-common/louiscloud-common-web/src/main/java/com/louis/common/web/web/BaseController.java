@@ -30,10 +30,14 @@ import java.util.function.Supplier;
  * description
  */
 @Slf4j
-public abstract class BaseController<ID extends Serializable>  {
+public abstract class BaseController<Entity extends BaseEntity,ID extends Serializable>  {
 
 
+	protected final Class<Entity> entityClass;
 
+	public BaseController() {
+		this.entityClass = ReflectUtils.findParameterizedType(getClass(), 0);
+	}
 
 
 
