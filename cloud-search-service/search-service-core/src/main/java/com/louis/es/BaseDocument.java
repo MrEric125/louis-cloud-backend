@@ -5,6 +5,7 @@ import lombok.Setter;
 
 import javax.persistence.Id;
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * @author louis
@@ -19,6 +20,11 @@ public class BaseDocument<ID extends Serializable> extends AbstractDocument<ID>{
 
     @Id
     private ID id;
+
+    private Date startTime;
+
+    private Date endTime;
+
 
 
     @Override
