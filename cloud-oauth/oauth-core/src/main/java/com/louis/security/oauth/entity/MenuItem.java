@@ -1,5 +1,6 @@
 package com.louis.security.oauth.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.louis.core.entity.TreeEntity;
 import lombok.Getter;
 import lombok.Setter;
@@ -18,6 +19,7 @@ import javax.persistence.Table;
 @Getter
 @Entity
 @Table(name = "sys_menu")
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class MenuItem extends TreeEntity<Long> {
 
 

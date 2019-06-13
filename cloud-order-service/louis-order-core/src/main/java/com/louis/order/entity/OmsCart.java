@@ -2,6 +2,7 @@
 
 package com.louis.order.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.louis.core.entity.BaseEntity;
 import com.louis.core.entity.LogicDeleteable;
 import com.louis.core.entity.MallEntity;
@@ -24,7 +25,7 @@ import java.util.List;
 @Data
 @Entity
 @Table(name = "oms_cart")
-
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class OmsCart extends BaseEntity<Long> implements LogicDeleteable {
 
 	private static final long serialVersionUID = 5333646386138778574L;

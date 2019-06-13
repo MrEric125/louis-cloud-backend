@@ -16,11 +16,14 @@ import java.util.concurrent.TimeUnit;
  */
 @Service
 @Slf4j
-public class RedisOperate {
+public class RedisOperate<T> {
+
 
 
     @Autowired
-    RedisTemplate<String, Object> redisTemplate;
+    private  RedisTemplate<Object,T> redisTemplate;
+
+
 
 
     /**
@@ -32,7 +35,7 @@ public class RedisOperate {
      * @return 移除的数量
      */
 
-    public Long lRemove(String key, long count, Object value) {
+    public Long lRemove(String key, long count, T value) {
         try {
 
             return redisTemplate.opsForList().remove(key, count, value);
@@ -76,7 +79,7 @@ public class RedisOperate {
         try {
             return redisTemplate.hasKey(key);
         } catch (Exception e) {
-            log.error("get key error,key:{},e:", key, e);
+            log.error("get key error,key:{},e:{}", key, e.getMessage());
             return false;
         }
     }
@@ -87,7 +90,7 @@ public class RedisOperate {
      * @param key key
      *
      */
-    public Object get(String key) {
+    public T get(String key) {
         return key == null ? null : redisTemplate.opsForValue().get(key);
     }
 
@@ -99,7 +102,7 @@ public class RedisOperate {
      * @param time  time 分钟
      * @return boolean
      */
-    public Boolean set(String key, Object value, long time) {
+    public Boolean set(String key, T value, long time) {
         try {
             if (time > 0) {
                 redisTemplate.opsForValue().set(key, value, time, TimeUnit.MINUTES);
@@ -131,7 +134,7 @@ public class RedisOperate {
      * @param time time
      * @return boolean
      */
-    public Boolean hmset(String key, Map<Object, Object> map, long time) {
+    public Boolean hmset(String key, Map<Object, T> map, long time) {
         try {
             redisTemplate.opsForHash().putAll(key, map);
             if (time > 0) {
@@ -144,12 +147,12 @@ public class RedisOperate {
         }
     }
 
-    public Boolean hset(String key, String item, Object object) {
+    public Boolean hset(String key, String item, T object) {
         try {
             redisTemplate.opsForHash().put(key, item, object);
             return true;
         } catch (Exception e) {
-            log.error("redis set map error ,key:{},value:{}", key, object);
+            log.error("redis set map error ,key:{},value:{},", key, object);
             return false;
         }
     }
@@ -163,7 +166,7 @@ public class RedisOperate {
      * @param time  时间(秒) 注意:如果已存在的hash表有时间,这里将会替换原有的时间
      * @return true 成功 false失败
      */
-    public boolean hset(String key, String item, Object value, long time) {
+    public boolean hset(String key, String item, T value, long time) {
         try {
             redisTemplate.opsForHash().put(key, item, value);
             if (time > 0) {
@@ -171,7 +174,7 @@ public class RedisOperate {
             }
             return true;
         } catch (Exception e) {
-            log.error(key, e);
+            log.error("redis hash put error:key {}, message {}", key, e.getMessage());
             return false;
         }
     }
@@ -182,7 +185,7 @@ public class RedisOperate {
      * @param key  键 不能为null
      * @param item 项 可以使多个 不能为null
      */
-    public void hdel(String key, Object... item) {
+    public void hdel(String key, T... item) {
         redisTemplate.opsForHash().delete(key, item);
     }
 
@@ -223,11 +226,11 @@ public class RedisOperate {
 
     // ============================set============================= /**
 
-    public Set<Object> sGet(String key) {
+    public Set<T> sGet(String key) {
         try {
             return redisTemplate.opsForSet().members(key);
         } catch (Exception e) {
-            log.error(key, e);
+            log.error("redis sset get error:key {}, message {}", key, e.getMessage());
             return null;
         }
     }
@@ -239,11 +242,11 @@ public class RedisOperate {
      * @param value 值
      * @return true 存在 false不存在
      */
-    public Boolean sHasKey(String key, Object value) {
+    public Boolean sHasKey(String key, T value) {
         try {
             return redisTemplate.opsForSet().isMember(key, value);
         } catch (Exception e) {
-            log.error(key, e);
+            log.error("redis sset check member error:key {}, message {}", key, e.getMessage());
             return false;
         }
     }
@@ -255,11 +258,11 @@ public class RedisOperate {
      * @param values 值 可以是多个
      * @return 成功个数
      */
-    public Long sSet(String key, Object... values) {
+    public Long sSet(String key, T... values) {
         try {
             return redisTemplate.opsForSet().add(key, values);
         } catch (Exception e) {
-            log.error(key, e);
+            log.error("redis sset remove error:key {}, message {}", key, e.getMessage());
             return 0L;
         }
     }
@@ -272,13 +275,13 @@ public class RedisOperate {
      * @param values 值 可以是多个
      * @return 成功个数
      */
-    public Long sSetAndTime(String key, long time, Object... values) {
+    public Long sSetAndTime(String key, long time, T... values) {
         try {
             Long count = redisTemplate.opsForSet().add(key, values);
             if (time > 0) expire(key, time);
             return count;
         } catch (Exception e) {
-            log.error(key, e);
+            log.error("redis sset set error:key {}, message {}", key, e.getMessage());
             return 0L;
         }
     }
@@ -293,7 +296,7 @@ public class RedisOperate {
         try {
             return redisTemplate.opsForSet().size(key);
         } catch (Exception e) {
-            log.error(key, e);
+            log.error("redis sset get size error:key {}, message {}", key, e.getMessage());
             return 0L;
         }
     }
@@ -305,20 +308,20 @@ public class RedisOperate {
      * @param values 值 可以是多个
      * @return 移除的个数
      */
-    public Long setRemove(String key, Object... values) {
+    public Long setRemove(String key, T... values) {
         try {
             return redisTemplate.opsForSet().remove(key, values);
         } catch (Exception e) {
-            log.error(key, e);
+            log.error("redis sset remove error:key {}, message {}", key, e.getMessage());
             return 0L;
         }
     } // ============================zset============================= /**
 
-    public Set<Object> zSGet(String key) {
+    public Set<T> zSGet(String key) {
         try {
             return redisTemplate.opsForSet().members(key);
         } catch (Exception e) {
-            log.error(key, e);
+            log.error("redis zset get error:key {}, message {}", key, e.getMessage());
             return null;
         }
     }
@@ -330,20 +333,20 @@ public class RedisOperate {
      * @param value 值
      * @return true 存在 false不存在
      */
-    public Boolean zSHasKey(String key, Object value) {
+    public Boolean zSHasKey(String key, T value) {
         try {
             return redisTemplate.opsForSet().isMember(key, value);
         } catch (Exception e) {
-            log.error(key, e);
+            log.error("redis zset hashKey error:key {}, message {}", key, e.getMessage());
             return false;
         }
     }
 
-    public Boolean zSSet(String key, Object value, double score) {
+    public Boolean zSSet(String key, T value, double score) {
         try {
             return redisTemplate.opsForZSet().add(key, value, 2);
         } catch (Exception e) {
-            log.error(key, e);
+            log.error("redis zset set error:key {}, message {}", key, e.getMessage());
             return false;
         }
     }
@@ -356,13 +359,13 @@ public class RedisOperate {
      * @param values 值 可以是多个
      * @return 成功个数
      */
-    public Long zSSetAndTime(String key, long time, Object... values) {
+    public Long zSSetAndTime(String key, long time, T... values) {
         try {
             Long count = redisTemplate.opsForSet().add(key, values);
             if (time > 0) expire(key, time);
             return count;
         } catch (Exception e) {
-            log.error(key, e);
+            log.error("redis zset set  error:key {}, message {}", key, e.getMessage());
             return 0L;
         }
     }
@@ -377,7 +380,7 @@ public class RedisOperate {
         try {
             return redisTemplate.opsForSet().size(key);
         } catch (Exception e) {
-            log.error(key, e);
+            log.error("redis zset get size error:key {}, message {}", key, e.getMessage());
             return 0L;
         }
     }
@@ -389,11 +392,11 @@ public class RedisOperate {
      * @param values 值 可以是多个
      * @return 移除的个数
      */
-    public Long zSetRemove(String key, Object... values) {
+    public Long zSetRemove(String key, T... values) {
         try {
             return redisTemplate.opsForSet().remove(key, values);
         } catch (Exception e) {
-            log.error(key, e);
+            log.error("redis zset remove error:key {}, message {}", key, e.getMessage());
             return 0L;
         }
     } // ===============================list================================= /**
@@ -407,11 +410,11 @@ public class RedisOperate {
      * @param end   结束 -1代表所有值
      *
      */
-    public List<Object> lGet(String key, long start, long end) {
+    public List<T> lGet(String key, long start, long end) {
         try {
             return redisTemplate.opsForList().range(key, start, end);
         } catch (Exception e) {
-            log.error(key, e);
+            log.error("redis list get error:key {}, message {}", key, e.getMessage());
             return null;
         }
     }
@@ -426,7 +429,7 @@ public class RedisOperate {
         try {
             return redisTemplate.opsForList().size(key);
         } catch (Exception e) {
-            log.error(key, e);
+            log.error("redis list get size  error:key {}, message {}", key, e.getMessage());
             return 0L;
         }
     }
@@ -438,11 +441,11 @@ public class RedisOperate {
      * @param index 索引 index>=0时， 0 表头，1 第二个元素，依次类推；index<0时，-1，表尾，-2倒数第二个元素，依次类推
      *
      */
-    public Object lGetIndex(String key, long index) {
+    public T lGetIndex(String key, long index) {
         try {
             return redisTemplate.opsForList().index(key, index);
         } catch (Exception e) {
-            log.error(key, e);
+            log.error("redis list get index error:key {}, message {}", key, e.getMessage());
             return null;
         }
     }
@@ -454,12 +457,12 @@ public class RedisOperate {
      * @param value 值
      *
      */
-    public boolean lSet(String key, Object value) {
+    public boolean lSet(String key, T value) {
         try {
             redisTemplate.opsForList().rightPush(key, value);
             return true;
         } catch (Exception e) {
-            log.error(key, e);
+            log.error("redis list set error:key {}, message {}", key, e.getMessage());
             return false;
         }
     }
@@ -472,33 +475,17 @@ public class RedisOperate {
      * @param time  时间(秒)
      *
      */
-    public boolean lSet(String key, Object value, long time) {
+    public boolean lSet(String key, T value, long time) {
         try {
             redisTemplate.opsForList().rightPush(key, value);
             if (time > 0) expire(key, time);
             return true;
         } catch (Exception e) {
-            log.error(key, e);
+            log.error("redis list set error:key {}, message {}", key, e.getMessage());
             return false;
         }
     }
 
-    /**
-     * 将list放入缓存
-     *
-     * @param key   键
-     * @param value 值
-     *
-     */
-    public boolean lSet(String key, List<Object> value) {
-        try {
-            redisTemplate.opsForList().rightPushAll(key, value);
-            return true;
-        } catch (Exception e) {
-            log.error(key, e);
-            return false;
-        }
-    }
 
     /**
      * 将list放入缓存
@@ -508,14 +495,14 @@ public class RedisOperate {
      * @param time  时间(秒)
      *
      */
-    public boolean lSet(String key, List<Object> value, long time) {
+    public boolean lSet(String key, List<T> value, long time) {
         try {
             redisTemplate.opsForList().rightPushAll(key, value);
             if (time > 0)
                 expire(key, time);
             return true;
         } catch (Exception e) {
-            log.error(key, e);
+            log.error("redis list set error:key {}, message {}", key, e.getMessage());
             return false;
         }
     }
@@ -528,12 +515,12 @@ public class RedisOperate {
      * @param value 值
      *
      */
-    public boolean lUpdateIndex(String key, long index, Object value) {
+    public boolean lUpdateIndex(String key, long index, T value) {
         try {
             redisTemplate.opsForList().set(key, index, value);
             return true;
         } catch (Exception e) {
-            log.error(key, e);
+            log.error("redis update index error:key {}, message {}", key, e.getMessage());
             return false;
         }
     }

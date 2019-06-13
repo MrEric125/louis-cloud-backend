@@ -1,5 +1,5 @@
 server:
-  port: 9879
+  port: 9881
 spring:
   application:
     name: @pom.artifactId@

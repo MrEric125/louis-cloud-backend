@@ -2,6 +2,7 @@
 
 package com.louis.order.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.louis.core.entity.MallEntity;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -16,6 +17,7 @@ import java.math.BigDecimal;
 @Table(name = "oms_pay_info")
 @Data
 @Entity
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class OmsPayInfo extends MallEntity<Long> {
 
 	private static final long serialVersionUID = 7949091072343450552L;

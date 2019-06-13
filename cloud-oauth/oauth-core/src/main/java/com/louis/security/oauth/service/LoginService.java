@@ -29,7 +29,8 @@ public class LoginService extends CRUDService<UserLogin, Long> {
 
         long gap = 60 * 60 * 1000L;
         UserLogin userLogin = findByUserId(user.getId());
-        if (userLogin == null || (new Date().getTime() - userLogin.getLastLoginTime().getTime()) < gap) {
+
+        if (userLogin == null || new Date().getTime() - userLogin.getLastLoginTime().getTime() > gap) {
             UserLogin login = new UserLogin();
             login.setLastLoginTime(new Date());
             login.setUserId(user.getId());

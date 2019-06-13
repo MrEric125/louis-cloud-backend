@@ -3,12 +3,11 @@ package com.louis.security.oauth.config;
 import com.google.common.collect.Lists;
 import com.louis.security.oauth.RestAuthenticationEntryPoint;
 import com.louis.security.oauth.oauth.login.LoginAuthenticationProvider;
-import com.louis.security.oauth.oauth.login.LoginProcessingFilter;
+import com.louis.security.filter.LoginProcessingFilter;
 import com.louis.security.oauth.oauth.SkipPathRequestMatcher;
-import com.louis.security.oauth.oauth.TokenAuthenticationProcessingFilter;
+import com.louis.security.filter.TokenAuthenticationProcessingFilter;
 import com.louis.security.oauth.oauth.TokenAuthenticationProvider;
 import com.louis.security.oauth.oauth.extractor.TokenExtractor;
-import com.louis.security.oauth.entity.RoleEnum;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -28,7 +27,7 @@ import java.util.List;
  * @author Eric
  * @date create in 2019/4/14
  *
- * 为应用程序定义用户id 密码，和角色
+ * 为应用程序定义用户id 密码，和角色的资源服务器
  */
 @Configuration
 @EnableWebSecurity

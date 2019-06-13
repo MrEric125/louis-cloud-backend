@@ -1,5 +1,6 @@
 package com.louis.comment.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.louis.core.entity.BaseEntity;
 import lombok.*;
 
@@ -19,6 +20,7 @@ import java.util.Date;
 @Getter
 @Entity
 @Table(name = "shop_order_comment")
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class OrderComment extends BaseEntity<Long> {
 
     private static final long serialVersionUID = -6124785159120672329L;

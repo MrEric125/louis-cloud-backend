@@ -2,6 +2,7 @@ package com.louis.security.oauth.repository;
 
 import com.louis.core.repository.BaseRepository;
 import com.louis.security.oauth.entity.SysRole;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -10,5 +11,9 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface SysRoleRepository extends BaseRepository<SysRole, Long> {
+
+    @Query
+    SysRole findByRoleName(String roleName);
+
 
 }

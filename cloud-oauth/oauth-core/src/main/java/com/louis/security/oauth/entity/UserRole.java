@@ -1,5 +1,6 @@
 package com.louis.security.oauth.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.louis.core.entity.BaseEntity;
 import lombok.*;
 
@@ -19,6 +20,7 @@ import javax.persistence.Table;
 @Builder
 @Entity
 @Table(name = "sys_user_role")
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class UserRole extends BaseEntity<Long> {
 
     private static final long serialVersionUID = -4161710021962553754L;

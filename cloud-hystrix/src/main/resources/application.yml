@@ -30,3 +30,7 @@ eureka:
 logging:
   level:
     com.louis.security: DEBUG
+security:
+  oauth2:
+    client:
+      access-token-uri: localhost:9879/api/auth/login

@@ -1,5 +1,6 @@
 package com.louis.security.oauth.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.louis.core.entity.BaseEntity;
 import lombok.Getter;
 import lombok.Setter;
@@ -20,6 +21,7 @@ import java.util.Date;
 @Table(name = "sys_login_info")
 @Setter
 @Getter
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class UserLogin extends BaseEntity<Long> {
 
     private static final long serialVersionUID = 5708560329167430554L;

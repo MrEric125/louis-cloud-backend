@@ -1,5 +1,6 @@
 package com.louis.product.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.louis.core.entity.BaseEntity;
 import com.louis.core.entity.LogicDeleteable;
 import lombok.Getter;
@@ -20,6 +21,7 @@ import java.util.Date;
 @Getter
 @Entity
 @Table(name = "pms_product",indexes ={@Index(name = "pms_p_category_id",columnList ="category_id" )})
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class PmsProduct extends BaseEntity<Long> implements LogicDeleteable {
 
     private static final long serialVersionUID = -5326322245586530418L;

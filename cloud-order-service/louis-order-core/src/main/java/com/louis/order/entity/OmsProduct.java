@@ -1,5 +1,6 @@
 package com.louis.order.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.louis.core.entity.BaseEntity;
 import com.louis.core.entity.LogicDeleteable;
 import lombok.Getter;
@@ -19,6 +20,7 @@ import java.math.BigDecimal;
 @Table(name = "oms_product")
 @Setter
 @Getter
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class OmsProduct extends BaseEntity<Long> implements LogicDeleteable {
 
 

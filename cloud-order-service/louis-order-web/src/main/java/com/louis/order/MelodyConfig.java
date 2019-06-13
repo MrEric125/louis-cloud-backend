@@ -12,7 +12,7 @@ import org.springframework.core.annotation.Order;
  * @author John·Louis
  * @date create in 2019/6/2
  * <p>
- * description:
+ * description: 用於服務器監控用的
  */
 @Configuration
 public class MelodyConfig {

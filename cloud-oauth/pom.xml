@@ -7,6 +7,7 @@
         <module>oauth-core</module>
         <module>oauth-api</module>
         <module>oauth-web</module>
+        <module>oauth-web2</module>
     </modules>
     <parent>
         <artifactId>cloud-mall-project</artifactId>
