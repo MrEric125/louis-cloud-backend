@@ -15,6 +15,8 @@
         <module>stream-service-core</module>
         <module>stream-service-api</module>
         <module>stream-service-web</module>
+        <module>stream-service-web2</module>
+        <module>stream-service-web3</module>
     </modules>
 
 
