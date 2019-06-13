@@ -14,7 +14,12 @@
     <dependencies>
         <dependency>
             <groupId>com.louis</groupId>
-            <artifactId>louiscloud-common-api</artifactId>
+            <artifactId>louiscloud-common-core</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>com.louis</groupId>
+            <artifactId>zuul-service-api</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
     </dependencies>

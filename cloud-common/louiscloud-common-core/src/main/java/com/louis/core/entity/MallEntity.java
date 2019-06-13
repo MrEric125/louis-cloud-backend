@@ -34,7 +34,7 @@ public class MallEntity<ID extends Serializable> extends BaseEntity<ID> {
 
 
     @Column(name = "creator_id")
-    private ID creatorId;
+    private Long creatorId;
 
 
     @Column(name = "created_time")
@@ -53,11 +53,11 @@ public class MallEntity<ID extends Serializable> extends BaseEntity<ID> {
     private String lastOperator;
 
     @Column(name = "last_operator_id")
-    private ID lastOperatorId;
+    private Long lastOperatorId;
 
     @Transient
     @JsonIgnore
-    public void setUpdateInfo(LoginAuthDto<ID> user) {
+    public void setUpdateInfo(LoginAuthDto user) {
 
         if (isNew()) {
             this.creatorId = (this.lastOperatorId = user.getUserId());

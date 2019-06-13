@@ -1,6 +1,6 @@
 eureka:
   instance:
-    prefer-ip-address: true
+    prefer-ip-address: false
   client:
     register-with-eureka: true
     fetch-registry: true
@@ -22,7 +22,6 @@ spring:
     password: Root
     driver-class-name: com.mysql.cj.jdbc.Driver
 server:
-  servlet:
-    context-path: /gatway/
+
   port: 9873
 

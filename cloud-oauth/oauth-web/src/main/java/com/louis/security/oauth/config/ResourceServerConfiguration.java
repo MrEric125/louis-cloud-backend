@@ -1,10 +1,12 @@
 package com.louis.security.oauth.config;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.oauth2.config.annotation.web.configuration.ResourceServerConfigurerAdapter;
 import org.springframework.security.oauth2.config.annotation.web.configurers.ResourceServerSecurityConfigurer;
+import org.springframework.security.oauth2.provider.expression.OAuth2WebSecurityExpressionHandler;
 
 /**
  * @author Eric
@@ -14,6 +16,9 @@ import org.springframework.security.oauth2.config.annotation.web.configurers.Res
 @Configuration
 public class ResourceServerConfiguration extends ResourceServerConfigurerAdapter {
 
+    @Autowired
+    private OAuth2WebSecurityExpressionHandler oAuth2WebSecurityExpressionHandler;
+
 
     /**
      * 与资源安全配置相关
@@ -22,7 +27,8 @@ public class ResourceServerConfiguration extends ResourceServerConfigurerAdapter
      */
     @Override
     public void configure(ResourceServerSecurityConfigurer resources) throws Exception {
-        super.configure(resources);
+//        super.configure(resources);
+        resources.expressionHandler(oAuth2WebSecurityExpressionHandler);
     }
 
     /**
@@ -33,8 +39,7 @@ public class ResourceServerConfiguration extends ResourceServerConfigurerAdapter
     @Override
     public void configure(HttpSecurity http) throws Exception {
 //        这里设置的是所有的已经验证的路径是可以访问的
-        http
-                .authorizeRequests()
+        http.authorizeRequests()
 //                .antMatchers(HttpMethod.GET,"").hasRole("ADMIN")
                 .anyRequest()
                 .authenticated();

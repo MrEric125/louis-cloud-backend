@@ -11,5 +11,13 @@
 
     <artifactId>zuul-service-api</artifactId>
 
+    <dependencies>
+        <dependency>
+            <groupId>com.louis</groupId>
+            <artifactId>louiscloud-common-api</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
+
 
 </project>

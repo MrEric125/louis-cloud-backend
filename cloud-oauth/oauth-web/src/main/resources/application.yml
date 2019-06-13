@@ -2,7 +2,7 @@ server:
   port: 9881
 spring:
   application:
-    name: @pom.artifactId@
+    name: oauth-service-A
   jpa:
     database: MYSQL
     show-sql: true
@@ -17,11 +17,11 @@ spring:
       driver-class-name: com.mysql.cj.jdbc.Driver
   main:
     allow-bean-definition-overriding: true
-#eureka:
-#  client:
-#    service-url:
-#      defaultZone:
-#        http://localhost:8761/eureka/
+eureka:
+  client:
+    service-url:
+      defaultZone:
+        http://localhost:8761/eureka/
 logging:
   level:
-    com.louis.security: DEBUG
+    com.louis.security: ALL

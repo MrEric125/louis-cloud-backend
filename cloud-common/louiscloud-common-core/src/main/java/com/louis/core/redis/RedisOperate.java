@@ -21,7 +21,7 @@ public class RedisOperate<T> {
 
 
     @Autowired
-    private  RedisTemplate<Object,T> redisTemplate;
+    private  RedisTemplate<String,T> redisTemplate;
 
 
 

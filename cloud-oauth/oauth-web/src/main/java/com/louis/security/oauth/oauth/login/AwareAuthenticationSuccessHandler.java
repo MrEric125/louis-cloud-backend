@@ -7,8 +7,8 @@ import com.louis.security.oauth.model.UserContext;
 import com.louis.security.oauth.oauth.token.AccessToken;
 import com.louis.security.oauth.oauth.token.Token;
 import com.louis.security.oauth.oauth.token.TokenFactory;
-import com.louis.security.oauth.service.LoginService;
-import com.louis.security.oauth.utils.IpUtils;
+import com.louis.security.oauth.service.LoginLogService;
+import com.louis.security.utils.IpUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -33,7 +33,7 @@ public class AwareAuthenticationSuccessHandler implements AuthenticationSuccessH
     private final TokenFactory tokenFactory;
 
     @Autowired
-    private LoginService loginService;
+    private LoginLogService loginService;
 
     @Autowired
     public AwareAuthenticationSuccessHandler(final ObjectMapper mapper, final TokenFactory tokenFactory) {
