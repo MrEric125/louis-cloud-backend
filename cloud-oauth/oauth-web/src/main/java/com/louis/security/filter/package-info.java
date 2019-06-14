@@ -15,6 +15,7 @@
  * {@link org.springframework.security.web.session.SessionManagementFilter}
  * {@link org.springframework.security.web.access.ExceptionTranslationFilter}
  * {@link org.springframework.security.web.access.intercept.FilterSecurityInterceptor}
+ * 处理登录流程的过滤器，可以自定义登录路径在初始化这个过滤器的时候
  * {@link com.louis.security.filter.LoginProcessingFilter}
  * {@link com.louis.security.filter.TokenAuthenticationProcessingFilter}
  * {@link org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter}

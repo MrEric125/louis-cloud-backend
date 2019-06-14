@@ -106,8 +106,7 @@ public class PcResourceServerConfig extends ResourceServerConfigurerAdapter {
 //				.apply(smsCodeAuthenticationSecurityConfig)
 //				.and()
 //				.apply(openIdAuthenticationSecurityConfig)
-				.and()
-				.headers().frameOptions().disable()
+
 				.and()
 				.exceptionHandling().accessDeniedHandler(pcAccessDeniedHandler)
 				.and()
