@@ -1,7 +1,7 @@
 package com.louis.security.filter;
 
 import com.louis.security.oauth.config.WebSecurityConfig;
-import com.louis.security.oauth.oauth.AuthenticationToken;
+import com.louis.security.oauth.oauth.token.AuthenticationToken;
 import com.louis.security.oauth.oauth.extractor.TokenExtractor;
 import com.louis.security.oauth.oauth.token.RawAccessToken;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -2,7 +2,7 @@ package com.louis.security.oauth.service;
 
 import com.louis.core.service.CRUDService;
 import com.louis.common.api.dto.IdName;
-import com.louis.security.oauth.entity.UserLogin;
+import com.louis.security.oauth.entity.UserLoginLog;
 import com.louis.security.oauth.repository.LoginRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +16,7 @@ import java.util.Date;
  */
 @Service
 @Slf4j
-public class LoginService extends CRUDService<UserLogin, Long> {
+public class LoginLogService extends CRUDService<UserLoginLog, Long> {
 
     @Autowired
     private  LoginRepository loginRepository;
@@ -28,10 +28,10 @@ public class LoginService extends CRUDService<UserLogin, Long> {
     public void saveLoginMessage(IdName<Long> user,String ipAddr) {
 
         long gap = 60 * 60 * 1000L;
-        UserLogin userLogin = findByUserId(user.getId());
+        UserLoginLog userLogin = findByUserId(user.getId());
 
         if (userLogin == null || new Date().getTime() - userLogin.getLastLoginTime().getTime() > gap) {
-            UserLogin login = new UserLogin();
+            UserLoginLog login = new UserLoginLog();
             login.setLastLoginTime(new Date());
             login.setUserId(user.getId());
             login.setUsername(user.getName());
@@ -42,7 +42,11 @@ public class LoginService extends CRUDService<UserLogin, Long> {
 
     }
 
-    private UserLogin findByUserId(Long userId) {
+    public void saveLoginLog(UserLoginLog loginLog) {
+        loginRepository.save(loginLog);
+    }
+
+    private UserLoginLog findByUserId(Long userId) {
         return loginRepository.findByUserId(userId, new Date());
     }
     

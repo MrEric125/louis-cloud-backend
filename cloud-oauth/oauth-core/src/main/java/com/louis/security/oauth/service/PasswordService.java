@@ -46,7 +46,7 @@ public class PasswordService {
      * @param salt
      * @return
      */
-    static String  encryptPassword(String username, String password, String salt) {
+    String  encryptPassword(String username, String password, String salt) {
         String hash = Md5Utils.hash(username + password + salt);
         return hash;
     }

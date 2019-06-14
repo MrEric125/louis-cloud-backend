@@ -46,8 +46,8 @@ public abstract class BaseController<Entity extends BaseEntity,ID extends Serial
 	 *
 	 * @return the login auth dto
 	 */
-	protected LoginAuthDto<Long> getLoginAuthDto() {
-		LoginAuthDto<Long> loginAuthDto = (LoginAuthDto) ThreadLocalMap.get(GlobalConstant.Sys.TOKEN_AUTH_DTO);
+	protected LoginAuthDto getLoginAuthDto() {
+		LoginAuthDto loginAuthDto = (LoginAuthDto) ThreadLocalMap.get(GlobalConstant.Sys.TOKEN_AUTH_DTO);
 		return Optional.ofNullable(loginAuthDto).orElseThrow(() -> new BusinessException(ErrorCodeEnum.UAC10011041));
 	}
 
@@ -91,7 +91,7 @@ public abstract class BaseController<Entity extends BaseEntity,ID extends Serial
 	/**
 	 * special Scene ,should return null result
 	 *
-	 * @param result
+	 * @param
 	 * @param errorMsg
 	 * @param <T>
 	 * @return
@@ -108,8 +108,8 @@ public abstract class BaseController<Entity extends BaseEntity,ID extends Serial
 	/**
 	 * special Scene ,should return null result
 	 *
-	 * @param result
-	 * @param errorMsg
+	 * @param
+	 * @param
 	 * @param <T>
 	 * @return
 	 */

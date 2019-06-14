@@ -12,6 +12,11 @@
     <artifactId>zuul-service-web</artifactId>
 
     <dependencies>
+
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-eureka</artifactId>
+        </dependency>
         <dependency>
             <groupId>com.louis</groupId>
             <artifactId>zuul-service-core</artifactId>

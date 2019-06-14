@@ -22,7 +22,7 @@ import java.util.Date;
 @Setter
 @Getter
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class UserLogin extends BaseEntity<Long> {
+public class UserLoginLog extends BaseEntity<Long> {
 
     private static final long serialVersionUID = 5708560329167430554L;
     @Column(name = "user_id")
@@ -37,6 +37,20 @@ public class UserLogin extends BaseEntity<Long> {
     private Date lastLoginTime;
 
     private String ip;
+
+    @Column(name = "last_login_location")
+    private String lastLoginLocation;
+
+    private String os;
+
+    private String browser;
+
+    @Column(name = "request_url")
+    private String requestUrl;
+
+
+
+
 
 
 

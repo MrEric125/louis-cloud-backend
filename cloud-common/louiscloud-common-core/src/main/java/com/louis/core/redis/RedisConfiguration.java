@@ -11,8 +11,8 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.cache.RedisCacheManager;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
+import org.springframework.data.redis.serializer.StringRedisSerializer;
 
 /**
  * @author louis
@@ -24,17 +24,32 @@ import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
 @EnableCaching
 public class RedisConfiguration extends CachingConfigurerSupport {
 
-    @Bean
-    public RedisTemplate<Object,Object> redisTemplate(RedisConnectionFactory factory) {
-        RedisTemplate<Object,Object> template = new RedisTemplate();
-        Jackson2JsonRedisSerializer jackson2JsonRedisSerializer = new Jackson2JsonRedisSerializer(Object.class);
+    @Bean("redisTemplate")
+    public <String,T> RedisTemplate<String,T> redisTemplate(RedisConnectionFactory factory) {
+        RedisTemplate<String, T> template = new RedisTemplate<>();
+        template.setConnectionFactory(factory);
+        Jackson2JsonRedisSerializer<Object> jackson2JsonRedisSerializer = new Jackson2JsonRedisSerializer<>(Object.class);
         ObjectMapper om = new ObjectMapper();
         om.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY);
         om.enableDefaultTyping(ObjectMapper.DefaultTyping.NON_FINAL);
         jackson2JsonRedisSerializer.setObjectMapper(om);
-        template.setConnectionFactory(factory);
         template.setValueSerializer(jackson2JsonRedisSerializer);
+        template.setKeySerializer(stringRedisSerializer());
         template.afterPropertiesSet();
         return template;
     }
+    @Bean
+    public StringRedisSerializer stringRedisSerializer() {
+        return new StringRedisSerializer();
+    }
+
+    @Bean
+    public CacheManager cacheManager(RedisConnectionFactory factory) {
+        return RedisCacheManager.create(factory);
+    }
+
+
+
+
+
 }

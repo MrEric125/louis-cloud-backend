@@ -1,9 +1,11 @@
 package com.louis.security.oauth.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.louis.core.repository.EnableQueryCache;
 import com.louis.core.entity.BaseEntity;
 import com.louis.core.entity.LogicDeleteable;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.*;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.hibernate.validator.constraints.Length;
@@ -93,8 +95,43 @@ public class SysUser extends BaseEntity<Long> implements LogicDeleteable,Compara
     private int userType;
 
 
+    /**
+     * 用户来源
+     */
+    @Column(name = "user_source")
+    private String userSource;
+
+    /**
+     * 操作员类型（2000伙伴, 3000客户, 1000运营）
+     */
+    private String type;
+
+
+
+    /**
+     * 连续输错密码次数（连续5次输错就冻结帐号）
+     */
+    @Column(name = "pwd_error_count")
+    private Short pwdErrorCount;
+
+
+
+    /**
+     * 用户所属的组织ID
+     */
+    @ApiModelProperty(value = "用户所属的组织ID")
+    @Transient
+    private Long groupId;
+
+    @ApiModelProperty(value = "用户所属的组织名称")
+    @Transient
+    private String groupName;
+
+
+
+
     @Column(name = "identify_number")
-    private String identityNumber;
+    private String identityNumber=username;
 
     private Boolean deleted = Boolean.FALSE;
     @Override

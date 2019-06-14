@@ -6,7 +6,7 @@ import com.louis.security.oauth.oauth.login.LoginAuthenticationProvider;
 import com.louis.security.filter.LoginProcessingFilter;
 import com.louis.security.oauth.oauth.SkipPathRequestMatcher;
 import com.louis.security.filter.TokenAuthenticationProcessingFilter;
-import com.louis.security.oauth.oauth.TokenAuthenticationProvider;
+import com.louis.security.oauth.oauth.token.TokenAuthenticationProvider;
 import com.louis.security.oauth.oauth.extractor.TokenExtractor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -33,7 +33,7 @@ import java.util.List;
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
-    public static final String TOKEN_HEADER_PARAM = "X-Authorization";
+    public static final String TOKEN_HEADER_PARAM = "Authorization";
     private static final String FORM_BASED_LOGIN_ENTRY_POINT = "/api/auth/login";
     private static final String TOKEN_BASED_AUTH_ENTRY_POINT = "/api/**";
     private static final String MANAGE_TOKEN_BASED_AUTH_ENTRY_POINT = "/manage/**";
