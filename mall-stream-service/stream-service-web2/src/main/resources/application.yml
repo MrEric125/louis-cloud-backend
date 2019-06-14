@@ -1,0 +1,15 @@
+server:
+  port: 7890
+spring:
+  application:
+    name: consumer_2
+  cloud:
+    stream:
+      kafka:
+        binder:
+          brokers: localhost:9092
+          zk-nodes: localhost:2181
+          auto-create-topics: true
+      bindings:
+        input:
+          destination: stream-demo

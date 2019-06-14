@@ -15,8 +15,8 @@ zuul:
       serviceId: comment-server-A
       path: /comment/**
     goods-service:
-      serviceId: goods-service-A
-      path: /goods/**
+      serviceId: product-service-A
+      path: /product/**
     voucher-service:
       serviceId: voucher-service-A
       path: /voucher/**
