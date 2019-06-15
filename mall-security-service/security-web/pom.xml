@@ -3,39 +3,32 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <artifactId>cloud-zuul-service</artifactId>
+        <artifactId>mall-security-service</artifactId>
         <groupId>com.louis</groupId>
         <version>0.0.1-SNAPSHOT</version>
+        <relativePath>../pom.xml</relativePath>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>zuul-service-core</artifactId>
+    <artifactId>security-web</artifactId>
+    <name>security-web</name>
 
     <dependencies>
+
+
+
+
         <dependency>
             <groupId>com.louis</groupId>
-            <artifactId>louiscloud-common-core</artifactId>
+            <artifactId>security-api</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
+
         <dependency>
             <groupId>com.louis</groupId>
-            <artifactId>zuul-service-api</artifactId>
+            <artifactId>security-core</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
-
-
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-eureka</artifactId>
-            <version>1.4.0.RELEASE</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-netflix-eureka-server</artifactId>
-        </dependency>
-
-
     </dependencies>
 
 

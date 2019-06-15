@@ -4,30 +4,30 @@
     <modelVersion>4.0.0</modelVersion>
     <packaging>pom</packaging>
     <modules>
-        <module>zuul-service-core</module>
-        <module>zuul-service-web</module>
-        <module>zuul-service-api</module>
+        <module>security-api</module>
+        <module>security-core</module>
+        <module>security-web</module>
+        <module>security-web2</module>
+        <module>security-oauth2-test</module>
     </modules>
     <parent>
-        <groupId>com.louis</groupId>
         <artifactId>cloud-mall-project</artifactId>
+        <groupId>com.louis</groupId>
         <version>0.0.1-SNAPSHOT</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
-
-    <artifactId>cloud-zuul-service</artifactId>
+    <artifactId>mall-security-service</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>cloud-zuul-service</name>
+    <name>mall-security-service</name>
     <description>Demo project for Spring Boot</description>
 
     <properties>
         <java.version>1.8</java.version>
-        <spring-cloud.version>Greenwich.SR1</spring-cloud.version>
     </properties>
 
+    <dependencies>
 
-
-
+    </dependencies>
 
     <build>
         <plugins>

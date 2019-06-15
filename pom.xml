@@ -5,7 +5,7 @@
     <packaging>pom</packaging>
     <modules>
         <module>cloud-common</module>
-        <module>cloud-oauth</module>
+        <module>mall-security-service</module>
         <module>cloud-hystrix</module>
         <module>cloud-zuul</module>
         <module>cloud-eureka</module>
