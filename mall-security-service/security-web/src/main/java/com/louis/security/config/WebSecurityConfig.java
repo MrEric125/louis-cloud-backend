@@ -79,6 +79,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         return super.authenticationManagerBean();
     }
 
+    /**
+     * 认证的一个过程
+     * @param auth
+     */
     @Override
     protected void configure(AuthenticationManagerBuilder auth) {
         auth.authenticationProvider(loginAuthenticationProvider);
@@ -111,6 +115,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .addFilterBefore(buildLoginProcessingFilter(), UsernamePasswordAuthenticationFilter.class)
                 .addFilterBefore(buildTokenAuthenticationProcessingFilter(), UsernamePasswordAuthenticationFilter.class);
+        http.formLogin()
+                .loginPage(FORM_BASED_LOGIN_ENTRY_POINT)
+                .failureUrl("/error")
+                .and()
+                .httpBasic();
 
     }
 

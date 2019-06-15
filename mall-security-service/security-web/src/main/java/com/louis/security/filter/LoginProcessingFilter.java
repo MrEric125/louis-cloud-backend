@@ -39,6 +39,15 @@ public class LoginProcessingFilter extends AbstractAuthenticationProcessingFilte
         this.failureHandler = failureHandler;
     }
 
+    /**
+     *  这里的实现和源码中
+     *  {@link org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter}
+     *  的实现是一样的
+     * @param request
+     * @param response
+     * @return
+     * @throws AuthenticationException
+     */
     @Override
     public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response)
             throws AuthenticationException {

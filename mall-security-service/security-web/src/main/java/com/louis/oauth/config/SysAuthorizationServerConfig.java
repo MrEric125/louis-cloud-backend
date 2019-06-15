@@ -7,6 +7,10 @@ import org.springframework.security.oauth2.config.annotation.configurers.ClientD
 import org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurerAdapter;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
 
+import static com.louis.core.constant.SecurityConstan.CLIENT_CREDENTIALS;
+import static com.louis.core.constant.SecurityConstan.PASSWORD;
+import static com.louis.core.constant.SecurityConstan.REFRESH_TOKEN;
+
 /**
  * @author Eric
  * @date create in 2019/6/15
@@ -26,5 +30,12 @@ public class SysAuthorizationServerConfig extends AuthorizationServerConfigurerA
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
         log.info(">>>>>>>>>  security auto config");
 //        clients.withClientDetails(restClientDetailsService);
+                clients.inMemory()
+                .withClient("admin")
+                .secret("{noop}admin")
+                .authorizedGrantTypes(REFRESH_TOKEN,PASSWORD,CLIENT_CREDENTIALS)
+                .scopes("webclient", "mobileclient");
     }
+
+
 }

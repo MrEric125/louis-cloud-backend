@@ -1,5 +1,7 @@
 package com.louis.security;
 
+import com.alibaba.fastjson.JSON;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections.CollectionUtils;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.security.web.util.matcher.OrRequestMatcher;
@@ -15,6 +17,7 @@ import java.util.stream.Collectors;
  * @author Eric
  * @date create in 2019/4/14
  */
+@Slf4j
 public class SkipPathRequestMatcher implements RequestMatcher {
     private OrRequestMatcher matcher;
     private List<RequestMatcher> processingMatchers;
@@ -24,6 +27,11 @@ public class SkipPathRequestMatcher implements RequestMatcher {
      */
     public SkipPathRequestMatcher(List<String> paths) {
         Assert.notNull(paths, "路径不能为空");
+        if (log.isInfoEnabled()) {
+            log.info("拦截的路径为: paths:{}", JSON.toJSONString(paths, true));
+
+        }
+
         matcher = new OrRequestMatcher(paths.stream().map(AntPathRequestMatcher::new).collect(Collectors.toList()));
     }
 
