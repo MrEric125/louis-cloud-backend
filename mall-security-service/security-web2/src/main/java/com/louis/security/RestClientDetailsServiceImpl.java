@@ -1,5 +1,6 @@
 package com.louis.security;
 
+import com.louis.core.constant.SecurityConstan;
 import com.louis.security.properties.OAuth2ClientProperties;
 import com.louis.security.properties.SecurityProperties;
 import lombok.extern.slf4j.Slf4j;

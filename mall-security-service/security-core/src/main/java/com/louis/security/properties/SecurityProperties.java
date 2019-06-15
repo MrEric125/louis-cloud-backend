@@ -10,7 +10,7 @@ import org.springframework.context.annotation.Configuration;
  * Description:
  */
 @Configuration
-@ConfigurationProperties(prefix ="paascloud.security" )
+@ConfigurationProperties(prefix ="louis.security" )
 public class SecurityProperties {
 
 

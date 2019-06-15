@@ -13,11 +13,11 @@ public class OAuth2ClientProperties {
 	/**
 	 * 第三方应用appId
 	 */
-	private String clientId;
+	private String clientId="admin";
 	/**
 	 * 第三方应用appSecret
 	 */
-	private String clientSecret;
+	private String clientSecret="admin";
 	/**
 	 * 针对此应用发出的token的有效时间
 	 */

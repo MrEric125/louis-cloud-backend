@@ -4,3 +4,9 @@ louis:
     refresh-exp-time: 30
     signing-key: battcn
     expiration-time: 30
+  security:
+    oauth2:
+      clients:
+        clientId: admin
+        clientSecret: admin
+

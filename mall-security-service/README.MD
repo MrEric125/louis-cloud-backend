@@ -36,3 +36,5 @@ oauth2默认有两个授权服务器端点
 * Authorization endpoint : 用户客户端从资源所有者那里获取授权
 * TokenEndpoint 用户客户端用授权许可交互访问令牌
 * Redirection endpoint: 资源服务器通过资源所有者将包含授权凭证响应给客户端
+@EnableResourceServer 启用资源服务器  如果启用之后，那么oauth 就会保护你所在的系统除非有token
+@EnableAuthorizationServer 启用授权服务器 

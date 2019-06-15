@@ -10,6 +10,10 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <version>0.0.1-SNAPSHOT</version>
+    <properties>
+        <httpclientutil.version>1.0</httpclientutil.version>
+        <modelmapper.version>1.1.2</modelmapper.version>
+    </properties>
 
     <artifactId>security-core</artifactId>
 
@@ -49,7 +53,16 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter</artifactId>
         </dependency>
-
+        <dependency>
+            <groupId>com.arronlong.httpclientutil</groupId>
+            <artifactId>httpclientutil</artifactId>
+            <version>${httpclientutil.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.modelmapper</groupId>
+            <artifactId>modelmapper</artifactId>
+            <version>${modelmapper.version}</version>
+        </dependency>
 
         <dependency>
             <groupId>org.springframework.social</groupId>

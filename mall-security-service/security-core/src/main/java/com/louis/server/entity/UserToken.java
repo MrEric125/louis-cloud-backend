@@ -1,10 +1,10 @@
 package com.louis.server.entity;
 
 import com.louis.core.entity.BaseEntity;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import lombok.*;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 import java.util.Date;
@@ -17,8 +17,12 @@ import java.util.Date;
  */
 @EqualsAndHashCode(callSuper = true)
 @Data
+@Entity
 @Table(name = "sys_user_token")
-public class UserToken extends BaseEntity {
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
+public class UserToken extends BaseEntity<Long> {
     private static final long serialVersionUID = -1069883127226845426L;
 
     /**
@@ -44,17 +48,7 @@ public class UserToken extends BaseEntity {
     @Column(name = "user_id")
     private Long userId;
 
-    /**
-     * 登陆人Ip地址
-     */
-    @Column(name = "login_ip")
-    private String loginIp;
 
-    /**
-     * 登录地址
-     */
-    @Column(name = "login_location")
-    private String loginLocation;
 
     /**
      * 登录地址
@@ -62,15 +56,7 @@ public class UserToken extends BaseEntity {
     @Column(name = "login_time")
     private Date loginTime;
 
-    /**
-     * 操作系统
-     */
-    private String os;
 
-    /**
-     * 浏览器类型
-     */
-    private String browser;
 
     /**
      * 访问token
@@ -101,21 +87,25 @@ public class UserToken extends BaseEntity {
      */
     private Integer status;
 
-    /**
-     * 组织流水号
-     */
-    @Column(name = "group_id")
-    private Long groupId;
 
-    /**
-     * 组织名称
-     */
-    @Column(name = "group_name")
-    private String groupName;
 
     /**
      * 失效时间(秒)
      */
     @Transient
     private Integer expiresIn;
+
+//    @Transient
+//    @JsonIgnore
+//    public void setUpdateInfo(LoginAuthDto user) {
+//
+//        if (isNew()) {
+//            this.creatorId = (this.lastOperatorId = user.getUserId());
+//            this.creator = user.getUserName();
+//            this.createdTime = (this.updateTime = new Date());
+//        }
+//        this.lastOperatorId = user.getUserId();
+//        this.lastOperator = user.getUserName() == null ? user.getLoginName() : user.getUserName();
+//        this.updateTime = new Date();
+//    }
 }

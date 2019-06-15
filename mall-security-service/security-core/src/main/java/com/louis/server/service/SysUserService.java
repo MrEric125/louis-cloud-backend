@@ -4,6 +4,7 @@ import com.louis.common.api.dto.LoginAuthDto;
 import com.louis.common.web.web.utils.RequestUtil;
 import com.louis.core.redis.RedisOperate;
 import com.louis.core.service.CRUDService;
+import com.louis.oauth.dto.ClientMessageDto;
 import com.louis.security.core.SecurityUser;
 import com.louis.constant.RedisConstant;
 import com.louis.server.entity.SysUser;
@@ -56,6 +57,8 @@ public class SysUserService extends CRUDService<SysUser, Long> {
 
 
     public SysUser findByUserName(String userName) {
+
+        log.info(" find user by user name ; username:{}", userName);
         SysUser user =  getUserFromRedisCache(RedisConstant.SYS_USER + userName);
         if (user == null) {
             user = sysUserRepository.findByUsername(userName);
@@ -124,38 +127,37 @@ public class SysUserService extends CRUDService<SysUser, Long> {
         return null;
     }
 
+    /**
+     * 处理登录信息
+     * @param token
+     * @param principal
+     * @param request
+     */
     public void handlerLoginData(OAuth2AccessToken token, SecurityUser principal, HttpServletRequest request) {
-        final UserAgent userAgent = UserAgent.parseUserAgentString(request.getHeader("User-Agent"));
+        log.info("handle login data ;  token:{}", token);
+         UserAgent userAgent = UserAgent.parseUserAgentString(request.getHeader("User-Agent"));
         //获取客户端操作系统
-        final String os = userAgent.getOperatingSystem().getName();
+         String os = userAgent.getOperatingSystem().getName();
         //获取客户端浏览器
-        final String browser = userAgent.getBrowser().getName();
-//        final String remoteAddr = RequestUtil.getRemoteAddr(request);
+         String browser = userAgent.getBrowser().getName();
         String ipAddr = IpUtils.getIpAddr(request);
         // 根据IP获取位置信息
-        final String remoteLocation = RequestUtil.getLocationByIp(ipAddr);
-        final String requestURI = request.getRequestURI();
+         String remoteLocation = RequestUtil.getLocationByIp(ipAddr);
+         String requestURI = request.getRequestURI();
+        ClientMessageDto messageDto = ClientMessageDto.builder().os(os)
+                .browser(browser)
+                .ip(ipAddr)
+                .remoteLocation(remoteLocation)
+                .requestURI(requestURI)
+                .build();
 
-        SysUser uacUser = new SysUser();
         Long userId = principal.getUserId();
-        uacUser.setId(userId);
         LoginAuthDto loginAuthDto = new LoginAuthDto(userId, principal.getLoginName(), principal.getNickName(), principal.getGroupId(), principal.getGroupName());
         // 记录token日志
-        String accessToken = token.getValue();
-        String refreshToken = token.getRefreshToken().getValue();
-        userTokenService.saveUserToken(accessToken, refreshToken, loginAuthDto, request);
-        // 记录最后登录信息
+
+        userTokenService.saveUserToken(token,loginAuthDto);
         // 记录操作日志
-
-        UserLoginLog log = new UserLoginLog();
-
-        log.setIp(ipAddr);
-        log.setLastLoginLocation(remoteLocation);
-        log.setOs(os);
-        log.setBrowser(browser);
-        log.setRequestUrl(requestURI);
-
-        taskExecutor.execute(() -> loginLogService.saveLoginLog(log));
+        taskExecutor.execute(() -> loginLogService.saveLoginLog(messageDto,loginAuthDto));
     }
 
 }

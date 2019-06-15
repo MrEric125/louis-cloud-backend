@@ -1,5 +1,6 @@
 package com.louis.oauth.config;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -15,8 +16,9 @@ import org.springframework.security.oauth2.provider.expression.OAuth2WebSecurity
  * @date create in 2019/5/20
  * 资源服务器配置
  */
+@Slf4j
 @Configuration
-@EnableResourceServer
+//@EnableResourceServer
 public class SysResourceServerConfiguration extends ResourceServerConfigurerAdapter {
 
     @Autowired
@@ -30,8 +32,10 @@ public class SysResourceServerConfiguration extends ResourceServerConfigurerAdap
      */
     @Override
     public void configure(ResourceServerSecurityConfigurer resources) throws Exception {
-//        super.configure(resources);
-        resources.expressionHandler(oAuth2WebSecurityExpressionHandler);
+        super.configure(resources);
+        log.info(">>>>>>>>>>>    resource security config");
+
+//        resources.expressionHandler(oAuth2WebSecurityExpressionHandler);
     }
 
     /**
@@ -41,10 +45,12 @@ public class SysResourceServerConfiguration extends ResourceServerConfigurerAdap
      */
     @Override
     public void configure(HttpSecurity http) throws Exception {
+        log.info(">>>>>>>>> http security config");
 //        这里设置的是所有的已经验证的路径是可以访问的
-        http.authorizeRequests()
+//        http.authorizeRequests()
 //                .antMatchers(HttpMethod.GET,"").hasRole("ADMIN")
-                .anyRequest()
-                .authenticated();
+//                .anyRequest()
+//                .authenticated();
+        super.configure(http);
     }
 }

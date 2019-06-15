@@ -103,7 +103,7 @@ public class SysUser extends BaseEntity<Long> implements LogicDeleteable,Compara
     /**
      * 操作员类型（2000伙伴, 3000客户, 1000运营）
      */
-    private String type;
+
 
 
 

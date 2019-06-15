@@ -1,10 +1,13 @@
 package com.louis.server.service;
 
+import com.louis.common.api.dto.LoginAuthDto;
 import com.louis.core.service.CRUDService;
 import com.louis.common.api.dto.IdName;
+import com.louis.oauth.dto.ClientMessageDto;
 import com.louis.server.entity.UserLoginLog;
 import com.louis.server.repository.LoginRepository;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -42,7 +45,13 @@ public class LoginLogService extends CRUDService<UserLoginLog, Long> {
 
     }
 
-    public void saveLoginLog(UserLoginLog loginLog) {
+    public void saveLoginLog(ClientMessageDto messageDto, LoginAuthDto authDto) {
+
+        UserLoginLog loginLog = new UserLoginLog();
+        BeanUtils.copyProperties(messageDto, loginLog);
+        loginLog.setLastLoginTime(new Date());
+        loginLog.setUsername(authDto.getUserName());
+        loginLog.setUserId(authDto.getUserId());
         loginRepository.save(loginLog);
     }
 
