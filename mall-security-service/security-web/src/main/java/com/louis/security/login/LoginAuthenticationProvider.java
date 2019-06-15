@@ -1,12 +1,12 @@
 package com.louis.security.login;
 
 import com.alibaba.fastjson.JSON;
-import com.louis.security.oauth.entity.SysUser;
-import com.louis.security.oauth.model.UserContext;
-import com.louis.security.oauth.entity.UserRole;
-import com.louis.security.oauth.service.PasswordService;
-import com.louis.security.oauth.service.SysUserService;
-import com.louis.security.oauth.service.UserRoleService;
+import com.louis.server.entity.SysUser;
+import com.louis.oauth.model.UserContext;
+import com.louis.server.entity.UserRole;
+import com.louis.server.service.PasswordService;
+import com.louis.server.service.SysUserService;
+import com.louis.server.service.UserRoleService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.BadCredentialsException;

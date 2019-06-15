@@ -1,6 +1,6 @@
 package com.louis.hystrix;
 
-import com.louis.security.oauth.model.UserContext;
+import com.louis.oauth.model.UserContext;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 

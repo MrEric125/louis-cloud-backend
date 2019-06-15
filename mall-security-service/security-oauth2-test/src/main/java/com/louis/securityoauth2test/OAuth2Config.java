@@ -31,11 +31,11 @@ public class OAuth2Config extends AuthorizationServerConfigurerAdapter {
     @Override
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
 
-        clients.inMemory()
-                .withClient("zhangsan")
-                .secret("secret")
-                .authorizedGrantTypes(REFRESH_TOKEN,PASSWORD,CLIENT_CREDENTIALS)
-                .scopes("webclient", "mobileclient");
+//        clients.inMemory()
+//                .withClient("zhangsan")
+//                .secret("{noop}secret")
+//                .authorizedGrantTypes(REFRESH_TOKEN,PASSWORD,CLIENT_CREDENTIALS)
+//                .scopes("webclient", "mobileclient");
     }
 
     @Override

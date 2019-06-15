@@ -1,6 +1,6 @@
 package com.louis.hystrix;
 
-import com.louis.security.oauth.model.UserContext;
+import com.louis.oauth.model.UserContext;
 import org.springframework.util.Assert;
 
 /**

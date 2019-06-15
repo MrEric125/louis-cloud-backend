@@ -1,6 +1,6 @@
 package com.louis.security.authentication;
 
-import com.louis.security.oauth.SecurityConstants;
+import com.louis.constant.SecurityConstants;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;

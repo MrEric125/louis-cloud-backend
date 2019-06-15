@@ -1,7 +1,8 @@
 package com.louis.security;
 
-import com.louis.security.oauth.entity.SysUser;
-import com.louis.security.oauth.service.SysUserService;
+import com.louis.security.core.SecurityUser;
+import com.louis.server.entity.SysUser;
+import com.louis.server.service.SysUserService;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;

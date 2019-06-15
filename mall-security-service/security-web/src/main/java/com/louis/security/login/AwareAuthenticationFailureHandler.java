@@ -1,8 +1,8 @@
 package com.louis.security.login;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.louis.security.oauth.common.ErrorCode;
-import com.louis.security.oauth.common.ErrorResponse;
+import com.louis.common.ErrorCode;
+import com.louis.common.ErrorResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;

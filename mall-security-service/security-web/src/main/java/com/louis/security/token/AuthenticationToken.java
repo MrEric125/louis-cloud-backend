@@ -1,7 +1,6 @@
 package com.louis.security.token;
 
-import com.louis.security.oauth.model.UserContext;
-import com.louis.security.token.RawAccessToken;
+import com.louis.oauth.model.UserContext;
 import org.springframework.security.authentication.AbstractAuthenticationToken;
 import org.springframework.security.core.GrantedAuthority;
 

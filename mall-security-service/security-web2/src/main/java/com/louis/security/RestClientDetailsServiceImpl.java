@@ -32,6 +32,7 @@ public class RestClientDetailsServiceImpl implements ClientDetailsService {
 	 */
 	@PostConstruct
 	public void init() {
+		log.info("init clientDetailsSErvice");
 		InMemoryClientDetailsServiceBuilder builder = new InMemoryClientDetailsServiceBuilder();
 		if (ArrayUtils.isNotEmpty(securityProperties.getOauth2().getClients())) {
 			for (OAuth2ClientProperties client : securityProperties.getOauth2().getClients()) {

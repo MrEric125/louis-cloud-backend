@@ -1,11 +1,13 @@
 package com.louis.security.config;
 
 import com.google.common.collect.Lists;
+import com.louis.security.login.AwareAuthenticationFailureHandler;
+import com.louis.security.login.AwareAuthenticationSuccessHandler;
 import com.louis.security.login.LoginAuthenticationProvider;
 import com.louis.security.filter.LoginProcessingFilter;
 import com.louis.security.SkipPathRequestMatcher;
 import com.louis.security.filter.TokenAuthenticationProcessingFilter;
-import com.louis.security.oauth.RestAuthenticationEntryPoint;
+import com.louis.oauth.RestAuthenticationEntryPoint;
 import com.louis.security.token.TokenAuthenticationProvider;
 import com.louis.security.extractor.TokenExtractor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,9 +44,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private RestAuthenticationEntryPoint authenticationEntryPoint;
     @Autowired
-    private AuthenticationSuccessHandler successHandler;
+    private AwareAuthenticationSuccessHandler successHandler;
     @Autowired
-    private AuthenticationFailureHandler failureHandler;
+    private AwareAuthenticationFailureHandler failureHandler;
     @Autowired
     private LoginAuthenticationProvider loginAuthenticationProvider;
     @Autowired

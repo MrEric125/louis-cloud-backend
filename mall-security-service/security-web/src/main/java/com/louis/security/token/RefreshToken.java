@@ -1,6 +1,6 @@
 package com.louis.security.token;
 
-import com.louis.security.oauth.model.Scopes;
+import com.louis.oauth.model.Scopes;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jws;
 

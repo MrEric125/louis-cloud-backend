@@ -1,6 +1,6 @@
 package com.louis.security.authentication.mobile;
 
-import com.louis.security.oauth.SecurityConstants;
+import com.louis.constant.SecurityConstants;
 import org.springframework.security.authentication.AuthenticationServiceException;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
