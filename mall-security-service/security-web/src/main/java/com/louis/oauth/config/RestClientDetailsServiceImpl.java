@@ -16,7 +16,7 @@ package com.louis.oauth.config;
 ///**
 // * The class Rest client details service.
 // *
-// * @author paascloud.net @gmail.com
+// * @author John·Louis
 // */
 //@Slf4j
 //@Component("restClientDetailsService")

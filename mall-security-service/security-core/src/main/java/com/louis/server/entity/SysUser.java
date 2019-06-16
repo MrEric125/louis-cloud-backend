@@ -32,6 +32,8 @@ import java.util.Date;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class SysUser extends BaseEntity<Long> implements LogicDeleteable,Comparable<SysUser> {
 
+    private static final long serialVersionUID = 256121294003669340L;
+
     public static final int PASSWORD_MAX_LENGTH = 50;
     public static final int PASSWORD_MIN_LENGTH = 2;
     public static final int USERNAME_MAX_LENGTH = 50;
@@ -40,10 +42,6 @@ public class SysUser extends BaseEntity<Long> implements LogicDeleteable,Compara
     public static final String EMAIL_PATTERN = "^((([a-z]|\\d|[!#$%&'*+\\-/=?^_`{|}~]|[\\u00A0-\\uD7FF\\uF900-\\uFDCF\\uFDF0-\\uFFEF])+(\\.([a-z]|\\d|[!#$%&'*+\\-/=?^_`{|}~]|[\\u00A0-\\uD7FF\\uF900-\\uFDCF\\uFDF0-\\uFFEF])+)*)|((\\x22)((((\\x20|\\x09)*(\\x0d\\x0a))?(\\x20|\\x09)+)?(([\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x7f]|\\x21|[\\x23-\\x5b]|[\\x5d-\\x7e]|[\\u00A0-\\uD7FF\\uF900-\\uFDCF\\uFDF0-\\uFFEF])|(\\\\([\\x01-\\x09\\x0b\\x0c\\x0d-\\x7f]|[\\u00A0-\\uD7FF\\uF900-\\uFDCF\\uFDF0-\\uFFEF]))))*(((\\x20|\\x09)*(\\x0d\\x0a))?(\\x20|\\x09)+)?(\\x22)))@((([a-z]|\\d|[\\u00A0-\\uD7FF\\uF900-\\uFDCF\\uFDF0-\\uFFEF])|(([a-z]|\\d|[\\u00A0-\\uD7FF\\uF900-\\uFDCF\\uFDF0-\\uFFEF])([a-z]|\\d|-|\\.|_|~|[\\u00A0-\\uD7FF\\uF900-\\uFDCF\\uFDF0-\\uFFEF])*([a-z]|\\d|[\\u00A0-\\uD7FF\\uF900-\\uFDCF\\uFDF0-\\uFFEF])))\\.)+(([a-z]|[\\u00A0-\\uD7FF\\uF900-\\uFDCF\\uFDF0-\\uFFEF])|(([a-z]|[\\u00A0-\\uD7FF\\uF900-\\uFDCF\\uFDF0-\\uFFEF])([a-z]|\\d|-|\\.|_|~|[\\u00A0-\\uD7FF\\uF900-\\uFDCF\\uFDF0-\\uFFEF])*([a-z]|[\\u00A0-\\uD7FF\\uF900-\\uFDCF\\uFDF0-\\uFFEF])))\\.?";
     public static final String MOBILE_PHONE_NUMBER_PATTERN = "^(0|86|17951)?(13[0-9]|14[57]|15[012356789]|166|17[0135678]|18[0-9]|19[89])[0-9]{8}$";
 
-
-
-
-    private static final long serialVersionUID = 256121294003669340L;
     //这个地方的用户名必须保证唯一性
     @NotNull(message = "{nut.null}")
     @Pattern(regexp = USERNAME_PATTERN,message = "{user.username.not.valid}")
@@ -52,14 +50,12 @@ public class SysUser extends BaseEntity<Long> implements LogicDeleteable,Compara
     @Column(name = "real_name")
     private String realName;
 
-
     /**
      * 後期也可以将邮箱作为登录账号
      */
     @NotNull(message = "{not.null}")
     @Pattern(regexp = EMAIL_PATTERN,message = "{user.email.not.valid}")
     private String email;
-
 
     /**
      * 通过MD5加密(username+original password+salt)加密存储
@@ -80,9 +76,7 @@ public class SysUser extends BaseEntity<Long> implements LogicDeleteable,Compara
     /**
      * 用户状态，0-未启用，1-启用
      */
-
     private Integer status=UserStatus.normal.getInfo();
-
 
     @NotNull(message = "{not.null}")
     @Pattern(regexp = MOBILE_PHONE_NUMBER_PATTERN, message = "{user.mobile.phone.number.not.valid}")
@@ -93,7 +87,6 @@ public class SysUser extends BaseEntity<Long> implements LogicDeleteable,Compara
     @NotNull(message = "{not.null}")
     private int userType;
 
-
     /**
      * 用户来源
      */
@@ -101,19 +94,10 @@ public class SysUser extends BaseEntity<Long> implements LogicDeleteable,Compara
     private String userSource;
 
     /**
-     * 操作员类型（2000伙伴, 3000客户, 1000运营）
-     */
-
-
-
-
-    /**
      * 连续输错密码次数（连续5次输错就冻结帐号）
      */
     @Column(name = "pwd_error_count")
     private Short pwdErrorCount;
-
-
 
     /**
      * 用户所属的组织ID
@@ -126,9 +110,6 @@ public class SysUser extends BaseEntity<Long> implements LogicDeleteable,Compara
     @Transient
     private String groupName;
 
-
-
-
     @Column(name = "identify_number")
     private String identityNumber=username;
 
@@ -137,7 +118,6 @@ public class SysUser extends BaseEntity<Long> implements LogicDeleteable,Compara
     public Boolean getDeleted() {
         return this.deleted;
     }
-
 
     @Override
     public void setDeleted(Boolean deleted) {
@@ -149,13 +129,10 @@ public class SysUser extends BaseEntity<Long> implements LogicDeleteable,Compara
         this.deleted = true;
     }
 
-
     @Override
     public int compareTo(SysUser o) {
         return 0;
     }
-
-
 
     /**
      * 随机生成登录盐

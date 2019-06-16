@@ -5,6 +5,7 @@ import com.louis.common.api.wrapper.Wrapper;
 import com.louis.common.api.wrapper.WrapperMassage;
 import com.louis.common.web.web.CRUDController;
 
+import com.louis.common.web.web.bind.annotation.SearchableDefaults;
 import com.louis.core.search.SearchOperator;
 import com.louis.core.search.Searchable;
 import com.louis.product.api.dto.PmsProductDto;
@@ -15,6 +16,7 @@ import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -68,10 +70,11 @@ public class PmsProductController extends CRUDController<PmsProduct,PmsProductDt
      */
     @ApiOperation("通过条件查找，下架商品不显示")
     @GetMapping(value = "/searchProduct",produces = "application/json")
-    public Wrapper searchProduct(Searchable searchable) {
+//    @SearchableDefaults
+    public Wrapper searchProduct( Searchable search) {
         log.info("search product by searchable");
-        searchable.addSearchFilter("deleted", SearchOperator.eq, Boolean.FALSE);
-        Page<PmsProduct> page = productService.findAll(searchable);
+        search.addSearchFilter("deleted", SearchOperator.eq, Boolean.FALSE);
+        Page<PmsProduct> page = productService.findAll(search);
         return handleResult(page);
     }
 

@@ -6,10 +6,12 @@ import com.louis.core.search.SearchOperator;
 import com.louis.core.search.Searchable;
 import com.louis.core.search.exception.InvalidSearchPropertyException;
 import com.louis.core.search.exception.InvalidSearchValueException;
+import com.louis.core.search.exception.SearchException;
 import com.louis.core.search.filter.AndCondition;
 import com.louis.core.search.filter.Condition;
 import com.louis.core.search.filter.OrCondition;
 import com.louis.core.search.filter.SearchFilter;
+import com.louis.core.utils.SpringUtils;
 import org.springframework.beans.BeanWrapperImpl;
 import org.springframework.beans.InvalidPropertyException;
 import org.springframework.core.convert.ConversionService;
@@ -41,22 +43,22 @@ public final class SearchableConvertUtils {
         SearchableConvertUtils.conversionService = conversionService;
     }
 //
-//    private static ConversionService getConversionService() {
-//        if (conversionService == null) {
-//            synchronized (SearchableConvertUtils.class) {
-//                if (conversionService == null) {
-//                    try {
-//                        conversionService = SpringUtils.getBean(ConversionService.class);
-//                    } catch (Exception e) {
-//                        throw new SearchException("conversionService is null, " +
-//                                "search param convert must use conversionService. " +
-//                                "");
-//                    }
-//                }
-//            }
-//        }
-//        return conversionService;
-//    }
+    private static ConversionService getConversionService() {
+        if (conversionService == null) {
+            synchronized (SearchableConvertUtils.class) {
+                if (conversionService == null) {
+                    try {
+                        conversionService = SpringUtils.getBean(ConversionService.class);
+                    } catch (Exception e) {
+                        throw new SearchException("conversionService is null, " +
+                                "search param convert must use conversionService. " +
+                                "");
+                    }
+                }
+            }
+        }
+        return conversionService;
+    }
 
     /**
      * @param search      查询条件

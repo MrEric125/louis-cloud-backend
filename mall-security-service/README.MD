@@ -22,6 +22,11 @@
 通过zuul路由过来，然后作为认证服务器，认证完成之后，重定向到原来访问的页面
 
 https://www.cnblogs.com/cjsblog/p/9241217.html
+spring security oauth2 三部曲：
+1. 是什么？
+2. 为什么？
+3. 怎么用？
+
 
 
 本模块基于spring cloud security 的认证(Authentication)和授权(Authorization)管理
@@ -38,3 +43,4 @@ oauth2默认有两个授权服务器端点
 * Redirection endpoint: 资源服务器通过资源所有者将包含授权凭证响应给客户端
 @EnableResourceServer 启用资源服务器  如果启用之后，那么oauth 就会保护你所在的系统除非有token
 @EnableAuthorizationServer 启用授权服务器 
+在我的系统中 不论是order-server,还是products-server都是资源服务器，security-servier是授权认证服务器
