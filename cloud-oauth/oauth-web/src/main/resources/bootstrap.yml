@@ -1,6 +1,0 @@
-louis:
-  token:
-    issuer: http:/github.louis.com
-    refresh-exp-time: 30
-    signing-key: battcn
-    expiration-time: 30

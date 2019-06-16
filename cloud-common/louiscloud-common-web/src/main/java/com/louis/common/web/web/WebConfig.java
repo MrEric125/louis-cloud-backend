@@ -1,7 +1,11 @@
 package com.louis.common.web.web;
 
 import com.louis.common.web.web.bind.annotation.method.SearchableMethodArgumentResolver;
+import org.springframework.beans.factory.config.MethodInvokingFactoryBean;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.format.support.DefaultFormattingConversionService;
+import org.springframework.format.support.FormattingConversionService;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport;
@@ -22,26 +26,26 @@ public class WebConfig extends WebMvcConfigurationSupport {
         argumentResolvers.add(searchableMethodArgumentResolver());
     }
 
-    //    private CurrentUserMethodArgumentResolver currentUserMethodArgumentResolver() {
+//    private CurrentUserMethodArgumentResolver currentUserMethodArgumentResolver() {
 //        return new CurrentUserMethodArgumentResolver();
 //    }
     private SearchableMethodArgumentResolver searchableMethodArgumentResolver() {
         return new SearchableMethodArgumentResolver();
     }
-//    @Bean
-//    public FormattingConversionService conversionService() {
-//        DefaultFormattingConversionService conversionService = new DefaultFormattingConversionService();
-//        addFormatters(conversionService);
-//        return conversionService;
-//    }
-//
-//    @Bean
-//    public MethodInvokingFactoryBean methodInvokingFactoryBean() {
-//        MethodInvokingFactoryBean m = new MethodInvokingFactoryBean();
-//        m.setStaticMethod("com.louis.core.search.utils.SearchableConvertUtils.setConversionService");
-//        m.setArguments(conversionService());
-//        return m;
-//    }
+    @Bean
+    public FormattingConversionService conversionService() {
+        DefaultFormattingConversionService conversionService = new DefaultFormattingConversionService();
+        addFormatters(conversionService);
+        return conversionService;
+    }
+
+    @Bean
+    public MethodInvokingFactoryBean methodInvokingFactoryBean() {
+        MethodInvokingFactoryBean m = new MethodInvokingFactoryBean();
+        m.setStaticMethod("com.louis.core.search.utils.SearchableConvertUtils.setConversionService");
+        m.setArguments(conversionService());
+        return m;
+    }
 
 
     /**
