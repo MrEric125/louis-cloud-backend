@@ -1,3 +1,8 @@
 1. 目前这个模块处理的逻辑
 在初始化的时候加载WebSecurityConfig中需要保护的资源路径以及登录路径
 然后在用路径的时候加载过滤器，看当前用户名和密码是否正确或者是否已经认证完成
+
+1. AuthenticationManager AuthenticationProvider 以及UserDetailService的关系
+
+2. UserDetailsService 和ClientDetailsService的关系和区别
+

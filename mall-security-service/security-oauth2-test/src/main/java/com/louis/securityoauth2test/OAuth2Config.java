@@ -36,22 +36,22 @@ public class OAuth2Config extends AuthorizationServerConfigurerAdapter {
     @Autowired
     private BCryptPasswordEncoder passwordEncoder;
 
-    @Primary
-    @Bean
-    @ConfigurationProperties(prefix = "spring.datasource")
-    public DataSource dataSource() {
-        return DataSourceBuilder.create().build();
-    }
+//    @Primary
+//    @Bean
+//    @ConfigurationProperties(prefix = "spring.datasource")
+//    public DataSource dataSource() {
+//        return DataSourceBuilder.create().build();
+//    }
+//
+//    @Bean
+//    public TokenStore tokenStore() {
+//        return new JdbcTokenStore(dataSource());
+//    }
 
-    @Bean
-    public TokenStore tokenStore() {
-        return new JdbcTokenStore(dataSource());
-    }
 
-
-    public ClientDetailsService clientDetailsService() {
-        return new JdbcClientDetailsService(dataSource());
-    }
+//    public ClientDetailsService clientDetailsService() {
+//        return new JdbcClientDetailsService(dataSource());
+//    }
 
 
 
@@ -68,11 +68,18 @@ public class OAuth2Config extends AuthorizationServerConfigurerAdapter {
      */
     @Override
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
-        clients.withClientDetails(clientDetailsService());
+        clients.inMemory().withClient("client")
+                .secret(passwordEncoder.encode("secret"))
+                .authorizedGrantTypes("authorization_code")
+                .scopes("webclient")
+                .redirectUris("https://www.baidu.com");
+//        clients.withClientDetails(clientDetailsService());
     }
 
     @Override
     public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
-        endpoints.tokenStore(tokenStore());
+        super.configure(endpoints);
+
+//        endpoints.tokenStore(tokenStore());
     }
 }
