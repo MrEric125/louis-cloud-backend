@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.louis.core.repository.EnableQueryCache;
 import com.louis.core.entity.BaseEntity;
 import com.louis.core.entity.LogicDeleteable;
+import com.louis.server.entity.enumentity.UserStatus;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.*;
 import org.apache.commons.lang3.RandomStringUtils;
@@ -76,7 +77,7 @@ public class SysUser extends BaseEntity<Long> implements LogicDeleteable,Compara
     /**
      * 用户状态，0-未启用，1-启用
      */
-    private Integer status=UserStatus.normal.getInfo();
+    private Integer status= UserStatus.normal.getInfo();
 
     @NotNull(message = "{not.null}")
     @Pattern(regexp = MOBILE_PHONE_NUMBER_PATTERN, message = "{user.mobile.phone.number.not.valid}")

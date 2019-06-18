@@ -1,4 +1,4 @@
-package com.louis.server.entity;
+package com.louis.server.entity.enumentity;
 
 /**
  * <p>User:

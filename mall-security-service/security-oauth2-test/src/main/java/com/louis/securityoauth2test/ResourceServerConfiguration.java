@@ -8,14 +8,14 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.R
  * @author Eric
  * @date create in 2019/6/16
  */
-@Configuration
-
-public class ResourceServerConfiguration extends ResourceServerConfigurerAdapter {
-
-
-    @Override
-    public void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests().antMatchers("/").hasAnyAuthority("system");
-
-    }
-}
+//@Configuration
+//
+//public class ResourceServerConfiguration extends ResourceServerConfigurerAdapter {
+//
+//
+//    @Override
+//    public void configure(HttpSecurity http) throws Exception {
+//        http.authorizeRequests().antMatchers("/").hasAnyAuthority("system");
+//
+//    }
+//}

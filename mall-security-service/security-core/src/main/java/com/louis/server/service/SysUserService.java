@@ -119,6 +119,11 @@ public class SysUserService extends CRUDService<SysUser, Long> {
         return null;
     }
 
+    /**
+     * 查找用于的权限
+     * @param userId
+     * @return
+     */
     public Collection<GrantedAuthority> loadUserAuthorities(Long userId){
         return null;
     }

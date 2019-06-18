@@ -23,17 +23,17 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
 
-    @Bean
-    @Override
-    protected UserDetailsService userDetailsService() {
-        return new UserDetailsServiceImpl();
-    }
-//
-    @Bean
-    @Override
-    protected AuthenticationManager authenticationManager() throws Exception {
-        return super.authenticationManager();
-    }
+//    @Bean
+//    @Override
+//    protected UserDetailsService userDetailsService() {
+//        return new UserDetailsServiceImpl();
+//    }
+
+//    @Bean
+//    @Override
+//    protected AuthenticationManager authenticationManager() throws Exception {
+//        return super.authenticationManager();
+//    }
 
     /**
      * 认证的一个过程，
@@ -42,11 +42,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
      */
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(userDetailsService());
-//        auth.inMemoryAuthentication()
-//                .withUser("user").password(passwordEncoder().encode("user")).roles("USER")
-//                .and()
-//                .withUser("admin").password(passwordEncoder().encode("admin")).roles("USER", "ADMIN");
+//        auth.userDetailsService(userDetailsService());
+        auth.inMemoryAuthentication()
+                .withUser("user").password(passwordEncoder().encode("user")).roles("USER")
+                .and()
+                .withUser("admin").password(passwordEncoder().encode("admin")).roles("USER", "ADMIN");
 
     }
 

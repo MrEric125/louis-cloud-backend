@@ -1,4 +1,4 @@
-package com.louis.server.entity;
+package com.louis.server.entity.enumentity;
 
 /**
  * @author Eric
@@ -6,7 +6,7 @@ package com.louis.server.entity;
  */
 public enum RoleEnum {
 
-    ADMIN("ADMIN"),MEMBER("MEMBER");
+    ADMIN("ADMIN"),USER("USER");
 
     private String desc;
 
