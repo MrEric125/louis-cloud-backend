@@ -15,6 +15,7 @@ import java.util.Map;
 
 /**
  * Spring security oauth2 集成第三方登录
+ * https://funtl.com/zh/spring-security-oauth2/%E5%AF%B9%E8%AE%A4%E8%AF%81%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84%E4%BF%AE%E6%94%B9.html#%E5%88%9D%E5%A7%8B%E5%8C%96-rbac-%E7%9B%B8%E5%85%B3%E8%A1%A8
  */
 @SpringCloudClient
 @RestController

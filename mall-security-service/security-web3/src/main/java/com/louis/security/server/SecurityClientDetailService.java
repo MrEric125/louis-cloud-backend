@@ -17,7 +17,7 @@ import javax.annotation.PostConstruct;
  * @author louis
  * <p>
  * Date: 2019/6/19
- * Description:
+ * Description: spring security oauth2 资源所有者详情逻辑
  */
 @Slf4j
 @Service

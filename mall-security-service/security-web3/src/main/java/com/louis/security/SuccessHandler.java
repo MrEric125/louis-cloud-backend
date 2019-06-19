@@ -25,7 +25,7 @@ import java.io.IOException;
 
 
 /**
- * APP环境下认证成功处理器.
+ * 自定义认证成功处理器.
  *
  * @author paascloud.net@gmail.com
  */

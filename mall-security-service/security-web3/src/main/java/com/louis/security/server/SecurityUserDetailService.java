@@ -18,7 +18,7 @@ import java.util.Collection;
  * @author louis
  * <p>
  * Date: 2019/6/19
- * Description:
+ * Description: spring security 用戶詳情邏輯
  */
 @Component
 public class SecurityUserDetailService implements UserDetailsService {

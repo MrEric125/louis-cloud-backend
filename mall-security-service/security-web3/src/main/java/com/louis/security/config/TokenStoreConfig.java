@@ -37,7 +37,7 @@
       * 使用redis存储token的配置，只有在paascloud.security.oauth2.tokenStore配置为redis时生效
       */
      @Configuration
-     @ConditionalOnProperty(prefix = "paascloud.security.oauth2", name = "tokenStore", havingValue = "redis")
+     @ConditionalOnProperty(prefix = "louis.security.oauth2", name = "tokenStore", havingValue = "redis")
      public static class RedisConfig {
 
          @Autowired
@@ -61,7 +61,7 @@
       * @author paascloud.net @gmail.com
       */
      @Configuration
-     @ConditionalOnProperty(prefix = "paascloud.security.oauth2", name = "tokenStore", havingValue = "jwt", matchIfMissing = true)
+     @ConditionalOnProperty(prefix = "louis.security.oauth2", name = "tokenStore", havingValue = "jwt", matchIfMissing = true)
      public static class JwtConfig {
 
          @Autowired

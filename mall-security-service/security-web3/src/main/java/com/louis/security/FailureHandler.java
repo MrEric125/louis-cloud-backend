@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
- * APP环境下认证失败处理器
+ * 自定义认证失败处理器
  *
  * @author paascloud.net @gmail.com
  */
