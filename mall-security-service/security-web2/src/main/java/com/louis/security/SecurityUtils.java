@@ -57,8 +57,10 @@ public final class SecurityUtils {
 		for (final GrantedAuthority authority : authorities) {
 			String url = authority.getAuthority();
 			if (StringUtils.isNotEmpty(url)) {
+
 				path.add(url);
 			}
+
 		}
 		path.add(AUTH_LOGIN_AFTER_URL);
 		path.add(AUTH_LOGOUT_URL);
