@@ -1,28 +1,25 @@
-package com.louis.securityoauth2test;
+package com.louis;
 
 import com.louis.common.web.web.anontation.SpringCloudClient;
 import com.louis.core.repository.SimpleBaseRepository;
 import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.cloud.client.SpringCloudApplication;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.security.core.authority.AuthorityUtils;
-import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
-import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer;
 import org.springframework.security.oauth2.provider.OAuth2Authentication;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 import java.util.HashMap;
 import java.util.Map;
 
 
-//https://www.cnblogs.com/ymstars/p/10626786.html
+/**
+ * Spring security oauth2 集成第三方登录
+ */
 @SpringCloudClient
 @RestController
 @EnableJpaRepositories(repositoryBaseClass = SimpleBaseRepository.class)
-public class SecurityWeb3Application {
+public class SecurityWebApplication3 {
 
     @RequestMapping(value = { "/user" }, produces = "application/json")
     public Map<String, Object> user(OAuth2Authentication user) {
@@ -33,7 +30,7 @@ public class SecurityWeb3Application {
     }
 
     public static void main(String[] args) {
-        SpringApplication.run(SecurityWeb3Application.class, args);
+        SpringApplication.run(SecurityWebApplication3.class, args);
     }
 
 }

@@ -1,4 +1,4 @@
-package com.louis.securityoauth2test;
+package com.louis.security;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;

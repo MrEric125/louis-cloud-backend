@@ -1,8 +1,8 @@
 server:
-  port: 9881
+  port: 9882
 spring:
   application:
-    name: security-service-A
+    name: security-service-C
   jpa:
     database: MYSQL
     show-sql: true
@@ -16,6 +16,33 @@ spring:
     password: Root
     type: com.zaxxer.hikari.HikariDataSource
     driver-class-name: com.mysql.cj.jdbc.Driver
-    jdbc-url: jdbc:mysql://localhost:3306/spring_cloud?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=UTC
+    url: jdbc:mysql://localhost:3306/spring_cloud?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=UTC
   main:
     allow-bean-definition-overriding: true
+  #######################################################
+louis:
+  security:
+    oauth2:
+      tokenStore: louis
+      clients[0]:
+        clientId: louis-client-security
+        clientSecret: louis-client-secret
+        accessTokenValidateSeconds: 7200
+        scope: "*"
+      clients[1]:
+        clientId: louis-client-comment
+        clientSecret: louis-client-secret
+        accessTokenValidateSeconds: 7200
+        scope: "*"
+      clients[2]:
+        clientId: louis-client-order
+        clientSecret: louis-client-secret
+        accessTokenValidateSeconds: 7200
+        scope: "*"
+
+
+    code:
+      image:
+        expireIn: 180
+        url: /auth/register,/auth/submitResetPwdEmail,/auth/code/sms
+

@@ -1,5 +1,6 @@
 package com.louis.server.service;
 
+import com.google.common.collect.Lists;
 import com.louis.common.api.dto.LoginAuthDto;
 import com.louis.common.web.web.utils.RequestUtil;
 import com.louis.core.redis.RedisOperate;
@@ -17,12 +18,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.task.TaskExecutor;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.oauth2.common.OAuth2AccessToken;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 
 /**
  * @author Eric
@@ -59,11 +62,12 @@ public class SysUserService extends CRUDService<SysUser, Long> {
     public SysUser findByUserName(String userName) {
 
         log.info(" find user by user name ; username:{}", userName);
-        SysUser user =  getUserFromRedisCache(RedisConstant.SYS_USER + userName);
+//        SysUser user =  getUserFromRedisCache(RedisConstant.SYS_USER + userName);
+        SysUser user = null;
         if (user == null) {
             user = sysUserRepository.findByUsername(userName);
             if (user!=null) {
-                putUserToRedisCache(user);
+//                putUserToRedisCache(user);
             }
         }
 
@@ -120,12 +124,16 @@ public class SysUserService extends CRUDService<SysUser, Long> {
     }
 
     /**
+     * TODO 暂时不查数据库，模拟一套数据出来
      * 查找用于的权限
      * @param userId
      * @return
      */
     public Collection<GrantedAuthority> loadUserAuthorities(Long userId){
-        return null;
+        GrantedAuthority grantedAuthority = new SimpleGrantedAuthority("ROLE_ADMIN");
+        List<GrantedAuthority> authList = Lists.newArrayList();
+        authList.add(grantedAuthority);
+        return authList;
     }
 
     public SysUser findUserInfoByUserId(Long userId) {

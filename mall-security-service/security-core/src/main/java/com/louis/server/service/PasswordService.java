@@ -4,6 +4,7 @@ import com.louis.core.utils.Md5Utils;
 import com.louis.server.entity.SysUser;
 import com.louis.exception.UserException;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 /**
@@ -47,7 +48,9 @@ public class PasswordService {
      * @return
      */
     String  encryptPassword(String username, String password, String salt) {
-        String hash = Md5Utils.hash(username + password + salt);
-        return hash;
+        String encode = new BCryptPasswordEncoder().encode(password);
+//        String hash = Md5Utils.hash(username + password + salt);
+        return encode;
     }
+
 }

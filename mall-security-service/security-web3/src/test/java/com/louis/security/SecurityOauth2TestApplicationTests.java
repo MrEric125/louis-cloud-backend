@@ -1,4 +1,4 @@
-package com.louis.securityoauth2test;
+package com.louis.security;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

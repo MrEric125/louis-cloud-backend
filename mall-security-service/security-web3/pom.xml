@@ -3,12 +3,11 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.1.5.RELEASE</version>
-        <relativePath/> <!-- lookup parent from repository -->
+        <artifactId>mall-security-service</artifactId>
+        <groupId>com.louis</groupId>
+        <version>0.0.1-SNAPSHOT</version>
+        <relativePath>../pom.xml</relativePath>
     </parent>
-    <groupId>com.louis</groupId>
     <artifactId>security-web3</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>security-web3</name>
@@ -16,7 +15,6 @@
 
     <properties>
         <java.version>1.8</java.version>
-        <spring-cloud.version>Greenwich.SR1</spring-cloud.version>
     </properties>
 
     <dependencies>
@@ -31,10 +29,7 @@
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
     </dependencies>
-
-    <dependencyManagement>
-
-    </dependencyManagement>
+    
 
     <build>
         <plugins>
