@@ -2,7 +2,7 @@ server:
   port: 9881
 spring:
   application:
-    name: oauth-service-A
+    name: security-service-A
   jpa:
     database: MYSQL
     show-sql: true
@@ -11,10 +11,11 @@ spring:
   #    generate-ddl: true
   datasource:
     platform: MYSQL
-    url: jdbc:mysql://localhost:3306/spring_cloud?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=UTC
+#    url: jdbc:mysql://localhost:3306/spring_cloud?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=UTC
     username: root
     password: Root
     type: com.zaxxer.hikari.HikariDataSource
     driver-class-name: com.mysql.cj.jdbc.Driver
+    jdbc-url: jdbc:mysql://localhost:3306/spring_cloud?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=UTC
   main:
     allow-bean-definition-overriding: true

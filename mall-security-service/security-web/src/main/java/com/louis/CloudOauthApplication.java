@@ -8,7 +8,6 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
 
-@EnableAuthorizationServer
 @EnableJpaRepositories(repositoryBaseClass = SimpleBaseRepository.class)
 @EnableConfigurationProperties(TokenProperties.class)
 @SpringCloudClient

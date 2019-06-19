@@ -11,8 +11,10 @@
 
 package com.louis.server;
 
+import com.louis.security.PcAuthenticationSuccessHandler;
 import com.louis.security.authentication.FormAuthenticationConfig;
 import com.louis.security.authorize.AuthorizeConfigManager;
+import com.louis.security.server.PcSecurityExpressionHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -41,13 +43,13 @@ import javax.sql.DataSource;
 public class PcResourceServerConfig extends ResourceServerConfigurerAdapter {
 
 	@Autowired
-	private OAuth2WebSecurityExpressionHandler pcSecurityExpressionHandler;
+	private PcSecurityExpressionHandler pcSecurityExpressionHandler;
 
 	@Autowired
 	private AccessDeniedHandler pcAccessDeniedHandler;
 
 	@Autowired
-	protected AuthenticationSuccessHandler pcAuthenticationSuccessHandler;
+	protected PcAuthenticationSuccessHandler pcAuthenticationSuccessHandler;
 
 	@Autowired
 	protected AuthenticationFailureHandler pcAuthenticationFailureHandler;
@@ -74,18 +76,7 @@ public class PcResourceServerConfig extends ResourceServerConfigurerAdapter {
 	@Resource
 	private DataSource dataSource;
 
-	/**
-	 * 记住我功能的token存取器配置
-	 *
-	 * @return the persistent token repository
-	 */
-	@Bean
-	public PersistentTokenRepository persistentTokenRepository() {
-		JdbcTokenRepositoryImpl tokenRepository = new JdbcTokenRepositoryImpl();
-		tokenRepository.setDataSource(dataSource);
-//		tokenRepository.setCreateTableOnStartup(true); // 第一次启动创建
-		return tokenRepository;
-	}
+
 
 	/**
 	 * Configure.

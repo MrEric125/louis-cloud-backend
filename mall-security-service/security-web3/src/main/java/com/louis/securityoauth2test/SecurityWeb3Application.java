@@ -1,8 +1,11 @@
 package com.louis.securityoauth2test;
 
+import com.louis.common.web.web.anontation.SpringCloudClient;
+import com.louis.core.repository.SimpleBaseRepository;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.SpringCloudApplication;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer;
@@ -16,12 +19,10 @@ import java.util.Map;
 
 
 //https://www.cnblogs.com/ymstars/p/10626786.html
-@SpringCloudApplication
-@EnableSwagger2
-//@EnableResourceServer
-//@EnableAuthorizationServer
+@SpringCloudClient
 @RestController
-public class SecurityOauth2TestApplication {
+@EnableJpaRepositories(repositoryBaseClass = SimpleBaseRepository.class)
+public class SecurityWeb3Application {
 
     @RequestMapping(value = { "/user" }, produces = "application/json")
     public Map<String, Object> user(OAuth2Authentication user) {
@@ -32,7 +33,7 @@ public class SecurityOauth2TestApplication {
     }
 
     public static void main(String[] args) {
-        SpringApplication.run(SecurityOauth2TestApplication.class, args);
+        SpringApplication.run(SecurityWeb3Application.class, args);
     }
 
 }

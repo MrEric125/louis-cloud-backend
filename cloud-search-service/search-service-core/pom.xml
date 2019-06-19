@@ -13,7 +13,7 @@
     <dependencies>
         <dependency>
             <groupId>com.louis</groupId>
-            <artifactId>search-service-web</artifactId>
+            <artifactId>louiscloud-common-web</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
     </dependencies>

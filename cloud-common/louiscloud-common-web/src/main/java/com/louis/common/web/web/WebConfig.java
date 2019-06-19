@@ -26,26 +26,26 @@ public class WebConfig extends WebMvcConfigurationSupport {
         argumentResolvers.add(searchableMethodArgumentResolver());
     }
 
-//    private CurrentUserMethodArgumentResolver currentUserMethodArgumentResolver() {
+    //    private CurrentUserMethodArgumentResolver currentUserMethodArgumentResolver() {
 //        return new CurrentUserMethodArgumentResolver();
 //    }
     private SearchableMethodArgumentResolver searchableMethodArgumentResolver() {
         return new SearchableMethodArgumentResolver();
     }
-    @Bean
-    public FormattingConversionService conversionService() {
-        DefaultFormattingConversionService conversionService = new DefaultFormattingConversionService();
-        addFormatters(conversionService);
-        return conversionService;
-    }
-
-    @Bean
-    public MethodInvokingFactoryBean methodInvokingFactoryBean() {
-        MethodInvokingFactoryBean m = new MethodInvokingFactoryBean();
-        m.setStaticMethod("com.louis.core.search.utils.SearchableConvertUtils.setConversionService");
-        m.setArguments(conversionService());
-        return m;
-    }
+//    @Bean
+//    public FormattingConversionService conversionService() {
+//        DefaultFormattingConversionService conversionService = new DefaultFormattingConversionService();
+//        addFormatters(conversionService);
+//        return conversionService;
+//    }
+//
+//    @Bean
+//    public MethodInvokingFactoryBean methodInvokingFactoryBean() {
+//        MethodInvokingFactoryBean m = new MethodInvokingFactoryBean();
+//        m.setStaticMethod("com.louis.core.search.utils.SearchableConvertUtils.setConversionService");
+//        m.setArguments(conversionService());
+//        return m;
+//    }
 
 
     /**

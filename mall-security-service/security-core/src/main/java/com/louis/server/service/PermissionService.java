@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
  * Date: 2019/6/18
  * Description:
  */
-@Service
+@Service("sysPermissionService")
 public class PermissionService extends CRUDService<SysPermission, Long> {
 
 }

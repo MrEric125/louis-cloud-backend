@@ -1,10 +1,8 @@
-package com.louis.search.entity;
+package com.louis.es.entity;
 
 import com.louis.es.BaseDocument;
 import lombok.*;
 import org.springframework.data.elasticsearch.annotations.Document;
-import org.springframework.data.elasticsearch.annotations.Field;
-import org.springframework.data.elasticsearch.annotations.FieldType;
 
 import java.math.BigDecimal;
 import java.util.Date;

@@ -111,7 +111,7 @@ public class RedisOperate<T> {
             }
             return true;
         } catch (Exception e) {
-            log.error("set redis key error: key:{}", key, e);
+            log.error("set redis key error: key:{},e:{}", key, e.getMessage());
             return false;
         }
     }

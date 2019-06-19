@@ -14,30 +14,18 @@
     <name>security-web2</name>
 
     <dependencies>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-configuration-processor</artifactId>
-            <optional>true</optional>
-        </dependency>
-
 
         <dependency>
             <groupId>com.louis</groupId>
             <artifactId>security-api</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
-
         <dependency>
             <groupId>com.louis</groupId>
             <artifactId>security-core</artifactId>
             <version>0.0.1-SNAPSHOT</version>
+        </dependency>
 
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.social</groupId>
-            <artifactId>spring-social-security</artifactId>
-            <version>1.1.6.RELEASE</version>
-        </dependency>
     </dependencies>
 
 
