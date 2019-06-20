@@ -1,9 +1,9 @@
+/*
 package com.louis.security.config;
 
 import com.louis.security.server.SecurityClientDetailService;
 import com.louis.security.server.SecurityUserDetailService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -14,12 +14,13 @@ import org.springframework.security.oauth2.config.annotation.web.configurers.Aut
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerSecurityConfigurer;
 import org.springframework.security.oauth2.provider.ClientDetailsService;
 import org.springframework.security.oauth2.provider.token.TokenStore;
-import org.springframework.security.oauth2.provider.token.store.JdbcTokenStore;
 
+*/
 /**
  * @author Eric
  * @date create in 2019/6/15
- */
+ *//*
+
 @Configuration
 @EnableAuthorizationServer
 public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdapter {
@@ -41,8 +42,8 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 //        return DataSourceBuilder.create().build();
 //    }
 //
-    @Autowired
-    private TokenStore tokenStore;
+//    @Autowired
+//    private TokenStore tokenStore;
 
 
     public ClientDetailsService clientDetailsService() {
@@ -57,11 +58,13 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     SecurityUserDetailService userDetailsService;
 
 
-    /**
+    */
+/**
      * （重点）授权模式，但是前提要钱是要认证(登陆成功)的时候才会授权
      * @param clients
      * @throws Exception
-     */
+     *//*
+
     @Override
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
 //        clients.inMemory().withClient("client")
@@ -76,20 +79,23 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
 //        super.configure(endpoints);
         endpoints.authenticationManager(authenticationManager)
-                .userDetailsService(userDetailsService)
-                .tokenStore(tokenStore);
+                .userDetailsService(userDetailsService);
+//                .tokenStore(tokenStore);
 
 //        endpoints.tokenStore(tokenStore());
     }
 
-    /**
+    */
+/**
      * 设置表单
      * @param security
      * @throws Exception
-     */
+     *//*
+
     @Override
     public void configure(AuthorizationServerSecurityConfigurer security) throws Exception {
         security.tokenKeyAccess("permitAll()");
         security.allowFormAuthenticationForClients();
     }
 }
+*/

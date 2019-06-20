@@ -13,4 +13,6 @@ import org.springframework.stereotype.Service;
 @Service
 public class RolePermissionService extends CRUDService<RolePermission, Long> {
 
+
+
 }

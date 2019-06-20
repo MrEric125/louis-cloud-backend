@@ -18,18 +18,18 @@ public class DemoController {
 
 
 
-        @RequestMapping("/")
-        public String root() {
-            return "redirect:/index";
-        }
+     @RequestMapping("/")
+     public String root() {
+         return "redirect:/index";
+     }
 
-        @RequestMapping("/index")
-        public String index() {
-            return "index";
-        }
+     @RequestMapping("/index")
+     public String index() {
+         return "index";
+     }
 
-        @RequestMapping("/user/index")
-        public String userIndex() {
+     @RequestMapping("/user/index")
+     public String userIndex() {
             return "user/index";
         }
 

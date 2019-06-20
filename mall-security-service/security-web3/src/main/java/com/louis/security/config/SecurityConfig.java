@@ -60,10 +60,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(userDetailsService());
-//        auth.inMemoryAuthentication()
-//                .withUser("user").password(passwordEncoder().encode("user")).roles("USER")
-//                .and()
-//                .withUser("admin").password(passwordEncoder().encode("admin")).roles("USER", "ADMIN");
+
 
     }
 
@@ -88,14 +85,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .anyRequest().authenticated()
                 .and()
                 //需要新增一个login页面,前面就得放行login.html
-                .formLogin().loginPage("login.html").failureUrl("/error")
+                .formLogin()
+//                .loginPage("login.html").failureUrl("/error")
                 .successHandler(successHandler)
                 .failureHandler(failureHandler)
                 .and()
                 .httpBasic();
         //自定义权限不足的页面
 //        access-denind-handler
-        super.configure(http);
+//        super.configure(http);
 //
+//    }
     }
 }

@@ -77,13 +77,16 @@ public abstract class CRUDService <T extends BaseEntity,ID extends Serializable>
         return baseRepository.findAll(searchable);
     }
 
+    public T findOne(Searchable searchable) {
+        return baseRepository.findOne(searchable);
+    }
+
     /**
      * 排序条件查询
      * @param sort 排序条件
      * @return List<T> 返回集合
      */
     public List<T> findAll(Sort sort) {
-
         return baseRepository.findAll(sort);
     }
 

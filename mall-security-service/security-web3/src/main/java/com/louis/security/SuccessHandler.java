@@ -39,8 +39,8 @@ public class SuccessHandler extends SavedRequestAwareAuthenticationSuccessHandle
 	private ClientDetailsService clientDetailsService;
 	@Resource
 	private SysUserService uacUserService;
-	@Resource
-	private AuthorizationServerTokenServices authorizationServerTokenServices;
+//	@Resource
+//	private AuthorizationServerTokenServices authorizationServerTokenServices;
 
 	private static final String BEARER_TOKEN_TYPE = "Basic ";
 
@@ -49,8 +49,9 @@ public class SuccessHandler extends SavedRequestAwareAuthenticationSuccessHandle
                                         Authentication authentication) throws IOException, ServletException {
 
 		logger.info("登录成功");
+		response.setContentType("charset=UTF-8");
 
-		String header = request.getHeader(HttpHeaders.AUTHORIZATION);
+		/*String header = request.getHeader(HttpHeaders.AUTHORIZATION);
 
 		if (header == null || !header.startsWith(BEARER_TOKEN_TYPE)) {
 			throw new UnapprovedClientAuthenticationException("请求头中无client信息");
@@ -69,8 +70,8 @@ public class SuccessHandler extends SavedRequestAwareAuthenticationSuccessHandle
 		} else if (!StringUtils.equals(clientDetails.getClientSecret(), clientSecret)) {
 			throw new UnapprovedClientAuthenticationException("clientSecret不匹配:" + clientId);
 		}
-
-		TokenRequest tokenRequest = new TokenRequest(MapUtils.EMPTY_MAP, clientId, clientDetails.getScope(), "custom");
+*/
+		/*TokenRequest tokenRequest = new TokenRequest(MapUtils.EMPTY_MAP, clientId, clientDetails.getScope(), "custom");
 
 		OAuth2Request oAuth2Request = tokenRequest.createOAuth2Request(clientDetails);
 
@@ -80,10 +81,10 @@ public class SuccessHandler extends SavedRequestAwareAuthenticationSuccessHandle
 		SecurityUser principal = (SecurityUser) authentication.getPrincipal();
 		uacUserService.handlerLoginData(token, principal, request);
 
-		log.info("用户【 {} 】记录登录日志", principal.getUsername());
+		log.info("用户【 {} 】记录登录日志", principal.getUsername());*/
 
 		response.setContentType("application/json;charset=UTF-8");
-		response.getWriter().write((objectMapper.writeValueAsString(WrapMapper.ok(token))));
+		response.getWriter().write((objectMapper.writeValueAsString(WrapMapper.ok("success"))));
 
 	}
 

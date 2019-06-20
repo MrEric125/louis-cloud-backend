@@ -2,17 +2,13 @@ package com.louis.server.service;
 
 import com.google.common.collect.Lists;
 import com.louis.common.api.dto.LoginAuthDto;
-import com.louis.common.web.web.utils.RequestUtil;
 import com.louis.core.redis.RedisOperate;
 import com.louis.core.service.CRUDService;
 import com.louis.oauth.dto.ClientMessageDto;
 import com.louis.security.core.SecurityUser;
 import com.louis.constant.RedisConstant;
 import com.louis.server.entity.SysUser;
-import com.louis.server.entity.UserLoginLog;
 import com.louis.server.repository.SysUserRepository;
-import com.louis.security.utils.IpUtils;
-import eu.bitwalker.useragentutils.UserAgent;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.task.TaskExecutor;
@@ -52,6 +48,9 @@ public class SysUserService extends CRUDService<SysUser, Long> {
 
     @Autowired
     private LoginLogService loginLogService;
+
+    @Autowired
+    ClientMessageService clientMessageService;
 
 
     @Autowired
@@ -148,21 +147,7 @@ public class SysUserService extends CRUDService<SysUser, Long> {
      */
     public void handlerLoginData(OAuth2AccessToken token, SecurityUser principal, HttpServletRequest request) {
         log.info("handle login data ;  token:{}", token);
-         UserAgent userAgent = UserAgent.parseUserAgentString(request.getHeader("User-Agent"));
-        //获取客户端操作系统
-         String os = userAgent.getOperatingSystem().getName();
-        //获取客户端浏览器
-         String browser = userAgent.getBrowser().getName();
-        String ipAddr = IpUtils.getIpAddr(request);
-        // 根据IP获取位置信息
-         String remoteLocation = RequestUtil.getLocationByIp(ipAddr);
-         String requestURI = request.getRequestURI();
-        ClientMessageDto messageDto = ClientMessageDto.builder().os(os)
-                .browser(browser)
-                .ip(ipAddr)
-                .remoteLocation(remoteLocation)
-                .requestURI(requestURI)
-                .build();
+        ClientMessageDto messageDto = clientMessageService.findClientMessage(request);
 
         Long userId = principal.getUserId();
         LoginAuthDto loginAuthDto = new LoginAuthDto(userId, principal.getLoginName(), principal.getNickName(), principal.getGroupId(), principal.getGroupName());

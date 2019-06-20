@@ -10,7 +10,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import java.util.Collection;
 
@@ -22,6 +22,7 @@ import java.util.Collection;
  */
 @Component
 public class SecurityUserDetailService implements UserDetailsService {
+    private static final String ROLE_PREFIX = "ROLE_";
 
 
     @Autowired
@@ -39,5 +40,11 @@ public class SecurityUserDetailService implements UserDetailsService {
         return new SecurityUser(user.getId(), user.getUsername(), user.getPassword(),
                 user.getRealName(), user.getGroupId(), user.getGroupName(), user.getStatus(), grantedAuthorities);
 
+    }
+    private String prefixRoleName(String roleName){
+        if (!StringUtils.isEmpty(roleName) && !roleName.startsWith(ROLE_PREFIX)){
+            return ROLE_PREFIX + roleName;
+        }
+        return roleName;
     }
 }

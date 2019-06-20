@@ -45,6 +45,11 @@ public class LoginLogService extends CRUDService<UserLoginLog, Long> {
 
     }
 
+    /**
+     * 记录登录日志的
+     * @param messageDto
+     * @param authDto
+     */
     public void saveLoginLog(ClientMessageDto messageDto, LoginAuthDto authDto) {
 
         UserLoginLog loginLog = new UserLoginLog();

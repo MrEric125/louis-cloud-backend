@@ -31,6 +31,8 @@ public interface BaseRepository <T, ID extends Serializable> extends JpaReposito
      */
     Page<T> findAll(Searchable searchable);
 
+    T findOne(Searchable searchable);
+
     /**
      * 通过批量id删除实体
      * @param ids
