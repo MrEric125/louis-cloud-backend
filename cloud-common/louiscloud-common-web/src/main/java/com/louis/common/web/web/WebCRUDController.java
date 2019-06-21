@@ -49,6 +49,7 @@ public abstract class WebCRUDController<Entity extends BaseEntity, Dto extends B
         if (t == null) {
             return handleResult(null,"您没有传入数据");
         }
+        //新增和编辑是在一起的
         Entity entity = webCrudService.dtoToEntity(t);
         Entity save = webCrudService.save(entity);
         return handleResult(save);
@@ -111,7 +112,7 @@ public abstract class WebCRUDController<Entity extends BaseEntity, Dto extends B
      */
     @ApiOperation("通过searchable条件查询")
     @GetMapping(value = "/listPageBy",produces = "application/json")
-    public Wrapper findAll(@RequestBody Searchable searchable) {
+    public Wrapper findAllWithPage(@RequestBody Searchable searchable) {
         searchable = searchable == null ? Searchable.newSearchable() : searchable;
         if (!searchable.hasPageable())
             searchable.setPage(0, 10);

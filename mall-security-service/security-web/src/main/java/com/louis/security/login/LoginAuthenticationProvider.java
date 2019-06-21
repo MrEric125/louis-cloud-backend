@@ -64,7 +64,7 @@ public class LoginAuthenticationProvider implements AuthenticationProvider {
         if (!matches) {
             throw new BadCredentialsException("Authentication Failed. Username or Password not valid.");
         }
-        List<UserRole> roles = roleService.getRoleByUser(user);
+        List<UserRole> roles = roleService.findByUserId(user.getId());
         if (roles == null || roles.size() <= 0) throw new InsufficientAuthenticationException("User has no roles assigned");
 
         List<GrantedAuthority> authorities = roles.stream()
