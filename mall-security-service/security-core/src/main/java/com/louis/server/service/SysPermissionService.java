@@ -21,7 +21,7 @@ import javax.servlet.http.HttpServletRequest;
  *
  * @author paascloud.net @gmail.com
  */
-public interface UacPermissionService {
+public interface SysPermissionService {
 
 	/**
 	 * Has permission boolean.

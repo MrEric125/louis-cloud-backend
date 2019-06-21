@@ -23,6 +23,6 @@ public class ScopeEntity extends AbstractPersistable<Long> {
 
     @OneToMany(mappedBy = "scope", fetch = FetchType.LAZY)
     @Singular
-    private Set<ClientDetailsToScopesXrefEntity> clientDetailsToScopesXrefs;
+    private Set<ClientDetailsToScopes> clientDetailsToScopesXrefs;
 
 }

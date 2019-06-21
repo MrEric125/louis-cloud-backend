@@ -12,8 +12,8 @@ import javax.validation.constraints.NotNull;
 @AllArgsConstructor
 @Builder
 @Entity
-@Table(name = "client_details_scope_xref")
-public class ClientDetailsToScopesXrefEntity extends AbstractAuditable<Long> {
+@Table(name = "client_details_scope")
+public class ClientDetailsToScopes extends AbstractAuditable<Long> {
 
     private static final long serialVersionUID = -2622127467030114011L;
     @NonNull

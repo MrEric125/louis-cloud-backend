@@ -14,9 +14,10 @@ import javax.validation.constraints.NotNull;
 @NoArgsConstructor
 @Builder
 @Entity
-@Table(name = "user_role_xref")
-public class UserRoleXrefEntity extends AbstractAuditable<Long> {
+@Table(name = "user_role")
+public class UserRole extends AbstractAuditable<Long> {
 
+    private static final long serialVersionUID = 8960438784916678172L;
     @NonNull
     @NotNull
     @ManyToOne(cascade = {CascadeType.REFRESH, CascadeType.DETACH}, fetch = FetchType.EAGER)

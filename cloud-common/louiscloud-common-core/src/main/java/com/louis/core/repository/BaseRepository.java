@@ -31,6 +31,9 @@ public interface BaseRepository <T, ID extends Serializable> extends JpaReposito
      */
     Page<T> findAll(Searchable searchable);
 
+
+    List<T> findAllList(Searchable searchable);
+
     T findOne(Searchable searchable);
 
     /**

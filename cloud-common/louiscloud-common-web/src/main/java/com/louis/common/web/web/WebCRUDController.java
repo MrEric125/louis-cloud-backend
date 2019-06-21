@@ -4,22 +4,18 @@ import com.google.common.collect.Maps;
 import com.louis.common.api.dto.BaseDto;
 import com.louis.common.api.wrapper.Wrapper;
 import com.louis.core.entity.BaseEntity;
-import com.louis.core.service.CRUDService;
-import com.louis.core.response.ResponseData;
 import com.louis.core.search.Searchable;
+import com.louis.core.service.WebCRUDService;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
 import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.Serializable;
-import java.util.Collections;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 /**
  * @author John·Louis
@@ -29,23 +25,16 @@ import java.util.stream.Collectors;
  * 封装的一些简单的增删改查功能的controller
  */
 @Slf4j
-public abstract class CRUDController<Entity extends BaseEntity, Dto extends BaseDto, ID extends Serializable> extends BaseController<Entity, ID> {
+public abstract class WebCRUDController<Entity extends BaseEntity, Dto extends BaseDto, ID extends Serializable> extends BaseController<Entity, ID> {
 
 
 
-    private CRUDService<Entity, ID> crudService;
+
+    private WebCRUDService<Entity, Dto,ID> webCrudService;
 
     @Autowired
-    public void setBaseService(CRUDService<Entity, ID> crudService) {
-        this.crudService = crudService;
-    }
-
-    protected abstract Entity dtoToEntity(Dto d);
-
-    protected abstract Dto entityToDto(Entity dto);
-
-    public List<Dto> entitiesToDtos(List<Entity> entities) {
-        return entities.stream().map(this::entityToDto).collect(Collectors.toList());
+    public void setBaseService(WebCRUDService<Entity,Dto,ID> webCrudService) {
+        this.webCrudService = webCrudService;
     }
 
     /**
@@ -57,11 +46,11 @@ public abstract class CRUDController<Entity extends BaseEntity, Dto extends Base
     @ApiOperation("新增操作")
     @PostMapping(value = "/add",produces = "application/json")
     public Wrapper add(@RequestBody Dto t) {
-        if (t != null) {
+        if (t == null) {
             return handleResult(null,"您没有传入数据");
         }
-        Entity entity = dtoToEntity(t);
-        Entity save = crudService.save(entity);
+        Entity entity = webCrudService.dtoToEntity(t);
+        Entity save = webCrudService.save(entity);
         return handleResult(save);
     }
 
@@ -73,9 +62,9 @@ public abstract class CRUDController<Entity extends BaseEntity, Dto extends Base
      * @return 返回数据
      */
     @ApiOperation("通过id 删除")
-    @PostMapping(value = "/deleteBy",produces = "application/json")
+    @DeleteMapping(value = "/delete",produces = "application/json")
     public Wrapper delete(ID id) {
-        crudService.deleteById(id);
+        webCrudService.deleteById(id);
 
         return handleResult("success");
     }
@@ -89,11 +78,11 @@ public abstract class CRUDController<Entity extends BaseEntity, Dto extends Base
     @ApiOperation("查询所有")
     @GetMapping(value = "/queryAll",produces = "application/json" )
     public Wrapper findAll() {
-        List<Entity> all = crudService.findAll();
+        List<Entity> all = webCrudService.findAll();
         if (CollectionUtils.isEmpty(all)) {
             return returnNullResult();
         }
-        List<Dto> dtos = entitiesToDtos(all);
+        List<Dto> dtos = webCrudService.entitiesToDtos(all);
         return handleResult(dtos);
     }
 
@@ -106,11 +95,11 @@ public abstract class CRUDController<Entity extends BaseEntity, Dto extends Base
     @ApiOperation("通过id查询，如果没有回抛出异常")
     @GetMapping(value = "/findBy/{id}",produces = "application/json")
     public Wrapper findById(@PathVariable ID id) {
-        Entity entity = crudService.findById(id);
+        Entity entity = webCrudService.findById(id);
         if (entity == null) {
             return returnNullResult();
         }
-        Dto dto = entityToDto(entity);
+        Dto dto = webCrudService.entityToDto(entity);
         return handleResult(dto);
     }
 
@@ -122,21 +111,31 @@ public abstract class CRUDController<Entity extends BaseEntity, Dto extends Base
      */
     @ApiOperation("通过searchable条件查询")
     @GetMapping(value = "/listPageBy",produces = "application/json")
-    public Wrapper findAll(Searchable searchable) {
+    public Wrapper findAll(@RequestBody Searchable searchable) {
         searchable = searchable == null ? Searchable.newSearchable() : searchable;
         if (!searchable.hasPageable())
             searchable.setPage(0, 10);
 
-        Page<Entity> entityPage = crudService.findAll(searchable);
+        Page<Entity> entityPage = webCrudService.findAll(searchable);
         if (CollectionUtils.isEmpty(entityPage.getContent())) {
             return returnNullResult();
 
         }
-        List<Dto> dtos = entitiesToDtos(entityPage.getContent());
+        List<Dto> dtos = webCrudService.entitiesToDtos(entityPage.getContent());
         Map<String, Object> map = Maps.newHashMap();
         map.put("totalItems", entityPage.getTotalElements());
         map.put("currentPage", searchable.getPage().getPageNumber());
         return handleResult(ImmutableMap.of("items", dtos, "pagination", map));
+    }
+
+    @ApiOperation("不分页查找集合")
+    @GetMapping("/queryAll")
+    public Wrapper findAllList(Searchable searchable) {
+        searchable = searchable == null ? Searchable.newSearchable() : searchable;
+        if (searchable.hasPageable())
+           searchable.removePageable();
+        List<Entity> allList = webCrudService.findAllList(searchable);
+        return handleResult(allList);
     }
 
 }

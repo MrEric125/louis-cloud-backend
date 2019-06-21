@@ -40,15 +40,15 @@ public class ClientDetail extends AbstractAuditable<Long> {
 
 //    @Singular
     @OneToMany(mappedBy = "clientDetails", fetch = FetchType.EAGER, orphanRemoval = true, cascade = CascadeType.ALL)
-    private Set<ClientDetailsToAuthorizedGrantTypeXrefEntity> authorizedGrantTypeXrefs;
+    private Set<ClientDetailsGrantType> authorizedGrantTypeXrefs;
 
 //    @Singular
     @OneToMany(mappedBy = "clientDetails", fetch = FetchType.EAGER, orphanRemoval = true, cascade = CascadeType.ALL)
-    private Set<ClientDetailsToScopesXrefEntity> scopeXrefs;
+    private Set<ClientDetailsToScopes> scopeXrefs;
 
 //    @Singular
     @OneToMany(mappedBy = "clientDetails", fetch = FetchType.EAGER, orphanRemoval = true, cascade = CascadeType.ALL)
-    private Set<ClientDetailsToResourceIdXrefEntity> resourceIdXrefs;
+    private Set<ClientDetailsToResourceId> resourceIdXrefs;
 
 //    @Singular("redirectUri")
     @OneToMany(mappedBy = "clientDetails", fetch = FetchType.EAGER, orphanRemoval = true, cascade = CascadeType.ALL)

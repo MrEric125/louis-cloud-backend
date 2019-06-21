@@ -4,6 +4,8 @@ import com.louis.core.repository.BaseRepository;
 import com.louis.server.entity.RolePermission;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 /**
  * @author louis
  * <p>
@@ -12,5 +14,10 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface RolePermissionRepository extends BaseRepository<RolePermission, Long> {
+
+    List<RolePermission> findByRoleId(long roleId);
+
+    List<RolePermission> findByPermissionId(long permissionId);
+
 
 }

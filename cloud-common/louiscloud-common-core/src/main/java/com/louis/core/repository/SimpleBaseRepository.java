@@ -245,6 +245,12 @@ public class SimpleBaseRepository<M, ID extends Serializable> extends SimpleJpaR
 				);
 	}
 
+	@Override
+	public List<M> findAllList(Searchable searchable) {
+		return repositoryHelper.findAll(findAllQL, searchable, searchCallback);
+	}
+
+	@Override
 	public M findOne(Searchable searchable) {
 		return repositoryHelper.findOne(findAllQL, searchable, searchCallback);
 	}

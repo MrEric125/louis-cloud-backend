@@ -5,16 +5,16 @@ import lombok.Getter;
 import lombok.Setter;
 
 /**
- * @author John·Louis
- * @date create in 2019/6/16
+ * @author louis
+ * <p>
+ * Date: 2019/6/21
+ * Description:
  */
 @Setter
 @Getter
-public class PermissionDto extends BaseDto<Long> {
+public class UserRoleDto extends BaseDto {
+    private long userId;
 
     private long roleId;
-
-    private long permissionId;
-
 
 }

@@ -57,10 +57,6 @@ public class UserTokenService extends CRUDService<UserToken,Long> {
     SysUserService sysUserService;
 
     @Autowired
-    RedisTemplate<String, TokenDto> redisTemplate;
-
-
-    @Autowired
     private SecurityProperties securityProperties;
 
 
@@ -143,12 +139,10 @@ public class UserTokenService extends CRUDService<UserToken,Long> {
      * @return
      */
     public TokenDto getByAccessToken(String accessToken) {
-        TokenDto userTokenDto = (TokenDto) redisTemplate.opsForValue().get(accessToken);
-        if (userTokenDto == null) {
-            UserToken userToken = userTokenRepository.findByAccessToken(accessToken);
-            userTokenDto = new ModelMapper().map(userToken, TokenDto.class);
 
-        }
+            UserToken userToken = userTokenRepository.findByAccessToken(accessToken);
+            TokenDto  userTokenDto = new ModelMapper().map(userToken, TokenDto.class);
+
         return userTokenDto;
     }
 

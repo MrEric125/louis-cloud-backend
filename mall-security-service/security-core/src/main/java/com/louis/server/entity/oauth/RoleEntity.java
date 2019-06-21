@@ -27,10 +27,10 @@ public class RoleEntity extends AbstractPersistable<Long> {
     private boolean disabled;
 
     @OneToMany(mappedBy = "role", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<RoleAuthorityXrefEntity> authorities;
+    private Set<RoleAuthority> authorities;
 
     @Deprecated
     @OneToMany(mappedBy = "role", fetch = FetchType.LAZY)
-    private Set<UserRoleXrefEntity> users;
+    private Set<UserRole> users;
 
 }

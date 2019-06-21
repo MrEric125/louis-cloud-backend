@@ -15,8 +15,8 @@ import javax.validation.constraints.NotNull;
 @AllArgsConstructor
 @Builder
 @Entity
-@Table(name = "client_details_grant_type_xref")
-public class ClientDetailsToAuthorizedGrantTypeXrefEntity extends AbstractAuditable<Long> {
+@Table(name = "client_details_grant_type")
+public class ClientDetailsGrantType extends AbstractAuditable<Long> {
 
     private static final long serialVersionUID = 7557834638716544927L;
     @NonNull

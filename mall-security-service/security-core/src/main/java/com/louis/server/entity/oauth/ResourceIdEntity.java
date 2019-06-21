@@ -25,5 +25,5 @@ public class ResourceIdEntity extends AbstractAuditable<Long> {
 
     @Singular
     @OneToMany(mappedBy = "resourceId", fetch = FetchType.LAZY)
-    private Set<ClientDetailsToResourceIdXrefEntity> clientDetailsToResourceIdXrefs;
+    private Set<ClientDetailsToResourceId> clientDetailsToResourceIdXrefs;
 }

@@ -21,6 +21,6 @@ public class GrantTypeEntity extends AbstractPersistable<Long> {
 
     @Singular
     @OneToMany(mappedBy = "grantType", fetch = FetchType.LAZY)
-    private Set<ClientDetailsToAuthorizedGrantTypeXrefEntity> clientDetailsToAuthorizedGrantTypeXrefs;
+    private Set<ClientDetailsGrantType> clientDetailsToAuthorizedGrantTypeXrefs;
 
 }
