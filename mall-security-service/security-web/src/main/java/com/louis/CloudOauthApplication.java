@@ -12,6 +12,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @SpringCloudClient
 public class CloudOauthApplication {
 
+    
     public static void main(String[] args) {
         SpringApplication.run(CloudOauthApplication.class, args);
     }
