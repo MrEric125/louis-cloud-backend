@@ -1,28 +1,27 @@
 package com.louis.server.service;
 
+import com.google.common.collect.Lists;
 import com.louis.common.api.dto.LoginAuthDto;
-import com.louis.common.web.web.utils.RequestUtil;
 import com.louis.core.redis.RedisOperate;
 import com.louis.core.service.CRUDService;
 import com.louis.oauth.dto.ClientMessageDto;
 import com.louis.security.core.SecurityUser;
 import com.louis.constant.RedisConstant;
 import com.louis.server.entity.SysUser;
-import com.louis.server.entity.UserLoginLog;
 import com.louis.server.repository.SysUserRepository;
-import com.louis.security.utils.IpUtils;
-import eu.bitwalker.useragentutils.UserAgent;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.task.TaskExecutor;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.oauth2.common.OAuth2AccessToken;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 
 /**
  * @author Eric
@@ -50,6 +49,9 @@ public class SysUserService extends CRUDService<SysUser, Long> {
     @Autowired
     private LoginLogService loginLogService;
 
+    @Autowired
+    ClientMessageService clientMessageService;
+
 
     @Autowired
     RedisTemplate<Object ,Object> redisTemplate;
@@ -59,11 +61,12 @@ public class SysUserService extends CRUDService<SysUser, Long> {
     public SysUser findByUserName(String userName) {
 
         log.info(" find user by user name ; username:{}", userName);
-        SysUser user =  getUserFromRedisCache(RedisConstant.SYS_USER + userName);
+//        SysUser user =  getUserFromRedisCache(RedisConstant.SYS_USER + userName);
+        SysUser user = null;
         if (user == null) {
             user = sysUserRepository.findByUsername(userName);
             if (user!=null) {
-                putUserToRedisCache(user);
+//                putUserToRedisCache(user);
             }
         }
 
@@ -120,12 +123,16 @@ public class SysUserService extends CRUDService<SysUser, Long> {
     }
 
     /**
+     * TODO 暂时不查数据库，模拟一套数据出来
      * 查找用于的权限
      * @param userId
      * @return
      */
     public Collection<GrantedAuthority> loadUserAuthorities(Long userId){
-        return null;
+        GrantedAuthority grantedAuthority = new SimpleGrantedAuthority("ROLE_ADMIN");
+        List<GrantedAuthority> authList = Lists.newArrayList();
+        authList.add(grantedAuthority);
+        return authList;
     }
 
     public SysUser findUserInfoByUserId(Long userId) {
@@ -140,21 +147,7 @@ public class SysUserService extends CRUDService<SysUser, Long> {
      */
     public void handlerLoginData(OAuth2AccessToken token, SecurityUser principal, HttpServletRequest request) {
         log.info("handle login data ;  token:{}", token);
-         UserAgent userAgent = UserAgent.parseUserAgentString(request.getHeader("User-Agent"));
-        //获取客户端操作系统
-         String os = userAgent.getOperatingSystem().getName();
-        //获取客户端浏览器
-         String browser = userAgent.getBrowser().getName();
-        String ipAddr = IpUtils.getIpAddr(request);
-        // 根据IP获取位置信息
-         String remoteLocation = RequestUtil.getLocationByIp(ipAddr);
-         String requestURI = request.getRequestURI();
-        ClientMessageDto messageDto = ClientMessageDto.builder().os(os)
-                .browser(browser)
-                .ip(ipAddr)
-                .remoteLocation(remoteLocation)
-                .requestURI(requestURI)
-                .build();
+        ClientMessageDto messageDto = clientMessageService.findClientMessage(request);
 
         Long userId = principal.getUserId();
         LoginAuthDto loginAuthDto = new LoginAuthDto(userId, principal.getLoginName(), principal.getNickName(), principal.getGroupId(), principal.getGroupName());

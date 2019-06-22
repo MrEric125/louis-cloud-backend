@@ -1,5 +1,6 @@
 package com.louis.server.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.louis.core.entity.BaseEntity;
 import lombok.*;
 
@@ -22,6 +23,7 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class UserToken extends BaseEntity<Long> {
     private static final long serialVersionUID = -1069883127226845426L;
 

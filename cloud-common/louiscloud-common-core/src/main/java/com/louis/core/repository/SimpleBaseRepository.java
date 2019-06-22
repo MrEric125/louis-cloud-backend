@@ -29,10 +29,10 @@ import java.util.Set;
 public class SimpleBaseRepository<M, ID extends Serializable> extends SimpleJpaRepository<M, ID> implements BaseRepository<M, ID> {
 	
 
-	public static final String LOGIC_DELETE_ALL_QUERY_STRING = "update %s x set x.deleted=true where x in (?1)";
-	public static final String DELETE_ALL_QUERY_STRING = "delete from %s x where x in (?1)";
-	public static final String FIND_QUERY_STRING = "from %s x where 1=1 ";
-	public static final String COUNT_QUERY_STRING = "select count(x) from %s x where 1=1 ";
+	private static final String LOGIC_DELETE_ALL_QUERY_STRING = "update %s x set x.deleted=true where x in (?1)";
+	private static final String DELETE_ALL_QUERY_STRING = "delete from %s x where x in (?1)";
+	private static final String FIND_QUERY_STRING = "from %s x where 1=1 ";
+	private static final String COUNT_QUERY_STRING = "select count(x) from %s x where 1=1 ";
 
 	private final EntityManager em;
 
@@ -243,6 +243,16 @@ public class SimpleBaseRepository<M, ID extends Serializable> extends SimpleJpaR
 				searchable.getPage(),
 				total
 				);
+	}
+
+	@Override
+	public List<M> findAllList(Searchable searchable) {
+		return repositoryHelper.findAll(findAllQL, searchable, searchCallback);
+	}
+
+	@Override
+	public M findOne(Searchable searchable) {
+		return repositoryHelper.findOne(findAllQL, searchable, searchCallback);
 	}
 
 

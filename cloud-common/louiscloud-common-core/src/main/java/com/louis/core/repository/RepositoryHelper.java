@@ -3,6 +3,7 @@ package com.louis.core.repository;
 
 import com.louis.core.repository.callback.SearchCallback;
 import com.louis.core.search.Searchable;
+import com.louis.exception.BaseException;
 import org.springframework.core.annotation.AnnotationUtils;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -136,8 +137,10 @@ public class RepositoryHelper {
 		query.setMaxResults(1);
 		List<M> result = query.getResultList();
 
-		if (result.size() > 0) {
+		if (result.size() ==1) {
 			return result.get(0);
+		} else if (result.size() > 1) {
+			throw new BaseException("查找到多个实体");
 		}
 		return null;
 	}

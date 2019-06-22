@@ -1,7 +1,7 @@
 package com.louis.search;
 
 import com.louis.es.BaseESRepository;
-import com.louis.search.entity.ProductDocument;
+import com.louis.es.entity.ProductDocument;
 import org.springframework.stereotype.Component;
 
 /**

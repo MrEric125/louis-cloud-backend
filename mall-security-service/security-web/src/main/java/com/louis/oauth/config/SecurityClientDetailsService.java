@@ -27,7 +27,8 @@ public class SecurityClientDetailsService implements ClientDetailsService {
 
     @Override
     public ClientDetails loadClientByClientId(String clientId) throws ClientRegistrationException {
-        return clientDetailsRepository.loadClientByClientId(clientId);
+//        return clientDetailsRepository.loadClientByClientId(clientId);
+        return null;
     }
 
     /**
@@ -43,7 +44,8 @@ public class SecurityClientDetailsService implements ClientDetailsService {
     }
 
     public void changeRedirectUrl(String clientId, String newRedirectUrl) {
-        clientDetailsRepository.changeRedirectRul(clientId, newRedirectUrl);
+//        clientDetailsRepository.changeRedirectRul(clientId, newRedirectUrl);
+
     }
 
 

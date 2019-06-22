@@ -3,7 +3,6 @@ package com.louis.es;
 import com.louis.common.api.wrapper.Wrapper;
 import com.louis.common.web.web.BaseController;
 import com.louis.core.search.Searchable;
-import com.louis.search.entity.ProductDocument;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;

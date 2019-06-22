@@ -2,7 +2,7 @@ package com.louis.search.service;
 
 import com.louis.es.BaseESService;
 import com.louis.search.ProductESRepository;
-import com.louis.search.entity.ProductDocument;
+import com.louis.es.entity.ProductDocument;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

@@ -44,3 +44,5 @@ oauth2默认有两个授权服务器端点
 @EnableResourceServer 启用资源服务器  如果启用之后，那么oauth 就会保护你所在的系统除非有token
 @EnableAuthorizationServer 启用授权服务器 
 在我的系统中 不论是order-server,还是products-server都是资源服务器，security-servier是授权认证服务器
+
+https://github.com/newnil/oauth2-family-barrel  仅仅只有spring security oauth2

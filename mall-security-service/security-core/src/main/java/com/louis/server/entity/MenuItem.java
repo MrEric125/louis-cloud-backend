@@ -14,6 +14,7 @@ import javax.persistence.Table;
  * <p>
  * Date: 2019/6/4
  * Description:
+ * 首页菜单列表
  */
 @Setter
 @Getter
@@ -22,15 +23,57 @@ import javax.persistence.Table;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class MenuItem extends TreeEntity<Long> {
 
+    public static final int DISABLE = 0;
+    public static final int CANUSE = 0;
+
+
+
+    private static final long serialVersionUID = 3382613089219814040L;
+
+
+    /**
+     * 菜单编码
+     */
+    @Column(name = "menu_code")
+    private String menuCode;
 
     @Column(name = "menu_name")
     private String menuName;
 
     /**
-     * 只有按钮才有url
+     * 状态,1为可用，0位禁用
      */
-    @Column(name = "url")
+    private int status;
+
+    /**
+     * 菜单URL
+     */
     private String url;
+
+    /**
+     * 图标
+     */
+    private String icon;
+
+    /**
+     * 序号
+     */
+    private Integer number;
+
+    /**
+     * 备注
+     */
+    private String remark;
+    /**
+     * 系统ID
+     */
+    @Column(name = "application_id")
+    private Long applicationId;
+
+
+
+
+
 
 
 }

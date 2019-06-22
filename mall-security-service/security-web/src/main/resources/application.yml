@@ -2,7 +2,7 @@ server:
   port: 9881
 spring:
   application:
-    name: oauth-service-A
+    name: security-service-A
   jpa:
     database: MYSQL
     show-sql: true
@@ -24,4 +24,4 @@ eureka:
         http://localhost:8761/eureka/
 logging:
   level:
-    com.louis.security: ALL
+    com.louis.security: INFO

@@ -6,3 +6,40 @@
 
 2. UserDetailsService 和ClientDetailsService的关系和区别
 
+3. 搞清楚系统中这几个类的逻辑关系，以及功能
+
+
+好几个endpoint的功能合作用
+
+AuthorizationServerConfigurerAdapter
+ 
+ResourceServerConfigurerAdapter
+
+WebSecurityConfigurerAdapter
+
+AuthenticationSuccessHandler
+
+AuthenticationFailureHandler
+
+AuthenticationManager
+
+
+TokenEnhancer
+
+TokenStore
+
+GrantedAuthority
+
+关于Spring Security Oauth2的知识点都在这里：
+spring security 中提供了两大和型功能:认证和授权，主要在安全过滤器调用链中发挥对应的安全控制功能
+Spring security Oauth2 中划分了授权服务器，和资源服务器，授权服务器为获得用户授权的第三方客户端颁发访问令牌，资源服务器保护受限制的资源，
+允许携带访问令牌的请求访问资源
+
+核心功能：
+SecurityContext:绑定了当前请求的认证信息Authentication,提供了当前用户的认证信息以及角色权限等内容
+通过ThreadLocal保存Authentication信息
+SecurityContextHolder: SecurityContext的持有者，通过不同的策略与SecurityContext绑定
+SecurityContextHolderStrategy：SecurityContextHolder所持有的策略，根据不同需求，有不同的实现方式
+AuthenticationManager:供认证的主接口
+Principal:代表一个认证的请求是已经被认证过的用户
+

@@ -1,15 +1,14 @@
 package com.louis.order.web.controller;
 
 
+import com.louis.common.web.web.WebCRUDController;
 import com.louis.core.response.ResponseData;
-import com.louis.common.web.web.CRUDController;
 import com.louis.order.api.dto.OmsOrderDto;
 import com.louis.order.service.OmsOrderService;
 import com.louis.order.entity.OmsOrder;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,7 +22,7 @@ import org.springframework.web.bind.annotation.*;
 @Api(tags = "orderController",description = "订单服务相关操作")
 @RestController
 @Slf4j
-public class OrderController extends CRUDController<OmsOrder, OmsOrderDto,Long > {
+public class OrderController extends WebCRUDController<OmsOrder, OmsOrderDto,Long > {
 
 
     private final OmsOrderService orderService;
@@ -49,18 +48,6 @@ public class OrderController extends CRUDController<OmsOrder, OmsOrderDto,Long >
     }
 
 
-    @Override
-    protected OmsOrder dtoToEntity(OmsOrderDto d) {
-        OmsOrder omsCart = new OmsOrder();
-        BeanUtils.copyProperties(d, omsCart);
-        return omsCart;
-    }
 
-    @Override
-    protected OmsOrderDto entityToDto(OmsOrder entity) {
-        OmsOrderDto dto = new OmsOrderDto();
-        BeanUtils.copyProperties(entity,dto);
-        return dto;
-    }
 
 }

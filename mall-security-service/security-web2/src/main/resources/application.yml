@@ -2,7 +2,7 @@ server:
   port: 9880
 spring:
   application:
-    name: @pom.artifactId@
+    name: security-service-B
   jpa:
     database: MYSQL
     show-sql: true

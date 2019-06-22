@@ -8,7 +8,7 @@
         <module>security-core</module>
         <module>security-web</module>
         <module>security-web2</module>
-        <module>security-oauth2-test</module>
+        <module>security-web3</module>
     </modules>
     <parent>
         <artifactId>cloud-mall-project</artifactId>

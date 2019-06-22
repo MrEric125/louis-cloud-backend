@@ -57,7 +57,7 @@ public class SecurityUserDetailServiceImpl implements UserDetailsService {
             if (log.isInfoEnabled()) {
                 log.info("load user by user :username:{},userId{},", user.getUsername(), user.getId());
             }
-            List<UserRole> userRoles = userRoleService.getRoleByUser(user);
+            List<UserRole> userRoles = userRoleService.findByUserId(user.getId());
             List<GrantedAuthority> authorities = userRoles.stream()
                     .map(authority -> new SimpleGrantedAuthority(
                             authority.authority()
