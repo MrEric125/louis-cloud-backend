@@ -1,5 +1,6 @@
 package com.louis;
 
+import com.google.common.collect.Lists;
 import com.netflix.hystrix.HystrixCommand;
 import com.netflix.hystrix.HystrixCommandGroupKey;
 import org.junit.Assert;
@@ -8,7 +9,8 @@ import rx.Observable;
 import rx.Observer;
 import rx.functions.Action1;
 
-import java.util.concurrent.Future;
+import java.util.List;
+import java.util.concurrent.*;
 
 import static org.junit.Assert.assertEquals;
 
@@ -98,5 +100,17 @@ public class HystrixHelloWorld extends HystrixCommand<String > {
                 System.out.println("onCall: " + v);
             });
         }
+    }
+
+    public void tetttt() {
+        Executor executor = Executors.newSingleThreadExecutor();
+
+        CompletionService service = new ExecutorCompletionService(executor);
+        List<String> strings = Lists.newArrayList();
+
+        for (String string : strings) {
+            Future submit = service.submit(() -> "zhangsan");
+        }
+
     }
 }

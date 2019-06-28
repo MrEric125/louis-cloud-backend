@@ -18,8 +18,8 @@ spring:
         git:
           uri: https://gitee.com/Tangdes/spring-cloud-project
           search-paths: config-repository
-          username:
-          password:
+          username: 627460581@qq.com
+          password: wzc5254tay...
   profiles:
     active: dev
 logging:
