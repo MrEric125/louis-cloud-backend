@@ -16,8 +16,13 @@ spring:
     config:
       server:
         git:
-          uri: https://github.com/MrEric125/springcloud
+          uri: https://gitee.com/Tangdes/spring-cloud-project
           search-paths: config-repository
           username:
           password:
+  profiles:
+    active: dev
+logging:
+  level:
+    com.*: DEBUG
 
