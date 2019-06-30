@@ -12,9 +12,9 @@ import com.louis.server.entity.SysRole;
 import com.louis.server.entity.SysUser;
 import com.louis.oauth.model.UserContext;
 import com.louis.server.entity.UserRole;
-import com.louis.server.service.SysRoleService;
 import com.louis.server.service.SysUserService;
 import com.louis.server.service.UserRoleService;
+import com.louis.server.service.impl.SysRoleService;
 import com.louis.security.token.RawAccessToken;
 import com.louis.security.token.RefreshToken;
 import com.louis.security.token.Token;
@@ -39,7 +39,7 @@ import java.util.stream.Collectors;
  * @author Eric
  * @date create in 2019/4/14
  */
-@RestController
+@RestController("web-userController" )
 public class UserController {
 
     private final TokenProperties tokenProperties;

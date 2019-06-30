@@ -1,5 +1,7 @@
 package com.louis.server.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.louis.core.repository.EnableQueryCache;
 import com.louis.core.entity.BaseEntity;
@@ -61,6 +63,7 @@ public class SysUser extends BaseEntity<Long> implements LogicDeleteable,Compara
     /**
      * 通过MD5加密(username+original password+salt)加密存储
      */
+    @JsonIgnore
     @Length(min = PASSWORD_MIN_LENGTH, max = PASSWORD_MAX_LENGTH, message = "{user.password.not.valid}")
     private String password;
 
@@ -71,6 +74,7 @@ public class SysUser extends BaseEntity<Long> implements LogicDeleteable,Compara
 
     @Column(name = "registry_date")
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",timezone ="GMT+8" )
     @Temporal(TemporalType.TIMESTAMP)
     private Date registryDate;
 

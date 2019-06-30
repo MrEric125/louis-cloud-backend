@@ -1,56 +1,29 @@
 package com.louis.server.service;
 
-import com.louis.core.utils.Md5Utils;
+import com.louis.common.api.dto.LoginAuthDto;
+import com.louis.oauth.dto.ModifyPswDto;
 import com.louis.server.entity.SysUser;
-import com.louis.exception.UserException;
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.stereotype.Service;
 
 /**
- * @author Eric
- * @date create in 2019/5/19
+ * @author John·Louis
+ * @date create in 2019/6/29
+ * description:
  */
-@Service
-@Slf4j
-public class PasswordService {
-
-
-
-
-
-
-    public void validate(SysUser user, String password) {
-
-        String username = user.getUsername();
-        if (!matches(user, password)) {
-            log.error(username,"passwordError","password error! password: {}", password);
-            throw new UserException("user.password.not.match", null);
-        }
-    }
+public interface PasswordService  {
 
     /**
-     * 验证输入密码和用户密码是否一致
-     * @param user
-     * @param newPassword
+     * 生成新的密文
+     * @param modifyPswDto
+     * @param loginAuthDto
      * @return
      */
-    public boolean matches(SysUser user, String newPassword) {
-        return user.getPassword().equals(encryptPassword(user.getUsername(), newPassword, user.getSalt()));
-    }
+     String  modifyPsw(ModifyPswDto modifyPswDto, LoginAuthDto loginAuthDto,String salt);
 
+     boolean matches(SysUser user, String newPassword);
 
-    /**
-     * 加密密码
-     * @param username
-     * @param password
-     * @param salt
-     * @return
-     */
-    String  encryptPassword(String username, String password, String salt) {
-        String encode = new BCryptPasswordEncoder().encode(password);
-//        String hash = Md5Utils.hash(username + password + salt);
-        return encode;
-    }
+     void validate(SysUser user, String password);
+
+    String  encryptPassword(String username, String password, String salt);
+
 
 }

@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 @SpringCloudClient
 @RestController
 @EnableJpaRepositories(repositoryBaseClass = SimpleBaseRepository.class)
-public class ProductServiceWebApplication {
+public class                     ProductServiceWebApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(ProductServiceWebApplication.class, args);

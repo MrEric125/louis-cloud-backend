@@ -1,4 +1,4 @@
-package com.louis.server.service;
+package com.louis.server.service.impl;
 
 import com.louis.core.service.WebCRUDService;
 import com.louis.oauth.dto.RoleDto;

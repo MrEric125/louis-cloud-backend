@@ -8,7 +8,7 @@ import com.louis.security.token.AccessToken;
 import com.louis.security.token.Token;
 import com.louis.security.token.TokenFactory;
 import com.louis.security.utils.IpUtils;
-import com.louis.server.service.LoginLogService;
+import com.louis.server.service.impl.LoginLogService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;

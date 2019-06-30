@@ -3,6 +3,7 @@ package com.louis;
 import com.louis.common.web.web.anontation.SpringCloudClient;
 import com.louis.core.repository.SimpleBaseRepository;
 import org.springframework.boot.SpringApplication;
+import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.oauth2.provider.OAuth2Authentication;
@@ -28,6 +29,12 @@ public class SecurityWebApplication3 {
         userInfo.put("user", user.getUserAuthentication().getPrincipal());
         userInfo.put("authorities", AuthorityUtils.authorityListToSet(user.getUserAuthentication().getAuthorities()));
         return userInfo;
+    }
+
+    public ReloadableResourceBundleMessageSource messageSource(){
+        ReloadableResourceBundleMessageSource messageSource = new ReloadableResourceBundleMessageSource();
+        messageSource.setBasename("org/security/message_zh");
+        return messageSource;
     }
 
     public static void main(String[] args) {
