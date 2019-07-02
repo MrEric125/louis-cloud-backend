@@ -77,13 +77,20 @@ public abstract class CRUDService <T extends BaseEntity,ID extends Serializable>
         return baseRepository.findAll(searchable);
     }
 
+    public List<T> findAllList(Searchable searchable) {
+        return baseRepository.findAllList(searchable);
+    }
+
+    public T findOne(Searchable searchable) {
+        return baseRepository.findOne(searchable);
+    }
+
     /**
      * 排序条件查询
      * @param sort 排序条件
      * @return List<T> 返回集合
      */
     public List<T> findAll(Sort sort) {
-
         return baseRepository.findAll(sort);
     }
 
@@ -130,9 +137,9 @@ public abstract class CRUDService <T extends BaseEntity,ID extends Serializable>
      * 删除集合Id
      * @param ids 实体ids
      */
-    /*public void delete(List<ID> ids) {
+    public void delete(List<ID> ids) {
         baseRepository.delete(ids);
-    }*/
+    }
 
     /**
      * 删除所有

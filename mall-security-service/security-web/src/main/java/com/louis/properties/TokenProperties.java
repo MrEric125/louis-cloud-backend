@@ -14,10 +14,10 @@ public class TokenProperties {
     /**
      * 发行人
      */
-    private String issuer;
+    private String issuer="issuer";
 
 
-    private String signingKey;
+    private String signingKey="singingKey";
 
 
     private Integer refreshExpTime=10;

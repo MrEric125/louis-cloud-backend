@@ -88,7 +88,7 @@ public class UserController {
 
         String subject = refreshToken.getSubject();
         SysUser user = Optional.ofNullable(userService.findByUserName(subject)).orElseThrow(() -> new UsernameNotFoundException("用户未找到: " + subject));
-        List<UserRole> roles = Optional.ofNullable(userRoleService.getRoleByUser(user)).orElseThrow(() -> new InsufficientAuthenticationException("用户没有分配角色"));
+        List<UserRole> roles = Optional.ofNullable(userRoleService.findByUserId(user.getId())).orElseThrow(() -> new InsufficientAuthenticationException("用户没有分配角色"));
         List<GrantedAuthority> authorities = roles.stream()
                 .map(authority -> new SimpleGrantedAuthority(authority.authority()))
                 .collect(Collectors.toList());

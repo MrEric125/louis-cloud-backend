@@ -10,6 +10,7 @@ import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.louis.common.api.dto.LoginAuthDto;
 import com.louis.core.constant.SecurityConstan;
+import com.louis.core.search.Searchable;
 import com.louis.core.service.CRUDService;
 import com.louis.core.utils.PublicUtil;
 import com.louis.oauth.dto.TokenDto;
@@ -56,12 +57,14 @@ public class UserTokenService extends CRUDService<UserToken,Long> {
     SysUserService sysUserService;
 
     @Autowired
-    RedisTemplate<String, TokenDto> redisTemplate;
-
-
-    @Autowired
     private SecurityProperties securityProperties;
 
+
+    /**
+     * 保存用户token
+     * @param token
+     * @param loginAuthDto
+     */
     public void saveUserToken(OAuth2AccessToken token,  LoginAuthDto loginAuthDto) {
         OAuth2ClientProperties[] clients = securityProperties.getOauth2().getClients();
         int accessTokenValidateSeconds = clients[0].getAccessTokenValidateSeconds();
@@ -81,6 +84,14 @@ public class UserTokenService extends CRUDService<UserToken,Long> {
 
     }
 
+    /**
+     * 刷新token
+     * @param accessToken
+     * @param refreshToken
+     * @param request
+     * @return
+     * @throws HttpProcessException
+     */
     public String refreshToken(String accessToken, String refreshToken, HttpServletRequest request) throws HttpProcessException {
         String token;
         Map<String, Object> map = new HashMap<>(2);
@@ -101,15 +112,19 @@ public class UserTokenService extends CRUDService<UserToken,Long> {
         SysUser uacUser = sysUserService.findByUserName(username);
 
         LoginAuthDto loginAuthDto = new LoginAuthDto(uacUser.getId(), uacUser.getUsername(), uacUser.getRealName(), uacUser.getGroupId(), uacUser.getGroupName());
-        this.updateUacUserToken(tokenDto, loginAuthDto);
+        this.updateUserToken(tokenDto, loginAuthDto);
         // 创建刷新token
         this.saveUserToken(null,  loginAuthDto);
         return token;
     }
 
 
-
-    public void updateUacUserToken(TokenDto tokenDto, LoginAuthDto loginAuthDto) {
+    /**
+     * 更新token
+     * @param tokenDto
+     * @param loginAuthDto
+     */
+    public void updateUserToken(TokenDto tokenDto, LoginAuthDto loginAuthDto) {
         UserToken token = new ModelMapper().map(tokenDto, UserToken.class);
 //        token.setUpdateInfo(loginAuthDto);
         userTokenRepository.save(token);
@@ -117,18 +132,24 @@ public class UserTokenService extends CRUDService<UserToken,Long> {
         int accessTokenValidateSeconds = clients[0].getAccessTokenValidateSeconds();
 //        updateRedisUserToken(uacUserToken.getAccessToken(), accessTokenValidateSeconds, tokenDto);
     }
-    public TokenDto getByAccessToken(String accessToken) {
-        TokenDto userTokenDto = (TokenDto) redisTemplate.opsForValue().get(accessToken);
-        if (userTokenDto == null) {
-            UserToken userToken = new UserToken();
-            userToken.setAccessToken(accessToken);
-            userToken = userTokenRepository.findByAccessToken(accessToken);
-            userTokenDto = new ModelMapper().map(userToken, TokenDto.class);
 
-        }
+    /**
+     * 获取accessToken
+     * @param accessToken
+     * @return
+     */
+    public TokenDto getByAccessToken(String accessToken) {
+
+            UserToken userToken = userTokenRepository.findByAccessToken(accessToken);
+            TokenDto  userTokenDto = new ModelMapper().map(userToken, TokenDto.class);
+
         return userTokenDto;
     }
 
+    /**
+     * 批量离线token
+     * @return
+     */
     public int batchUpdateTokenOffLine() {
 //        List<Long> idList = userTokenRepository.ListoffLine();
         List<Long> idList = Lists.newArrayList();

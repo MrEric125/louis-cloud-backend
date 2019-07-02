@@ -21,6 +21,8 @@ public interface UserTokenRepository extends BaseRepository<UserToken, Long> {
     UserToken findByAccessToken(String accessToken);
 
 
+
+
 //    @Query(nativeQuery = true,name = "select id from sys_user_token where `status`=20")
 //    List<Long> ListoffLine();
 

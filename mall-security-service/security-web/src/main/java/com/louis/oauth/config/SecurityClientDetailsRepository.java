@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface SecurityClientDetailsRepository extends BaseRepository<SecurityClientDetails,String> {
 
-    SecurityClientDetails loadClientByClientId(String client);
-
-    void changeRedirectRul(String clientId, String newRedirectUri);
+//    SecurityClientDetails loadClientByClientId(String client);
+//
+//    void changeRedirectRul(String clientId, String newRedirectUri);
 }

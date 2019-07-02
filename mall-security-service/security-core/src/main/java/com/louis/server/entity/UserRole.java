@@ -36,9 +36,7 @@ public class UserRole extends BaseEntity<Long> {
 
     private String description;
 
-    public UserRole(String roleName) {
-        this.roleName = roleName;
-    }
+
 
     public String authority() {
         return this.getRoleName();

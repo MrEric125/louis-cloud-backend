@@ -3,8 +3,8 @@ package com.louis.comment.web;
 import com.louis.comment.dto.OrderCommentDto;
 import com.louis.comment.entity.OrderComment;
 import com.louis.comment.service.OrderCommentService;
+import com.louis.common.web.web.WebCRUDController;
 import com.louis.core.response.ResponseData;
-import com.louis.common.web.web.CRUDController;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequestMapping("/comment")
-public class OrderCommentController extends CRUDController<OrderComment,OrderCommentDto, Long> {
+public class OrderCommentController extends WebCRUDController<OrderComment,OrderCommentDto, Long> {
     @Autowired
     private OrderCommentService orderCommentService;
 
@@ -33,13 +33,5 @@ public class OrderCommentController extends CRUDController<OrderComment,OrderCom
     }
 
 
-    @Override
-    protected OrderComment dtoToEntity(OrderCommentDto d) {
-        return null;
-    }
 
-    @Override
-    protected OrderCommentDto entityToDto(OrderComment dto) {
-        return null;
-    }
 }

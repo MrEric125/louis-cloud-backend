@@ -26,7 +26,7 @@ public class SysPermission extends BaseEntity<Long> {
 
 
     @Column(name = "parent_id")
-    private String parentId;
+    private long parentId;
 
     @Column(name = "name")
     private String name;

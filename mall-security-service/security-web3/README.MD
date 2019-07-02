@@ -1,0 +1,7 @@
+springSecurityFilterChain   默认实现类是DelegatingFilterProxy
+UsernamePasswordAuthenticationFilter:: 用户校验
+BasicAuthenticationFilter::基于HttpBasic方式校验
+ExceptionTransactionFilter： 异常导向过滤器
+FilterSecurityIntercepter:  总拦截器（登陆成功的话，或者校验失败的话）
+关键字
+Java 第三方授权

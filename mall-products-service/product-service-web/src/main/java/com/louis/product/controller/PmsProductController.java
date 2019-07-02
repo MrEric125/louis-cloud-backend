@@ -3,9 +3,8 @@ package com.louis.product.controller;
 import com.louis.common.api.wrapper.WrapMapper;
 import com.louis.common.api.wrapper.Wrapper;
 import com.louis.common.api.wrapper.WrapperMassage;
-import com.louis.common.web.web.CRUDController;
 
-import com.louis.common.web.web.bind.annotation.SearchableDefaults;
+import com.louis.common.web.web.WebCRUDController;
 import com.louis.core.search.SearchOperator;
 import com.louis.core.search.Searchable;
 import com.louis.product.api.dto.PmsProductDto;
@@ -16,7 +15,6 @@ import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -33,7 +31,7 @@ import java.util.Optional;
 @RequestMapping(value = "/product",produces = "applicaton/json")
 @Slf4j
 @ResponseBody
-public class PmsProductController extends CRUDController<PmsProduct,PmsProductDto,Long> {
+public class PmsProductController extends WebCRUDController<PmsProduct,PmsProductDto,Long> {
 
     private final PmsProductService productService;
 
@@ -93,17 +91,5 @@ public class PmsProductController extends CRUDController<PmsProduct,PmsProductDt
         return WrapMapper.wrap(WrapperMassage.SUCCESS_CODE);
     }
 
-    @Override
-    protected PmsProduct dtoToEntity(PmsProductDto d) {
-        PmsProduct product = new PmsProduct();
-        BeanUtils.copyProperties(d, product);
-        return product;
-    }
 
-    @Override
-    protected PmsProductDto entityToDto(PmsProduct entity) {
-        PmsProductDto dto = new PmsProductDto();
-        BeanUtils.copyProperties(entity, dto);
-        return dto;
-    }
 }

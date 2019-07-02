@@ -1,10 +1,15 @@
 package com.louis.order.service;
 
 
+import com.louis.common.api.dto.BaseDto;
+import com.louis.core.entity.BaseEntity;
 import com.louis.core.service.CRUDService;
+import com.louis.core.service.WebCRUDService;
+import com.louis.order.api.dto.OmsOrderDto;
 import com.louis.order.entity.OmsOrder;
 import com.louis.order.repository.OmsOrderRepository;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -17,7 +22,7 @@ import java.util.List;
  */
 @Service
 @Slf4j
-public class OmsOrderService extends CRUDService<OmsOrder,Long> {
+public class OmsOrderService extends WebCRUDService<OmsOrder, OmsOrderDto,Long> {
 
 
 
@@ -31,5 +36,20 @@ public class OmsOrderService extends CRUDService<OmsOrder,Long> {
 
         return getRepository().findAllByUserId(userId);
 
+    }
+
+
+    @Override
+    public OmsOrder dtoToEntity(OmsOrderDto dto) {
+        OmsOrder order = new OmsOrder();
+        BeanUtils.copyProperties(dto, order);
+        return order;
+    }
+
+    @Override
+    public OmsOrderDto entityToDto(OmsOrder omsOrder) {
+        OmsOrderDto dto = new OmsOrderDto();
+        BeanUtils.copyProperties(omsOrder, dto);
+        return dto;
     }
 }
