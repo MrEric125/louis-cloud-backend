@@ -1,0 +1,24 @@
+server:
+  port: 9871
+
+spring:
+  jpa:
+    database: MYSQL
+    show-sql: true
+    hibernate:
+      ddl-auto: create
+    open-in-view: true
+    generate-ddl: true
+    database-platform:
+  datasource:
+    platform: MYSQL
+    url: jdbc:mysql://localhost:3306/spring_cloud?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=UTC
+    username: root
+    password: Root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  #    The bean 'louis-order-web.FeignClientSpecification', defined in null, could not be registered.
+  main:
+    allow-bean-definition-overriding: true
+  devtools:
+    restart:
+      enabled: true

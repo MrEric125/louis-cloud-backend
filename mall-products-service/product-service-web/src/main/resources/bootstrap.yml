@@ -1,3 +1,11 @@
 spring:
   profiles:
     active: dev
+  application:
+    name: product-server-A
+
+  #配置配置中心
+  cloud:
+    config:
+      profile: dev
+      uri: http://localhost:8888
