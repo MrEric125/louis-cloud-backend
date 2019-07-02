@@ -7,3 +7,6 @@ spring:
       uri: http://localhost:9999/
   application:
     name: db-config-service
+
+encrypt:
+  key: louis

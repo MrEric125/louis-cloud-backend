@@ -16,13 +16,14 @@ spring:
     config:
       server:
         git:
-          uri: https://gitee.com/Tangdes/spring-cloud-project
-          search-paths: config-repository
+          uri: https://gitee.com/Eric125/config-rep
+          search-paths: /*
           username: 627460581@qq.com
           password: wzc5254tay...
   profiles:
     active: dev
 logging:
   level:
-    com.*: DEBUG
+    org.springframework: DEBUG
+    com: DEBUG
 
