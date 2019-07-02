@@ -1,3 +1,10 @@
+
+#配置配置中心
+spring:
+  cloud:
+    config:
+      profile: dev
+      uri: http://localhost:8888
 zuul:
   host:
     connect-timeout-millis: 20000

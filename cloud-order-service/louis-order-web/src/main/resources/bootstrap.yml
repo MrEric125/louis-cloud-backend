@@ -4,6 +4,12 @@ spring:
   application:
     name: order-server-A
 
+#配置配置中心
+  cloud:
+    config:
+      profile: dev
+      uri: http://localhost:8888
+
 eureka:
   instance:
     prefer-ip-address: true
