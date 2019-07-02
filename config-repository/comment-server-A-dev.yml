@@ -1,4 +1,4 @@
-
+# comment config repository
 eureka:
   instance:
     prefer-ip-address: true
@@ -7,26 +7,21 @@ eureka:
     fetch-registry: true
     service-url:
       defaultZone: http://localhost:8761/eureka/
-server:
-  port: 9874
-spring:
 
+
+server:
+  port: 9872
+spring:
+  application:
+    name: comment-server-A
   jpa:
     database: MYSQL
     show-sql: true
-    generate-ddl: true
     hibernate:
       ddl-auto: update
-    properties:
-      hibernate:
-        dialect:
-          storage_engine: innodb
   datasource:
     platform: MYSQL
     url: jdbc:mysql://localhost:3306/spring_cloud?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=UTC
     username: root
     password: Root
     driver-class-name: com.mysql.cj.jdbc.Driver
-logging:
-  level:
-    org.springframework.security:  DEBUG

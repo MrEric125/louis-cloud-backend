@@ -1,4 +1,4 @@
-
+# product service config
 eureka:
   instance:
     prefer-ip-address: true
@@ -10,7 +10,8 @@ eureka:
 server:
   port: 9874
 spring:
-
+  application:
+    name: product-service-A
   jpa:
     database: MYSQL
     show-sql: true
@@ -27,6 +28,4 @@ spring:
     username: root
     password: Root
     driver-class-name: com.mysql.cj.jdbc.Driver
-logging:
-  level:
-    org.springframework.security:  DEBUG
+

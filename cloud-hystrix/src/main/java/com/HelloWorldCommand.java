@@ -45,12 +45,12 @@ public class HelloWorldCommand extends HystrixCommand<String> {
         System.out.println("result=" + result);
         System.out.println("mainThread=" + Thread.currentThread().getName());
 
-        String execute = helloWorldCommand.execute();
-
-        Observable<String> observe = helloWorldCommand.observe();
-
-        Observable<String> stringObservable = helloWorldCommand.toObservable();
-        Future<String> toFuture = stringObservable.toBlocking().toFuture();
+//        String execute = helloWorldCommand.execute();
+//
+//        Observable<String> observe = helloWorldCommand.observe();
+//
+//        Observable<String> stringObservable = helloWorldCommand.toObservable();
+//        Future<String> toFuture = stringObservable.toBlocking().toFuture();
 
     }
 }

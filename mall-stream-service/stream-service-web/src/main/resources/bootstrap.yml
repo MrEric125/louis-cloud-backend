@@ -1,0 +1,6 @@
+spring:
+  #配置配置中心
+  cloud:
+    config:
+      profile: dev
+      uri: http://localhost:8888
