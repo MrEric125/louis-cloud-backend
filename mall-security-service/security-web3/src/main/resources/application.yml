@@ -39,7 +39,9 @@ louis:
         clientSecret: louis-client-secret
         accessTokenValidateSeconds: 7200
         scope: "*"
-
+logging:
+  level:
+    org.springframework.security:  DEBUG
 
     code:
       image:

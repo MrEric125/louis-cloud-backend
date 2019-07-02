@@ -16,6 +16,7 @@
         <module>cloud-search-service</module>
         <module>cloud-config-service</module>
         <module>mall-stream-service</module>
+        <module>mall-security-demo</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -30,8 +31,14 @@
     <description>Demo project for Spring Boot</description>
 
     <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
         <spring-cloud.version>Greenwich.SR1</spring-cloud.version>
+
+        <boot.admin.version>2.1.5</boot.admin.version>
+        <lombok.version>1.18.6</lombok.version>
+        <guava.version>20.0</guava.version>
     </properties>
 
     <dependencies>
@@ -39,16 +46,6 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
-        </dependency>
-
-<!--        <dependency>-->
-<!--            <groupId>org.springframework.boot</groupId>-->
-<!--            <artifactId>spring-boot-devtools</artifactId>-->
-<!--        </dependency>-->
-
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
         </dependency>
 
 <!--访问方式http://服务:端口/项目名/monitoring-->
@@ -63,11 +60,12 @@
             <version>2.1.7</version>
         </dependency>
 
-
     </dependencies>
 
     <dependencyManagement>
         <dependencies>
+
+            <!--            spring cloud dependency began-->
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-dependencies</artifactId>
@@ -78,6 +76,62 @@
 
 
             <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-starter-feign</artifactId>
+                <version>1.4.0.RELEASE</version>
+            </dependency>
+
+            <!--            spring cloud dependency end-->
+            <!--            spring boot admin dependency began-->
+
+            <dependency>
+                <groupId>de.codecentric</groupId>
+                <artifactId>spring-boot-admin-server-ui-login</artifactId>
+                <version>${boot.admin.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>de.codecentric</groupId>
+                <artifactId>spring-boot-admin-server-ui-turbine</artifactId>
+                <version>${boot.admin.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>de.codecentric</groupId>
+                <artifactId>spring-boot-admin-server-ui-activiti</artifactId>
+                <version>${boot.admin.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>de.codecentric</groupId>
+                <artifactId>spring-boot-admin-server-ui-hystrix</artifactId>
+                <version>${boot.admin.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>de.codecentric</groupId>
+                <artifactId>spring-boot-admin-dependencies</artifactId>
+                <version>${boot.admin.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <!--            spring boot admin dependency end-->
+
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>${lombok.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.google.guava</groupId>
+                <artifactId>guava</artifactId>
+                <version>${guava.version}</version>
+            </dependency>
+
+            <!--            swagger dependency began-->
+            <dependency>
                 <groupId>io.springfox</groupId>
                 <artifactId>springfox-swagger2</artifactId>
                 <version>2.6.1</version>
@@ -87,7 +141,7 @@
                 <artifactId>springfox-swagger-ui</artifactId>
                 <version>2.6.1</version>
             </dependency>
-
+            <!--            swagger dependency end-->
         </dependencies>
 
     </dependencyManagement>
