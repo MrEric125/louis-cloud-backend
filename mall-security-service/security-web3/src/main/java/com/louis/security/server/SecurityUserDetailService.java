@@ -3,6 +3,7 @@ package com.louis.security.server;
 import com.louis.security.core.SecurityUser;
 import com.louis.server.entity.SysUser;
 import com.louis.server.service.SysUserService;
+import com.louis.server.service.UserRoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.core.GrantedAuthority;
@@ -28,15 +29,19 @@ public class SecurityUserDetailService implements UserDetailsService {
     @Autowired
     SysUserService sysUserService;
 
+    @Autowired
+    UserRoleService userRoleService;
+
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         Collection<GrantedAuthority> grantedAuthorities;
+
         SysUser user = sysUserService.findByUserName(username);
         if (user == null) {
             throw new BadCredentialsException("用户名不存在或者密码错误");
         }
 //        user = sysUserService.findUserInfoByUserId(user.getId());
-        grantedAuthorities = sysUserService.loadUserAuthorities(user.getId());
+        grantedAuthorities = userRoleService.loadUserAuthorities(user.getId());
         return new SecurityUser(user.getId(), user.getUsername(), user.getPassword(),
                 user.getRealName(), user.getGroupId(), user.getGroupName(), user.getStatus(), grantedAuthorities);
 

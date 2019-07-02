@@ -2,18 +2,10 @@ package com.louis.security;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.louis.common.api.wrapper.WrapMapper;
-import com.louis.common.web.web.utils.RequestUtil;
-import com.louis.security.core.SecurityUser;
 import com.louis.server.service.SysUserService;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.collections.MapUtils;
-import org.apache.commons.lang.StringUtils;
-import org.springframework.http.HttpHeaders;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.oauth2.common.OAuth2AccessToken;
-import org.springframework.security.oauth2.common.exceptions.UnapprovedClientAuthenticationException;
 import org.springframework.security.oauth2.provider.*;
-import org.springframework.security.oauth2.provider.token.AuthorizationServerTokenServices;
 import org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler;
 import org.springframework.stereotype.Component;
 

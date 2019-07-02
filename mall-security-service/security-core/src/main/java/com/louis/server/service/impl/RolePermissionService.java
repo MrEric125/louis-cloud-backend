@@ -1,4 +1,4 @@
-package com.louis.server.service;
+package com.louis.server.service.impl;
 
 import com.louis.core.search.SearchOperator;
 import com.louis.core.search.Searchable;
@@ -32,7 +32,7 @@ public class RolePermissionService extends WebCRUDService<RolePermission, RolePe
     SysRoleService sysRoleService;
 
     @Autowired
-    PermissionService permissionService;
+    PermissionServiceImpl permissionService;
 
     public List<RolePermission> findByRoleId(long roleId) {
         return rolePermissionRepository.findByRoleId(roleId);

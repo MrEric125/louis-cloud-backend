@@ -1,0 +1,9 @@
+spring:
+  security:
+    user:
+      name: admin
+      password: admin
+  boot:
+    admin:
+      ui:
+        title: 应用监控

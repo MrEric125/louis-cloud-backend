@@ -1,4 +1,4 @@
-package com.louis.server.service;
+package com.louis.server.service.impl;
 
 import com.louis.common.web.web.utils.RequestUtil;
 import com.louis.oauth.dto.ClientMessageDto;

@@ -16,10 +16,16 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+
+/**
+ *
+ */
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true,securedEnabled = true,jsr250Enabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
+
+    public static final String LOGINFORM = "/auth/form";
 
     @Autowired
     FailureHandler failureHandler;
@@ -75,26 +81,24 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
      * permitAll() 允许所有人访问
      */
     protected void configure(HttpSecurity http) throws Exception {
-        http.csrf().disable();
-
-        http.authorizeRequests()
-                .antMatchers(HttpMethod.POST, "**")
-                .hasRole("ADMIN").anyRequest().authenticated().and().httpBasic();
+//        http.csrf().disable();
+//        http.formLogin().loginPage(LOGINFORM).loginProcessingUrl(LOGINFORM).and()
+//                .authorizeRequests()
+//                .antMatchers(LOGINFORM)
+//                .permitAll().anyRequest().authenticated();
         http
-                .authorizeRequests()
-                .anyRequest().authenticated()
+                .exceptionHandling()
+                .accessDeniedPage("/login.html?authorization_error=true")
                 .and()
-                //需要新增一个login页面,前面就得放行login.html
+                .logout()
+                .permitAll()
+                .and()
                 .formLogin()
-//                .loginPage("login.html").failureUrl("/error")
-                .successHandler(successHandler)
-                .failureHandler(failureHandler)
+                .loginPage("/login.html")
+                .permitAll()
                 .and()
-                .httpBasic();
-        //自定义权限不足的页面
-//        access-denind-handler
-//        super.configure(http);
-//
-//    }
+                .authorizeRequests()
+                .anyRequest().authenticated();
+
     }
 }

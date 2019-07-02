@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
-import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.io.Serializable;
@@ -24,7 +23,7 @@ import java.util.List;
  */
 @Transactional
 @Slf4j
-public abstract class CRUDService <T extends BaseEntity,ID extends Serializable>{
+public abstract class CRUDService <T extends BaseEntity,ID extends Serializable> implements ICRUDService<T,ID>{
 
 
     protected BaseRepository<T, ID> baseRepository;

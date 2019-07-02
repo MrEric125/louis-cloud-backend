@@ -8,6 +8,7 @@ import com.louis.oauth.dto.UserRoleDto;
 import com.louis.server.entity.SysUser;
 import com.louis.server.service.UserRoleService;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -32,6 +33,7 @@ public class UserController extends WebCRUDController<SysUser, UserDto,Long> {
     @Autowired
     private UserRoleService userRoleService;
 
+    @ApiOperation("用户绑定角色")
     @PostMapping("/blindRole")
     public Wrapper blindRole(@RequestBody UserRoleDto dto) {
         log.info("绑定用户到角色");
