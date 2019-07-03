@@ -12,7 +12,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
  * <p>
  * 由于短信验证码的验证在过滤器里已完成，这里直接读取用户信息即可。
  *
- * @author paascloud.net @gmail.com
+ * @author John·Louis
  */
 public class SmsCodeAuthenticationProvider implements AuthenticationProvider {
 

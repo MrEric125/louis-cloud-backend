@@ -8,7 +8,7 @@ import org.springframework.social.security.SpringSocialConfigurer;
 /**
  * 继承默认的社交登录配置，加入自定义的后处理逻辑
  *
- * @author paascloud.net @gmail.com
+ * @author John·Louis
  */
 public class PcSpringSocialConfigurer extends SpringSocialConfigurer {
 

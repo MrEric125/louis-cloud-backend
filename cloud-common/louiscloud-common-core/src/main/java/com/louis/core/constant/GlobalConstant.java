@@ -115,7 +115,7 @@ public class GlobalConstant {
 	/**
 	 * The class Symbol.
 	 *
-	 * @author paascloud.net@gmail.com
+	 * @author John·Louis
 	 */
 	public static final class Symbol {
 		private Symbol() {
@@ -152,7 +152,7 @@ public class GlobalConstant {
 	/**
 	 * The class Oss.
 	 *
-	 * @author paascloud.net@gmail.com
+	 * @author John·Louis
 	 */
 	public static final class Oss {
 		private Oss() {
@@ -186,7 +186,7 @@ public class GlobalConstant {
 	/**
 	 * The enum Payment type enum.
 	 *
-	 * @author paascloud.net@gmail.com
+	 * @author John·Louis
 	 */
 	public enum PaymentTypeEnum {
 		/**

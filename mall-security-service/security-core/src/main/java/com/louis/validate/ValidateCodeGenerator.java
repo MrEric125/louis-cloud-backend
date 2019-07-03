@@ -5,7 +5,7 @@ import org.springframework.web.context.request.ServletWebRequest;
 /**
  * 校验码生成器
  *
- * @author paascloud.net @gmail.com
+ * @author John·Louis
  */
 public interface ValidateCodeGenerator {
 

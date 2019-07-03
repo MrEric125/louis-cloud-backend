@@ -9,7 +9,7 @@ import org.springframework.social.connect.Connection;
 /**
  * The class Social controller.
  *
- * @author paascloud.net@gmail.com
+ * @author John·Louis
  */
 public abstract class BaseSocialController {
 

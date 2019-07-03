@@ -7,7 +7,7 @@ import org.springframework.security.config.annotation.web.configurers.Expression
  * 授权信息管理器
  * 用于收集系统中所有 AuthorizeConfigProvider 并加载其配置
  *
- * @author paascloud.net @gmail.com
+ * @author John·Louis
  */
 public interface AuthorizeConfigManager {
 

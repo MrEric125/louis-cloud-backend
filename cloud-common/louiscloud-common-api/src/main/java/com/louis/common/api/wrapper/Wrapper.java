@@ -12,7 +12,7 @@ import java.io.Serializable;
 /**
  * The class Wrapper.
  * 返回到首页的包装类
- * @param <T> the type parameter @author paascloud.net@gmail.com
+ * @param <T> the type parameter @author John·Louis
  */
 @Data
 @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)

@@ -19,7 +19,7 @@ import java.io.IOException;
 /**
  * 自定义认证成功处理器.
  *
- * @author paascloud.net@gmail.com
+ * @author John·Louis
  */
 @Component("pcAuthenticationSuccessHandler")
 @Slf4j
