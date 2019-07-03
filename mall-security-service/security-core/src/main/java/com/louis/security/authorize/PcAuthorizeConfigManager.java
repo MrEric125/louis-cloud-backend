@@ -10,7 +10,7 @@ import java.util.List;
 /**
  * 默认的授权配置管理器
  *
- * @author paascloud.net @gmail.com
+ * @author John·Louis
  */
 @Component
 public class PcAuthorizeConfigManager implements AuthorizeConfigManager {

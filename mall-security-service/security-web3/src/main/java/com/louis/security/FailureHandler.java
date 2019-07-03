@@ -19,7 +19,7 @@ import java.io.IOException;
 /**
  * 自定义认证失败处理器
  *
- * @author paascloud.net @gmail.com
+ * @author John·Louis
  */
 @Component("failureHandler")
 public class FailureHandler extends SimpleUrlAuthenticationFailureHandler {

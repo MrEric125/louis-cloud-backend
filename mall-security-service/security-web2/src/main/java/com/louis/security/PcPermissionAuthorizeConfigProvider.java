@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 /**
  * The class Pc permission authorize config provider.
  *
- * @author paascloud.net @gmail.com
+ * @author John·Louis
  */
 @Order
 @Component

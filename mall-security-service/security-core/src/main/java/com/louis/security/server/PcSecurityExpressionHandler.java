@@ -13,7 +13,7 @@ import javax.sql.DataSource;
 /**
  * The class My o auth 2 web security expression handler.
  *
- * @author paascloud.net @gmail.com
+ * @author John·Louis
  */
 @Configuration
 public class PcSecurityExpressionHandler extends OAuth2WebSecurityExpressionHandler {

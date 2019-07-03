@@ -27,7 +27,7 @@ import java.io.IOException;
 /**
  * APP环境下认证成功处理器.
  *
- * @author paascloud.net@gmail.com
+ * @author John·Louis
  */
 @Component("pcAuthenticationSuccessHandler")
 @Slf4j

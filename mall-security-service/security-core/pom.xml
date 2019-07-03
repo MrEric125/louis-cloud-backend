@@ -10,17 +10,11 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <version>0.0.1-SNAPSHOT</version>
-    <properties>
-        <httpclientutil.version>1.0</httpclientutil.version>
-        <modelmapper.version>1.1.2</modelmapper.version>
-    </properties>
+
 
     <artifactId>security-core</artifactId>
 
     <dependencies>
-
-
-
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -37,19 +31,17 @@
         <dependency>
             <groupId>com.louis</groupId>
             <artifactId>louiscloud-common-web</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
         </dependency>
 
         <dependency>
             <groupId>io.jsonwebtoken</groupId>
             <artifactId>jjwt</artifactId>
-            <version>0.7.0</version>
+
         </dependency>
 
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>fastjson</artifactId>
-            <version>1.2.46</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -58,28 +50,23 @@
         <dependency>
             <groupId>com.arronlong.httpclientutil</groupId>
             <artifactId>httpclientutil</artifactId>
-            <version>${httpclientutil.version}</version>
         </dependency>
         <dependency>
             <groupId>org.modelmapper</groupId>
             <artifactId>modelmapper</artifactId>
-            <version>${modelmapper.version}</version>
         </dependency>
 
         <dependency>
             <groupId>org.springframework.social</groupId>
             <artifactId>spring-social-core</artifactId>
-            <version>1.1.6.RELEASE</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.social</groupId>
             <artifactId>spring-social-security</artifactId>
-            <version>1.1.6.RELEASE</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.social</groupId>
             <artifactId>spring-social-config</artifactId>
-            <version>1.1.6.RELEASE</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -88,12 +75,10 @@
         <dependency>
             <groupId>eu.bitwalker</groupId>
             <artifactId>UserAgentUtils</artifactId>
-            <version>1.20</version>
         </dependency>
         <dependency>
             <groupId>com.github.penggle</groupId>
             <artifactId>kaptcha</artifactId>
-            <version>2.3.2</version>
         </dependency>
 
 

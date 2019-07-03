@@ -7,7 +7,7 @@ import org.apache.commons.lang3.StringUtils;
 /**
  * The class Wrap mapper.
  *
- * @author paascloud.net@gmail.com
+ * @author John·Louis
  */
 public class WrapMapper {
 

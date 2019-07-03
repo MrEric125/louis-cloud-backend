@@ -5,7 +5,7 @@ import lombok.Data;
 /**
  * 社交登录配置项
  *
- * @author paascloud.net @gmail.com
+ * @author John·Louis
  */
 @Data
 public class SocialProperties {
