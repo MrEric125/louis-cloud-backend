@@ -29,7 +29,7 @@ public class HelloWorldCommand extends HystrixCommand<String> {
         return "Hello " + name +" thread:" + Thread.currentThread().getName();
     }
 
-    public static void main(String[] args) throws InterruptedException, ExecutionException, TimeoutException {
+    public  void  runTest(String[] args) throws InterruptedException, ExecutionException, TimeoutException {
         //每个Command对象只能调用一次,不可以重复调用,
         //重复调用对应异常信息:This instance can only be executed once. Please instantiate a new instance.
         HelloWorldCommand helloWorldCommand = new HelloWorldCommand("Synchronous-hystrix");

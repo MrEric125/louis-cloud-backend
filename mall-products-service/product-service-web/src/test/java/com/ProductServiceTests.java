@@ -16,21 +16,16 @@ import org.springframework.test.context.junit4.SpringRunner;
 @ContextConfiguration(classes = AppConfig.class)
 public class ProductServiceTests {
 
-    @Autowired
-    private ConferenceServiceImpl conferenceService;
 
     @Autowired
     AppConfig appConfig;
 
-    @Autowired
-    PersonAspect personAspect;
+
 
 
 
     @Test
     public void contextLoads() {
-
-        conferenceService.conference();
 
     }
 
