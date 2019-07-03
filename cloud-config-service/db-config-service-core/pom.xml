@@ -12,6 +12,14 @@
 
     <artifactId>db-config-service-core</artifactId>
 
+    <dependencies>
+        <dependency>
+            <groupId>com.louis</groupId>
+            <artifactId>louiscloud-common-web</artifactId>
+        </dependency>
+    </dependencies>
+
+
     <build>
         <plugins>
             <plugin>
