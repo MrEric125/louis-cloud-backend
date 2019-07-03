@@ -43,7 +43,7 @@ public class UacUserDetailsServiceImpl implements UserDetailsService {
 			throw new BadCredentialsException("用户名不存在或者密码错误");
 		}
 //		user = userService.findUserInfoByUserId(user.getId());
-		grantedAuthorities = userRoleService.loadUserAuthorities(user.getId());
+		grantedAuthorities = userService.loadUserAuthorities(user.getId());
 		return new SecurityUser(user.getId(), user.getUsername(), user.getPassword(),
 				user.getRealName(),null,null, user.getStatus(), grantedAuthorities);
 	}

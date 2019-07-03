@@ -8,19 +8,20 @@ import com.louis.security.extractor.TokenExtractor;
 import com.louis.common.ResponseCode;
 import com.louis.properties.TokenProperties;
 import com.louis.security.config.WebSecurityConfig;
-import com.louis.server.entity.SysRole;
 import com.louis.server.entity.SysUser;
 import com.louis.oauth.model.UserContext;
 import com.louis.server.entity.UserRole;
+import com.louis.server.service.PasswordService;
+import com.louis.server.service.SysRoleService;
 import com.louis.server.service.SysUserService;
 import com.louis.server.service.UserRoleService;
-import com.louis.server.service.impl.SysRoleService;
 import com.louis.security.token.RawAccessToken;
 import com.louis.security.token.RefreshToken;
 import com.louis.security.token.Token;
 import com.louis.security.token.TokenFactory;
 import com.louis.verifier.TokenVerifier;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.security.authentication.InsufficientAuthenticationException;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
@@ -40,6 +41,7 @@ import java.util.stream.Collectors;
  * @date create in 2019/4/14
  */
 @RestController("web-userController" )
+@RequestMapping(produces = MediaType.APPLICATION_JSON_VALUE)
 public class UserController {
 
     private final TokenProperties tokenProperties;
@@ -54,8 +56,6 @@ public class UserController {
 
     private final UserRoleService userRoleService;
 
-    @Autowired
-    private SysRoleService sysRoleService;
 
     @Autowired
     public UserController(TokenProperties tokenProperties, TokenVerifier tokenVerifier, TokenFactory tokenFactory, TokenExtractor tokenExtractor, SysUserService userService, UserRoleService userRoleService) {
@@ -104,24 +104,7 @@ public class UserController {
      */
     @RequestMapping(value = "/registryUser",method =RequestMethod.POST)
     public ResponseCode addUser(@RequestBody RegistryUserDto dto) {
-        SysUser user = new SysUser();
-
-        user.setUsername(dto.getUserName());
-        user.setPassword(dto.getPassword());
-        user.setEmail(dto.getEmail());
-        user.setPhone(dto.getPhone());
-        user.setRealName(dto.getRealName());
-        userService.save(user);
-        //默认的角色
-        SysRole defaultRole = sysRoleService.findByRoleName(SysRole.DEFAULT_ROLE);
-        UserRole userRole = UserRole
-                .builder()
-                .roleId(defaultRole.getId())
-                .roleName(defaultRole.getRoleName())
-                .userId(user.getId())
-                .description("defaultRole")
-                .build();
-        userRoleService.save(userRole);
+        SysUser user = userService.registryUser(dto);
         return new ResponseCode("success", "保存用户成功", new IdName<>(user.getId(), user.getUsername()));
 
     }
@@ -139,8 +122,6 @@ public class UserController {
                 .ofNullable(sysUser)
                 .map(sysUser1 -> new ResponseCode("success", new IdName<>(sysUser.getId(), sysUser.getUsername())))
                 .orElse(new ResponseCode("success", "您查找的用戶爲空"));
-
-
     }
 
 

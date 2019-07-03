@@ -41,7 +41,7 @@ public class SecurityUserDetailService implements UserDetailsService {
             throw new BadCredentialsException("用户名不存在或者密码错误");
         }
 //        user = sysUserService.findUserInfoByUserId(user.getId());
-        grantedAuthorities = userRoleService.loadUserAuthorities(user.getId());
+        grantedAuthorities = sysUserService.loadUserAuthorities(user.getId());
         return new SecurityUser(user.getId(), user.getUsername(), user.getPassword(),
                 user.getRealName(), user.getGroupId(), user.getGroupName(), user.getStatus(), grantedAuthorities);
 

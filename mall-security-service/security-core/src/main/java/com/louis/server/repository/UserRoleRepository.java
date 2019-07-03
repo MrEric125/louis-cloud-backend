@@ -13,7 +13,7 @@ import java.util.List;
 @Repository
 public interface UserRoleRepository extends BaseRepository<UserRole, Long> {
 
-    List<UserRole> findByUserId(long userId);
+    List<UserRole> findAllByUserId(long userId);
 
     UserRole findByUserIdAndRoleName(Long userId, String roleName);
 

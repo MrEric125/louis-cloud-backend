@@ -6,6 +6,7 @@ import com.louis.server.entity.SysRole;
 import com.louis.server.entity.SysUser;
 import com.louis.server.entity.UserRole;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.stereotype.Service;
 
 import java.util.Collection;
 import java.util.List;
@@ -15,6 +16,7 @@ import java.util.List;
  * @date create in 2019/6/29
  * description:
  */
+
 public interface UserRoleService extends ICRUDService<UserRole, Long> {
 
     List<UserRole> findByUserId(long userId);
@@ -25,8 +27,6 @@ public interface UserRoleService extends ICRUDService<UserRole, Long> {
 
     List<SysRole> getRoleByUser(long userId);
 
-    List<SysUser> getUserByRole(long roleId);
 
-    Collection<GrantedAuthority> loadUserAuthorities(long userId);
 
 }

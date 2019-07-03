@@ -14,8 +14,8 @@ import javax.validation.constraints.NotNull;
 @NoArgsConstructor
 @Builder
 @Entity
-@Table(name = "user_role")
-public class UserRole extends AbstractAuditable<Long> {
+@Table(name = "oauth_user_role")
+public class OauthUserRole extends AbstractAuditable<Long> {
 
     private static final long serialVersionUID = 8960438784916678172L;
     @NonNull

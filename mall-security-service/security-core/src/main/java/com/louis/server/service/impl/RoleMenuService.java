@@ -5,6 +5,7 @@ import com.louis.oauth.dto.MenuItemDto;
 import com.louis.oauth.dto.RoleMenuDto;
 import com.louis.server.entity.RoleMenu;
 import com.louis.server.repository.RoleMenuRepository;
+import com.louis.server.service.SysRoleService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

@@ -27,6 +27,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     public static final String LOGINFORM = "/auth/form";
 
+    public static final String ERROR = "/error";
+
     @Autowired
     FailureHandler failureHandler;
 
@@ -81,24 +83,25 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
      * permitAll() 允许所有人访问
      */
     protected void configure(HttpSecurity http) throws Exception {
-//        http.csrf().disable();
-//        http.formLogin().loginPage(LOGINFORM).loginProcessingUrl(LOGINFORM).and()
-//                .authorizeRequests()
-//                .antMatchers(LOGINFORM)
-//                .permitAll().anyRequest().authenticated();
-        http
-                .exceptionHandling()
-                .accessDeniedPage("/login.html?authorization_error=true")
-                .and()
-                .logout()
-                .permitAll()
-                .and()
-                .formLogin()
-                .loginPage("/login.html")
-                .permitAll()
-                .and()
+        http.csrf().disable();
+        http.formLogin().loginPage(LOGINFORM).loginProcessingUrl(LOGINFORM).failureForwardUrl(ERROR).and()
                 .authorizeRequests()
-                .anyRequest().authenticated();
+                .antMatchers(LOGINFORM)
+                .permitAll().anyRequest().authenticated();
+
+//        http
+//                .exceptionHandling()
+//                .accessDeniedPage("/login.html?authorization_error=true")
+//                .and()
+//                .logout()
+//                .permitAll()
+//                .and()
+//                .formLogin()
+//                .loginPage("/login.html")
+//                .permitAll()
+//                .and()
+//                .authorizeRequests()
+//                .anyRequest().authenticated();
 
     }
 }

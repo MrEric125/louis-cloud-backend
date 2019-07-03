@@ -5,22 +5,33 @@ import com.louis.core.redis.RedisOperate;
 import com.louis.core.service.CRUDService;
 import com.louis.oauth.dto.ClientMessageDto;
 import com.louis.oauth.dto.ModifyPswDto;
+import com.louis.oauth.dto.RegistryUserDto;
+import com.louis.oauth.dto.UserDto;
 import com.louis.security.core.SecurityUser;
 import com.louis.constant.RedisConstant;
+import com.louis.server.entity.SysRole;
 import com.louis.server.entity.SysUser;
+import com.louis.server.entity.UserRole;
 import com.louis.server.repository.SysUserRepository;
 import com.louis.server.service.PasswordService;
 import com.louis.server.service.SysUserService;
+import com.louis.server.service.UserRoleService;
 import com.louis.server.service.UserTokenService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.task.TaskExecutor;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.oauth2.common.OAuth2AccessToken;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.Collection;
 import java.util.Date;
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * @author Eric
@@ -38,6 +49,12 @@ public class SysUserServiceImpl extends CRUDService<SysUser, Long> implements Sy
 
     @Autowired
     private  RedisOperate<SysUser> redisOperate;
+
+    @Autowired
+    private UserRoleService userRoleService;
+
+    @Autowired
+    private SysRoleServiceImpl sysRoleService;
 
     @Autowired
     private UserTokenService userTokenService;
@@ -78,8 +95,7 @@ public class SysUserServiceImpl extends CRUDService<SysUser, Long> implements Sy
         String salt = sysUser.getSalt();
         String newPassword = passwordService.modifyPsw(modifyPswDto, loginAuthDto, salt);
         sysUser.setPassword(newPassword);
-         save(sysUser);
-
+        save(sysUser);
     }
 
 
@@ -91,8 +107,8 @@ public class SysUserServiceImpl extends CRUDService<SysUser, Long> implements Sy
         if (user.getIdentityNumber()==null) {
             user.setIdentityNumber(user.getUsername());
         }
-        user.randomSalt();
-        user.setPassword(passwordService.encryptPassword(user.getUsername(), user.getPassword(), user.getSalt()));
+//        user.randomSalt();
+//        user.setPassword(passwordService.encryptPassword(user.getUsername(), user.getPassword(), user.getSalt()));
         return super.save(user);
     }
 
@@ -135,6 +151,32 @@ public class SysUserServiceImpl extends CRUDService<SysUser, Long> implements Sy
 
 
 
+    @Transactional
+    @Override
+    public SysUser registryUser(RegistryUserDto dto) {
+        SysUser user = new SysUser();
+
+        user.setUsername(dto.getUserName());
+        user.setEmail(dto.getEmail());
+        user.setPhone(dto.getPhone());
+        user.setRealName(dto.getRealName());
+        user.randomSalt();
+        String password = passwordService.encryptPassword(dto.getUserName(), dto.getPassword(), user.getSalt());
+        user.setPassword(password);
+        save(user);
+        //默认的角色
+        SysRole defaultRole = sysRoleService.findByRoleName(SysRole.DEFAULT_ROLE);
+        UserRole userRole = UserRole
+                .builder()
+                .roleId(defaultRole.getId())
+                .roleName(defaultRole.getRoleName())
+                .userId(user.getId())
+                .description("defaultRole")
+                .build();
+        userRoleService.save(userRole);
+        return user;
+    }
+
     /**
      * 处理登录信息
      * @param token
@@ -154,7 +196,18 @@ public class SysUserServiceImpl extends CRUDService<SysUser, Long> implements Sy
         taskExecutor.execute(() -> loginLogService.saveLoginLog(messageDto,loginAuthDto));
     }
 
+    public Collection<GrantedAuthority> loadUserAuthorities(long userId) {
 
+        List<UserRole> roles= userRoleService.findByUserId(userId);
+
+
+        List<GrantedAuthority> authorities = roles.stream()
+                .map(authority -> new SimpleGrantedAuthority(
+                        authority.authority()
+                ))
+                .collect(Collectors.toList());
+        return authorities;
+    }
 
 
 }

@@ -37,7 +37,7 @@ public class SysUser extends BaseEntity<Long> implements LogicDeleteable,Compara
 
     private static final long serialVersionUID = 256121294003669340L;
 
-    public static final int PASSWORD_MAX_LENGTH = 50;
+    public static final int PASSWORD_MAX_LENGTH = 255;
     public static final int PASSWORD_MIN_LENGTH = 2;
     public static final int USERNAME_MAX_LENGTH = 50;
     public static final int USERNAME_MIN_LENGTH = 2;

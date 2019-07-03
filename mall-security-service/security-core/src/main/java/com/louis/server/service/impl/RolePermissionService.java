@@ -8,6 +8,7 @@ import com.louis.server.entity.RolePermission;
 import com.louis.server.entity.SysPermission;
 import com.louis.server.entity.SysRole;
 import com.louis.server.repository.RolePermissionRepository;
+import com.louis.server.service.SysRoleService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

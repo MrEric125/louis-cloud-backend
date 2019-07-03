@@ -40,7 +40,7 @@ public class UserEntity extends AbstractAuditable<Long> {
 
     @Singular
     @OneToMany(mappedBy = "user", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<UserRole> roles;
+    private Set<OauthUserRole> roles;
 
     @Singular
     @OneToMany(mappedBy = "authority", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)

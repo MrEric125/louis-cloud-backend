@@ -3,7 +3,10 @@ package com.louis.web;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 
@@ -16,20 +19,28 @@ import java.math.BigInteger;
 @RequestMapping("/")
 public class LoginController {
 
-    BigInteger bigInteger;
 
-    @GetMapping
-    public String indexPage() {
-        BigInteger one = BigInteger.ONE;
-        bigInteger.negate();
-        return "index";
-    }
+//    @RequestMapping("/error")
+//    @ResponseBody
+//    public String error(HttpServletRequest request, HttpServletResponse response) {
+//        System.out.println("error Page");
+//        return "error";
+//    }
 
-    @GetMapping("/login.html")
-    public String loginPage() {
-        return "login";
-
-    }
+//    BigInteger bigInteger;
+//
+//    @GetMapping
+//    public String indexPage() {
+//        BigInteger one = BigInteger.ONE;
+//        bigInteger.negate();
+//        return "index";
+//    }
+//
+//    @GetMapping("/login.html")
+//    public String loginPage() {
+//        return "login";
+//
+//    }
 
 
 }
