@@ -7,3 +7,5 @@ spring:
     admin:
       ui:
         title: 应用监控
+  main:
+    allow-bean-definition-overriding: true
