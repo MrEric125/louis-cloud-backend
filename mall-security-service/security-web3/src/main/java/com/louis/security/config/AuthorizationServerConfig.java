@@ -17,7 +17,7 @@ import org.springframework.security.oauth2.provider.token.TokenStore;
 
 */
 /**
- * @author Eric
+ * @author John·Louis
  * @date create in 2019/6/15
  *//*
 

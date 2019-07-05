@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
 /**
- * @author Eric
+ * @author John·Louis
  * @date create in 2019/5/19
  */
 @EnableZuulServer

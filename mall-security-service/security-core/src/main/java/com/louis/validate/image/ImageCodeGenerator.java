@@ -8,7 +8,7 @@ import org.springframework.web.context.request.ServletWebRequest;
 import java.awt.image.BufferedImage;
 
 /**
- * @author louis
+ * @author John·Louis
  * <p>
  * Date: 2019/6/18
  * Description: 图片验证码生成器

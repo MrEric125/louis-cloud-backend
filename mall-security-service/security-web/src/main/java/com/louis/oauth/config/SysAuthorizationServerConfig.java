@@ -20,7 +20,7 @@ import static com.louis.core.constant.SecurityConstan.PASSWORD;
 import static com.louis.core.constant.SecurityConstan.REFRESH_TOKEN;
 
 /**
- * @author Eric
+ * @author John·Louis
  * @date create in 2019/6/15
  */
 @Slf4j

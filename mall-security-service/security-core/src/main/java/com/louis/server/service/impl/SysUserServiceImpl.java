@@ -3,6 +3,7 @@ package com.louis.server.service.impl;
 import com.louis.common.api.dto.LoginAuthDto;
 import com.louis.core.redis.RedisOperate;
 import com.louis.core.service.CRUDService;
+import com.louis.exception.UserException;
 import com.louis.oauth.dto.ClientMessageDto;
 import com.louis.oauth.dto.ModifyPswDto;
 import com.louis.oauth.dto.RegistryUserDto;
@@ -35,7 +36,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 /**
- * @author Eric
+ * @author John·Louis
  * @date create in 2019/4/15
  */
 @Service
@@ -155,6 +156,12 @@ public class SysUserServiceImpl extends CRUDService<SysUser, Long> implements Sy
     @Transactional
     @Override
     public SysUser registryUser(RegistryUserDto dto) {
+
+        SysUser byUserName = findByUserName(dto.getUserName());
+        if (byUserName != null) {
+            throw new UserException("用户名已存在，请更换名字");
+        }
+
         SysUser user = new SysUser();
 
         user.setUsername(dto.getUserName());

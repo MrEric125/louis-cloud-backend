@@ -3,7 +3,7 @@ package com.louis.common;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 /**
- * @author Eric
+ * @author John·Louis
  * @date create in 2019/4/14
  */
 public enum  ErrorCode {

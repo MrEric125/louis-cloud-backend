@@ -16,7 +16,7 @@ import org.springframework.security.web.authentication.AuthenticationSuccessHand
 
 
 /**
- * @author Eric
+ * @author John·Louis
  * @date create in 2019/4/14
  *
  * 为应用程序定义用户id 密码，和角色的资源服务器

@@ -6,7 +6,7 @@ import org.springframework.cloud.stream.messaging.Source;
 import org.springframework.messaging.support.MessageBuilder;
 
 /**
- * @author louis
+ * @author John·Louis
  * <p>
  * Date: 2019/6/6
  * Description:

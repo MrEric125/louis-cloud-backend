@@ -19,7 +19,7 @@ import javax.validation.constraints.Pattern;
 import java.util.Date;
 
 /**
- * @author Eric
+ * @author John·Louis
  * @date create in 2019/4/14
  *
  * 系统用户，目前是将管理员，卖家和买家设计到一个user表中，后期优化分开

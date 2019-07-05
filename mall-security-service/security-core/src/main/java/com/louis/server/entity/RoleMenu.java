@@ -9,7 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 
 /**
- * @author louis
+ * @author John·Louis
  * <p>
  * Date: 2019/6/21
  * Description:

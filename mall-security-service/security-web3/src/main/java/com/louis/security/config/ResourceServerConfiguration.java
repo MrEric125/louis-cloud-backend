@@ -10,7 +10,7 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.R
 
 */
 /**
- * @author Eric
+ * @author John·Louis
  * @date create in 2019/6/16
  *//*
 

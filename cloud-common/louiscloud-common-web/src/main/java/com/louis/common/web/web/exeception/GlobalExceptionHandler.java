@@ -23,7 +23,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * @author louis
+ * @author John·Louis
  * <p>
  * Date: 2019/7/4
  * Description:
@@ -35,13 +35,21 @@ public class GlobalExceptionHandler {
     @Autowired
     private ObjectMapper mapper;
 
-
+    /**
+     * 框架中，用了某些限制，如果我们访问的时候是*.json 形式那么就会返回json格式，不过不是那么全局异常就会以xml形式返回
+     * @param request
+     * @param response
+     * @param e
+     * @return
+     * @throws IOException
+     */
     @ExceptionHandler(value = Exception.class)
     @ResponseBody
     public Wrapper exceptionHandler(HttpServletRequest request, HttpServletResponse response, Exception e) throws IOException {
         log.error("异常全局处理==》：{}", e.getMessage());
-//        response.setContentType(MediaType.APPLICATION_JSON_VALUE);
+        response.setContentType(MediaType.APPLICATION_JSON_VALUE);
         response.setStatus(HttpStatus.BAD_REQUEST.value());
+//        request.setAttribute("Content-Type", MediaType.APPLICATION_JSON_UTF8_VALUE);
 
         if (e instanceof BindException) {
             BindException exception = (BindException) e;

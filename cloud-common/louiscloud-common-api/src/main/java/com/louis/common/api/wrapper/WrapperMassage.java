@@ -3,7 +3,7 @@ package com.louis.common.api.wrapper;
 import java.io.Serializable;
 
 /**
- * @author Eric
+ * @author John·Louis
  * @date create in 2019/5/22
  */
 public class WrapperMassage implements Serializable {

@@ -1,6 +1,7 @@
 package com.louis.server.service;
 
 import com.louis.core.service.ICRUDService;
+import com.louis.oauth.dto.RoleDto;
 import com.louis.oauth.dto.UserRoleDto;
 import com.louis.server.entity.SysRole;
 import com.louis.server.entity.SysUser;
@@ -26,6 +27,8 @@ public interface UserRoleService extends ICRUDService<UserRole, Long> {
     void blindRole(UserRoleDto dto);
 
     List<SysRole> getRoleByUser(long userId);
+
+    void updateUserRole(long userId, String oldRoleName, RoleDto roleDto);
 
 
 

@@ -16,7 +16,7 @@ import org.springframework.util.StringUtils;
 import java.util.Collection;
 
 /**
- * @author louis
+ * @author John·Louis
  * <p>
  * Date: 2019/6/19
  * Description: spring security 用戶詳情邏輯

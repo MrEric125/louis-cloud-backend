@@ -20,7 +20,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
- * @author Eric
+ * @author John·Louis
  * @date create in 2019/4/14
  */
 public class TokenAuthenticationProcessingFilter extends AbstractAuthenticationProcessingFilter {

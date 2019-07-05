@@ -10,9 +10,9 @@ import com.louis.core.search.Searchable;
 import com.louis.oauth.dto.RoleDto;
 import com.louis.oauth.dto.RolePermissionDto;
 import com.louis.server.entity.*;
+import com.louis.server.service.RolePermissionService;
 import com.louis.server.service.SysRoleService;
 import com.louis.server.service.UserRoleService;
-import com.louis.server.service.impl.RolePermissionService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
@@ -25,7 +25,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 /**
- * @author louis
+ * @author John·Louis
  * <p>
  * Date: 2019/6/21
  * Description:
@@ -63,7 +63,7 @@ public class RoleController extends WebCRUDController<SysRole, RoleDto,Long> {
     public Wrapper blindPermission(@RequestBody RolePermissionDto permissionDto) {
         log.info("blind role with permission :{}",permissionDto);
         rolePermissionService.blindPermission(permissionDto);
-        return WrapMapper.ok();
+        return WrapMapper.success();
     }
 
     /**
@@ -77,7 +77,7 @@ public class RoleController extends WebCRUDController<SysRole, RoleDto,Long> {
         List<RoleDto> roleDtoList = userRoleList.stream()
                 .map(x -> sysRoleService.findById(x.getRoleId()))
                 .map(x -> sysRoleService.entityToDto(x)).collect(Collectors.toList());
-        return WrapMapper.ok(roleDtoList);
+        return WrapMapper.success(roleDtoList);
 
     }
 
@@ -91,7 +91,7 @@ public class RoleController extends WebCRUDController<SysRole, RoleDto,Long> {
         List<RolePermission> rolePermissions = rolePermissionService.findAllList(searchable);
         userRoleService.delete(userRoles.stream().map(UserRole::getId).collect(Collectors.toList()));
         userRoleService.delete(rolePermissions.stream().map(RolePermission::getId).collect(Collectors.toList()));
-        return WrapMapper.ok("删除成功");
+        return WrapMapper.success("删除成功");
 
     }
 

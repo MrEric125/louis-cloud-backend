@@ -7,7 +7,7 @@ import java.io.Serializable;
 import java.util.List;
 
 /**
- * @author louis
+ * @author John·Louis
  * <p>
  * Date: 2019/7/5
  * Description:
@@ -19,7 +19,7 @@ public interface IWebService<E extends BaseEntity, Dto extends BaseDto, ID exten
 
     E dtoToEntity(Dto dto);
 
-    List<Dto> entitiesToDtos(List<E> eList);
+    /*List<Dto> entitiesToDtos(List<E> eList);
 
-     List<E> dtosToEntities(List<Dto> dtos);
+     List<E> dtosToEntities(List<Dto> dtos);*/
 }

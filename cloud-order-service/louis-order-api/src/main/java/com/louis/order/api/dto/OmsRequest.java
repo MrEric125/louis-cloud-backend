@@ -6,7 +6,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 /**
- * @author Eric
+ * @author John·Louis
  * @date create in 2019/5/24
  *
  * Oms系统在接收前段传入过来的参数

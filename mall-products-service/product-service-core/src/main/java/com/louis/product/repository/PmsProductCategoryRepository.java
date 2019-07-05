@@ -5,7 +5,7 @@ import com.louis.product.entity.ProductCategory;
 import org.springframework.stereotype.Repository;
 
 /**
- * @author louis
+ * @author John·Louis
  * <p>
  * Date: 2019/6/6
  * Description:

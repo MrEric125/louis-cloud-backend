@@ -8,6 +8,7 @@ import com.louis.server.entity.RolePermission;
 import com.louis.server.entity.SysPermission;
 import com.louis.server.entity.SysRole;
 import com.louis.server.repository.RolePermissionRepository;
+import com.louis.server.service.RolePermissionService;
 import com.louis.server.service.SysRoleService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,13 +18,13 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 /**
- * @author louis
+ * @author John·Louis
  * <p>
  * Date: 2019/6/18
  * Description:
  */
 @Service
-public class RolePermissionService extends WebCRUDService<RolePermission, RolePermissionDto, Long> {
+public class RolePermissionServiceImpl extends WebCRUDService<RolePermission, RolePermissionDto, Long> implements RolePermissionService {
 
 
     @Autowired
@@ -68,10 +69,6 @@ public class RolePermissionService extends WebCRUDService<RolePermission, RolePe
         RolePermission rolePermission = this.dtoToEntity(dto);
         this.save(rolePermission);
     }
-
-
-
-
 
     @Override
     public RolePermission dtoToEntity(RolePermissionDto dto) {

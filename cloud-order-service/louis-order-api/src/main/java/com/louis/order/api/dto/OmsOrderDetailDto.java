@@ -10,7 +10,7 @@ import lombok.Setter;
 import java.math.BigDecimal;
 
 /**
- * @author louis
+ * @author John·Louis
  * <p>
  * Date: 2019/5/15
  * Description: 订单详情dto

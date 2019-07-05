@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 /**
- * @author louis
+ * @author John·Louis
  * <p>
  * Date: 2019/6/21
  * Description:
@@ -16,5 +16,9 @@ import java.util.List;
 public interface RoleMenuRepository extends BaseRepository<RoleMenu, Long> {
 
     List<RoleMenu> findByRoleId(long roleId);
+
+    List<RoleMenu> findByMenuId(long menuId);
+
+
 
 }

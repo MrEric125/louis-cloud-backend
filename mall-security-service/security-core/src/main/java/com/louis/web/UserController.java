@@ -21,7 +21,7 @@ import java.util.List;
 
 
 /**
- * @author louis
+ * @author John·Louis
  * <p>
  * Date: 2019/6/21
  * Description:
@@ -43,7 +43,7 @@ public class UserController extends WebCRUDController<SysUser, UserDto,Long> {
     public Wrapper blindRole(@RequestBody UserRoleDto dto) {
         log.info("绑定用户到角色");
         userRoleService.blindRole(dto);
-        return WrapMapper.ok();
+        return WrapMapper.success();
     }
 
     @GetMapping("/getByRoleId/{roleId}")
@@ -55,7 +55,7 @@ public class UserController extends WebCRUDController<SysUser, UserDto,Long> {
             UserDto dto = sysUserService.entityToDto(sysUser);
             userDtoList.add(dto);
         });
-        return WrapMapper.ok(userDtoList);
+        return WrapMapper.success(userDtoList);
     }
 
 }

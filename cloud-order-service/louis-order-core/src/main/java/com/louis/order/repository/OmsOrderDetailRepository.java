@@ -5,7 +5,7 @@ import com.louis.order.entity.OmsOrderDetail;
 import org.springframework.stereotype.Repository;
 
 /**
- * @author Eric
+ * @author John·Louis
  * @date create in 2019/5/11
  */
 @Repository

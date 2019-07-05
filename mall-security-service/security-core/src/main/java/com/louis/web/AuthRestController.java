@@ -13,11 +13,12 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 /**
- * @author louis
+ * @author John·Louis
  * <p>
  * Date: 2019/7/5
  * Description:
  */
+@RestController
 @RequestMapping(value = "/auth",produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 public class AuthRestController extends BaseController {
 
@@ -36,10 +37,15 @@ public class AuthRestController extends BaseController {
         return WrapMapper.wrap(200, "保存用户成功", new IdName<>(user.getId(), user.getUsername()));
     }
 
+    /**
+     * 修改密码
+     * @param dto
+     * @return
+     */
     @PostMapping("/resetPwd")
     public Wrapper resetPassword(@RequestBody ModifyPswDto dto) {
         sysUserService.modifyPsw(dto);
-        return WrapMapper.ok("修改密码成功");
+        return WrapMapper.success("修改密码成功");
     }
 
 

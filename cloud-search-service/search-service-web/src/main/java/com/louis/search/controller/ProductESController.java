@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- * @author Eric
+ * @author John·Louis
  * @date create in 2019/6/11
  */
 @Api("产品es")

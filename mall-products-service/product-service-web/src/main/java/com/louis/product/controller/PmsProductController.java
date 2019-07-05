@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Optional;
 
 /**
- * @author Eric
+ * @author John·Louis
  * @date create in 2019/5/26
  * description: todo 后期需要添加权限相关操作，这里主要都是交给seller操作的
  */

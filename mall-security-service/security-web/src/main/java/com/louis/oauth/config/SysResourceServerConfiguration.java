@@ -12,7 +12,7 @@ import org.springframework.security.oauth2.provider.expression.OAuth2WebSecurity
 
 
 /**
- * @author Eric
+ * @author John·Louis
  * @date create in 2019/5/20
  * 资源服务器配置
  */

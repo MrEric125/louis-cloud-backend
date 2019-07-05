@@ -10,7 +10,7 @@ import java.util.List;
 
 /**
  * feign client base class
- * @author Eric
+ * @author John·Louis
  * @date create in 2019/5/12
  *
  * 其实这个类的作用不是很大，当我们在对某

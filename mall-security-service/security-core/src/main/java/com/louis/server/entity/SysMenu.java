@@ -21,7 +21,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "sys_menu")
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class MenuItem extends TreeEntity<Long> {
+public class SysMenu extends TreeEntity<Long> {
 
     public static final int DISABLE = 0;
     public static final int CANUSE = 0;

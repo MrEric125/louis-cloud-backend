@@ -5,7 +5,7 @@ import org.springframework.http.HttpStatus;
 import java.util.Date;
 
 /**
- * @author Eric
+ * @author John·Louis
  * @date create in 2019/4/14
  */
 public class ErrorResponse {

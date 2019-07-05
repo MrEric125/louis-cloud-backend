@@ -127,7 +127,7 @@ public class WrapMapper {
 	 *
 	 * @return the wrapper
 	 */
-	public static <E> Wrapper<E> ok() {
+	public static <E> Wrapper<E> success() {
 		return new Wrapper<>();
 	}
 
@@ -139,7 +139,7 @@ public class WrapMapper {
 	 *
 	 * @return the wrapper
 	 */
-	public static <E> Wrapper<E> ok(E o) {
+	public static <E> Wrapper<E> success(E o) {
 		return new Wrapper<>(WrapperMassage.SUCCESS_CODE, WrapperMassage.SUCCESS_MESSAGE, o);
 	}
 }

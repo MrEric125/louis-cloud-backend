@@ -1,7 +1,7 @@
 package com.louis.core.constant;
 
 /**
- * @author Eric
+ * @author John·Louis
  * @date create in 2019/6/15
  */
 public interface SecurityConstan {

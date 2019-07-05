@@ -5,7 +5,7 @@ import org.springframework.cloud.stream.annotation.StreamListener;
 import org.springframework.cloud.stream.messaging.Sink;
 
 /**
- * @author louis
+ * @author John·Louis
  * <p>
  * Date: 2019/6/6
  * Description:

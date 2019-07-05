@@ -5,7 +5,7 @@ import com.louis.exception.ErrorCodeEnum;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * @author Eric
+ * @author John·Louis
  * @date create in 2019/5/12
  */
 @Slf4j

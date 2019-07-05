@@ -1,7 +1,7 @@
 package com.louis.security.token;
 
 /**
- * @author Eric
+ * @author John·Louis
  * @date create in 2019/5/18
  */
 public interface Token {

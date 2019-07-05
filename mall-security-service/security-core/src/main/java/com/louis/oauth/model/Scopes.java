@@ -1,7 +1,7 @@
 package com.louis.oauth.model;
 
 /**
- * @author Eric
+ * @author John·Louis
  * @date create in 2019/4/14
  */
 public enum  Scopes {

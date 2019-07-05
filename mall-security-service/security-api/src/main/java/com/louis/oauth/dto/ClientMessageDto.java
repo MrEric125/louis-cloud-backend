@@ -3,7 +3,7 @@ package com.louis.oauth.dto;
 import lombok.*;
 
 /**
- * @author Eric
+ * @author John·Louis
  * @date create in 2019/6/15
  *
  * 客戶请求的硬件基本信息

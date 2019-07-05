@@ -2,7 +2,7 @@ package com.louis.properties;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 /**
- * @author Eric
+ * @author John·Louis
  * @date create in 2019/4/14
  */
 @ConfigurationProperties( prefix = "louis.token")
