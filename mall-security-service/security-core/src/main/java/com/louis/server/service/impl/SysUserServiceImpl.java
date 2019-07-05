@@ -18,6 +18,7 @@ import com.louis.server.service.SysUserService;
 import com.louis.server.service.UserRoleService;
 import com.louis.server.service.UserTokenService;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.task.TaskExecutor;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -89,11 +90,11 @@ public class SysUserServiceImpl extends CRUDService<SysUser, Long> implements Sy
     }
 
     @Override
-    public void modifyPsw(ModifyPswDto modifyPswDto, LoginAuthDto loginAuthDto) {
+    public void modifyPsw(ModifyPswDto modifyPswDto) {
         String loginName = modifyPswDto.getLoginName();
         SysUser sysUser = findByUserName(loginName);
         String salt = sysUser.getSalt();
-        String newPassword = passwordService.modifyPsw(modifyPswDto, loginAuthDto, salt);
+        String newPassword = passwordService.modifyPsw(modifyPswDto, salt);
         sysUser.setPassword(newPassword);
         save(sysUser);
     }
@@ -210,4 +211,17 @@ public class SysUserServiceImpl extends CRUDService<SysUser, Long> implements Sy
     }
 
 
+    @Override
+    public UserDto entityToDto(SysUser sysUser) {
+        UserDto dto = new UserDto();
+        BeanUtils.copyProperties(sysUser, dto);
+        return dto;
+    }
+
+    @Override
+    public SysUser dtoToEntity(UserDto dto) {
+        SysUser user = new SysUser();
+        BeanUtils.copyProperties(dto, user);
+        return user;
+    }
 }

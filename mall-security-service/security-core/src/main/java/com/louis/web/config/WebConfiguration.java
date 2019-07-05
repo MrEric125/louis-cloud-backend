@@ -20,12 +20,12 @@ public class WebConfiguration {
     public ReloadableResourceBundleMessageSource messageSource() {
 
         ReloadableResourceBundleMessageSource messageSource = new ReloadableResourceBundleMessageSource();
-        messageSource.setBasename("classpath:messages_zh");
+        messageSource.setBasename("classpath:messages");
         return messageSource;
     }
 
     @Bean
-    public Validator validator() {
+    public LocalValidatorFactoryBean validator() {
         LocalValidatorFactoryBean validator = new LocalValidatorFactoryBean();
         validator.setProviderClass(HibernateValidator.class);
         validator.setValidationMessageSource(messageSource());

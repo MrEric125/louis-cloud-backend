@@ -30,7 +30,7 @@ public class PasswordServiceImpl implements PasswordService {
     }
 
     @Override
-    public String modifyPsw(ModifyPswDto modifyPswDto, LoginAuthDto loginAuthDto,String salt) {
+    public String modifyPsw(ModifyPswDto modifyPswDto,String salt) {
         String loginName = modifyPswDto.getLoginName();
         String oldPassword = modifyPswDto.getOldPassword();
         String newPassword = modifyPswDto.getNewPassword();

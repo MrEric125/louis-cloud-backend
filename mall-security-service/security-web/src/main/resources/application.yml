@@ -24,4 +24,5 @@ eureka:
         http://localhost:8761/eureka/
 logging:
   level:
-    org.springframework.security:  DEBUG
+    org:
+      springframework.web: DEBUG

@@ -29,13 +29,7 @@ import java.util.Map;
  */
 public abstract class WebCRUDController<Entity extends BaseEntity, Dto extends BaseDto, ID extends Serializable> extends BaseController<Entity, ID> {
 
-
-
-
     protected CRUDService<Entity, ID> webCrudService;
-
-
-
 
     @Autowired
     public void setBaseService(CRUDService<Entity,ID> webCrudService) {
@@ -135,7 +129,8 @@ public abstract class WebCRUDController<Entity extends BaseEntity, Dto extends B
         return handleResult(ImmutableMap.of("items", entityPage.getContent(), "pagination", map));
     }
 
-    @ApiOperation("不分页查找集合")
+    @Deprecated
+    @ApiOperation("不分页查找集合，测试使用")
     @GetMapping("/queryAll")
     public Wrapper findAllList(@ApiParam("传入的searchable条件") Searchable searchable) {
         searchable = searchable == null ? Searchable.newSearchable() : searchable;

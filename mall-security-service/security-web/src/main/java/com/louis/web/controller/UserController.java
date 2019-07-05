@@ -2,6 +2,8 @@ package com.louis.web.controller;
 
 import com.google.common.collect.Maps;
 import com.louis.common.api.dto.IdName;
+import com.louis.common.api.wrapper.WrapMapper;
+import com.louis.common.api.wrapper.Wrapper;
 import com.louis.exception.InvalidTokenException;
 import com.louis.oauth.dto.RegistryUserDto;
 import com.louis.security.extractor.TokenExtractor;
@@ -41,7 +43,7 @@ import java.util.stream.Collectors;
  * @date create in 2019/4/14
  */
 @RestController("web-userController" )
-@RequestMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping(produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 public class UserController {
 
     private final TokenProperties tokenProperties;
@@ -97,17 +99,7 @@ public class UserController {
         return tokenFactory.createAccessToken(userContext);
     }
 
-    /**
-     * 注册用户，不进行用户名验证，在之前输入的时候，异步验证
-     * @param dto
-     * @return
-     */
-    @RequestMapping(value = "/registryUser",method =RequestMethod.POST)
-    public ResponseCode addUser(@RequestBody RegistryUserDto dto) {
-        SysUser user = userService.registryUser(dto);
-        return new ResponseCode("success", "保存用户成功", new IdName<>(user.getId(), user.getUsername()));
 
-    }
 
 
     /**

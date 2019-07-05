@@ -1,6 +1,7 @@
 package com.louis.web;
 
 import com.google.common.collect.ImmutableMap;
+import com.google.common.collect.Lists;
 import com.louis.common.api.wrapper.WrapMapper;
 import com.louis.common.api.wrapper.Wrapper;
 import com.louis.common.web.web.WebCRUDController;
@@ -9,6 +10,7 @@ import com.louis.core.search.Searchable;
 import com.louis.oauth.dto.RoleDto;
 import com.louis.oauth.dto.RolePermissionDto;
 import com.louis.server.entity.*;
+import com.louis.server.service.SysRoleService;
 import com.louis.server.service.UserRoleService;
 import com.louis.server.service.impl.RolePermissionService;
 import io.swagger.annotations.Api;
@@ -41,6 +43,9 @@ public class RoleController extends WebCRUDController<SysRole, RoleDto,Long> {
     @Autowired
     RolePermissionService rolePermissionService;
 
+    @Autowired
+    SysRoleService sysRoleService;
+
     @ApiOperation("查找和角色相关的权限和用户")
     @GetMapping("/relationRole")
     public Wrapper findRelationRole(long roleId) {
@@ -61,6 +66,21 @@ public class RoleController extends WebCRUDController<SysRole, RoleDto,Long> {
         return WrapMapper.ok();
     }
 
+    /**
+     * 通过用户id找到所有相关角色
+     * @param userId
+     * @return
+     */
+    @GetMapping("/getByUserId/{userId}")
+    public Wrapper getByUserId(@PathVariable("userId") long userId) {
+        List<UserRole> userRoleList = userRoleService.findByRoleId(userId);
+        List<RoleDto> roleDtoList = userRoleList.stream()
+                .map(x -> sysRoleService.findById(x.getRoleId()))
+                .map(x -> sysRoleService.entityToDto(x)).collect(Collectors.toList());
+        return WrapMapper.ok(roleDtoList);
+
+    }
+
 
     @DeleteMapping(value = "/delete")
     @Override
@@ -73,6 +93,7 @@ public class RoleController extends WebCRUDController<SysRole, RoleDto,Long> {
         userRoleService.delete(rolePermissions.stream().map(RolePermission::getId).collect(Collectors.toList()));
         return WrapMapper.ok("删除成功");
 
-
     }
+
+
 }
