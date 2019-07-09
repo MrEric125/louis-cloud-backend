@@ -87,7 +87,7 @@ public class OmsCartFeignClient extends BaseController<OmsCart,Long> implements 
 //        cartService.findById(omsRequest.getCartId()).markDeleted();
         cartService.delByProductIds(products, getLoginAuthDto().getUserId());
 
-        return WrapMapper.ok();
+        return WrapMapper.success();
     }
 
     @Override
@@ -101,7 +101,7 @@ public class OmsCartFeignClient extends BaseController<OmsCart,Long> implements 
             omsCart.setChecked(true);
         }
         cartService.save(omsCart);
-        return WrapMapper.ok();
+        return WrapMapper.success();
     }
 
     private List<OmsCartDto> convertEntitysToDtos(List<OmsCart> carts) {
