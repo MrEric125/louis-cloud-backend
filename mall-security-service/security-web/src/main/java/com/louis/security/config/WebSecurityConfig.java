@@ -32,6 +32,13 @@ import java.util.List;
  * @date create in 2019/4/14
  *
  * 为应用程序定义用户id 密码，和角色的资源服务器
+ *
+ * 若访问的地址没有授权，不会跳转到登录页面
+ *
+ * todo 三个模块作对比，都有各自的优势
+ * security-web：  提示更加友好
+ * security-web2:    功能更加完备
+ * security-web3:    如果没有登录验证，那么会自动跳转
  */
 @Slf4j
 @Configuration

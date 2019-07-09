@@ -18,7 +18,7 @@ import java.util.UUID;
 /**
  * 短信登录配置
  *
- * @author paascloud.net @gmail.com
+ * @author John·Louis
  */
 @Component
 public class SmsCodeAuthenticationSecurityConfig extends SecurityConfigurerAdapter<DefaultSecurityFilterChain, HttpSecurity> {

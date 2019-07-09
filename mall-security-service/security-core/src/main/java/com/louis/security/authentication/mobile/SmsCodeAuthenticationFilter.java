@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * 短信登录过滤器
  *
- * @author paascloud.net @gmail.com
+ * @author John·Louis
  */
 public class SmsCodeAuthenticationFilter extends AbstractAuthenticationProcessingFilter {
 	private static final String POST = "POST";

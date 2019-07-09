@@ -3,6 +3,7 @@ package com.louis.core.service;
 import com.louis.common.api.dto.BaseDto;
 import com.louis.core.entity.BaseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.io.Serializable;
 import java.util.List;
@@ -14,8 +15,10 @@ import java.util.stream.Collectors;
  * Date: 2019/6/21
  * Description:
  */
-@Service
-public abstract class WebCRUDService<T extends BaseEntity, DTO extends BaseDto, ID extends Serializable> extends CRUDService<T, ID> {
+@Transactional
+public abstract class WebCRUDService<T extends BaseEntity, DTO extends BaseDto, ID extends Serializable> extends CRUDService<T,ID> {
+
+
 
     public abstract T dtoToEntity(DTO dto);
 

@@ -19,7 +19,7 @@ public class TaskExecution {
     private static final int NTHREADS = 100;
     public static final ExecutorService exec = Executors.newFixedThreadPool(NTHREADS);
 
-    public static void main(String[] args) throws IOException {
+    public  void runTest(String[] args) throws IOException {
         ScriptEngineManager manager = new ScriptEngineManager();
         ServerSocket serverSocket = new ServerSocket(80);
         while (true) {

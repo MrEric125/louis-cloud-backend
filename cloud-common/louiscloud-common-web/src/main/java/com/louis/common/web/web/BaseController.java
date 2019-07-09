@@ -15,8 +15,12 @@ import com.louis.core.entity.generator.IncrementIdGenerator;
 import com.louis.core.entity.generator.UniqueIdGenerator;
 import com.louis.core.utils.PublicUtil;
 import com.louis.core.utils.ThreadLocalMap;
+import com.sun.tracing.dtrace.ModuleAttributes;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.web.bind.annotation.ModelAttribute;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.Serializable;
 import java.util.Optional;
 import java.util.function.Supplier;
@@ -31,6 +35,16 @@ import java.util.function.Supplier;
  */
 @Slf4j
 public abstract class BaseController<Entity extends BaseEntity,ID extends Serializable>  {
+
+	protected HttpServletRequest request;
+
+	protected HttpServletResponse response;
+
+	@ModelAttribute
+	public void initReqAndRes(HttpServletRequest servletRequest, HttpServletResponse servletResponse) {
+		this.request = servletRequest;
+		this.response = servletResponse;
+	}
 
 
 	protected final Class<Entity> entityClass;

@@ -8,7 +8,7 @@ import com.louis.common.api.util.PageUtil;
 /**
  * The class Page wrap mapper.
  *
- * @author paascloud.net@gmail.com
+ * @author John·Louis
  */
 public class PageWrapMapper {
 

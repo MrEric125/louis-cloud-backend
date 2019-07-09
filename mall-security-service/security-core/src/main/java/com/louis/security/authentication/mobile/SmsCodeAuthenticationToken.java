@@ -9,7 +9,7 @@ import java.util.Collection;
 /**
  * 短信登录验证信息封装类
  *
- * @author paascloud.net @gmail.com
+ * @author John·Louis
  */
 public class SmsCodeAuthenticationToken extends AbstractAuthenticationToken {
 

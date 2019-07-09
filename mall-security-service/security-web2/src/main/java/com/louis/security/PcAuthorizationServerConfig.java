@@ -24,7 +24,7 @@ import java.util.List;
 /**
  * The class Pc authorization server config.
  *
- * @author paascloud.net @gmail.com
+ * @author John·Louis
  */
 @Configuration
 @EnableAuthorizationServer

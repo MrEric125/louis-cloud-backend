@@ -29,7 +29,7 @@ import org.springframework.social.security.AuthenticationNameUserIdSource;
 /**
  * 社交登录配置主类
  *
- * @author paascloud.net @gmail.com
+ * @author John·Louis
  */
 @Configuration
 @EnableSocial
