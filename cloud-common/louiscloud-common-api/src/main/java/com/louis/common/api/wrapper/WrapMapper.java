@@ -82,7 +82,7 @@ public class WrapMapper {
 	 * @return the e
 	 */
 	public static <E> E unWrap(Wrapper<E> wrapper) {
-		return wrapper.getResult();
+		return wrapper.getData();
 	}
 
 	/**
@@ -118,6 +118,18 @@ public class WrapMapper {
 	 */
 	public static <E> Wrapper<E> error(String message) {
 		return wrap(WrapperMassage.ERROR_CODE, StringUtils.isBlank(message) ? WrapperMassage.ERROR_MESSAGE : message);
+	}
+
+
+	/**
+	 *
+	 * @param code
+	 * @param message
+	 * @param <E>
+	 * @return
+	 */
+	public static <E> Wrapper<E> error(int code, String message) {
+		return  wrap(code, StringUtils.isBlank(message) ? WrapperMassage.ERROR_MESSAGE : message);
 	}
 
 	/**

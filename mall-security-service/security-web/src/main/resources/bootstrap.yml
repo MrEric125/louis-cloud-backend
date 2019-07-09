@@ -16,3 +16,6 @@ louis:
 #    config:
 #      profile: dev
 #      uri: http://localhost:8888
+spring:
+  profiles:
+    active: dev

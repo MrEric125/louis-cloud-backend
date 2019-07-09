@@ -42,7 +42,7 @@ public class PcAuthenticationSuccessHandler extends SavedRequestAwareAuthenticat
 	@Resource
 	private AuthorizationServerTokenServices authorizationServerTokenServices;
 
-	private static final String BEARER_TOKEN_TYPE = "Basic ";
+	private static final String BEARER_TOKEN_TYPE = "Bearer ";
 
 	@Override
 	public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,

@@ -14,6 +14,7 @@ import org.hibernate.validator.constraints.Length;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import java.util.Date;
@@ -57,7 +58,8 @@ public class SysUser extends BaseEntity<Long> implements LogicDeleteable,Compara
      * 後期也可以将邮箱作为登录账号
      */
     @NotNull(message = "{not.null}")
-    @Pattern(regexp = EMAIL_PATTERN,message = "{user.email.not.valid}")
+//    @Pattern(regexp = EMAIL_PATTERN,message = "{user.email.not.valid}")
+    @Email
     private String email;
 
     /**

@@ -1,5 +1,6 @@
 package com.louis.server.service.impl;
 
+import com.google.common.base.Preconditions;
 import com.louis.common.api.dto.LoginAuthDto;
 import com.louis.core.redis.RedisOperate;
 import com.louis.core.service.CRUDService;
@@ -19,6 +20,7 @@ import com.louis.server.service.SysUserService;
 import com.louis.server.service.UserRoleService;
 import com.louis.server.service.UserTokenService;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.task.TaskExecutor;
@@ -150,12 +152,14 @@ public class SysUserServiceImpl extends CRUDService<SysUser, Long> implements Sy
     }
 
 
-
-
-
     @Transactional
     @Override
-    public SysUser registryUser(RegistryUserDto dto) {
+    public SysUser registryUser(RegistryUserDto dto, String defaultEmail, String defaultPassword, String defaultPhone) {
+        Preconditions.checkArgument(!StringUtils.isEmpty(dto.getUserName()), "用户名不能为空");
+        dto.setEmail(dto.getEmail() == null ? dto.getUserName() + defaultEmail : dto.getEmail());
+        dto.setPassword(dto.getPassword() == null ? defaultPassword : dto.getEmail());
+        dto.setPhone(dto.getPhone() == null ? defaultPhone : dto.getEmail());
+        dto.setRealName(dto.getRealName() == null ? dto.getUserName() : dto.getRealName());
 
         SysUser byUserName = findByUserName(dto.getUserName());
         if (byUserName != null) {
@@ -209,12 +213,10 @@ public class SysUserServiceImpl extends CRUDService<SysUser, Long> implements Sy
         List<UserRole> roles= userRoleService.findByUserId(userId);
 
 
-        List<GrantedAuthority> authorities = roles.stream()
+        return roles.stream()
                 .map(authority -> new SimpleGrantedAuthority(
                         authority.authority()
-                ))
-                .collect(Collectors.toList());
-        return authorities;
+                )).collect(Collectors.toList());
     }
 
 

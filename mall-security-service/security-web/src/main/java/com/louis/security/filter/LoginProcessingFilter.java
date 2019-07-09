@@ -1,5 +1,6 @@
 package com.louis.security.filter;
 
+import com.alibaba.fastjson.JSONObject;
 import com.louis.exception.AuthMethodNotSupportedException;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
@@ -17,7 +18,9 @@ import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 
 /**
  * 登录处理过滤器, TODO 明天吧登录流程全都默一遍，2019年6月5日23:24:58
@@ -60,6 +63,22 @@ public class LoginProcessingFilter extends AbstractAuthenticationProcessingFilte
 
         String username = request.getParameter("username");
         String password = request.getParameter("password");
+        try {
+
+            BufferedReader reader = new BufferedReader(new InputStreamReader(request.getInputStream()));
+            StringBuilder stringBuilder = new StringBuilder();
+            String inputStr;
+            while ((inputStr = reader.readLine()) != null)
+                stringBuilder.append(inputStr);
+
+            JSONObject jsonObject = JSONObject.parseObject(stringBuilder.toString());
+            username=jsonObject.getString("username");
+            password=jsonObject.getString("password");
+
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 //        LoginRequest loginRequest = new LoginRequest(username, password);
         if (StringUtils.isBlank(username) || StringUtils.isBlank(password)) {
             throw new AuthenticationServiceException("Username or Password not provided");

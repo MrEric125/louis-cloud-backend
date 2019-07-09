@@ -3,6 +3,7 @@ package com.louis.security.login;
 import com.alibaba.fastjson.JSONObject;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.louis.common.api.dto.IdName;
+import com.louis.common.api.wrapper.WrapMapper;
 import com.louis.oauth.model.UserContext;
 import com.louis.security.core.SecurityUser;
 import com.louis.security.token.AccessToken;
@@ -65,7 +66,7 @@ public class AwareAuthenticationSuccessHandler implements AuthenticationSuccessH
 
         response.setStatus(HttpStatus.OK.value());
         response.setContentType(MediaType.APPLICATION_JSON_VALUE);
-        mapper.writeValue(response.getWriter(), tokenMap);
+        mapper.writeValue(response.getWriter(), WrapMapper.success(tokenMap));
 
         clearAuthenticationAttributes(request);
     }

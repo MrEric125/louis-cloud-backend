@@ -81,7 +81,7 @@ public class PageWrapMapper {
 	 * @return the e
 	 */
 	public static <E> E unWrap(PageWrapper<E> wrapper) {
-		return wrapper.getResult();
+		return wrapper.getData();
 	}
 
 	/**

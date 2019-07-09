@@ -26,7 +26,7 @@ public class WrapperMassage implements Serializable {
     /**
      * 错误信息.
      */
-    public static final String ERROR_MESSAGE = "内部异常";
+    public static final String ERROR_MESSAGE = "请求异常";
 
     /**
      * 错误码：参数非法

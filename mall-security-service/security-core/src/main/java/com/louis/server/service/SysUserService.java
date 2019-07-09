@@ -27,9 +27,10 @@ public interface SysUserService extends IWebService<SysUser,UserDto, Long> {
 
     void handlerLoginData(OAuth2AccessToken token, SecurityUser principal, HttpServletRequest request);
 
-    SysUser registryUser(RegistryUserDto user);
+    SysUser registryUser(RegistryUserDto user,String defaultEmail,String defaultPassword,String defaultPhone);
 
     Collection<GrantedAuthority> loadUserAuthorities(long userId);
+
 
 
 

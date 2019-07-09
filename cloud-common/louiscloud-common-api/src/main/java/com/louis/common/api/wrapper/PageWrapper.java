@@ -47,7 +47,7 @@ public class PageWrapper<T> extends Wrapper<T> {
 	 */
 	public PageWrapper(T result, PageUtil pageUtil) {
 		super();
-		this.setResult(result);
+		this.setData(result);
 		this.setPageUtil(pageUtil);
 	}
 
@@ -85,7 +85,7 @@ public class PageWrapper<T> extends Wrapper<T> {
 	 */
 	@Override
 	public PageWrapper<T> result(T result) {
-		super.setResult(result);
+		super.setData(result);
 		return this;
 	}
 }

@@ -72,7 +72,7 @@ public class Wrapper<T> implements Serializable {
 	/**
 	 * 结果数据
 	 */
-	private T result;
+	private T data;
 
 	/**
 	 * Instantiates a new wrapper. default code=200
@@ -135,7 +135,7 @@ public class Wrapper<T> implements Serializable {
 	 * @return the wrapper
 	 */
 	public Wrapper<T> result(T result) {
-		this.setResult(result);
+		this.setData(result);
 		return this;
 	}
 
