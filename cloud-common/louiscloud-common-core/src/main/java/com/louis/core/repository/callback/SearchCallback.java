@@ -2,7 +2,8 @@
 package com.louis.core.repository.callback;
 
 
-import com.louis.core.search.Searchable;
+
+import com.louis.common.api.search.Searchable;
 
 import javax.persistence.Query;
 

@@ -40,6 +40,7 @@
         <javax.interceptor-api>1.2</javax.interceptor-api>
         <modelmapper.version>1.1.2</modelmapper.version>
         <boot.admin.version>2.1.5</boot.admin.version>
+        <boot.version>2.1.4.RELEASE</boot.version>
         <springfox-swagger2>2.6.1</springfox-swagger2>
         <spring-social>1.1.6.RELEASE</spring-social>
         <commons-beanutils>1.9.3</commons-beanutils>
@@ -60,12 +61,8 @@
 
     <dependencies>
 
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-        </dependency>
 
-<!--访问方式http://服务:端口/项目名/monitoring-->
+    <!--访问方式http://服务:端口/项目名/monitoring-->
 
 
     </dependencies>
@@ -196,6 +193,16 @@
                 <artifactId>lombok</artifactId>
                 <version>${lombok.version}</version>
             </dependency>
+
+
+            <dependency>
+                <groupId>org.springframework.data</groupId>
+                <artifactId>spring-data-commons</artifactId>
+                <version>${boot.version}</version>
+
+            </dependency>
+
+
 
             <dependency>
                 <groupId>com.google.guava</groupId>

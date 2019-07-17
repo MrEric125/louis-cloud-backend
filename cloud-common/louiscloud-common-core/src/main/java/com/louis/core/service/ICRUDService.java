@@ -1,7 +1,7 @@
 package com.louis.core.service;
 
+import com.louis.common.api.search.Searchable;
 import com.louis.core.entity.BaseEntity;
-import com.louis.core.search.Searchable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 

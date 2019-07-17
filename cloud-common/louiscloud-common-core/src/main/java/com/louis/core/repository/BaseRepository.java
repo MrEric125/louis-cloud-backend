@@ -1,6 +1,6 @@
 package com.louis.core.repository;
 
-import com.louis.core.search.Searchable;
+import com.louis.common.api.search.Searchable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.NoRepositoryBean;
