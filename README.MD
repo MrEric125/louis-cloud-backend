@@ -22,27 +22,6 @@ cloud-zuul-----> cloud-oauth------> order service--->goods service---> payment s
 
 有些模块需要用户用户登录验证，但是在有些地方不需要用户登录验证，所以在zuul做负载均衡之后需要做下一步操作
 
-https://github.com/wiselyman/uaa-zuul
 
-https://www.yiibai.com/spring-security/secure-spring-rest-api-using-oauth2.html
-
-http://blog.didispace.com/spring-security-oauth2-xjf-3/
-
-有几个spring cloud 项目可以参考一下：
-
-
-https://gitee.com/log4j/pig
-
-https://gitee.com/xfdm/FCat
-
-https://gitee.com/geek_qi/cloud-platform
-
-https://github.com/lrwinx/shop
-
-https://github.com/vangao1989/cloudE
-
-https://github.com/prontera/spring-cloud-rest-tcc
-
-https://github.com/paascloud/paascloud-master
 
 

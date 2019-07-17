@@ -70,10 +70,12 @@
             <groupId>com.louis</groupId>
             <artifactId>louiscloud-common-core</artifactId>
         </dependency>
+
         <dependency>
-            <groupId>com.louis</groupId>
-            <artifactId>louiscloud-common-api</artifactId>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
         </dependency>
+        
 
 
     </dependencies>

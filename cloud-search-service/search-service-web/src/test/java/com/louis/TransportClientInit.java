@@ -2,11 +2,8 @@ package com.louis;
 
 import org.elasticsearch.client.transport.TransportClient;
 import org.elasticsearch.common.settings.Settings;
-import org.elasticsearch.common.transport.InetSocketTransportAddress;
-import org.elasticsearch.transport.client.PreBuiltTransportClient;
 
-import java.net.InetAddress;
-import java.net.UnknownHostException;
+
 
 /**
  * @author John·Louis
@@ -22,13 +19,13 @@ public class TransportClientInit {
     public static TransportClient init() {
         TransportClient client = null;
 
-        try {
+      /*  try {
             client = new PreBuiltTransportClient(settings)
                     .addTransportAddress(new InetSocketTransportAddress
                             (InetAddress.getByName("129.28.189.234"), 9300));
         } catch (UnknownHostException e) {
             e.printStackTrace();
-        }
+        }*/
         return client;
 
     }

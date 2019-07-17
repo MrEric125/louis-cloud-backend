@@ -10,6 +10,7 @@ import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.search.SearchHits;
 import org.elasticsearch.search.fetch.subphase.highlight.HighlightBuilder;
 import org.elasticsearch.search.fetch.subphase.highlight.HighlightField;
+import org.elasticsearch.transport.client.PreBuiltTransportClient;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -33,13 +34,13 @@ public class Search {
 
     @Before
     public void before() {
-        try {
+      /*  try {
             client = new PreBuiltTransportClient(settings)
                     .addTransportAddress(new InetSocketTransportAddress
                             (InetAddress.getByName("129.28.189.234"), 9300));
         } catch (UnknownHostException e) {
             e.printStackTrace();
-        }
+        }*/
     }
     @Test
     public void searchIds() {
@@ -90,7 +91,7 @@ public class Search {
                 .get();
         SearchHits hits = response.getHits();
         log.info("查询总结果：{}", hits.getTotalHits());
-        hits.forEach(x->{
+       /* hits.forEach(x->{
             System.out.println(x.getSourceAsString());
             Map<String, Object> source = x.getSource();
             Map<String, HighlightField> highlightFields = x.getHighlightFields();
@@ -98,6 +99,6 @@ public class Search {
                 System.out.println(highlightFields);
             }
             System.out.println(source);
-        });
+        });*/
     }
 }

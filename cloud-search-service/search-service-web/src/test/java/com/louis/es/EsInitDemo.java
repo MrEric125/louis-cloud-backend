@@ -2,14 +2,11 @@ package com.louis.es;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.google.common.collect.Lists;
 import org.elasticsearch.client.transport.TransportClient;
 import org.elasticsearch.common.settings.Settings;
-import org.elasticsearch.common.transport.InetSocketTransportAddress;
 import org.elasticsearch.common.xcontent.XContentBuilder;
 import org.elasticsearch.common.xcontent.XContentFactory;
 import org.elasticsearch.common.xcontent.XContentType;
-import org.elasticsearch.transport.client.PreBuiltTransportClient;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -43,13 +40,13 @@ public class EsInitDemo {
 
     @Before
     public void before() {
-        try {
+        /*try {
             client = new PreBuiltTransportClient(settings)
                     .addTransportAddress(new InetSocketTransportAddress
                             (InetAddress.getByName("129.28.189.234"), 9300));
         } catch (UnknownHostException e) {
             e.printStackTrace();
-        }
+        }*/
     }
 
     /**
