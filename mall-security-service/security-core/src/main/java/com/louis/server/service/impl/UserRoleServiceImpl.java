@@ -1,8 +1,8 @@
 package com.louis.server.service.impl;
 
+import com.louis.common.api.search.SearchOperator;
+import com.louis.common.api.search.Searchable;
 import com.louis.core.redis.RedisOperate;
-import com.louis.core.search.SearchOperator;
-import com.louis.core.search.Searchable;
 import com.louis.core.service.WebCRUDService;
 import com.louis.oauth.dto.RoleDto;
 import com.louis.constant.RedisConstant;

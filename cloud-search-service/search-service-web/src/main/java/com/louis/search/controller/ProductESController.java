@@ -1,10 +1,10 @@
 package com.louis.search.controller;
 
+import com.louis.common.api.search.Searchable;
 import com.louis.common.api.wrapper.Wrapper;
-import com.louis.core.search.Searchable;
-import com.louis.es.BaseESController;
+import com.louis.es.base.controller.BaseESController;
 import com.louis.es.entity.ProductDocument;
-import com.louis.search.service.ProductESServiceImpl;
+import com.louis.es.service.ProductESService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +23,7 @@ public class ProductESController extends BaseESController<ProductDocument, Long>
 
 
     @Autowired
-    private ProductESServiceImpl productESService;
+    private ProductESService productESService;
 
 
 

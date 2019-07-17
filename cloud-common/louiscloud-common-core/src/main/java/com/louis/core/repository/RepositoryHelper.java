@@ -1,8 +1,8 @@
 
 package com.louis.core.repository;
 
+import com.louis.common.api.search.Searchable;
 import com.louis.core.repository.callback.SearchCallback;
-import com.louis.core.search.Searchable;
 import com.louis.exception.BaseException;
 import org.springframework.core.annotation.AnnotationUtils;
 import org.springframework.data.domain.PageRequest;

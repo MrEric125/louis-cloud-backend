@@ -2,12 +2,12 @@
 package com.louis.core.repository.callback;
 
 
-import com.louis.core.search.SearchOperator;
-import com.louis.core.search.Searchable;
-import com.louis.core.search.filter.AndCondition;
-import com.louis.core.search.filter.Condition;
-import com.louis.core.search.filter.OrCondition;
-import com.louis.core.search.filter.SearchFilter;
+import com.louis.common.api.search.SearchOperator;
+import com.louis.common.api.search.Searchable;
+import com.louis.common.api.search.filter.AndCondition;
+import com.louis.common.api.search.filter.Condition;
+import com.louis.common.api.search.filter.OrCondition;
+import com.louis.common.api.search.filter.SearchFilter;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.util.StringUtils;

@@ -18,23 +18,11 @@
         <module>louiscloud-common-web</module>
         <module>louiscloud-common-feign</module>
         <module>louis-common-dubbo</module>
+        <module>louiscloud-common-es</module>
     </modules>
 
     <dependencies>
-        <!--<dependency>
-            <groupId>io.dubbo.springboot</groupId>
-            <artifactId>spring-boot-starter-dubbo</artifactId>
-            <version>1.0.0</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-test</artifactId>
-            <version>5.2.0.BUILD-SNAPSHOT</version>
-        </dependency>-->
+
     </dependencies>
 
 

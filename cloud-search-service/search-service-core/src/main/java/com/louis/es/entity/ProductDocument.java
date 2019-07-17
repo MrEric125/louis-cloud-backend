@@ -1,6 +1,6 @@
 package com.louis.es.entity;
 
-import com.louis.es.BaseDocument;
+import com.louis.es.base.entity.BaseDocument;
 import lombok.*;
 import org.springframework.data.elasticsearch.annotations.Document;
 
@@ -18,7 +18,7 @@ import java.util.Date;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Document(indexName = "product_index",type = "product",replicas = 0,shards = 3)
+@Document(indexName = "product_index",type = "product")
 public class ProductDocument extends BaseDocument<Long> {
 
 
