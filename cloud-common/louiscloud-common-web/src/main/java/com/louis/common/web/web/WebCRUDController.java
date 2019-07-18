@@ -84,7 +84,7 @@ public abstract class WebCRUDController<Entity extends BaseEntity, Dto extends B
 //    public Wrapper findAll() {
 //        List<Entity> all = webCrudService.findAll();
 //        if (CollectionUtils.isEmpty(all)) {
-//            return returnNullResult();
+//            return handlerNullResult();
 //        }
 ////        List<Dto> dtos = webCrudService.entitiesToDtos(all);
 //        return handleResult(all);
@@ -101,7 +101,7 @@ public abstract class WebCRUDController<Entity extends BaseEntity, Dto extends B
     public Wrapper findById(@ApiParam("实体id") @PathVariable ID id) {
         Entity entity = webCrudService.findById(id);
         if (entity == null) {
-            return returnNullResult();
+            return handlerNullResult();
         }
 //        Dto dto = webCrudService.entityToDto(entity);
         return handleResult(entity);
@@ -122,7 +122,7 @@ public abstract class WebCRUDController<Entity extends BaseEntity, Dto extends B
 
         Page<Entity> entityPage = webCrudService.findAll(searchable);
         if (CollectionUtils.isEmpty(entityPage.getContent())) {
-            return returnNullResult();
+            return handlerNullResult();
 
         }
 //        List<Dto> dtos = webCrudService.entitiesToDtos(entityPage.getContent());

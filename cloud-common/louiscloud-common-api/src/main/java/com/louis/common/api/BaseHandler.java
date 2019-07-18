@@ -59,7 +59,7 @@ public abstract class BaseHandler<T> {
      * @param <T>
      * @return
      */
-    protected <T> Wrapper<T> returnNullResult( String errorMsg) {
+    protected <T> Wrapper<T> handlerNullResult( String errorMsg) {
 
         if (errorMsg == null) {
             return WrapMapper.wrap(WrapperMassage.SUCCESS_CODE, "操作成功");
@@ -76,8 +76,8 @@ public abstract class BaseHandler<T> {
      * @param <T>
      * @return
      */
-    protected <T> Wrapper<T> returnNullResult() {
-        return returnNullResult( null);
+    protected <T> Wrapper<T> handlerNullResult() {
+        return handlerNullResult( null);
     }
 
     /**

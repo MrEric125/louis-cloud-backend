@@ -5,6 +5,7 @@ import lombok.Setter;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.elasticsearch.annotations.DateFormat;
 import org.springframework.data.elasticsearch.annotations.Field;
+import org.springframework.data.elasticsearch.annotations.FieldType;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
@@ -21,13 +22,13 @@ public class BaseDocument<ID extends Serializable> extends AbstractDocument<ID>{
     private static final long serialVersionUID = -822377468826016832L;
 
     @Id
-    private ID id;
+    private long id;
 
 
     @Setter
     @Getter
     @Field(format = DateFormat.basic_date_time)
-    private LocalDateTime startTime;
+    private Date startTime;
 
     @Setter
     @Getter
@@ -37,12 +38,12 @@ public class BaseDocument<ID extends Serializable> extends AbstractDocument<ID>{
 
 
     @Override
-    public ID getId() {
+    public Long getId() {
         return id;
     }
 
     @Override
-    public void setId(ID id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
