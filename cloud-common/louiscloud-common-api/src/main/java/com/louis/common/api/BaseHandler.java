@@ -5,6 +5,7 @@ import com.louis.common.api.wrapper.PageWrapMapper;
 import com.louis.common.api.wrapper.WrapMapper;
 import com.louis.common.api.wrapper.Wrapper;
 import com.louis.common.api.wrapper.WrapperMassage;
+import org.springframework.cglib.core.ReflectUtils;
 import org.springframework.data.domain.Page;
 
 import java.util.Objects;
@@ -15,7 +16,15 @@ import java.util.Objects;
  * Date: 2019/7/17
  * Description:
  */
-public abstract class BaseHandler<T,E> {
+public abstract class BaseHandler<T> {
+
+/*
+   protected final Class<T> entityClass;
+
+    public BaseHandler() {
+        this.entityClass = ReflectUtils.findParameterizedType(getClass(), 0);
+    }*/
+
 
     /**
      *
@@ -74,7 +83,7 @@ public abstract class BaseHandler<T,E> {
      * @return todo 这个地方不太好指定泛型类型
      */
 
-    protected <E> Wrapper handlePageResult(T t) {
+    protected <E> Wrapper handlePageAndSortResult(T t) {
         if (t instanceof Page) {
             Page page = (Page) t;
 
@@ -84,6 +93,7 @@ public abstract class BaseHandler<T,E> {
                             .pageSize(page.getSize())
                             .totalPage(page.getTotalPages())
                             .totalElement(page.getTotalElements())
+
                             .build());
         } else {
             throw new UnablePageException("当前查询不可分页");

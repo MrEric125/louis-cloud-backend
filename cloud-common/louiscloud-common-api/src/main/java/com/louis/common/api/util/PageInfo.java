@@ -9,7 +9,9 @@ import lombok.NoArgsConstructor;
 
 
 /**
- * The class Page util.
+ *  sj  2019年7月19日13:58:21
+ *
+ *   Spring page中的某些信息不需要，重新封装一下
  *
  * @author John·Louis
  */
@@ -25,18 +27,9 @@ public class PageInfo {
 	@Builder.Default
 	private int currentPage = 1;
 
-	/**
-	 * The next page.下一页
-	 */
-//	private int nextPage;
 
 	/**
-	 * The pre page. 上一页
-	 */
-//	private int prePage;
-
-	/**
-	 * The total row. 总条数
+	 * 总条数
 	 */
 	private long totalElement;
 
@@ -52,19 +45,24 @@ public class PageInfo {
 	private int totalPage;
 
 	/**
-	 * The start. 开始条数
+	 * 是否为第一页
 	 */
-//	private int start;
+	private boolean start;
+
 
 	/**
-	 * The buttons.
+	 * 是否为最后一页
 	 */
-//	private int[] buttons;
+	private boolean last;
 
 	/**
-	 * 当前页条数
+	 * 是否排序
 	 */
-//	private int curPageSize;
+	private boolean sorted;
+
+
+
+
 
 
 

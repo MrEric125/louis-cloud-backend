@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,7 +19,6 @@ import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Stream;
 
 /**
  * @author Eric
@@ -42,7 +42,6 @@ public class BaseESController<E extends BaseDocument, ID extends Serializable> e
 
     @Scheduled
     @ApiOperation("定时任务，往es中导入数据")
-
     public void timedTask() {
 
     }
@@ -51,16 +50,16 @@ public class BaseESController<E extends BaseDocument, ID extends Serializable> e
     @GetMapping("/simpleSearch/{keyWord}")
     public Wrapper searchSimple(@PathVariable("keyWord") String keyWord) {
         Page<E> productDocuments = baseESService.searchSimple(keyWord);
-        return handlePageResult(productDocuments);
+        return handlePageAndSortResult(productDocuments);
     }
 
     @ApiOperation("綜合查询")
     @GetMapping("/search")
     public Wrapper search(@RequestParam("currentPage")int currentPage, @RequestParam("pageSize")int pageSize) {
-        Pageable pageable = PageRequest.of(currentPage, pageSize);
+        Pageable pageable = PageRequest.of(currentPage, pageSize, Sort.Direction.ASC,"id");
         Page<E> search = baseESService.searchPageable(null, pageable);
-//        return handleResult(search);
-        return handlePageResult(search);
+        return handleResult(search);
+//        return handlePageAndSortResult(search);
     }
 
     @ApiOperation("推荐")

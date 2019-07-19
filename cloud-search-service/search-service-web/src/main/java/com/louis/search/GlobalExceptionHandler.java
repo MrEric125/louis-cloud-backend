@@ -33,6 +33,7 @@ public class GlobalExceptionHandler {
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     public Wrapper exceptionHandler(Exception e) {
         log.error("异常message:{}", e.getMessage());
+        e.printStackTrace();
         return WrapMapper.wrap(HttpStatus.INTERNAL_SERVER_ERROR.value(),e.getMessage());
 
     }

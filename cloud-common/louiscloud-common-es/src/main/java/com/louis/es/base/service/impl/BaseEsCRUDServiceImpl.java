@@ -35,7 +35,6 @@ public class BaseEsCRUDServiceImpl<D extends BaseDocument,ID extends Serializabl
     @Override
     public Page<D> search(String keyword) {
         QueryBuilder queryBuilder = QueryBuilders.matchAllQuery();
-        System.out.println(queryBuilder);
         NativeSearchQueryBuilder searchQueryBuilder = new NativeSearchQueryBuilder();
         NativeSearchQuery searchQuery = searchQueryBuilder.withFilter(queryBuilder).build();
 
