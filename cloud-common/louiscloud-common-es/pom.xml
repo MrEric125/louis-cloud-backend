@@ -59,6 +59,11 @@
             <artifactId>transport</artifactId>
             <version>${es.version}</version>
         </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.datatype</groupId>
+            <artifactId>jackson-datatype-jsr310</artifactId>
+            <version>2.9.9</version>
+        </dependency>
         <!--        统一使用 5.6.16 这个版本的elesticsearch   end-->
     </dependencies>
 

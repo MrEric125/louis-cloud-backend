@@ -7,6 +7,8 @@ spring:
       cluster-nodes: 127.0.0.1:9300
       repositories:
         enabled: true
+  jackson:
+    date-format: java.text.SimpleDateFormat
 #  jpa:
 #    database: MYSQL
 #    show-sql: true

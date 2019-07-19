@@ -1,8 +1,11 @@
 package com.louis.common.api;
 
+import com.louis.common.api.util.PageInfo;
+import com.louis.common.api.wrapper.PageWrapMapper;
 import com.louis.common.api.wrapper.WrapMapper;
 import com.louis.common.api.wrapper.Wrapper;
 import com.louis.common.api.wrapper.WrapperMassage;
+import org.springframework.data.domain.Page;
 
 import java.util.Objects;
 
@@ -12,10 +15,9 @@ import java.util.Objects;
  * Date: 2019/7/17
  * Description:
  */
-public abstract class BaseHandler<T> {
+public abstract class BaseHandler<T,E> {
 
     /**
-     * Handle result wrapper.
      *
      * @param result the result
      *
@@ -23,7 +25,6 @@ public abstract class BaseHandler<T> {
      */
     protected <T> Wrapper<T> handleResult(T result) {
         boolean flag = isFlag(result);
-
         if (flag) {
             return WrapMapper.wrap(WrapperMassage.SUCCESS_CODE, "操作成功", result);
         } else {
@@ -32,9 +33,7 @@ public abstract class BaseHandler<T> {
     }
 
     /**
-     * Handle result wrapper.
      *
-
      * @param result   the result
      * @param errorMsg the error msg
      *
@@ -52,7 +51,6 @@ public abstract class BaseHandler<T> {
 
 
     /**
-     * special Scene ,should return null result
      *
      * @param
      * @param errorMsg
@@ -69,7 +67,31 @@ public abstract class BaseHandler<T> {
     }
 
     /**
-     * special Scene ,should return null result
+     * 如果是返回的分页信息那么一定是成功的，就没有errorMsg
+     *注意，在查询的时候需要指定Pageable参数，否则显示的页码信息会有错误
+     *
+     * @param <T>
+     * @return todo 这个地方不太好指定泛型类型
+     */
+
+    protected <E> Wrapper handlePageResult(T t) {
+        if (t instanceof Page) {
+            Page page = (Page) t;
+
+            return PageWrapMapper.wrap(page.getContent(),
+                    PageInfo.builder()
+                            .currentPage(page.getNumber())
+                            .pageSize(page.getSize())
+                            .totalPage(page.getTotalPages())
+                            .totalElement(page.getTotalElements())
+                            .build());
+        } else {
+            throw new UnablePageException("当前查询不可分页");
+        }
+
+    }
+
+    /**
      *
      * @param
      * @param

@@ -28,4 +28,12 @@ public class GlobalExceptionHandler {
         return WrapMapper.error(e.getMessage());
 
     }
+
+    @ExceptionHandler(Exception.class)
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    public Wrapper exceptionHandler(Exception e) {
+        log.error("异常message:{}", e.getMessage());
+        return WrapMapper.wrap(HttpStatus.INTERNAL_SERVER_ERROR.value(),e.getMessage());
+
+    }
 }

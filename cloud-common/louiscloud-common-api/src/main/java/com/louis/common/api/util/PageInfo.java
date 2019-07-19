@@ -2,7 +2,10 @@
 
 package com.louis.common.api.util;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 
 /**
@@ -11,31 +14,36 @@ import lombok.Data;
  * @author John·Louis
  */
 @Data
-public class PageUtil {
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+public class PageInfo {
 
 	/**
 	 * The cur page.当前页
 	 */
+	@Builder.Default
 	private int currentPage = 1;
 
 	/**
 	 * The next page.下一页
 	 */
-	private int nextPage;
+//	private int nextPage;
 
 	/**
 	 * The pre page. 上一页
 	 */
-	private int prePage;
+//	private int prePage;
 
 	/**
 	 * The total row. 总条数
 	 */
-	private int totalRow;
+	private long totalElement;
 
 	/**
 	 * The page size.每页条数
 	 */
+	@Builder.Default
 	private int pageSize = 10;
 
 	/**
@@ -46,31 +54,26 @@ public class PageUtil {
 	/**
 	 * The start. 开始条数
 	 */
-	private int start;
+//	private int start;
 
 	/**
 	 * The buttons.
 	 */
-	private int[] buttons;
+//	private int[] buttons;
 
 	/**
 	 * 当前页条数
 	 */
-	private int curPageSize;
+//	private int curPageSize;
 
-	/**
-	 * Instantiates a new page util.
-	 */
-	public PageUtil() {
 
-	}
 
 	/**
 	 * Instantiates a new page util.
 	 *
 	 * @param currentPage the current page
 	 */
-	public PageUtil(int currentPage) {
+	public PageInfo(int currentPage) {
 		this.currentPage = currentPage;
 	}
 
@@ -80,9 +83,15 @@ public class PageUtil {
 	 * @param currentPage the current page
 	 * @param pageSize    the page size
 	 */
-	public PageUtil(int currentPage, int pageSize) {
+	public PageInfo(int currentPage, int pageSize) {
 		this.currentPage = currentPage;
 		this.pageSize = pageSize;
+	}
+
+	public PageInfo(int currentPage, int pageSize, int totalPage) {
+		this(currentPage, pageSize);
+		this.totalPage = totalPage;
+
 	}
 
 }

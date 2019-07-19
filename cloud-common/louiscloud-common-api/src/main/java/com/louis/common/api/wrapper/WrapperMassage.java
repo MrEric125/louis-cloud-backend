@@ -8,6 +8,7 @@ import java.io.Serializable;
  */
 public class WrapperMassage implements Serializable {
 
+    private static final long serialVersionUID = -6098835717971460688L;
     /**
      * 成功码.
      */
@@ -22,6 +23,13 @@ public class WrapperMassage implements Serializable {
      * 错误码.
      */
     public static final int ERROR_CODE = 400;
+
+
+
+    public static final int INTERNAL_SERVER_ERROR = 500;
+
+
+
 
     /**
      * 错误信息.

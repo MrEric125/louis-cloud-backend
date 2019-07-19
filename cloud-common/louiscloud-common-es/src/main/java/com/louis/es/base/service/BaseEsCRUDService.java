@@ -2,6 +2,7 @@ package com.louis.es.base.service;
 
 import com.louis.es.base.entity.BaseDocument;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.io.Serializable;
@@ -19,6 +20,9 @@ public interface BaseEsCRUDService<E extends BaseDocument, ID extends Serializab
     Page<E> searchSimple(String keyword);
 
     Page<E> search(String keyword);
+
+    Page<E> searchPageable(String keyword, Pageable pageable);
+
 
     E add(E e);
 

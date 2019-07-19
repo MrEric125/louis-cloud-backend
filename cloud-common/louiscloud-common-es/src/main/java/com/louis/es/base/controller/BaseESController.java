@@ -2,7 +2,6 @@ package com.louis.es.base.controller;
 
 import com.louis.common.api.BaseHandler;
 import com.louis.common.api.EntityNotFoundException;
-import com.louis.common.api.wrapper.WrapMapper;
 import com.louis.common.api.wrapper.Wrapper;
 import com.louis.es.base.entity.BaseDocument;
 import com.louis.es.base.service.BaseEsCRUDService;
@@ -10,15 +9,16 @@ import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.scheduling.annotation.Scheduled;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.io.Serializable;
+import java.lang.reflect.ParameterizedType;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Stream;
 
 /**
  * @author Eric
@@ -29,6 +29,15 @@ public class BaseESController<E extends BaseDocument, ID extends Serializable> e
 
     @Autowired
     private BaseEsCRUDService<E, ID> baseESService;
+
+    public Class<E> getDocumentClass() {
+        ParameterizedType pt = (ParameterizedType) this.getClass().getGenericSuperclass();
+        // 获取第一个类型参数的真实类型
+        return (Class<E>) pt.getActualTypeArguments()[0];
+
+
+
+    }
 
 
     @Scheduled
@@ -42,14 +51,16 @@ public class BaseESController<E extends BaseDocument, ID extends Serializable> e
     @GetMapping("/simpleSearch/{keyWord}")
     public Wrapper searchSimple(@PathVariable("keyWord") String keyWord) {
         Page<E> productDocuments = baseESService.searchSimple(keyWord);
-        return handleResult(productDocuments);
+        return handlePageResult(productDocuments);
     }
 
     @ApiOperation("綜合查询")
-    @GetMapping("search/")
-    public Wrapper search(String keyword) {
-        Page<E> search = baseESService.search(keyword);
-        return handleResult(search);
+    @GetMapping("/search")
+    public Wrapper search(@RequestParam("currentPage")int currentPage, @RequestParam("pageSize")int pageSize) {
+        Pageable pageable = PageRequest.of(currentPage, pageSize);
+        Page<E> search = baseESService.searchPageable(null, pageable);
+//        return handleResult(search);
+        return handlePageResult(search);
     }
 
     @ApiOperation("推荐")
@@ -67,14 +78,14 @@ public class BaseESController<E extends BaseDocument, ID extends Serializable> e
 
 
     @ApiOperation("单个新增")
-    @PostMapping("add")
+    @PostMapping("/add")
     public Wrapper addOne(@RequestBody  E e) {
         E document = baseESService.add(e);
         return handlerNullResult();
     }
 
     @ApiOperation("批量新增")
-    @PostMapping("addBatch")
+    @PostMapping("/addBatch")
     public Wrapper addBatch(@RequestBody  List<E> list) {
         return null;
 
@@ -83,7 +94,8 @@ public class BaseESController<E extends BaseDocument, ID extends Serializable> e
     @GetMapping("/findById/{id}")
     public Wrapper findById(@PathVariable("id") ID id) {
         Optional<E> optionalE = baseESService.findById(id);
-        E e = optionalE.orElseThrow(() -> new EntityNotFoundException(404, "es中没有找到对应的实体"));
+        E e = optionalE.orElseThrow(
+                () -> new EntityNotFoundException(404, "es中没有找到对应的实体"));
        return handleResult(e);
     }
 

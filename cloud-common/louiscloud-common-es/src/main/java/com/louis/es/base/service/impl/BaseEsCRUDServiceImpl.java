@@ -7,6 +7,7 @@ import org.elasticsearch.index.query.QueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.elasticsearch.core.query.NativeSearchQuery;
 import org.springframework.data.elasticsearch.core.query.NativeSearchQueryBuilder;
 
@@ -34,9 +35,21 @@ public class BaseEsCRUDServiceImpl<D extends BaseDocument,ID extends Serializabl
     @Override
     public Page<D> search(String keyword) {
         QueryBuilder queryBuilder = QueryBuilders.matchAllQuery();
+        System.out.println(queryBuilder);
         NativeSearchQueryBuilder searchQueryBuilder = new NativeSearchQueryBuilder();
         NativeSearchQuery searchQuery = searchQueryBuilder.withFilter(queryBuilder).build();
+
         return baseESRepository.search(searchQuery);
+    }
+
+    @Override
+    public Page<D> searchPageable(String keyword, Pageable pageable) {
+        QueryBuilder queryBuilder = QueryBuilders.matchAllQuery();
+        System.out.println(queryBuilder);
+        NativeSearchQueryBuilder searchQueryBuilder = new NativeSearchQueryBuilder();
+        NativeSearchQuery searchQuery = searchQueryBuilder.withFilter(queryBuilder).build();
+        return baseESRepository.search(queryBuilder, pageable);
+
     }
 
     @Override

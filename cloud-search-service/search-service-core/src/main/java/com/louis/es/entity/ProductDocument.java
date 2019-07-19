@@ -1,5 +1,6 @@
 package com.louis.es.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.louis.es.base.entity.BaseDocument;
@@ -22,6 +23,7 @@ import java.util.Date;
 @NoArgsConstructor
 @JsonInclude(value = JsonInclude.Include.NON_NULL)
 @Document(indexName = "product_index",type = "product")
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class ProductDocument extends BaseDocument<Long> {
 
 
