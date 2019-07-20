@@ -3,17 +3,15 @@ package com.louis.order.web.rpc;
 
 import com.google.common.collect.Lists;
 import com.louis.common.api.dto.LoginAuthDto;
-import com.louis.common.api.util.PageUtil;
+import com.louis.common.api.search.Searchable;
+import com.louis.common.api.util.PageInfo;
 import com.louis.common.api.wrapper.PageWrapMapper;
 import com.louis.common.api.wrapper.PageWrapper;
 import com.louis.common.api.wrapper.WrapMapper;
 import com.louis.common.api.wrapper.Wrapper;
 import com.louis.common.web.web.BaseController;
-import com.louis.core.search.Searchable;
 import com.louis.order.api.dto.OmsCartDetailDto;
 import com.louis.order.api.dto.OmsCartDto;
-import com.louis.order.api.dto.OmsRequest;
-import com.louis.order.api.dto.ProductItemDto;
 import com.louis.order.api.feign.OmsCartFeignClientApi;
 import com.louis.order.entity.OmsCart;
 import com.louis.order.service.OmsCartService;
@@ -53,7 +51,7 @@ public class OmsCartFeignClient extends BaseController<OmsCart,Long> implements 
         log.info("find cart by UserId:{}", userId);
         List<OmsCartDto> omsCartDtos = convertEntitysToDtos(cartByUserId.getContent());
 
-        return PageWrapMapper.wrap(omsCartDtos, new PageUtil(cartByUserId.getTotalPages(), cartByUserId.getSize()));
+        return PageWrapMapper.wrap(omsCartDtos, new PageInfo(cartByUserId.getTotalPages(), cartByUserId.getSize()));
     }
 
     @Override

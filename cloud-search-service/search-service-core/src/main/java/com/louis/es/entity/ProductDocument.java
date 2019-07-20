@@ -1,8 +1,12 @@
 package com.louis.es.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.louis.es.base.entity.BaseDocument;
 import lombok.*;
 import org.springframework.data.elasticsearch.annotations.Document;
+import org.springframework.data.elasticsearch.annotations.Field;
 
 import java.math.BigDecimal;
 import java.util.Date;
@@ -15,10 +19,11 @@ import java.util.Date;
  */
 @Setter
 @Getter
-@Builder
 @AllArgsConstructor
 @NoArgsConstructor
+@JsonInclude(value = JsonInclude.Include.NON_NULL)
 @Document(indexName = "product_index",type = "product")
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class ProductDocument extends BaseDocument<Long> {
 
 

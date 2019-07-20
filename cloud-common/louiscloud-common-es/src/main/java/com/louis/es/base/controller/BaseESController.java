@@ -1,59 +1,65 @@
 package com.louis.es.base.controller;
 
 import com.louis.common.api.BaseHandler;
-import com.louis.common.api.search.Searchable;
+import com.louis.common.api.EntityNotFoundException;
 import com.louis.common.api.wrapper.Wrapper;
 import com.louis.es.base.entity.BaseDocument;
 import com.louis.es.base.service.BaseEsCRUDService;
 import io.swagger.annotations.ApiOperation;
-import org.elasticsearch.client.transport.TransportClient;
-import org.elasticsearch.common.settings.Setting;
-import org.elasticsearch.common.settings.Settings;
-import org.elasticsearch.common.transport.InetSocketTransportAddress;
-import org.elasticsearch.index.query.QueryBuilder;
-import org.elasticsearch.index.query.QueryBuilders;
-import org.elasticsearch.transport.client.PreBuiltTransportClient;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.data.elasticsearch.core.query.SearchQuery;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.scheduling.annotation.Scheduled;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.io.Serializable;
+import java.lang.reflect.ParameterizedType;
+import java.util.List;
+import java.util.Optional;
 
 /**
  * @author Eric
  * @date create in 2019/6/11
  */
-@RestController
+@Slf4j
 public class BaseESController<E extends BaseDocument, ID extends Serializable> extends BaseHandler {
 
     @Autowired
     private BaseEsCRUDService<E, ID> baseESService;
 
+    public Class<E> getDocumentClass() {
+        ParameterizedType pt = (ParameterizedType) this.getClass().getGenericSuperclass();
+        // 获取第一个类型参数的真实类型
+        return (Class<E>) pt.getActualTypeArguments()[0];
+
+
+
+    }
+
 
     @Scheduled
     @ApiOperation("定时任务，往es中导入数据")
-
     public void timedTask() {
 
     }
 
     @ApiOperation("简单搜索")
-    @GetMapping("search/simple/{keyWord}")
-    public Wrapper searchSimple(@PathVariable("keyWord") String keyWord, Searchable searchable) {
-        Page<E> productDocuments = baseESService.searchSimple(keyWord, searchable);
-        return handleResult(productDocuments);
+    @GetMapping("/simpleSearch/{keyWord}")
+    public Wrapper searchSimple(@PathVariable("keyWord") String keyWord) {
+        Page<E> productDocuments = baseESService.searchSimple(keyWord);
+        return handlePageAndSortResult(productDocuments);
     }
 
     @ApiOperation("綜合查询")
-    @GetMapping("search/")
-    public Wrapper search(String keyword,Searchable searchable) {
-        Page<E> search = baseESService.search(keyword, searchable);
+    @GetMapping("/search")
+    public Wrapper search(@RequestParam("currentPage")int currentPage, @RequestParam("pageSize")int pageSize) {
+        Pageable pageable = PageRequest.of(currentPage, pageSize, Sort.Direction.ASC,"id");
+        Page<E> search = baseESService.searchPageable(null, pageable);
         return handleResult(search);
+//        return handlePageAndSortResult(search);
     }
 
     @ApiOperation("推荐")
@@ -71,17 +77,25 @@ public class BaseESController<E extends BaseDocument, ID extends Serializable> e
 
 
     @ApiOperation("单个新增")
-    @PostMapping("add")
-    public Wrapper addOne() {
-
-        return null;
+    @PostMapping("/add")
+    public Wrapper addOne(@RequestBody  E e) {
+        E document = baseESService.add(e);
+        return handlerNullResult();
     }
 
     @ApiOperation("批量新增")
-    @PostMapping("addBatch")
-    public Wrapper addBatch() {
+    @PostMapping("/addBatch")
+    public Wrapper addBatch(@RequestBody  List<E> list) {
         return null;
 
+    }
+
+    @GetMapping("/findById/{id}")
+    public Wrapper findById(@PathVariable("id") ID id) {
+        Optional<E> optionalE = baseESService.findById(id);
+        E e = optionalE.orElseThrow(
+                () -> new EntityNotFoundException(404, "es中没有找到对应的实体"));
+       return handleResult(e);
     }
 
 
