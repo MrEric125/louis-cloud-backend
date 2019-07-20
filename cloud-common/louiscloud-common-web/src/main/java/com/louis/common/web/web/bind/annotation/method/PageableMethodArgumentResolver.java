@@ -23,7 +23,7 @@ import java.util.*;
  * <pre>
  *   1.1、简单的分页请求参数格式如下：
  *     page.size=10  分页大小
- *     page.pn=1    页码 从1开始
+ *     page.pn=1    页码 从1开始,小于0 按0计算
  *   1.2、控制器处理方法写法
  *     public void test(Pageable page);
  * </pre>
@@ -100,10 +100,10 @@ public class PageableMethodArgumentResolver extends BaseMethodArgumentResolver {
      * Setter to configure a fallback instance of {@link Pageable} that is being used to back missing parameters. Defaults
      * to {@link #DEFAULT_PAGE_REQUEST}.
      *
-     * @param fallbackPagable the fallbackPagable to set
+     * @param fallbackPageable the fallbackPageable to set
      */
-    public void setFallbackPagable(Pageable fallbackPagable) {
-        this.fallbackPagable = null == fallbackPagable ? DEFAULT_PAGE_REQUEST : fallbackPagable;
+    public void setFallbackPagable(Pageable fallbackPageable) {
+        this.fallbackPagable = null == fallbackPageable ? DEFAULT_PAGE_REQUEST : fallbackPageable;
     }
 
     /**
@@ -370,7 +370,7 @@ public class PageableMethodArgumentResolver extends BaseMethodArgumentResolver {
      */
     private void assertQualifiersFor(Class<?>[] parameterTypes, Annotation[][] annotations) {
 
-        Set<String> values = new HashSet<String>();
+        Set<String> values = new HashSet<>();
 
         for (int i = 0; i < annotations.length; i++) {
 
@@ -423,7 +423,7 @@ public class PageableMethodArgumentResolver extends BaseMethodArgumentResolver {
         }
 
         @Override
-        public int compareTo(OrderedSort o) {
+        public int compareTo( OrderedSort o) {
             if (o == null) {
                 return -1;
             }

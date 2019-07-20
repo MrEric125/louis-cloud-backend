@@ -1,4 +1,4 @@
-package com.louis.oauth.dto;
+package com.louis.common.api.dto;
 
 import lombok.*;
 

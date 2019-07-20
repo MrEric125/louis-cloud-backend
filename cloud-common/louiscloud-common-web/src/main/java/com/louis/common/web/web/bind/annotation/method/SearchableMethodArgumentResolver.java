@@ -41,6 +41,15 @@ import java.util.Map;
  *     3.1、禁用查询时分页及排序
  *          public void test(@Search(page = false, sort = false) Searchable searchable);
  * </pre>
+ *
+ * 一般查询在请求参数中指定一个Searchable就可以了
+ * </pre>listPageBy?
+ * page.size=6&
+ * page.pn=1
+ * sort.id=asc&
+ * search.id_gt=2&
+ * sort.createTime=desc&
+ * </pre>
  * <p>User: Louis
  * <p>Date: 2019年5月30日22:59:24
  * <p>Version: 1.0

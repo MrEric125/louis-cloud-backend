@@ -12,6 +12,7 @@ import org.springframework.data.elasticsearch.core.query.NativeSearchQuery;
 import org.springframework.data.elasticsearch.core.query.NativeSearchQueryBuilder;
 
 import java.io.Serializable;
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -69,6 +70,11 @@ public class BaseEsCRUDServiceImpl<D extends BaseDocument,ID extends Serializabl
 
     public Optional<D> findById(ID id) {
         return baseESRepository.findById(id);
+    }
+
+    @Override
+    public void addBatch(List<D> list) {
+        baseESRepository.saveAll(list);
     }
 
 

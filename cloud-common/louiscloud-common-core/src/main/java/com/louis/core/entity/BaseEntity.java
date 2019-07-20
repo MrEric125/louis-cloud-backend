@@ -2,6 +2,7 @@ package com.louis.core.entity;
 
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.NonNull;
 
 import javax.persistence.*;
@@ -31,6 +32,7 @@ public abstract class BaseEntity<ID extends Serializable> extends AbstractEntity
         this.id = id;
     }
 
+    @JsonIgnore
     public String getIdToString(){
         return String.valueOf(id);
     }
