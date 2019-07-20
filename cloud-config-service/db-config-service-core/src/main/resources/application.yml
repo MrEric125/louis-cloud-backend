@@ -19,7 +19,7 @@ spring:
           uri: https://gitee.com/Eric125/config-rep
           search-paths: /*
           username: 627460581@qq.com
-          password: wzc5254tay...
+          password:
   profiles:
     active: dev
 logging:
