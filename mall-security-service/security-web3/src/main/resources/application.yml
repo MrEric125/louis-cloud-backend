@@ -43,8 +43,8 @@ logging:
   level:
     org.springframework.security:  DEBUG
 
-    code:
-      image:
-        expireIn: 180
-        url: /auth/register,/auth/submitResetPwdEmail,/auth/code/sms
+#    code:
+#      image:
+#        expireIn: 180
+#        url: /auth/register,/auth/submitResetPwdEmail,/auth/code/sms
 

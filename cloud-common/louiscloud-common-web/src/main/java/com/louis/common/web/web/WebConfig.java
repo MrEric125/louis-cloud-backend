@@ -4,12 +4,16 @@ import com.louis.common.web.web.bind.annotation.method.SearchableMethodArgumentR
 import org.springframework.beans.factory.config.MethodInvokingFactoryBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.support.ReloadableResourceBundleMessageSource;
+import org.springframework.context.support.ResourceBundleMessageSource;
 import org.springframework.format.support.DefaultFormattingConversionService;
 import org.springframework.format.support.FormattingConversionService;
+import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport;
 
+import javax.validation.Validator;
 import java.util.List;
 
 /**
@@ -55,9 +59,9 @@ public class WebConfig extends WebMvcConfigurationSupport {
      */
     @Override
     protected void addResourceHandlers(ResourceHandlerRegistry registry) {
-        // 解决静态资源无法访问
+      /*  // 解决静态资源无法访问
         registry.addResourceHandler("/**")
-                .addResourceLocations("classpath:/static/");
+                .addResourceLocations("classpath:/static/");*/
         // 解决swagger无法访问
         registry.addResourceHandler("/swagger-ui.html")
                 .addResourceLocations("classpath:/META-INF/resources/");
@@ -66,5 +70,24 @@ public class WebConfig extends WebMvcConfigurationSupport {
                 .addResourceLocations("classpath:/META-INF/resources/webjars/");
 
     }
+
+    @Bean
+    public ResourceBundleMessageSource resourceBundleMessageSource(){
+        ResourceBundleMessageSource messageSource = new ResourceBundleMessageSource();
+        messageSource.setBasenames("classpath:messages","classpath:ValidationMessages");
+        messageSource.setUseCodeAsDefaultMessage(false);
+        messageSource.setDefaultEncoding("UTF-8");
+        messageSource.setCacheSeconds(60);
+        return messageSource;
+    }
+
+    @Bean
+    public Validator validator(){
+        LocalValidatorFactoryBean validator = new LocalValidatorFactoryBean();
+        validator.setProviderClass(org.hibernate.validator.HibernateValidator.class);
+        validator.setValidationMessageSource(resourceBundleMessageSource());
+        return validator;
+    }
+
 }
 

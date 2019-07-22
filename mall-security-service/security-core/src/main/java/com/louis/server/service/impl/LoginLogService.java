@@ -14,12 +14,12 @@ import org.springframework.stereotype.Service;
 import java.util.Date;
 
 /**
- * @author Eric
+ * @author John·Louis
  * @date create in 2019/5/19
  */
 @Service
 @Slf4j
-public class LoginLogService extends CRUDService<UserLoginLog, Long> {
+public class LoginLogService extends CRUDService<UserLoginLog, Long>  {
 
     @Autowired
     private  LoginRepository loginRepository;

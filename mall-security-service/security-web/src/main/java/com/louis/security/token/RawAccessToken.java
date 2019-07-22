@@ -6,7 +6,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.authentication.BadCredentialsException;
 
 /**
- * @author Eric
+ * @author John·Louis
  * @date create in 2019/4/14
  */
 @Slf4j

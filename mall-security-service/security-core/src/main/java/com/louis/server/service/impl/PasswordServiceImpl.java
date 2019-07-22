@@ -13,7 +13,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 /**
- * @author Eric
+ * @author John·Louis
  * @date create in 2019/5/19
  */
 @Service
@@ -30,7 +30,7 @@ public class PasswordServiceImpl implements PasswordService {
     }
 
     @Override
-    public String modifyPsw(ModifyPswDto modifyPswDto, LoginAuthDto loginAuthDto,String salt) {
+    public String modifyPsw(ModifyPswDto modifyPswDto,String salt) {
         String loginName = modifyPswDto.getLoginName();
         String oldPassword = modifyPswDto.getOldPassword();
         String newPassword = modifyPswDto.getNewPassword();

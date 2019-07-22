@@ -3,6 +3,7 @@
 package com.louis.common.api.wrapper;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import lombok.Data;
 
@@ -15,7 +16,7 @@ import java.io.Serializable;
  * @param <T> the type parameter @author John·Louis
  */
 @Data
-@JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+@JsonInclude(value =  JsonInclude.Include.NON_NULL)
 public class Wrapper<T> implements Serializable {
 
 	/**

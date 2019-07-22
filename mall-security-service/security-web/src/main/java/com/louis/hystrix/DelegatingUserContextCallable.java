@@ -5,7 +5,7 @@ import com.louis.oauth.model.UserContext;
 import java.util.concurrent.Callable;
 
 /**
- * @author Eric
+ * @author John·Louis
  * @date create in 2019/5/21
  */
 public class DelegatingUserContextCallable<V> implements Callable<V> {

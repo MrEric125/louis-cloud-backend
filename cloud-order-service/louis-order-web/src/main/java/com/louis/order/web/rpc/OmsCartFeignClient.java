@@ -49,7 +49,7 @@ public class OmsCartFeignClient extends BaseController<OmsCart,Long> implements 
         searchable.setPage(currentPage, pageSize);
         Page<OmsCart> cartByUserId = cartService.findCartByUserId(userId, searchable);
         log.info("find cart by UserId:{}", userId);
-        List<OmsCartDto> omsCartDtos = convertEntitysToDtos(cartByUserId.getContent());
+        List<OmsCartDto> omsCartDtos = convertEntitiesToDtos(cartByUserId.getContent());
 
         return PageWrapMapper.wrap(omsCartDtos, new PageInfo(cartByUserId.getTotalPages(), cartByUserId.getSize()));
     }
@@ -85,7 +85,7 @@ public class OmsCartFeignClient extends BaseController<OmsCart,Long> implements 
 //        cartService.findById(omsRequest.getCartId()).markDeleted();
         cartService.delByProductIds(products, getLoginAuthDto().getUserId());
 
-        return WrapMapper.ok();
+        return WrapMapper.success();
     }
 
     @Override
@@ -99,10 +99,10 @@ public class OmsCartFeignClient extends BaseController<OmsCart,Long> implements 
             omsCart.setChecked(true);
         }
         cartService.save(omsCart);
-        return WrapMapper.ok();
+        return WrapMapper.success();
     }
 
-    private List<OmsCartDto> convertEntitysToDtos(List<OmsCart> carts) {
+    private List<OmsCartDto> convertEntitiesToDtos(List<OmsCart> carts) {
         List<OmsCartDto> cartDtos = Lists.newArrayList();
         carts.forEach(x->{
             OmsCartDto dto = new OmsCartDto();

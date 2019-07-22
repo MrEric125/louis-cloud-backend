@@ -8,14 +8,14 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * @author louis
+ * @author John·Louis
  * <p>
  * Date: 2019/6/21
  * Description:
  */
 @Setter
 @Getter
-public class MenuItemDto extends BaseDto<Long> {
+public class SysMenuDto extends BaseDto<Long> {
 
     /**
      * 菜单编码
@@ -32,7 +32,7 @@ public class MenuItemDto extends BaseDto<Long> {
 
     private Date updateTime;
 
-    private List<MenuItemDto> menuItemDtoList;
+    private List<SysMenuDto> SysMenuDtoList;
 
 
 

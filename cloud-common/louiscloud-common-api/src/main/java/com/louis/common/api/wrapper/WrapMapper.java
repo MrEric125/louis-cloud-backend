@@ -120,6 +120,18 @@ public class WrapMapper {
 		return wrap(WrapperMassage.ERROR_CODE, StringUtils.isBlank(message) ? WrapperMassage.ERROR_MESSAGE : message);
 	}
 
+
+	/**
+	 *
+	 * @param code
+	 * @param message
+	 * @param <E>
+	 * @return
+	 */
+	public static <E> Wrapper<E> error(int code, String message) {
+		return  wrap(code, StringUtils.isBlank(message) ? WrapperMassage.ERROR_MESSAGE : message);
+	}
+
 	/**
 	 * Wrap SUCCESS. code=200
 	 *
@@ -127,7 +139,7 @@ public class WrapMapper {
 	 *
 	 * @return the wrapper
 	 */
-	public static <E> Wrapper<E> ok() {
+	public static <E> Wrapper<E> success() {
 		return new Wrapper<>();
 	}
 
@@ -139,7 +151,7 @@ public class WrapMapper {
 	 *
 	 * @return the wrapper
 	 */
-	public static <E> Wrapper<E> ok(E o) {
+	public static <E> Wrapper<E> success(E o) {
 		return new Wrapper<>(WrapperMassage.SUCCESS_CODE, WrapperMassage.SUCCESS_MESSAGE, o);
 	}
 }

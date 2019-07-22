@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * @author louis
+ * @author John·Louis
  * <p>
  * Date: 2019/5/15
  * Description: 订单系统中 商品相关dto

@@ -12,7 +12,7 @@ import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
 /**
- * @author Eric
+ * @author John·Louis
  * @date create in 2019/5/21
  */
 public class ThreadLocalAwareStrategy extends HystrixConcurrencyStrategy {

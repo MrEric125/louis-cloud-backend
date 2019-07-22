@@ -1,7 +1,7 @@
 package com.louis.stream;
 
 /**
- * @author louis
+ * @author John·Louis
  * <p>
  * Date: 2019/6/6
  * Description:

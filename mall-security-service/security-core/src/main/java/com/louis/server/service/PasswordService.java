@@ -12,12 +12,12 @@ import com.louis.server.entity.SysUser;
 public interface PasswordService  {
 
     /**
-     * 生成新的密文
+     * 生成新的密码
      * @param modifyPswDto
      * @param loginAuthDto
      * @return
      */
-     String  modifyPsw(ModifyPswDto modifyPswDto, LoginAuthDto loginAuthDto,String salt);
+     String  modifyPsw(ModifyPswDto modifyPswDto,String salt);
 
      boolean matches(SysUser user, String newPassword);
 

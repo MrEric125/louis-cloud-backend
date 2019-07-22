@@ -1,7 +1,7 @@
 package com.louis.server.entity.enumentity;
 
 /**
- * @author Eric
+ * @author John·Louis
  * @date create in 2019/4/15
  */
 public enum RoleEnum {

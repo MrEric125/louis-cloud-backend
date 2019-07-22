@@ -6,7 +6,7 @@ import org.springframework.cloud.openfeign.FeignClient;
 import java.util.List;
 
 /**
- * @author Eric
+ * @author John·Louis
  * @date create in 2019/5/22
  */
 @FeignClient(value = "comment-server-A")

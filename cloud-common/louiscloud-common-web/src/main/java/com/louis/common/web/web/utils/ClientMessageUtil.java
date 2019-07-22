@@ -7,9 +7,8 @@ import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletRequest;
 
-
 /**
- * @author louis
+ * @author John·Louis
  * <p>
  * Date: 2019/6/20
  * Description:
@@ -19,6 +18,11 @@ import javax.servlet.http.HttpServletRequest;
 public class ClientMessageUtil {
 
 
+    /**
+     * 获取客户端相关信息
+     * @param request
+     * @return
+     */
     public static ClientMessageDto findClientMessage(HttpServletRequest request) {
         log.info("search client message");
         UserAgent userAgent = UserAgent.parseUserAgentString(request.getHeader("User-Agent"));

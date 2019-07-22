@@ -10,7 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 
 /**
- * @author Eric
+ * @author John·Louis
  * @date create in 2019/5/21
  */
 @Configuration

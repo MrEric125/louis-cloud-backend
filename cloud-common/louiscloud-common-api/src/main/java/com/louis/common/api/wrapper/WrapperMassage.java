@@ -3,7 +3,7 @@ package com.louis.common.api.wrapper;
 import java.io.Serializable;
 
 /**
- * @author Eric
+ * @author John·Louis
  * @date create in 2019/5/22
  */
 public class WrapperMassage implements Serializable {
@@ -34,7 +34,7 @@ public class WrapperMassage implements Serializable {
     /**
      * 错误信息.
      */
-    public static final String ERROR_MESSAGE = "内部异常";
+    public static final String ERROR_MESSAGE = "请求异常";
 
     /**
      * 错误码：参数非法

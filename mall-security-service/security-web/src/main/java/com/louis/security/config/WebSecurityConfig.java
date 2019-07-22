@@ -24,11 +24,13 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.security.web.csrf.CsrfFilter;
+import org.springframework.web.filter.CharacterEncodingFilter;
 
 import java.util.List;
 
 /**
- * @author Eric
+ * @author John·Louis
  * @date create in 2019/4/14
  *
  * 为应用程序定义用户id 密码，和角色的资源服务器
@@ -46,7 +48,7 @@ import java.util.List;
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     public static final String TOKEN_HEADER_PARAM = "Authorization";
-    private static final String FORM_BASED_LOGIN_ENTRY_POINT = "/api/auth/login";
+    private static final String FORM_BASED_LOGIN_ENTRY_POINT = "/auth/form";
     private static final String TOKEN_BASED_AUTH_ENTRY_POINT = "/api/**";
     private static final String MANAGE_TOKEN_BASED_AUTH_ENTRY_POINT = "/manage/**";
     private static final String TOKEN_REFRESH_ENTRY_POINT = "/api/auth/refresh_token";
@@ -114,6 +116,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
      */
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+
+        CharacterEncodingFilter encodingFilter = new CharacterEncodingFilter();
+        encodingFilter.setEncoding("UTF-8");
+        encodingFilter.setForceEncoding(true);
+        http.addFilterBefore(encodingFilter, CsrfFilter.class);
+
         http
                 .csrf().disable() // 因为使用的是JWT，因此这里可以关闭csrf了
                 .exceptionHandling()

@@ -1,30 +1,45 @@
 package com.louis.server.service.impl;
 
+import com.google.common.base.Preconditions;
+import com.louis.common.api.dto.ClientMessageDto;
 import com.louis.common.api.dto.LoginAuthDto;
 import com.louis.common.web.web.utils.ClientMessageUtil;
 import com.louis.core.redis.RedisOperate;
 import com.louis.core.service.CRUDService;
-import com.louis.common.api.dto.ClientMessageDto;
+import com.louis.exception.UserException;
 import com.louis.oauth.dto.ModifyPswDto;
+import com.louis.oauth.dto.RegistryUserDto;
+import com.louis.oauth.dto.UserDto;
 import com.louis.security.core.SecurityUser;
 import com.louis.constant.RedisConstant;
+import com.louis.server.entity.SysRole;
 import com.louis.server.entity.SysUser;
+import com.louis.server.entity.UserRole;
 import com.louis.server.repository.SysUserRepository;
 import com.louis.server.service.PasswordService;
 import com.louis.server.service.SysUserService;
+import com.louis.server.service.UserRoleService;
 import com.louis.server.service.UserTokenService;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.task.TaskExecutor;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.oauth2.common.OAuth2AccessToken;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.Collection;
 import java.util.Date;
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
- * @author Eric
+ * @author John·Louis
  * @date create in 2019/4/15
  */
 @Service
@@ -41,6 +56,12 @@ public class SysUserServiceImpl extends CRUDService<SysUser, Long> implements Sy
     private  RedisOperate<SysUser> redisOperate;
 
     @Autowired
+    private UserRoleService userRoleService;
+
+    @Autowired
+    private SysRoleServiceImpl sysRoleService;
+
+    @Autowired
     private UserTokenService userTokenService;
 
     @Autowired
@@ -48,8 +69,6 @@ public class SysUserServiceImpl extends CRUDService<SysUser, Long> implements Sy
 
     @Autowired
     private LoginLogService loginLogService;
-
-
 
     @Autowired
     RedisTemplate<Object ,Object> redisTemplate;
@@ -71,14 +90,13 @@ public class SysUserServiceImpl extends CRUDService<SysUser, Long> implements Sy
     }
 
     @Override
-    public void modifyPsw(ModifyPswDto modifyPswDto, LoginAuthDto loginAuthDto) {
+    public void modifyPsw(ModifyPswDto modifyPswDto) {
         String loginName = modifyPswDto.getLoginName();
         SysUser sysUser = findByUserName(loginName);
         String salt = sysUser.getSalt();
-        String newPassword = passwordService.modifyPsw(modifyPswDto, loginAuthDto, salt);
+        String newPassword = passwordService.modifyPsw(modifyPswDto, salt);
         sysUser.setPassword(newPassword);
-         save(sysUser);
-
+        save(sysUser);
     }
 
 
@@ -90,8 +108,8 @@ public class SysUserServiceImpl extends CRUDService<SysUser, Long> implements Sy
         if (user.getIdentityNumber()==null) {
             user.setIdentityNumber(user.getUsername());
         }
-        user.randomSalt();
-        user.setPassword(passwordService.encryptPassword(user.getUsername(), user.getPassword(), user.getSalt()));
+//        user.randomSalt();
+//        user.setPassword(passwordService.encryptPassword(user.getUsername(), user.getPassword(), user.getSalt()));
         return super.save(user);
     }
 
@@ -131,8 +149,42 @@ public class SysUserServiceImpl extends CRUDService<SysUser, Long> implements Sy
     }
 
 
+    @Transactional
+    @Override
+    public SysUser registryUser(RegistryUserDto dto, String defaultEmail, String defaultPassword, String defaultPhone) {
+        Preconditions.checkArgument(!StringUtils.isEmpty(dto.getUserName()), "用户名不能为空");
+        dto.setEmail(dto.getEmail() == null ? dto.getUserName() + defaultEmail : dto.getEmail());
+        dto.setPassword(dto.getPassword() == null ? defaultPassword : dto.getEmail());
+        dto.setPhone(dto.getPhone() == null ? defaultPhone : dto.getEmail());
+        dto.setRealName(dto.getRealName() == null ? dto.getUserName() : dto.getRealName());
 
+        SysUser byUserName = findByUserName(dto.getUserName());
+        if (byUserName != null) {
+            throw new UserException("用户名已存在，请更换名字");
+        }
 
+        SysUser user = new SysUser();
+
+        user.setUsername(dto.getUserName());
+        user.setEmail(dto.getEmail());
+        user.setPhone(dto.getPhone());
+        user.setRealName(dto.getRealName());
+        user.randomSalt();
+        String password = passwordService.encryptPassword(dto.getUserName(), dto.getPassword(), user.getSalt());
+        user.setPassword(password);
+        save(user);
+        //默认的角色
+        SysRole defaultRole = sysRoleService.findByRoleName(SysRole.DEFAULT_ROLE);
+        UserRole userRole = UserRole
+                .builder()
+                .roleId(defaultRole.getId())
+                .roleName(defaultRole.getRoleName())
+                .userId(user.getId())
+                .description("defaultRole")
+                .build();
+        userRoleService.save(userRole);
+        return user;
+    }
 
     /**
      * 处理登录信息
@@ -153,7 +205,29 @@ public class SysUserServiceImpl extends CRUDService<SysUser, Long> implements Sy
         taskExecutor.execute(() -> loginLogService.saveLoginLog(messageDto,loginAuthDto));
     }
 
+    public Collection<GrantedAuthority> loadUserAuthorities(long userId) {
+
+        List<UserRole> roles= userRoleService.findByUserId(userId);
 
 
+        return roles.stream()
+                .map(authority -> new SimpleGrantedAuthority(
+                        authority.authority()
+                )).collect(Collectors.toList());
+    }
 
+
+    @Override
+    public UserDto entityToDto(SysUser sysUser) {
+        UserDto dto = new UserDto();
+        BeanUtils.copyProperties(sysUser, dto);
+        return dto;
+    }
+
+    @Override
+    public SysUser dtoToEntity(UserDto dto) {
+        SysUser user = new SysUser();
+        BeanUtils.copyProperties(dto, user);
+        return user;
+    }
 }

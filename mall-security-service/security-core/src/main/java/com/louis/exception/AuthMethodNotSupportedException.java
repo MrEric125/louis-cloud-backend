@@ -3,7 +3,7 @@ package com.louis.exception;
 import org.springframework.security.authentication.AuthenticationServiceException;
 
 /**
- * @author Eric
+ * @author John·Louis
  * @date create in 2019/4/14
  */
 

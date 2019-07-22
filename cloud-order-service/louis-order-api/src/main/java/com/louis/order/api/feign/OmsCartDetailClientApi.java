@@ -5,7 +5,7 @@ import com.louis.order.api.dto.OmsProductDto;
 import org.springframework.cloud.openfeign.FeignClient;
 
 /**
- * @author Eric
+ * @author John·Louis
  * @date create in 2019/5/26
  */
 @FeignClient(value = "louis-order-web")

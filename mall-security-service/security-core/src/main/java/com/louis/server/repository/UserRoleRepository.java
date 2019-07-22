@@ -7,13 +7,13 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 /**
- * @author Eric
+ * @author John·Louis
  * @date create in 2019/5/18
  */
 @Repository
 public interface UserRoleRepository extends BaseRepository<UserRole, Long> {
 
-    List<UserRole> findByUserId(long userId);
+    List<UserRole> findAllByUserId(long userId);
 
     UserRole findByUserIdAndRoleName(Long userId, String roleName);
 

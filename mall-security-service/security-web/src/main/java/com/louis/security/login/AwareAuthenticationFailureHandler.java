@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
- * @author Eric
+ * @author John·Louis
  * @date create in 2019/4/14
  * 自定义认证失败 handler
  */

@@ -8,23 +8,20 @@ import com.louis.oauth.dto.RoleDto;
 import com.louis.constant.RedisConstant;
 import com.louis.oauth.dto.UserRoleDto;
 import com.louis.server.entity.SysRole;
-import com.louis.server.entity.SysUser;
 import com.louis.server.entity.UserRole;
 import com.louis.server.repository.UserRoleRepository;
+import com.louis.server.service.SysRoleService;
 import com.louis.server.service.UserRoleService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
-import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
 /**
- * @author Eric
+ * @author John·Louis
  * @date create in 2019/4/15
  */
 @Service
@@ -44,7 +41,7 @@ public class UserRoleServiceImpl extends WebCRUDService<UserRole, UserRoleDto, L
     RedisOperate<UserRole> redisOperate;
 
     public List<UserRole> findByUserId(long userId) {
-        return userRoleRepository.findByUserId(userId);
+        return userRoleRepository.findAllByUserId(userId);
     }
 
     public List<UserRole> findByRoleId(long roleId) {
@@ -66,37 +63,16 @@ public class UserRoleServiceImpl extends WebCRUDService<UserRole, UserRoleDto, L
 
         List<UserRole> userRoles = null;
         if (CollectionUtils.isEmpty(userRoles)) {
-            userRoles = userRoleRepository.findByUserId(userId);
+            userRoles = userRoleRepository.findAllByUserId(userId);
         }
         return userRoles.stream().map(x -> sysRoleService.
                         findByRoleName(x.getRoleName()))
                 .collect(Collectors.toList());
     }
 
-    public List<SysUser> getUserByRole(long roleId) {
-        Searchable searchable = Searchable.newSearchable();
-        searchable.addSearchFilter("roleId", SearchOperator.eq, roleId);
-        List<UserRole> userRoleLists = findAllList(searchable);
-        return userRoleLists.stream().map
-                (x -> sysUserService.findById(x.getUserId()))
-                .collect(Collectors.toList());
-
-    }
-
-    @Override
-    public Collection<GrantedAuthority> loadUserAuthorities(long userId) {
-        SysUser sysUser = sysUserService.findById(userId);
-
-        List<UserRole> roles= findByUserId(userId);
 
 
-        List<GrantedAuthority> authorities = roles.stream()
-                .map(authority -> new SimpleGrantedAuthority(
-                        authority.authority()
-                ))
-                .collect(Collectors.toList());
-        return null;
-    }
+
 
 
     /**

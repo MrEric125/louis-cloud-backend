@@ -25,4 +25,6 @@ public interface UserTokenService extends ICRUDService<UserToken, Long> {
 
     TokenDto getByAccessToken(String accessToken);
 
+    int batchUpdateTokenOffLine();
+
 }

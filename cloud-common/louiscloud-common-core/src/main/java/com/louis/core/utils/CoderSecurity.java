@@ -6,7 +6,7 @@ import sun.misc.BASE64Encoder;
 import java.security.MessageDigest;
 
 /**
- * @author Eric
+ * @author John·Louis
  * @date create in 2019/5/29
  */
 public class CoderSecurity {

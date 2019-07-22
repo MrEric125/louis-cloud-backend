@@ -31,6 +31,6 @@ public class RoleEntity extends AbstractPersistable<Long> {
 
     @Deprecated
     @OneToMany(mappedBy = "role", fetch = FetchType.LAZY)
-    private Set<UserRole> users;
+    private Set<OauthUserRole> users;
 
 }

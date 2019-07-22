@@ -7,7 +7,7 @@ import org.springframework.security.core.GrantedAuthority;
 import java.util.Collection;
 
 /**
- * @author Eric
+ * @author John·Louis
  * @date create in 2019/4/14
  */
 public class AuthenticationToken extends AbstractAuthenticationToken {

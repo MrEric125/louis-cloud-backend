@@ -5,13 +5,13 @@ import org.springframework.security.authentication.AuthenticationServiceExceptio
 import org.springframework.stereotype.Component;
 
 /**
- * @author Eric
+ * @author John·Louis
  * @date create in 2019/4/14
  */
 @Component
 public class HeaderTokenExtractor implements TokenExtractor{
 
-    private static final String HEADER_PREFIX = "TOKEN_";
+    public static final String HEADER_PREFIX = "Bearer_";
 
     @Override
     public String extract(String header) {

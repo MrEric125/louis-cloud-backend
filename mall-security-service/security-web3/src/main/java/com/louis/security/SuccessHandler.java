@@ -34,7 +34,7 @@ public class SuccessHandler extends SavedRequestAwareAuthenticationSuccessHandle
 //	@Resource
 //	private AuthorizationServerTokenServices authorizationServerTokenServices;
 
-	private static final String BEARER_TOKEN_TYPE = "Basic ";
+	private static final String BEARER_TOKEN_TYPE = "Bearer ";
 
 	@Override
 	public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
@@ -76,7 +76,7 @@ public class SuccessHandler extends SavedRequestAwareAuthenticationSuccessHandle
 		log.info("用户【 {} 】记录登录日志", principal.getUsername());*/
 
 		response.setContentType("application/json;charset=UTF-8");
-		response.getWriter().write((objectMapper.writeValueAsString(WrapMapper.ok("success"))));
+		response.getWriter().write((objectMapper.writeValueAsString(WrapMapper.success("success"))));
 
 	}
 

@@ -8,6 +8,7 @@ import com.louis.server.entity.SysRole;
 import com.louis.server.entity.SysUser;
 import com.louis.server.entity.UserRole;
 import com.louis.server.repository.SysRoleRepository;
+import com.louis.server.service.SysRoleService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,11 +17,11 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 /**
- * @author Eric
+ * @author John·Louis
  * @date create in 2019/5/18
  */
 @Service
-public class SysRoleService extends WebCRUDService<SysRole, RoleDto, Long> {
+public class SysRoleServiceImpl extends WebCRUDService<SysRole, RoleDto, Long> implements SysRoleService {
 
 
 

@@ -3,7 +3,7 @@ package com.louis.es.base.entity;
 import java.io.Serializable;
 
 /**
- * @author louis
+ * @author John·Louis
  * <p>
  * Date: 2019/6/10
  * Description:

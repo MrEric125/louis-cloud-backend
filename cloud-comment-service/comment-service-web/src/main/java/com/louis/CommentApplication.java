@@ -6,7 +6,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 /**
- * @author Eric
+ * @author John·Louis
  * @date create in 2019/5/18
  */
 @EnableJpaRepositories(repositoryBaseClass = SimpleBaseRepository.class)

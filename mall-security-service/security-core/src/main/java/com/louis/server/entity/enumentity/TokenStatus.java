@@ -5,7 +5,7 @@ import com.google.common.collect.Lists;
 import java.util.List;
 
 /**
- * @author Eric
+ * @author John·Louis
  * @date create in 2019/6/15
  */
 public enum TokenStatus {

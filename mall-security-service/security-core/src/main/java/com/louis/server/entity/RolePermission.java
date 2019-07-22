@@ -12,7 +12,7 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 
 /**
- * @author Eric
+ * @author John·Louis
  * @date create in 2019/6/16
  */
 @Setter

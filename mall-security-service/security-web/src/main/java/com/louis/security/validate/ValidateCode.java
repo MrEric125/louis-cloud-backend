@@ -8,7 +8,7 @@ import lombok.Setter;
 import java.io.Serializable;
 
 /**
- * @author louis
+ * @author John·Louis
  * <p>
  * Date: 2019/6/11
  * Description:  验证码

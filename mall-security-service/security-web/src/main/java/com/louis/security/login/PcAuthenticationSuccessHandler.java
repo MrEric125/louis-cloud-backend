@@ -42,7 +42,7 @@ public class PcAuthenticationSuccessHandler extends SavedRequestAwareAuthenticat
 	@Resource
 	private AuthorizationServerTokenServices authorizationServerTokenServices;
 
-	private static final String BEARER_TOKEN_TYPE = "Basic ";
+	private static final String BEARER_TOKEN_TYPE = "Bearer ";
 
 	@Override
 	public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
@@ -83,7 +83,7 @@ public class PcAuthenticationSuccessHandler extends SavedRequestAwareAuthenticat
 		log.info("用户【 {} 】记录登录日志", principal.getUsername());
 
 		response.setContentType("application/json;charset=UTF-8");
-		response.getWriter().write((objectMapper.writeValueAsString(WrapMapper.ok(token))));
+		response.getWriter().write((objectMapper.writeValueAsString(WrapMapper.success(token))));
 
 	}
 

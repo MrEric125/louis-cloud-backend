@@ -10,7 +10,7 @@ import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenCo
 import java.util.Map;
 
 /**
- * @author Eric
+ * @author John·Louis
  * @date create in 2019/4/14
  * jwt 认证方式
  */

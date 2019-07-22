@@ -3,24 +3,22 @@ package com.louis.web.controller;
 import com.google.common.collect.Maps;
 import com.louis.common.api.dto.IdName;
 import com.louis.exception.InvalidTokenException;
-import com.louis.oauth.dto.RegistryUserDto;
 import com.louis.security.extractor.TokenExtractor;
 import com.louis.common.ResponseCode;
 import com.louis.properties.TokenProperties;
 import com.louis.security.config.WebSecurityConfig;
-import com.louis.server.entity.SysRole;
 import com.louis.server.entity.SysUser;
 import com.louis.oauth.model.UserContext;
 import com.louis.server.entity.UserRole;
 import com.louis.server.service.SysUserService;
 import com.louis.server.service.UserRoleService;
-import com.louis.server.service.impl.SysRoleService;
 import com.louis.security.token.RawAccessToken;
 import com.louis.security.token.RefreshToken;
 import com.louis.security.token.Token;
 import com.louis.security.token.TokenFactory;
 import com.louis.verifier.TokenVerifier;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.security.authentication.InsufficientAuthenticationException;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
@@ -36,10 +34,11 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 /**
- * @author Eric
+ * @author John·Louis
  * @date create in 2019/4/14
  */
 @RestController("web-userController" )
+@RequestMapping(produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 public class UserController {
 
     private final TokenProperties tokenProperties;
@@ -54,8 +53,6 @@ public class UserController {
 
     private final UserRoleService userRoleService;
 
-    @Autowired
-    private SysRoleService sysRoleService;
 
     @Autowired
     public UserController(TokenProperties tokenProperties, TokenVerifier tokenVerifier, TokenFactory tokenFactory, TokenExtractor tokenExtractor, SysUserService userService, UserRoleService userRoleService) {
@@ -97,34 +94,7 @@ public class UserController {
         return tokenFactory.createAccessToken(userContext);
     }
 
-    /**
-     * 注册用户，不进行用户名验证，在之前输入的时候，异步验证
-     * @param dto
-     * @return
-     */
-    @RequestMapping(value = "/registryUser",method =RequestMethod.POST)
-    public ResponseCode addUser(@RequestBody RegistryUserDto dto) {
-        SysUser user = new SysUser();
 
-        user.setUsername(dto.getUserName());
-        user.setPassword(dto.getPassword());
-        user.setEmail(dto.getEmail());
-        user.setPhone(dto.getPhone());
-        user.setRealName(dto.getRealName());
-        userService.save(user);
-        //默认的角色
-        SysRole defaultRole = sysRoleService.findByRoleName(SysRole.DEFAULT_ROLE);
-        UserRole userRole = UserRole
-                .builder()
-                .roleId(defaultRole.getId())
-                .roleName(defaultRole.getRoleName())
-                .userId(user.getId())
-                .description("defaultRole")
-                .build();
-        userRoleService.save(userRole);
-        return new ResponseCode("success", "保存用户成功", new IdName<>(user.getId(), user.getUsername()));
-
-    }
 
 
     /**
@@ -139,8 +109,6 @@ public class UserController {
                 .ofNullable(sysUser)
                 .map(sysUser1 -> new ResponseCode("success", new IdName<>(sysUser.getId(), sysUser.getUsername())))
                 .orElse(new ResponseCode("success", "您查找的用戶爲空"));
-
-
     }
 
 

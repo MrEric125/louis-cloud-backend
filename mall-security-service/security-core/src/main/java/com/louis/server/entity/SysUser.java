@@ -14,12 +14,13 @@ import org.hibernate.validator.constraints.Length;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import java.util.Date;
 
 /**
- * @author Eric
+ * @author John·Louis
  * @date create in 2019/4/14
  *
  * 系统用户，目前是将管理员，卖家和买家设计到一个user表中，后期优化分开
@@ -37,7 +38,7 @@ public class SysUser extends BaseEntity<Long> implements LogicDeleteable,Compara
 
     private static final long serialVersionUID = 256121294003669340L;
 
-    public static final int PASSWORD_MAX_LENGTH = 50;
+    public static final int PASSWORD_MAX_LENGTH = 255;
     public static final int PASSWORD_MIN_LENGTH = 2;
     public static final int USERNAME_MAX_LENGTH = 50;
     public static final int USERNAME_MIN_LENGTH = 2;
@@ -57,7 +58,8 @@ public class SysUser extends BaseEntity<Long> implements LogicDeleteable,Compara
      * 後期也可以将邮箱作为登录账号
      */
     @NotNull(message = "{not.null}")
-    @Pattern(regexp = EMAIL_PATTERN,message = "{user.email.not.valid}")
+//    @Pattern(regexp = EMAIL_PATTERN,message = "{user.email.not.valid}")
+    @Email
     private String email;
 
     /**

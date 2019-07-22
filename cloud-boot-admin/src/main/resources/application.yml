@@ -28,4 +28,4 @@ spring:
 logging:
   level:
     org.springframework: DEBUG
-    com: DEBUG
+#    com: DEBUG

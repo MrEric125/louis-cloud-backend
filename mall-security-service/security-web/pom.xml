@@ -25,6 +25,12 @@
             <groupId>com.louis</groupId>
             <artifactId>security-core</artifactId>
             <version>0.0.1-SNAPSHOT</version>
+            <exclusions>
+                <exclusion>
+                        <groupId>org.springframework.cloud</groupId>
+                        <artifactId>spring-cloud-netflix-eureka-client</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
     </dependencies>
 

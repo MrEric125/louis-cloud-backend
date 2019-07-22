@@ -17,4 +17,4 @@ eureka:
     service-url:
       defaultZone: http://localhost:${server.port}/eureka/
 
-  server:
+

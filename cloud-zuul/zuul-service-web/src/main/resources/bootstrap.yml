@@ -1,48 +1,12 @@
 
 #配置配置中心
+#spring:
+#  cloud:
+#    config:
+#      profile: dev
+#      uri: http://localhost:8888
 spring:
-  cloud:
-    config:
-      profile: dev
-      uri: http://localhost:8888
-zuul:
-  host:
-    connect-timeout-millis: 20000
-    socket-timeout-millis: 20000
-  routes:
-#    订单路由
-    order-service:
-      serviceId: order-service-A
-      path: /orders/**  # 通过这个路径路由到order-service-a这个服务的根路径
-#    权限认证
-    oauth-service:
-      serviceId: oauth-service-A
-      path: /oauth/**
-    comment-service:
-      serviceId: comment-server-A
-      path: /comment/**
-    goods-service:
-      serviceId: product-service-A
-      path: /product/**
-    voucher-service:
-      serviceId: voucher-service-A
-      path: /voucher/**
-    search-service:
-      serviceId: search-service-A
-      path: /search/**
-# 设置一个公共的前缀
-#  prefix: /api
-security:
-  oauth2:
-    resource:
-      prefer-token-info: true
-      user-info-uri: http://localhost:${server.port}/uaa/user
-
-
-    client:
-      access-token-uri: http://localhost:${server.port}/uaa/oauth/token
-      user-authorization-uri: http://localhost:${server.port}/uaa/oauth/authorize
-      client-id: open-api
-ribbon:
-  eureka:
-    enabled: true
+  profiles:
+    active: dev
+  main:
+    allow-bean-definition-overriding: true

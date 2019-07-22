@@ -14,7 +14,7 @@ import org.springframework.stereotype.Service;
 import javax.annotation.PostConstruct;
 
 /**
- * @author louis
+ * @author John·Louis
  * <p>
  * Date: 2019/6/19
  * Description: spring security oauth2 资源所有者详情逻辑

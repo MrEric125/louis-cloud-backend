@@ -25,9 +25,6 @@ public abstract class WebCRUDController<Entity extends BaseEntity, Dto extends B
 
     protected CRUDService<Entity, ID> webCrudService;
 
-
-
-
     @Autowired
     public void setBaseService(CRUDService<Entity,ID> webCrudService) {
         this.webCrudService = webCrudService;
@@ -121,7 +118,8 @@ public abstract class WebCRUDController<Entity extends BaseEntity, Dto extends B
         return handlePageAndSortResult(entityPage);
     }
 
-    @ApiOperation("不分页查找集合")
+    @Deprecated
+    @ApiOperation("不分页查找集合，测试使用")
     @GetMapping("/queryAll")
     public Wrapper findAllList(@ApiParam("传入的searchable条件") Searchable searchable) {
         searchable = searchable == null ? Searchable.newSearchable() : searchable;

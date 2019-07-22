@@ -12,7 +12,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * @author louis
+ * @author John·Louis
  * <p>
  * Date: 2019/6/20
  * Description:

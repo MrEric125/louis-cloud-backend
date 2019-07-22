@@ -4,7 +4,7 @@ import com.louis.security.token.Token;
 import org.springframework.security.core.AuthenticationException;
 
 /**
- * @author Eric
+ * @author John·Louis
  * @date create in 2019/4/14
  *
  * 过期的 token错误

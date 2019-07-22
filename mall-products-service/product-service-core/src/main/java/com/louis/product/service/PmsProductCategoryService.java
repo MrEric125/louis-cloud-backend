@@ -6,7 +6,7 @@ import com.louis.product.repository.PmsProductCategoryRepository;
 import org.springframework.stereotype.Service;
 
 /**
- * @author louis
+ * @author John·Louis
  * <p>
  * Date: 2019/6/6
  * Description:

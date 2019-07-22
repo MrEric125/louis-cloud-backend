@@ -1,18 +1,14 @@
 package com.louis.server.service.impl;
 
-import com.louis.common.api.wrapper.WrapMapper;
-import com.louis.common.api.wrapper.Wrapper;
 import com.louis.core.service.WebCRUDService;
 import com.louis.exception.BaseException;
-import com.louis.oauth.dto.MenuItemDto;
-import com.louis.server.entity.MenuItem;
+import com.louis.oauth.dto.SysMenuDto;
+import com.louis.server.entity.SysMenu;
 import com.louis.server.repository.MenuRepository;
-import io.swagger.annotations.ApiOperation;
 import org.apache.commons.collections.CollectionUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
 
@@ -24,7 +20,7 @@ import java.util.List;
  * Description:
  */
 @Service
-public class MenuService extends WebCRUDService<MenuItem, MenuItemDto,Long> {
+public class MenuService extends WebCRUDService<SysMenu, SysMenuDto,Long> {
 
     @Autowired
     MenuRepository menuRepository;
@@ -32,16 +28,16 @@ public class MenuService extends WebCRUDService<MenuItem, MenuItemDto,Long> {
 
 
     @Override
-    public MenuItem dtoToEntity(MenuItemDto dto) {
-        MenuItem menuItem = new MenuItem();
-        BeanUtils.copyProperties(dto, menuItem);
-        return menuItem;
+    public SysMenu dtoToEntity(SysMenuDto dto) {
+        SysMenu SysMenu = new SysMenu();
+        BeanUtils.copyProperties(dto, SysMenu);
+        return SysMenu;
     }
 
     @Override
-    public MenuItemDto entityToDto(MenuItem menuItem) {
-        MenuItemDto dto = new MenuItemDto();
-        BeanUtils.copyProperties(menuItem, dto);
+    public SysMenuDto entityToDto(SysMenu SysMenu) {
+        SysMenuDto dto = new SysMenuDto();
+        BeanUtils.copyProperties(SysMenu, dto);
         return dto;
     }
 
@@ -52,20 +48,20 @@ public class MenuService extends WebCRUDService<MenuItem, MenuItemDto,Long> {
      * @param menuId
      */
     public void changeItemStatus(long menuId) {
-        MenuItem menuItem = findById(menuId);
-        List<MenuItem> menuItemList = menuRepository.findByParentId(menuItem.getId());
-        int status = menuItem.getStatus();
-        if (status == MenuItem.DISABLE) {
-            menuItem.setStatus(1);
+        SysMenu SysMenu = findById(menuId);
+        List<SysMenu> SysMenuList = menuRepository.findByParentId(SysMenu.getId());
+        int status = SysMenu.getStatus();
+        if (status == SysMenu.DISABLE) {
+            SysMenu.setStatus(1);
             //todo 可以优化成批量修改
-            menuItemList.forEach(x -> {
+            SysMenuList.forEach(x -> {
                 x.setStatus(1);
                 save(x);
             });
         } else {
-            menuItem.setStatus(0);
+            SysMenu.setStatus(0);
             //todo 可以优化成批量修改
-            menuItemList.forEach(x -> {
+            SysMenuList.forEach(x -> {
                 x.setStatus(0);
                 save(x);
             });
@@ -74,8 +70,8 @@ public class MenuService extends WebCRUDService<MenuItem, MenuItemDto,Long> {
 
     @Override
     public void deleteById(Long aLong) {
-        MenuItem parentId = findById(aLong);
-        List<MenuItem> childMenus = menuRepository.findByParentId(parentId.getId());
+        SysMenu parentId = findById(aLong);
+        List<SysMenu> childMenus = menuRepository.findByParentId(parentId.getId());
         if (CollectionUtils.isNotEmpty(childMenus)) {
             throw new BaseException("当前目录还有子目录，请检查再删除");
         }

@@ -3,7 +3,7 @@ package com.louis.security.token;
 import io.jsonwebtoken.Claims;
 
 /**
- * @author Eric
+ * @author John·Louis
  * @date create in 2019/4/14
  */
 public class AccessToken implements Token{
