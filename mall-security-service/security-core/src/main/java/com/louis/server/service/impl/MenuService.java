@@ -46,22 +46,27 @@ public class MenuService extends WebCRUDService<MenuItem, MenuItemDto,Long> {
     }
 
 
+    /**
+     * 如果当前的status 变了，那么所有的children status 也会相应的变了
+     *
+     * @param menuId
+     */
     public void changeItemStatus(long menuId) {
         MenuItem menuItem = findById(menuId);
         List<MenuItem> menuItemList = menuRepository.findByParentId(menuItem.getId());
         int status = menuItem.getStatus();
         if (status == MenuItem.DISABLE) {
-            menuItem.setStatus(0);
-            //todo 可以优化成批量修改
-            menuItemList.forEach(x -> {
-                x.setStatus(0);
-                save(x);
-            });
-        } else {
             menuItem.setStatus(1);
             //todo 可以优化成批量修改
             menuItemList.forEach(x -> {
                 x.setStatus(1);
+                save(x);
+            });
+        } else {
+            menuItem.setStatus(0);
+            //todo 可以优化成批量修改
+            menuItemList.forEach(x -> {
+                x.setStatus(0);
                 save(x);
             });
         }

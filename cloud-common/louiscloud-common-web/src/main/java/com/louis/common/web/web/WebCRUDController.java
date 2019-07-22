@@ -1,6 +1,4 @@
 package com.louis.common.web.web;
-import com.google.common.collect.ImmutableMap;
-import com.google.common.collect.Maps;
 import com.louis.common.api.dto.BaseDto;
 import com.louis.common.api.search.Searchable;
 import com.louis.common.api.wrapper.Wrapper;
@@ -15,7 +13,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.io.Serializable;
 import java.util.List;
-import java.util.Map;
 
 /**
  * @author John·Louis
@@ -25,9 +22,6 @@ import java.util.Map;
  * 封装的一些简单的增删改查功能的controller
  */
 public abstract class WebCRUDController<Entity extends BaseEntity, Dto extends BaseDto, ID extends Serializable> extends BaseController<Entity, ID> {
-
-
-
 
     protected CRUDService<Entity, ID> webCrudService;
 
@@ -123,13 +117,8 @@ public abstract class WebCRUDController<Entity extends BaseEntity, Dto extends B
         Page<Entity> entityPage = webCrudService.findAll(searchable);
         if (CollectionUtils.isEmpty(entityPage.getContent())) {
             return handlerNullResult();
-
         }
-//        List<Dto> dtos = webCrudService.entitiesToDtos(entityPage.getContent());
-        Map<String, Object> map = Maps.newHashMap();
-        map.put("totalItems", entityPage.getTotalElements());
-        map.put("currentPage", searchable.getPage().getPageNumber());
-        return handleResult(ImmutableMap.of("items", entityPage.getContent(), "pagination", map));
+        return handlePageAndSortResult(entityPage);
     }
 
     @ApiOperation("不分页查找集合")
