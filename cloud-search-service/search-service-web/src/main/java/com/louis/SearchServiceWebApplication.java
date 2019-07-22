@@ -1,11 +1,15 @@
 package com.louis;
 
-import com.louis.common.web.web.anontation.SpringCloudClient;
 import org.springframework.boot.SpringApplication;
+import org.springframework.cloud.client.SpringCloudApplication;
+import org.springframework.cloud.netflix.hystrix.EnableHystrix;
+import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.data.elasticsearch.repository.config.EnableElasticsearchRepositories;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
-@SpringCloudClient
+@SpringCloudApplication
+@EnableHystrix
+@EnableFeignClients
 @EnableSwagger2
 @EnableElasticsearchRepositories
 public class SearchServiceWebApplication {

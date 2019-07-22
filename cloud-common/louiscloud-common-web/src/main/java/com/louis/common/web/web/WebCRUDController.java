@@ -1,16 +1,11 @@
 package com.louis.common.web.web;
-import com.google.common.collect.ImmutableMap;
-import com.google.common.collect.Maps;
 import com.louis.common.api.dto.BaseDto;
+import com.louis.common.api.search.Searchable;
 import com.louis.common.api.wrapper.Wrapper;
 import com.louis.core.entity.BaseEntity;
-import com.louis.core.search.Searchable;
 import com.louis.core.service.CRUDService;
-import com.louis.core.service.WebCRUDService;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.util.CollectionUtils;
@@ -18,7 +13,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.io.Serializable;
 import java.util.List;
-import java.util.Map;
 
 /**
  * @author John·Louis
@@ -81,7 +75,7 @@ public abstract class WebCRUDController<Entity extends BaseEntity, Dto extends B
 //    public Wrapper findAll() {
 //        List<Entity> all = webCrudService.findAll();
 //        if (CollectionUtils.isEmpty(all)) {
-//            return returnNullResult();
+//            return handlerNullResult();
 //        }
 ////        List<Dto> dtos = webCrudService.entitiesToDtos(all);
 //        return handleResult(all);
@@ -98,7 +92,7 @@ public abstract class WebCRUDController<Entity extends BaseEntity, Dto extends B
     public Wrapper findById(@ApiParam("实体id") @PathVariable ID id) {
         Entity entity = webCrudService.findById(id);
         if (entity == null) {
-            return returnNullResult();
+            return handlerNullResult();
         }
 //        Dto dto = webCrudService.entityToDto(entity);
         return handleResult(entity);
@@ -119,14 +113,9 @@ public abstract class WebCRUDController<Entity extends BaseEntity, Dto extends B
 
         Page<Entity> entityPage = webCrudService.findAll(searchable);
         if (CollectionUtils.isEmpty(entityPage.getContent())) {
-            return returnNullResult();
-
+            return handlerNullResult();
         }
-//        List<Dto> dtos = webCrudService.entitiesToDtos(entityPage.getContent());
-        Map<String, Object> map = Maps.newHashMap();
-        map.put("totalItems", entityPage.getTotalElements());
-        map.put("currentPage", searchable.getPage().getPageNumber());
-        return handleResult(ImmutableMap.of("items", entityPage.getContent(), "pagination", map));
+        return handlePageAndSortResult(entityPage);
     }
 
     @Deprecated

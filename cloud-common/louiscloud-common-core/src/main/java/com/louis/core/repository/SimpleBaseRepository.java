@@ -2,9 +2,9 @@
 package com.louis.core.repository;
 
 import com.google.common.collect.Sets;
+import com.louis.common.api.search.Searchable;
 import com.louis.core.entity.LogicDeleteable;
 import com.louis.core.repository.callback.SearchCallback;
-import com.louis.core.search.Searchable;
 import org.apache.commons.beanutils.BeanUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -238,11 +238,12 @@ public class SimpleBaseRepository<M, ID extends Serializable> extends SimpleJpaR
 	public Page<M> findAll(final Searchable searchable) {
 		List<M> list = repositoryHelper.findAll(findAllQL, searchable, searchCallback);
 		long total = searchable.hasPageable() ? count(searchable) : list.size();
-		return new PageImpl<>(
+		PageImpl<M> ms = new PageImpl<>(
 				list,
 				searchable.getPage(),
 				total
-				);
+		);
+		return ms;
 	}
 
 	@Override

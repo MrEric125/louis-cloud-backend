@@ -24,7 +24,7 @@ import javax.persistence.Table;
 public class SysMenu extends TreeEntity<Long> {
 
     public static final int DISABLE = 0;
-    public static final int CANUSE = 0;
+    public static final int CANUSE = 1;
 
 
 

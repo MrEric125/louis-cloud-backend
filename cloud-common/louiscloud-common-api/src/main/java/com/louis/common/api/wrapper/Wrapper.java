@@ -3,6 +3,7 @@
 package com.louis.common.api.wrapper;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import lombok.Data;
 
@@ -15,49 +16,13 @@ import java.io.Serializable;
  * @param <T> the type parameter @author John·Louis
  */
 @Data
-@JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+@JsonInclude(value =  JsonInclude.Include.NON_NULL)
 public class Wrapper<T> implements Serializable {
 
 	/**
 	 * 序列化标识
 	 */
 	private static final long serialVersionUID = 4893280118017319089L;
-
-	/**
-	 * 成功码.
-	 */
-	@Deprecated
-	public static final int SUCCESS_CODE = 200;
-
-	/**
-	 * 成功信息.
-	 */
-	@Deprecated
-	public static final String SUCCESS_MESSAGE = "操作成功";
-
-	/**
-	 * 错误码.
-	 */
-	@Deprecated
-	public static final int ERROR_CODE = 500;
-
-	/**
-	 * 错误信息.
-	 */
-	@Deprecated
-	public static final String ERROR_MESSAGE = "内部异常";
-
-	/**
-	 * 错误码：参数非法
-	 */
-	@Deprecated
-	public static final int ILLEGAL_ARGUMENT_CODE_ = 100;
-
-	/**
-	 * 错误信息：参数非法
-	 */
-	@Deprecated
-	public static final String ILLEGAL_ARGUMENT_MESSAGE = "参数非法";
 
 	/**
 	 * 编号.
@@ -72,7 +37,7 @@ public class Wrapper<T> implements Serializable {
 	/**
 	 * 结果数据
 	 */
-	private T data;
+	private T result;
 
 	/**
 	 * Instantiates a new wrapper. default code=200
@@ -135,7 +100,7 @@ public class Wrapper<T> implements Serializable {
 	 * @return the wrapper
 	 */
 	public Wrapper<T> result(T result) {
-		this.setData(result);
+		this.setResult(result);
 		return this;
 	}
 

@@ -3,7 +3,7 @@
 package com.louis.common.api.wrapper;
 
 
-import com.louis.common.api.util.PageUtil;
+import com.louis.common.api.util.PageInfo;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -18,7 +18,7 @@ public class PageWrapper<T> extends Wrapper<T> {
 
 	private static final long serialVersionUID = 666985064788933395L;
 
-	private PageUtil pageUtil;
+	private PageInfo pageInfo;
 
 
 	/**
@@ -43,12 +43,12 @@ public class PageWrapper<T> extends Wrapper<T> {
 	 * Instantiates a new pageWrapper default code=200
 	 *
 	 * @param result   the result
-	 * @param pageUtil the page util
+	 * @param Pageable the page util
 	 */
-	public PageWrapper(T result, PageUtil pageUtil) {
+	public PageWrapper(T result, PageInfo pageInfo) {
 		super();
-		this.setData(result);
-		this.setPageUtil(pageUtil);
+		this.setResult(result);
+		this.setPageInfo(pageInfo);
 	}
 
 	/**
@@ -57,22 +57,22 @@ public class PageWrapper<T> extends Wrapper<T> {
 	 * @param code     the code
 	 * @param message  the message
 	 * @param result   the result
-	 * @param pageUtil the page util
+	 * @param Pageable the page util
 	 */
-	PageWrapper(int code, String message, T result, PageUtil pageUtil) {
+	PageWrapper(int code, String message, T result, PageInfo pageInfo) {
 		super(code, message, result);
-		this.pageUtil = pageUtil;
+		this.pageInfo = pageInfo;
 	}
 
 	/**
 	 * Sets the 分页数据 , 返回自身的引用.
 	 *
-	 * @param pageUtil the page util
+	 * @param Pageable the page util
 	 *
 	 * @return the page wrapper
 	 */
-	public PageWrapper<T> pageUtil(PageUtil pageUtil) {
-		this.setPageUtil(pageUtil);
+	public PageWrapper<T> Pageable(PageInfo pageInfo) {
+		this.setPageInfo(pageInfo);
 		return this;
 	}
 
@@ -85,7 +85,7 @@ public class PageWrapper<T> extends Wrapper<T> {
 	 */
 	@Override
 	public PageWrapper<T> result(T result) {
-		super.setData(result);
+		super.setResult(result);
 		return this;
 	}
 }

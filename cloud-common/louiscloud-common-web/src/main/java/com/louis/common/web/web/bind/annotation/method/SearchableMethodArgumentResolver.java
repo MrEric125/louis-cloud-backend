@@ -2,9 +2,9 @@
 package com.louis.common.web.web.bind.annotation.method;
 
 import com.google.common.collect.Lists;
-import com.louis.core.search.Searchable;
-import com.louis.core.search.filter.SearchFilter;
-import com.louis.core.search.filter.SearchFilterHelper;
+import com.louis.common.api.search.Searchable;
+import com.louis.common.api.search.filter.SearchFilter;
+import com.louis.common.api.search.filter.SearchFilterHelper;
 import com.louis.common.web.web.bind.annotation.SearchableDefaults;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -40,6 +40,15 @@ import java.util.Map;
  *
  *     3.1、禁用查询时分页及排序
  *          public void test(@Search(page = false, sort = false) Searchable searchable);
+ * </pre>
+ *
+ * 一般查询在请求参数中指定一个Searchable就可以了
+ * </pre>listPageBy?
+ * page.size=6&
+ * page.pn=1
+ * sort.id=asc&
+ * search.id_gt=2&
+ * sort.createTime=desc&
  * </pre>
  * <p>User: Louis
  * <p>Date: 2019年5月30日22:59:24

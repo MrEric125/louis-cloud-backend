@@ -1,5 +1,3 @@
-import org.junit.Test;
-import org.springframework.boot.autoconfigure.data.redis.RedisProperties;
 
 /**
  * @author John·Louis
@@ -8,7 +6,6 @@ import org.springframework.boot.autoconfigure.data.redis.RedisProperties;
 public class CommonTest {
 
 
-    @Test
     public void test() {
     }
 }

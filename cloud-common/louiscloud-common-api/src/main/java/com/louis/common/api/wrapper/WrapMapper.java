@@ -82,7 +82,7 @@ public class WrapMapper {
 	 * @return the e
 	 */
 	public static <E> E unWrap(Wrapper<E> wrapper) {
-		return wrapper.getData();
+		return wrapper.getResult();
 	}
 
 	/**

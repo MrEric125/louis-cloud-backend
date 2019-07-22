@@ -3,7 +3,7 @@
 package com.louis.common.api.wrapper;
 
 
-import com.louis.common.api.util.PageUtil;
+import com.louis.common.api.util.PageInfo;
 
 /**
  * The class Page wrap mapper.
@@ -18,8 +18,8 @@ public class PageWrapMapper {
 	private PageWrapMapper() {
 	}
 
-	private static <E> PageWrapper<E> wrap(int code, String message, E o, PageUtil pageUtil) {
-		return new PageWrapper<>(code, message, o, pageUtil);
+	private static <E> PageWrapper<E> wrap(int code, String message, E o, PageInfo Pageable) {
+		return new PageWrapper<>(code, message, o, Pageable);
 	}
 
 	/**
@@ -27,50 +27,14 @@ public class PageWrapMapper {
 	 *
 	 * @param <E>      the type parameter
 	 * @param o        the o
-	 * @param pageUtil the page util
+	 * @param Pageable the page util
 	 *
 	 * @return the page wrapper
 	 */
-	public static <E> PageWrapper<E> wrap(E o, PageUtil pageUtil) {
-		return wrap(WrapperMassage.SUCCESS_CODE, WrapperMassage.SUCCESS_MESSAGE, o, pageUtil);
+	public static <E> PageWrapper wrap(E o, PageInfo Pageable) {
+		return wrap(WrapperMassage.SUCCESS_CODE, WrapperMassage.SUCCESS_MESSAGE, o, Pageable);
 	}
 
-	/**
-	 * Wrap.
-	 *
-	 * @param <E>     the type parameter
-	 * @param code    the code
-	 * @param message the message
-	 *
-	 * @return the page wrapper
-	 */
-	public static <E> PageWrapper<E> wrap(int code, String message) {
-		return wrap(code, message, null, null);
-	}
-
-	/**
-	 * Wrap.
-	 *
-	 * @param <E>  the type parameter
-	 * @param code the code
-	 *
-	 * @return the page wrapper
-	 */
-	public static <E> PageWrapper<E> wrap(int code) {
-		return wrap(code, null, null, null);
-	}
-
-	/**
-	 * Wrap.
-	 *
-	 * @param <E> the type parameter
-	 * @param e   the e
-	 *
-	 * @return the page wrapper
-	 */
-	public static <E> PageWrapper<E> wrap(Exception e) {
-		return new PageWrapper<>(WrapperMassage.ERROR_CODE, e.getMessage(), null, null);
-	}
 
 	/**
 	 * Un wrapper.
@@ -81,39 +45,8 @@ public class PageWrapMapper {
 	 * @return the e
 	 */
 	public static <E> E unWrap(PageWrapper<E> wrapper) {
-		return wrapper.getData();
+		return wrapper.getResult();
 	}
 
-	/**
-	 * Wrap ERROR. code=100
-	 *
-	 * @param <E> the type parameter
-	 *
-	 * @return the page wrapper
-	 */
-	public static <E> PageWrapper<E> illegalArgument() {
-		return wrap(WrapperMassage.ILLEGAL_ARGUMENT_CODE_, WrapperMassage.ILLEGAL_ARGUMENT_MESSAGE, null, null);
-	}
 
-	/**
-	 * Wrap ERROR. code=500
-	 *
-	 * @param <E> the type parameter
-	 *
-	 * @return the page wrapper
-	 */
-	public static <E> PageWrapper<E> error() {
-		return wrap(WrapperMassage.ERROR_CODE, WrapperMassage.ERROR_MESSAGE, null, null);
-	}
-
-	/**
-	 * Wrap SUCCESS. code=200
-	 *
-	 * @param <E> the type parameter
-	 *
-	 * @return the page wrapper
-	 */
-	public static <E> PageWrapper<E> ok() {
-		return new PageWrapper<>();
-	}
 }

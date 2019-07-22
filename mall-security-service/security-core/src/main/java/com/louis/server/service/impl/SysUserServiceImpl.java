@@ -1,11 +1,12 @@
 package com.louis.server.service.impl;
 
 import com.google.common.base.Preconditions;
+import com.louis.common.api.dto.ClientMessageDto;
 import com.louis.common.api.dto.LoginAuthDto;
+import com.louis.common.web.web.utils.ClientMessageUtil;
 import com.louis.core.redis.RedisOperate;
 import com.louis.core.service.CRUDService;
 import com.louis.exception.UserException;
-import com.louis.oauth.dto.ClientMessageDto;
 import com.louis.oauth.dto.ModifyPswDto;
 import com.louis.oauth.dto.RegistryUserDto;
 import com.louis.oauth.dto.UserDto;
@@ -68,10 +69,6 @@ public class SysUserServiceImpl extends CRUDService<SysUser, Long> implements Sy
 
     @Autowired
     private LoginLogService loginLogService;
-
-    @Autowired
-    ClientMessageService clientMessageService;
-
 
     @Autowired
     RedisTemplate<Object ,Object> redisTemplate;
@@ -197,7 +194,7 @@ public class SysUserServiceImpl extends CRUDService<SysUser, Long> implements Sy
      */
     public void handlerLoginData(OAuth2AccessToken token, SecurityUser principal, HttpServletRequest request) {
         log.info("handle login data ;  token:{}", token);
-        ClientMessageDto messageDto = clientMessageService.findClientMessage(request);
+        ClientMessageDto messageDto = ClientMessageUtil.findClientMessage(request);
 
         Long userId = principal.getUserId();
         LoginAuthDto loginAuthDto = new LoginAuthDto(userId, principal.getLoginName(), principal.getNickName(), principal.getGroupId(), principal.getGroupName());

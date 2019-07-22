@@ -1,12 +1,12 @@
 package com.louis.product.controller;
 
+import com.louis.common.api.search.SearchOperator;
+import com.louis.common.api.search.Searchable;
 import com.louis.common.api.wrapper.WrapMapper;
 import com.louis.common.api.wrapper.Wrapper;
 import com.louis.common.api.wrapper.WrapperMassage;
 
 import com.louis.common.web.web.WebCRUDController;
-import com.louis.core.search.SearchOperator;
-import com.louis.core.search.Searchable;
 import com.louis.product.api.dto.PmsProductDto;
 import com.louis.product.entity.PmsProduct;
 import com.louis.product.service.PmsProductService;
