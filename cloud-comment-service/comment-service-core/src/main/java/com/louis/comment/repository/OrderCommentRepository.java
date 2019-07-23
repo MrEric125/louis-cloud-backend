@@ -16,6 +16,7 @@ public interface OrderCommentRepository extends BaseRepository<OrderComment, Lon
 
     List<OrderComment> findByGoodsId(long goods);
 
+    List<OrderComment> findAllByOrderId(long orderId);
 
 
 }

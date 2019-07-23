@@ -77,20 +77,20 @@ public class GlobalExceptionHandler {
         return WrapMapper.wrap(e.getCode() == 0 ? WrapperMassage.ERROR_CODE : e.getCode(), e.getMessage());
     }
 
-    /**
+   /* *//**
      * 无权限访问.
      *
      * @param e the e
      *
      * @return the wrapper
-     */
+     *//*
     @ExceptionHandler(AccessDeniedException.class)
     @ResponseStatus(HttpStatus.UNAUTHORIZED)
     @ResponseBody
     public Wrapper unAuthorizedException(AccessDeniedException e) {
         log.error("业务异常={}", e.getMessage(), e);
         return WrapMapper.wrap(ErrorCodeEnum.GL99990401.code(), ErrorCodeEnum.GL99990401.msg());
-    }
+    }*/
 
 
     /**
