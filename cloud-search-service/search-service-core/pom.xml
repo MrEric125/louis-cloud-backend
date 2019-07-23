@@ -12,11 +12,7 @@
     <artifactId>search-service-core</artifactId>
     <dependencies>
 
-        <dependency>
-            <groupId>com.louis</groupId>
-            <artifactId>louiscloud-common-es</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-        </dependency>
+
 
     </dependencies>
 
