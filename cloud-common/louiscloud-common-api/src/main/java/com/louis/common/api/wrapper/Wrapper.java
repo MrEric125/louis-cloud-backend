@@ -24,42 +24,6 @@ public class Wrapper<T> implements Serializable {
 	private static final long serialVersionUID = 4893280118017319089L;
 
 	/**
-	 * 成功码.
-	 */
-	@Deprecated
-	public static final int SUCCESS_CODE = 200;
-
-	/**
-	 * 成功信息.
-	 */
-	@Deprecated
-	public static final String SUCCESS_MESSAGE = "操作成功";
-
-	/**
-	 * 错误码.
-	 */
-	@Deprecated
-	public static final int ERROR_CODE = 500;
-
-	/**
-	 * 错误信息.
-	 */
-	@Deprecated
-	public static final String ERROR_MESSAGE = "内部异常";
-
-	/**
-	 * 错误码：参数非法
-	 */
-	@Deprecated
-	public static final int ILLEGAL_ARGUMENT_CODE_ = 100;
-
-	/**
-	 * 错误信息：参数非法
-	 */
-	@Deprecated
-	public static final String ILLEGAL_ARGUMENT_MESSAGE = "参数非法";
-
-	/**
 	 * 编号.
 	 */
 	private int code;

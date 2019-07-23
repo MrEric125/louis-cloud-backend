@@ -7,6 +7,9 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
+import java.util.List;
+
 
 /**
  *  sj  2019年7月19日13:58:21
@@ -44,21 +47,26 @@ public class PageInfo {
 	 */
 	private int totalPage;
 
-	/**
-	 * 是否为第一页
-	 */
-	private boolean start;
-
-
-	/**
-	 * 是否为最后一页
-	 */
-	private boolean last;
+//	/**
+//	 * 是否为第一页
+//	 */
+//	private boolean start;
+//
+//
+//	/**
+//	 * 是否为最后一页
+//	 */
+//	private boolean last;
 
 	/**
 	 * 是否排序
 	 */
 	private boolean sorted;
+
+	/**
+	 * 如果排序了的话显示排序字段
+	 */
+	private List<SortInfo> sortInfos;
 
 
 

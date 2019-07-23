@@ -33,12 +33,4 @@ public class TreeEntity<Id extends Serializable> extends BaseEntity<Id> {
 
 
 
-
-
-
-
-
-
-
-
 }

@@ -6,6 +6,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.io.Serializable;
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -31,6 +32,8 @@ public interface BaseEsCRUDService<E extends BaseDocument, ID extends Serializab
     E edit(E e);
 
     Optional<E> findById(ID id);
+
+    void addBatch(List<E> list);
 
 
 

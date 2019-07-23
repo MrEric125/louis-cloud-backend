@@ -23,6 +23,9 @@ import java.util.Optional;
 /**
  * @author Eric
  * @date create in 2019/6/11
+ * es 一般我们用的比较多的就是它的查询功能，或者存储功能，一般不用于插入，因为插入数据一般都是比较大的，
+ * 一般都是ELK 三者合起来工作
+ *
  */
 @Slf4j
 public class BaseESController<E extends BaseDocument, ID extends Serializable> extends BaseHandler {

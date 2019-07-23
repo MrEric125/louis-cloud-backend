@@ -3,7 +3,7 @@ package com.louis.server.service.impl;
 import com.louis.common.api.dto.LoginAuthDto;
 import com.louis.core.service.CRUDService;
 import com.louis.common.api.dto.IdName;
-import com.louis.oauth.dto.ClientMessageDto;
+import com.louis.common.api.dto.ClientMessageDto;
 import com.louis.server.entity.UserLoginLog;
 import com.louis.server.repository.LoginRepository;
 import lombok.extern.slf4j.Slf4j;

@@ -238,11 +238,12 @@ public class SimpleBaseRepository<M, ID extends Serializable> extends SimpleJpaR
 	public Page<M> findAll(final Searchable searchable) {
 		List<M> list = repositoryHelper.findAll(findAllQL, searchable, searchCallback);
 		long total = searchable.hasPageable() ? count(searchable) : list.size();
-		return new PageImpl<>(
+		PageImpl<M> ms = new PageImpl<>(
 				list,
 				searchable.getPage(),
 				total
-				);
+		);
+		return ms;
 	}
 
 	@Override

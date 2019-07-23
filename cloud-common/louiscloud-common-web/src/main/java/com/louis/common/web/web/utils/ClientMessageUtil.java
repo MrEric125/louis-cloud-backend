@@ -1,13 +1,12 @@
-package com.louis.server.service.impl;
+package com.louis.common.web.web.utils;
 
-import com.louis.common.web.web.utils.RequestUtil;
-import com.louis.oauth.dto.ClientMessageDto;
-import com.louis.security.utils.IpUtils;
+import com.louis.common.api.dto.ClientMessageDto;
 import eu.bitwalker.useragentutils.UserAgent;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletRequest;
+
 
 /**
  * @author louis
@@ -17,10 +16,10 @@ import javax.servlet.http.HttpServletRequest;
  */
 @Service
 @Slf4j
-public class ClientMessageService {
+public class ClientMessageUtil {
 
 
-    public ClientMessageDto findClientMessage(HttpServletRequest request) {
+    public static ClientMessageDto findClientMessage(HttpServletRequest request) {
         log.info("search client message");
         UserAgent userAgent = UserAgent.parseUserAgentString(request.getHeader("User-Agent"));
         //获取客户端操作系统

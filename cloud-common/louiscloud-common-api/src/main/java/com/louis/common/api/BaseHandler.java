@@ -1,14 +1,17 @@
 package com.louis.common.api;
 
 import com.louis.common.api.util.PageInfo;
+import com.louis.common.api.util.SortInfo;
 import com.louis.common.api.wrapper.PageWrapMapper;
 import com.louis.common.api.wrapper.WrapMapper;
 import com.louis.common.api.wrapper.Wrapper;
 import com.louis.common.api.wrapper.WrapperMassage;
-import org.springframework.cglib.core.ReflectUtils;
 import org.springframework.data.domain.Page;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 /**
  * @author louis
@@ -83,17 +86,28 @@ public abstract class BaseHandler<T> {
      * @return todo 这个地方不太好指定泛型类型
      */
 
-    protected <E> Wrapper handlePageAndSortResult(T t) {
+    @SuppressWarnings("unchecked")
+    protected <T> Wrapper<T> handlePageAndSortResult(Object t) {
         if (t instanceof Page) {
             Page page = (Page) t;
+            List<SortInfo> sortInfos = new ArrayList<>();
+            if (page.getSort().isSorted()) {
+                sortInfos=page.getSort().get().map(x->{
+                    SortInfo sortInfo = new SortInfo();
+                    sortInfo.setDirection(x.getDirection().name());
+                    sortInfo.setProperties(x.getProperty());
+                    return sortInfo;
 
+                }).collect(Collectors.toList());
+            }
             return PageWrapMapper.wrap(page.getContent(),
                     PageInfo.builder()
                             .currentPage(page.getNumber())
                             .pageSize(page.getSize())
                             .totalPage(page.getTotalPages())
                             .totalElement(page.getTotalElements())
-
+                            .sorted(page.getSort().isSorted())
+                            .sortInfos(sortInfos)
                             .build());
         } else {
             throw new UnablePageException("当前查询不可分页");
