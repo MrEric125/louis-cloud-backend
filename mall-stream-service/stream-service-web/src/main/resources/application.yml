@@ -3,6 +3,12 @@ server:
 spring:
   application:
     name: producer
+#  datasource:
+#    platform: MYSQL
+#    url: jdbc:mysql://localhost:3306/spring_cloud?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=UTC
+#    username: root
+#    password: Root
+#    driver-class-name: com.mysql.cj.jdbc.Driver
   cloud:
     stream:
       kafka:
@@ -19,4 +25,7 @@ spring:
           #消息发往的目的地
           destination: stream-demo
           #消息发送的格式，接收端不用指定格式，但是发送端要
+          content-type: text/plain
+        louis_output:
+          destination: stream-demo-demo
           content-type: text/plain

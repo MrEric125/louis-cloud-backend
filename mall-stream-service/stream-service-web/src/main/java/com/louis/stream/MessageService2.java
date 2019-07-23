@@ -2,27 +2,22 @@ package com.louis.stream;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.stream.annotation.EnableBinding;
-import org.springframework.cloud.stream.messaging.Source;
 import org.springframework.messaging.support.MessageBuilder;
 
 /**
- * @author John·Louis
+ * @author louis
  * <p>
- * Date: 2019/6/6
+ * Date: 2019/7/23
  * Description:
  */
-@EnableBinding(Source.class)
-public class SendService {
+@EnableBinding(MySource.class)
+public class MessageService2 {
 
     @Autowired
-    private Source source;
-
-
+    private MySource mySource;
 
     public void sendMsg(String msg) {
-        source.output().send(MessageBuilder.withPayload(msg).build());
+        mySource.messageChannel().send(MessageBuilder.withPayload(msg).build());
 
     }
-
-
 }

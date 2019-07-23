@@ -1,8 +1,14 @@
 server:
-  port: 7890
+  port: 7880
 spring:
   application:
     name: consumer_2
+#  datasource:
+#    platform: MYSQL
+#    url: jdbc:mysql://localhost:3306/spring_cloud?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=UTC
+#    username: root
+#    password: Root
+#    driver-class-name: com.mysql.cj.jdbc.Driver
   cloud:
     stream:
       kafka:
@@ -13,3 +19,5 @@ spring:
       bindings:
         input:
           destination: stream-demo
+        output:
+          destination: stream-demo-louis
