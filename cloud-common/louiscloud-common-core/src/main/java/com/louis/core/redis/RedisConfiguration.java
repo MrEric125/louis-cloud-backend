@@ -15,6 +15,8 @@ import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.serializer.*;
 
+import java.time.Duration;
+
 
 /**
  * @author John·Louis
@@ -29,7 +31,16 @@ public class RedisConfiguration extends CachingConfigurerSupport {
 
     private static final String KEY_SEPARATE = "_";
 
+    private static final int DURATION_TIME = 1 * 6;
 
+
+    /**
+     * 非注解方式能够将数据序列化为json,但是注解方式不起作用
+     * @param factory
+     * @param <String>
+     * @param <T>
+     * @return
+     */
     @Bean("redisTemplate")
     public <String,T> RedisTemplate<String,T> redisTemplate(RedisConnectionFactory factory) {
         RedisTemplate<String, T> template = new RedisTemplate<>();
@@ -49,17 +60,23 @@ public class RedisConfiguration extends CachingConfigurerSupport {
         return new StringRedisSerializer();
     }
 
+    /**
+     * 基于注解的方式序列化value为json格式
+     * @param factory
+     * @return
+     */
     @Bean
     public CacheManager cacheManager(RedisConnectionFactory factory) {
         RedisCacheConfiguration cacheConfiguration = RedisCacheConfiguration
                 .defaultCacheConfig()
+//                指定过期时间
+                .entryTtl(Duration.ofHours(DURATION_TIME))
+//                指定值value序列方式
                 .serializeValuesWith(RedisSerializationContext.SerializationPair.fromSerializer(RedisSerializer.json()));
         return RedisCacheManager.builder(factory)
                 .cacheDefaults(cacheConfiguration)
                 .build();
     }
-
-
     @Bean
     public KeyGenerator keyGenerator() {
         return (target, method, params) -> {
@@ -72,9 +89,4 @@ public class RedisConfiguration extends CachingConfigurerSupport {
             return sb.toString();
         };
     }
-
-
-
-
-
 }

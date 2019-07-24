@@ -1,8 +1,8 @@
 package com.louis.order.web.controller;
 
 
+import com.louis.common.api.wrapper.Wrapper;
 import com.louis.common.web.web.WebCRUDController;
-import com.louis.core.response.ResponseData;
 import com.louis.order.api.dto.OmsOrderDto;
 import com.louis.order.service.OmsOrderService;
 import com.louis.order.entity.OmsOrder;
@@ -42,9 +42,9 @@ public class OrderController extends WebCRUDController<OmsOrder, OmsOrderDto,Lon
 
     @ApiOperation("通过id查找")
     @GetMapping("/findById/{id}")
-    public ResponseData findOrderById(@PathVariable("id") Long id)  {
-        OmsOrder byId = orderService.findById(id);
-        return new ResponseData("success", byId);
+    public Wrapper findOrderById(@PathVariable("id") Long id)  {
+        OmsOrder omsOrder = orderService.findById(id);
+        return handleResult(omsOrder);
     }
 
 

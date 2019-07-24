@@ -21,7 +21,7 @@ public class OrderCommentServiceImpl  extends CRUDService<OrderComment, Long> im
     @Autowired
     private OrderCommentRepository orderCommentRepository;
 
-    public OrderComment findByUserIdAndOrderId(long orderId, long userId) {
+    public OrderComment findByUserIdAndOrderId(long userId, long orderId) {
         return orderCommentRepository.findByOrderIdAndCommentUserId(orderId, userId);
     }
 

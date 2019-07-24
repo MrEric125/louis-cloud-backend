@@ -5,7 +5,6 @@ import com.louis.comment.entity.OrderComment;
 import com.louis.comment.service.OrderCommentService;
 import com.louis.common.api.wrapper.Wrapper;
 import com.louis.common.web.web.WebCRUDController;
-import com.louis.core.response.ResponseData;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -29,14 +28,14 @@ public class OrderCommentController extends WebCRUDController<OrderComment,Order
 
 
     @GetMapping("/{orderId}/{userId}")
-    public ResponseData getCommentByOrderId(@PathVariable("orderId") long orderId,
+    public Wrapper getCommentByOrderId(@PathVariable("orderId") long orderId,
                                             @PathVariable("userId") long userId) {
         OrderComment orderComment = orderCommentService.findByUserIdAndOrderId(userId, orderId);
         OrderCommentDto dto = new OrderCommentDto();
         if (orderComment != null) {
             BeanUtils.copyProperties(orderComment, dto);
         }
-        return new ResponseData(dto);
+        return handleResult(dto);
     }
 
     @GetMapping("/{orderId}")
