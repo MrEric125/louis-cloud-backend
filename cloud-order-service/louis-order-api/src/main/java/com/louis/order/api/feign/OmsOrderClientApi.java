@@ -1,10 +1,9 @@
 package com.louis.order.api.feign;
 
+import com.louis.common.api.wrapper.Wrapper;
 import com.louis.order.api.dto.OmsOrderDto;
 import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @author 80003996
@@ -17,13 +16,18 @@ public interface OmsOrderClientApi {
 
 
     @PostMapping("/createOrder")
-    OmsOrderDto createOrder(@RequestBody OmsOrderDto orderDto);
+    Wrapper<OmsOrderDto> createOrder(@RequestBody OmsOrderDto orderDto);
 
     @PostMapping("/modifyOrder")
     OmsOrderDto modifyOrderStatus();
 
     @PostMapping("/confirm_order")
     void confirmOrder();
+
+    @GetMapping("findByOrderId/{orderId}")
+    Wrapper<OmsOrderDto> findByOrderId(@PathVariable("orderId") long orderId);
+
+
 
 
     @PostMapping("/delete_order")
