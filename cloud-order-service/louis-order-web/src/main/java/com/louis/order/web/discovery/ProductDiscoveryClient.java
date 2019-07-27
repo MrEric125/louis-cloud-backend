@@ -20,7 +20,7 @@ import java.util.List;
 @Component
 public class ProductDiscoveryClient {
 
-    @Autowired
+   /* @Autowired
     DiscoveryClient discoveryClient;
 
     public OmsProduct getProduct() {
@@ -33,5 +33,5 @@ public class ProductDiscoveryClient {
         return exchange.getBody();
 
 
-    }
+    }*/
 }

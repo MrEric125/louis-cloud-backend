@@ -1,9 +1,11 @@
 package com.louis.comment.service.impl;
 
+import com.louis.comment.dto.OrderCommentDto;
 import com.louis.comment.entity.OrderComment;
 import com.louis.comment.repository.OrderCommentRepository;
 import com.louis.comment.service.OrderCommentService;
-import com.louis.core.service.CRUDService;
+import com.louis.core.service.WebCRUDService;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
@@ -16,7 +18,7 @@ import java.util.List;
  * description:
  */
 @Service
-public class OrderCommentServiceImpl  extends CRUDService<OrderComment, Long> implements OrderCommentService {
+public class OrderCommentServiceImpl  extends WebCRUDService<OrderComment, OrderCommentDto, Long> implements OrderCommentService {
 
     @Autowired
     private OrderCommentRepository orderCommentRepository;
@@ -37,4 +39,20 @@ public class OrderCommentServiceImpl  extends CRUDService<OrderComment, Long> im
         return orderCommentRepository.findAllByOrderId(orderId);
 
     }
+
+    @Override
+    public OrderComment dtoToEntity(OrderCommentDto dto) {
+        OrderComment orderComment = new OrderComment();
+        BeanUtils.copyProperties(dto, orderComment);
+        return orderComment;
+    }
+
+    @Override
+    public OrderCommentDto entityToDto(OrderComment orderComment) {
+        OrderCommentDto dto = new OrderCommentDto();
+        BeanUtils.copyProperties(orderComment, dto);
+        return dto;
+    }
+
+
 }

@@ -22,11 +22,7 @@
             <artifactId>comment-service-api</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
-        <dependency>
-            <groupId>com.louis</groupId>
-            <artifactId>louis-order-api</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-        </dependency>
+
 
 
         

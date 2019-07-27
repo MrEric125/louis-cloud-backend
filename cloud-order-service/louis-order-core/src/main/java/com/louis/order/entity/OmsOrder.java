@@ -57,7 +57,7 @@ public class OmsOrder extends MallEntity<Long> {
 
 
     /**
-     * 产生的积分
+     * 产生的积分,
      */
     private int integral;
 

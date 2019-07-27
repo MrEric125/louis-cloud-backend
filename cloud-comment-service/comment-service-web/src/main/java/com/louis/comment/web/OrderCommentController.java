@@ -6,9 +6,12 @@ import com.louis.comment.service.OrderCommentService;
 import com.louis.common.api.wrapper.Wrapper;
 import com.louis.common.web.web.WebCRUDController;
 import com.louis.core.response.ResponseData;
+import com.louis.order.api.dto.OmsOrderDto;
+import com.louis.order.api.feign.OmsOrderClientApi;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,6 +29,10 @@ public class OrderCommentController extends WebCRUDController<OrderComment,Order
     @Autowired
     private OrderCommentService orderCommentService;
 
+    @Autowired
+    private OmsOrderClientApi orderClientApi;
+
+
 
 
     @GetMapping("/{orderId}/{userId}")
@@ -42,6 +49,10 @@ public class OrderCommentController extends WebCRUDController<OrderComment,Order
     @GetMapping("/{orderId}")
     public Wrapper getByOrderId(@PathVariable("orderId") long orderId) {
         List<OrderComment> orderComments = orderCommentService.findByOrderId(orderId);
+        //测试feign接口
+        if (CollectionUtils.isEmpty(orderComments)) {
+            return orderClientApi.findByOrderId(orderId);
+        }
         return handleResult(orderComments);
     }
 

@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @Api("order feign clientAPI")
-@RequestMapping("/order/feign")
+//@RequestMapping("/order/feign")
 public class OmsOrderFeignClient extends BaseController implements OmsOrderClientApi {
 
 
@@ -29,7 +29,8 @@ public class OmsOrderFeignClient extends BaseController implements OmsOrderClien
 
     @Override
     public Wrapper<OmsOrderDto> createOrder(OmsOrderDto orderDto) {
-        return null;
+        orderService.createEntity(orderDto);
+        return handlerNullResult();
     }
 
     @Override
@@ -46,6 +47,9 @@ public class OmsOrderFeignClient extends BaseController implements OmsOrderClien
     public Wrapper<OmsOrderDto> findByOrderId(long orderId) {
         OmsOrder omsOrder = orderService.findById(orderId);
         OmsOrderDto omsOrderDto = orderService.entityToDto(omsOrder);
+        if (orderId == 3) {
+            throw new IllegalArgumentException("3");
+        }
         return handleResult(omsOrderDto);
 
     }
