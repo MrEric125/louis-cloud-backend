@@ -23,5 +23,21 @@ cloud-zuul-----> cloud-oauth------> order service--->goods service---> payment s
 有些模块需要用户用户登录验证，但是在有些地方不需要用户登录验证，所以在zuul做负载均衡之后需要做下一步操作
 
 
+| 使用技术                     | 版本        |
+| -------------------------------- | ------------- |
+| Spring-cloud                     | Greenwich.SR1 |
+| spring-cloud                     | 2.1.4         |
+| Spring boot admin                | 2.1.5         |
+| spring-social                    | 1.1.6.        |
+| spring-data-jpa                  | 2.1.4         |
+| spring-data-redis                | 2.1.6         |
+| spring-cloud-stream-binder-kafka | 2.1.2         |
+| kafka-clients                    | 2.0.1         |
+| spring-data-elasticsearch        | 2.1.4         |
+| elasticsearch                    | 5.6.16        |
+|                                  |               |
+
+
+
 
 

@@ -23,7 +23,7 @@
             <groupId>com.louis</groupId>
             <artifactId>louiscloud-common-api</artifactId>
         </dependency>
-        <!--        统一使用 5.6.16 这个版本的elesticsearch 版本不一致，会出问题-->
+        <!--        统一使用 5.6.16 这个版本的elasticsearch 版本不一致，会出问题-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-elasticsearch</artifactId>
@@ -42,7 +42,7 @@
                 </exclusion>
             </exclusions>
         </dependency>
-        <!--        统一使用 5.6.16 这个版本的elesticsearch   start-->
+        <!--        统一使用 5.6.16 这个版本的elasticsearch   start-->
         <dependency>
             <groupId>org.elasticsearch</groupId>
             <artifactId>elasticsearch</artifactId>
@@ -64,7 +64,7 @@
             <artifactId>jackson-datatype-jsr310</artifactId>
             <version>2.9.9</version>
         </dependency>
-        <!--        统一使用 5.6.16 这个版本的elesticsearch   end-->
+        <!--        统一使用 5.6.16 这个版本的elasticsearch   end-->
     </dependencies>
 
 

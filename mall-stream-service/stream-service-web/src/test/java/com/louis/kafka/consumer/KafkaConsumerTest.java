@@ -7,6 +7,7 @@ import org.apache.kafka.clients.consumer.KafkaConsumer;
 import java.time.Duration;
 import java.util.Arrays;
 import java.util.Properties;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * @author louis
@@ -31,11 +32,17 @@ public class KafkaConsumerTest {
         boolean flag = true;
         while (flag) {
             ConsumerRecords<String, String> records = consumer.poll(Duration.ofSeconds(10));
-            for (ConsumerRecord<String, String> record : records)
-                System.out.printf("topic= %s, offset = %d, key = %s, value = %s\n", record.topic(),record.offset(), record.key(), record.value());
+
+            for (ConsumerRecord<String, String> record : records) {
+                System.out.printf("topic= %s, offset = %d, key = %s, value = %s\n", record.topic(), record.offset(), record.key(), record.value());
+
+            }
             flag = false;
         }
         consumer.close();
+
+        ConcurrentHashMap concurrentHashMa = new ConcurrentHashMap();
+
 
     }
 }
