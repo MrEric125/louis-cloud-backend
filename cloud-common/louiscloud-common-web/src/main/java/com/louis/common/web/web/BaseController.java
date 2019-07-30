@@ -43,10 +43,10 @@ public abstract class BaseController<Entity extends BaseEntity, ID extends Seria
 	}
 
 
-	protected final Class<Entity> entityClass;
+//	protected final Class<Entity> entityClass;
 
 	public BaseController() {
-		this.entityClass = ReflectUtils.findParameterizedType(getClass(), 0);
+//		this.entityClass = ReflectUtils.findParameterizedType(getClass(), 0);
 	}
 
 

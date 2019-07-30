@@ -29,10 +29,14 @@ public class OmsOrderDto extends BaseDto<Long> {
     private String userAddr;
 
     @ApiModelProperty("支付方式")
-    private Integer payType;
+    private Integer payChannel;
 
-    @ApiModelProperty(value = "商品明细",notes = "一个订单可能会有多个明细")
-    private List<OmsOrderDetailDto> itemDtoList;
+    /**
+     * 简化流程先把这些复杂的业务场景去掉。后期整个模块搭建好了，
+     * 再把这些加进来
+     */
+//    @ApiModelProperty(value = "商品明细",notes = "一个订单可能会有多个明细")
+//    private List<OmsOrderDetailDto> itemDtoList;
 
     @ApiModelProperty("总价格：=商品单价*商品件数+运费-优惠券")
     private BigDecimal totalCost;
@@ -47,7 +51,7 @@ public class OmsOrderDto extends BaseDto<Long> {
     private int coupon;
 
     @ApiModelProperty(value = "订单状态",notes ="订单状态:0-已取消-10-未付款, 20-已付款, 40-已发货, 50-交易成功, 60-交易关闭" )
-    private int status;
+    private int orderStatus;
 
     @ApiModelProperty("订单创建时间")
     private Date beganTime;

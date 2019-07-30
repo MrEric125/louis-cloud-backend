@@ -1,23 +1,26 @@
 package com.louis.comment.service;
 
+import com.louis.comment.dto.OrderCommentDto;
 import com.louis.comment.entity.OrderComment;
-import com.louis.comment.repository.OrderCommentRepository;
-import com.louis.core.service.CRUDService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import com.louis.core.service.ICRUDService;
+import com.louis.core.service.IWebService;
+
+import java.util.List;
 
 /**
  * @author John·Louis
  * @date create in 2019/5/18
  */
-@Service
-public class OrderCommentService extends CRUDService<OrderComment, Long> {
+public interface OrderCommentService extends IWebService<OrderComment, OrderCommentDto, Long> {
 
 
-    @Autowired
-    private OrderCommentRepository orderCommentRepository;
+    List<OrderComment> findByOrderId(long orderId);
 
-    public OrderComment findByUserIdAndOrderId(long orderId, long userId) {
-        return orderCommentRepository.findByOrderIdAndCommentUserId(orderId, userId);
-    }
+    OrderComment findByUserIdAndOrderId(long orderId, long userId);
+
+
+
+
+
+
 }
