@@ -26,11 +26,6 @@
             <groupId>com.louis</groupId>
             <artifactId>search-service-core</artifactId>
             <version>0.0.1-SNAPSHOT</version>
-            <exclusions>
-                <exclusion>
-                    
-                </exclusion>
-            </exclusions>
         </dependency>
 
         <dependency>
