@@ -32,10 +32,7 @@ public class OmsOrderService extends WebCRUDService<OmsOrder, OmsOrderDto,Long> 
     }
 
     public List<OmsOrder> findByUserId(Long userId) {
-
-
         return getRepository().findAllByUserId(userId);
-
     }
 
 
