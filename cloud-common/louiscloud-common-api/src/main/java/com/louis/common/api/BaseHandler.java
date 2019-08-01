@@ -38,7 +38,7 @@ public abstract class BaseHandler<T> {
     protected <T> Wrapper<T> handleResult(T result) {
         boolean flag = isFlag(result);
         if (flag) {
-            return WrapMapper.wrap(WrapperMassage.SUCCESS_CODE, "操作成功", result);
+            return WrapMapper.wrap(WrapperMassage.SUCCESS_CODE, "success", result);
         } else {
             return WrapMapper.wrap(WrapperMassage.ERROR_CODE, "操作失败", result);
         }
@@ -55,7 +55,7 @@ public abstract class BaseHandler<T> {
         boolean flag = isFlag(result);
 
         if (flag) {
-            return WrapMapper.wrap(WrapperMassage.SUCCESS_CODE, "操作成功", result);
+            return WrapMapper.wrap(WrapperMassage.SUCCESS_CODE, "success", result);
         } else {
             return WrapMapper.wrap(WrapperMassage.ERROR_CODE, errorMsg, result);
         }
@@ -72,7 +72,7 @@ public abstract class BaseHandler<T> {
     protected <T> Wrapper<T> handlerNullResult( String errorMsg) {
 
         if (errorMsg == null) {
-            return WrapMapper.wrap(WrapperMassage.SUCCESS_CODE, "操作成功");
+            return WrapMapper.wrap(WrapperMassage.SUCCESS_CODE, "success");
         } else {
             return WrapMapper.wrap(WrapperMassage.ERROR_CODE, errorMsg);
         }

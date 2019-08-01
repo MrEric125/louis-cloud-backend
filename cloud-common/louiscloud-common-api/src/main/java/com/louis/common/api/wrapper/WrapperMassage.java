@@ -17,7 +17,7 @@ public class WrapperMassage implements Serializable {
     /**
      * 成功信息.
      */
-    public static final String SUCCESS_MESSAGE = "操作成功";
+    public static final String SUCCESS_MESSAGE = "success";
 
     /**
      * 错误码.

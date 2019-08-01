@@ -3,15 +3,15 @@ package com.louis.comment.web;
 import com.louis.comment.dto.OrderCommentDto;
 import com.louis.comment.entity.OrderComment;
 import com.louis.comment.service.OrderCommentService;
+import com.louis.common.api.search.Searchable;
 import com.louis.common.api.wrapper.Wrapper;
 import com.louis.common.web.web.WebCRUDController;
+import io.micrometer.core.instrument.search.Search;
+import io.swagger.annotations.ApiParam;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -43,7 +43,20 @@ public class OrderCommentController extends WebCRUDController<OrderComment,Order
         List<OrderComment> orderComments = orderCommentService.findByOrderId(orderId);
         return handleResult(orderComments);
     }
+    public Wrapper getByTypeId() {
+        return handlerNullResult();
+    }
 
+    @GetMapping("/test")
+    public Wrapper test(OrderCommentDto dto) {
+        OrderComment orderComment = orderCommentService.dtoToEntity(dto);
+        return handleResult(orderComment);
+    }
+    @GetMapping("/searchable")
+    public Wrapper test(Searchable searchable) {
+
+        return handleResult(searchable);
+    }
 
 
 }

@@ -49,6 +49,8 @@ public class ProducerMServiceImpl implements MessageProducer {
 */
         ListenableFuture<SendResult<String, Object>> send = kafkaTemplate.send(topic, message);
 
+        send.completable();
+
 
 
     }

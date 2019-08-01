@@ -18,6 +18,6 @@ spring:
           auto-create-topics: true
       bindings:
         input:
-          destination: stream-demo
+          destination: louis
         output:
           destination: stream-demo-louis
