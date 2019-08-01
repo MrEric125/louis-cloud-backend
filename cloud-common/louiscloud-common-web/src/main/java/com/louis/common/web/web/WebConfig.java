@@ -11,7 +11,6 @@ import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
 import javax.validation.Validator;
 import java.util.List;
@@ -21,7 +20,7 @@ import java.util.List;
  * @date create in 2019/5/11
  */
 @Configuration
-public class WebConfig extends WebMvcConfigurerAdapter {
+public class WebConfig extends WebMvcConfigurationSupport {
 
 
     @Override
@@ -36,20 +35,20 @@ public class WebConfig extends WebMvcConfigurerAdapter {
     private SearchableMethodArgumentResolver searchableMethodArgumentResolver() {
         return new SearchableMethodArgumentResolver();
     }
-    @Bean
-    public FormattingConversionService conversionService() {
-        DefaultFormattingConversionService conversionService = new DefaultFormattingConversionService();
-        addFormatters(conversionService);
-        return conversionService;
-    }
-//
-    @Bean
-    public MethodInvokingFactoryBean methodInvokingFactoryBean() {
-        MethodInvokingFactoryBean m = new MethodInvokingFactoryBean();
-        m.setStaticMethod("com.louis.common.api.search.utils.SearchableConvertUtils.setConversionService");
-        m.setArguments(conversionService());
-        return m;
-    }
+//    @Bean
+//    public FormattingConversionService conversionService() {
+//        DefaultFormattingConversionService conversionService = new DefaultFormattingConversionService();
+//        addFormatters(conversionService);
+//        return conversionService;
+//    }
+////
+//    @Bean
+//    public MethodInvokingFactoryBean methodInvokingFactoryBean() {
+//        MethodInvokingFactoryBean m = new MethodInvokingFactoryBean();
+//        m.setStaticMethod("com.louis.common.api.search.utils.SearchableConvertUtils.setConversionService");
+//        m.setArguments(conversionService());
+//        return m;
+//    }
 
 
     /**

@@ -33,6 +33,7 @@ public class BaseESController<E extends BaseDocument, ID extends Serializable> e
     @Autowired
     public BaseEsCRUDService<E, ID> baseESService;
 
+    @SuppressWarnings("unchecked")
     public Class<E> getDocumentClass() {
         ParameterizedType pt = (ParameterizedType) this.getClass().getGenericSuperclass();
         // 获取第一个类型参数的真实类型

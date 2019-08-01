@@ -3,6 +3,7 @@ package com.louis.core.utils;
 import sun.misc.BASE64Decoder;
 import sun.misc.BASE64Encoder;
 
+import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 
 /**
@@ -22,7 +23,7 @@ public class CoderSecurity {
      * @throws Exception
      */
     public static String decryptBASE64ToStr(String key) throws Exception {
-        return new String((new BASE64Decoder()).decodeBuffer(key), "UTF-8");
+        return new String((new BASE64Decoder()).decodeBuffer(key), StandardCharsets.UTF_8);
     }
 
     public static byte[] decryptBASE64(String key) throws Exception {
@@ -41,7 +42,7 @@ public class CoderSecurity {
     }
 
     public static String encryptStrToBASE64(String str) throws Exception {
-        return (new BASE64Encoder()).encode(str.getBytes("UTF-8"));
+        return (new BASE64Encoder()).encode(str.getBytes(StandardCharsets.UTF_8));
     }
 
     public static String encryptMD5(String str) {
@@ -71,7 +72,7 @@ public class CoderSecurity {
      * @return Generated hex string
      */
     public static String asHex(byte buf[]) {
-        StringBuffer strbuf = new StringBuffer(buf.length * 2);
+        StringBuilder strbuf = new StringBuilder(buf.length * 2);
         int i;
 
         for (i = 0; i < buf.length; i++) {
