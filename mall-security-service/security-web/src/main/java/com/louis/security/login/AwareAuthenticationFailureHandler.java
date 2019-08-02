@@ -1,8 +1,8 @@
 package com.louis.security.login;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.louis.common.ErrorCode;
-import com.louis.common.ErrorResponse;
+import com.louis.common.api.wrapper.WrapMapper;
+import com.louis.exception.ErrorCodeEnum;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -37,7 +37,7 @@ public class AwareAuthenticationFailureHandler implements AuthenticationFailureH
         response.setStatus(HttpStatus.UNAUTHORIZED.value());
         response.setContentType(MediaType.APPLICATION_JSON_VALUE);
 
-        mapper.writeValue(response.getWriter(), ErrorResponse.of(e.getMessage(), ErrorCode.AUTHENTICATION, HttpStatus.UNAUTHORIZED));
+        mapper.writeValue(response.getWriter(), WrapMapper.error(ErrorCodeEnum.GL99990401.code(), ErrorCodeEnum.GL99990401.msg()));
     }
 
 }

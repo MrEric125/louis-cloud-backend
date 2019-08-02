@@ -7,7 +7,7 @@
         <module>cloud-common</module>
         <module>mall-security-service</module>
         <module>cloud-hystrix</module>
-        <module>cloud-zuul-server</module>
+        <module>cloud-zuul-service</module>
         <module>cloud-eureka-server</module>
         <module>cloud-comment-service</module>
         <module>mall-products-service</module>

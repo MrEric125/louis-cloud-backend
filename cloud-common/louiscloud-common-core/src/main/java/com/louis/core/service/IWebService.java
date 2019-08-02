@@ -4,7 +4,6 @@ import com.louis.common.api.dto.BaseDto;
 import com.louis.core.entity.BaseEntity;
 
 import java.io.Serializable;
-import java.util.List;
 
 /**
  * @author John·Louis
