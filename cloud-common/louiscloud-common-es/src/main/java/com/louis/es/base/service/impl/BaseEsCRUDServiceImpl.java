@@ -5,6 +5,7 @@ import com.louis.es.base.repository.BaseESRepository;
 import com.louis.es.base.service.BaseEsCRUDService;
 import org.elasticsearch.index.query.QueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
+import org.elasticsearch.index.query.QueryStringQueryBuilder;
 import org.elasticsearch.search.fetch.subphase.highlight.HighlightBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -36,17 +37,22 @@ public class BaseEsCRUDServiceImpl<D extends BaseDocument,ID extends Serializabl
     BaseESRepository<D,ID> baseESRepository;
 
 
+    /**
+     * queryString 和DLS各有各的使用场景
+     * @param keyword
+     * @param pageable
+     * @return
+     */
     private SearchQuery searchQueryBuilder(String keyword, Pageable pageable) {
-        //// TODO: 2019/7/31 直接这样指定是可以查询，但是灵活性很差的
-        String[] fieldName = new String[2];
-        fieldName[0] = "title";
-        fieldName[1] = "content";
 
-        QueryBuilder queryBuilder = QueryBuilders.multiMatchQuery(keyword, fieldName);
+//        QueryBuilder queryBuilder = QueryBuilders.multiMatchQuery(keyword, fieldName);
+
+        QueryBuilder queryBuilder = QueryBuilders.queryStringQuery(keyword);
 
         NativeSearchQueryBuilder searchQueryBuilder = new NativeSearchQueryBuilder();
         searchQueryBuilder.withFilter(queryBuilder);
-        HighlightBuilder.Field field=new HighlightBuilder.Field("title");
+        HighlightBuilder.Field field=new HighlightBuilder.Field(keyword);
+
         searchQueryBuilder.withHighlightFields(field);
 
         if (Objects.nonNull(pageable)) {

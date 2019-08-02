@@ -58,7 +58,7 @@ public class BaseESController<E extends BaseDocument, ID extends Serializable> e
                           @RequestParam("pageSize")int pageSize) {
 
 
-        Pageable pageable = PageRequest.of(currentPage, pageSize, Sort.Direction.ASC,"id");
+        Pageable pageable = PageRequest.of(currentPage, pageSize, Sort.Direction.ASC,"id","title");
         Page<E> search = baseESService.searchPageable(keyword, pageable);
 //        return handleResult(search);
         return handlePageAndSortResult(search);
