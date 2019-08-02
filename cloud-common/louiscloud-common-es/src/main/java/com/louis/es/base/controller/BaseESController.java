@@ -31,8 +31,9 @@ import java.util.Optional;
 public class BaseESController<E extends BaseDocument, ID extends Serializable> extends BaseHandler {
 
     @Autowired
-    private BaseEsCRUDService<E, ID> baseESService;
+    public BaseEsCRUDService<E, ID> baseESService;
 
+    @SuppressWarnings("unchecked")
     public Class<E> getDocumentClass() {
         ParameterizedType pt = (ParameterizedType) this.getClass().getGenericSuperclass();
         // 获取第一个类型参数的真实类型
@@ -49,21 +50,20 @@ public class BaseESController<E extends BaseDocument, ID extends Serializable> e
 
     }
 
-    @ApiOperation("简单搜索")
-    @GetMapping("/simpleSearch/{keyWord}")
-    public Wrapper searchSimple(@PathVariable("keyWord") String keyWord) {
-        Page<E> productDocuments = baseESService.searchSimple(keyWord);
-        return handlePageAndSortResult(productDocuments);
-    }
 
     @ApiOperation("綜合查询")
-    @GetMapping("/search")
-    public Wrapper search(@RequestParam("currentPage")int currentPage, @RequestParam("pageSize")int pageSize) {
-        Pageable pageable = PageRequest.of(currentPage, pageSize, Sort.Direction.ASC,"id");
-        Page<E> search = baseESService.searchPageable(null, pageable);
-        return handleResult(search);
-//        return handlePageAndSortResult(search);
+    @GetMapping("/search/{keyword}")
+    public Wrapper search(@PathVariable("keyword") String keyword,
+                          @RequestParam("currentPage")int currentPage,
+                          @RequestParam("pageSize")int pageSize) {
+
+
+        Pageable pageable = PageRequest.of(currentPage, pageSize, Sort.Direction.ASC,"id","title");
+        Page<E> search = baseESService.searchPageable(keyword, pageable);
+//        return handleResult(search);
+        return handlePageAndSortResult(search);
     }
+
 
     @ApiOperation("推荐")
     @GetMapping("recommend/{id}")

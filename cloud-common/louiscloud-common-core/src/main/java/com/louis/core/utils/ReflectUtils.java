@@ -24,6 +24,7 @@ public class ReflectUtils {
      * @param <T>
      * @return
      */
+    @SuppressWarnings("unchecked")
     public static <T> Class<T> findParameterizedType(Class<?> clazz, int index) {
         Type parameterizedType = clazz.getGenericSuperclass();
         //CGLUB subclass target object(泛型在父类上)

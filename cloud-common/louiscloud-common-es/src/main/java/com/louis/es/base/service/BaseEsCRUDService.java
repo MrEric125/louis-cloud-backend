@@ -15,10 +15,8 @@ import java.util.Optional;
  * Date: 2019/6/10
  * Description:
  */
-@Service
 public interface BaseEsCRUDService<E extends BaseDocument, ID extends Serializable> {
 
-    Page<E> searchSimple(String keyword);
 
     Page<E> search(String keyword);
 

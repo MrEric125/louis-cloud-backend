@@ -44,9 +44,10 @@ public class PcAuthenticationSuccessHandler extends SavedRequestAwareAuthenticat
 
 	private static final String BEARER_TOKEN_TYPE = "Bearer ";
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
-                                        Authentication authentication) throws IOException, ServletException {
+                                        Authentication authentication) throws IOException {
 
 		logger.info("登录成功");
 

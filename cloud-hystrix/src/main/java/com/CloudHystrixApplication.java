@@ -49,6 +49,7 @@ public class CloudHystrixApplication {
      *  http://localhost:9877/actuator/hystrix.stream 进入监控页面
      * @return Servlet
      */
+    @SuppressWarnings("unchecked")
     @Bean
     public ServletRegistrationBean getServlet(){
         HystrixMetricsStreamServlet streamServlet = new HystrixMetricsStreamServlet();

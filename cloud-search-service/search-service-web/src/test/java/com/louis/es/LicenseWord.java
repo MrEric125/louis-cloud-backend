@@ -36,7 +36,7 @@ public class LicenseWord {
     public void initList(String fileName) {
         if (StringUtils.isEmpty(fileName)) {
 
-            fileName = "D:/workspace/IntelliJ Idea/spring-cloud-project/cloud-search-service/search-service-web/src/test/resource/LICENSE";
+            fileName = "F:/louis/spring-cloud-project/LICENSE";
         }
         RandomAccessFile accessFile = null;
         try {

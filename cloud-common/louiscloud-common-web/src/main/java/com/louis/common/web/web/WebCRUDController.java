@@ -100,13 +100,14 @@ public abstract class WebCRUDController<Entity extends BaseEntity, Dto extends B
 
     /**
      * 通过条件查询分页
+     * // TODO: 2019/8/1  后期需要优化Searchable 参数总是绑定不上去 
      *
      * @param searchable 查询条件
      * @return 返回数据
      */
     @ApiOperation("通过searchable条件查询")
     @GetMapping(value = "/listPageBy",produces = "application/json")
-    public Wrapper findAllWithPage(@ApiParam("传入的searchable条件") Searchable searchable) {
+    public Wrapper findAllWithPage( Searchable searchable) {
         searchable = searchable == null ? Searchable.newSearchable() : searchable;
         if (!searchable.hasPageable())
             searchable.setPage(0, 10);
@@ -121,7 +122,7 @@ public abstract class WebCRUDController<Entity extends BaseEntity, Dto extends B
     @Deprecated
     @ApiOperation("不分页查找集合，测试使用")
     @GetMapping("/queryAll")
-    public Wrapper findAllList(@ApiParam("传入的searchable条件") Searchable searchable) {
+    public Wrapper findAllList(Searchable searchable) {
         searchable = searchable == null ? Searchable.newSearchable() : searchable;
         if (searchable.hasPageable())
            searchable.removePageable();

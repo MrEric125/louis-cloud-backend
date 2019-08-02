@@ -152,6 +152,8 @@ public class SearchableMethodArgumentResolver extends BaseMethodArgumentResolver
         return searchable;
     }
 
+
+    @SuppressWarnings("unckecked")
     private String[] filterSearchValues(String[] values) {
         List<String> result = Lists.newArrayList(CollectionUtils.arrayToList(values));
         for (int i = 0; i < result.size(); i++) {
@@ -166,7 +168,7 @@ public class SearchableMethodArgumentResolver extends BaseMethodArgumentResolver
         Qualifier qualifier = parameter.getParameterAnnotation(Qualifier.class);
 
         if (qualifier != null) {
-            return new StringBuilder(((Qualifier) qualifier).value()).append("_").append(prefix).toString();
+            return ( qualifier).value() + "_" + prefix;
         }
 
         return prefix;

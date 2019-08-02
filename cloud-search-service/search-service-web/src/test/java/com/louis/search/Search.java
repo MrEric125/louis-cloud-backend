@@ -1,6 +1,7 @@
 package com.louis.search;
 
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.collections.MapUtils;
 import org.elasticsearch.action.search.SearchResponse;
 import org.elasticsearch.client.transport.TransportClient;
 import org.elasticsearch.common.settings.Settings;
@@ -8,12 +9,14 @@ import org.elasticsearch.index.query.QueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.search.SearchHits;
 import org.elasticsearch.search.fetch.subphase.highlight.HighlightBuilder;
+import org.elasticsearch.search.fetch.subphase.highlight.HighlightField;
 import org.elasticsearch.transport.client.PreBuiltTransportClient;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;
+import java.util.Map;
 
 /**
  * @author John·Louis
@@ -25,19 +28,23 @@ public class Search {
 
     Settings settings = Settings.builder().build();
 
-    public static final String INDEX = "create_by_ava";
+    public static final String INDEX = "article";
+
+    public static final String type = "license";
 
     TransportClient client = null;
 
+    QueryBuilder queryBuilder = null;
+
     @Before
     public void before() {
-      /*  try {
-            client = new PreBuiltTransportClient(settings)
-                    .addTransportAddress(new InetSocketTransportAddress
-                            (InetAddress.getByName("129.28.189.234"), 9300));
-        } catch (UnknownHostException e) {
-            e.printStackTrace();
-        }*/
+//        try {
+//            client = new PreBuiltTransportClient(settings)
+//                    .addTransportAddress(new InetSocketTransportAddress
+//                            (InetAddress.getByName("localhost"), 9300));
+//        } catch (UnknownHostException e) {
+//            e.printStackTrace();
+//        }
     }
     @Test
     public void searchIds() {
@@ -54,9 +61,12 @@ public class Search {
     }
 
     @Test
-    public void searchByQueryString() {
-        QueryBuilder queryBuilder = QueryBuilders.queryStringQuery("content");
-        search(queryBuilder, null, null);
+    public void searchByQueryMatch() {
+//        QueryBuilder queryBuilder = QueryBuilders.matchQuery("content","informational purposes");
+
+        queryBuilder.queryName("individual");
+
+        search(queryBuilder, 0, 10);
     }
 
     @Test
@@ -82,20 +92,17 @@ public class Search {
                 .prepareSearch(INDEX)
                 .setFrom(fromSize == null ? 0 : fromSize)
                 .setSize(pageSize == null ? 10 : pageSize)
-                .setTypes("article").setQuery(queryBuilder)
+                .setTypes(type).setQuery(queryBuilder)
                 .highlighter(highlightBuilder)
 
                 .get();
         SearchHits hits = response.getHits();
         log.info("查询总结果：{}", hits.getTotalHits());
-       /* hits.forEach(x->{
-            System.out.println(x.getSourceAsString());
-            Map<String, Object> source = x.getSource();
-            Map<String, HighlightField> highlightFields = x.getHighlightFields();
-            if (MapUtils.isNotEmpty(highlightFields)) {
-                System.out.println(highlightFields);
-            }
-            System.out.println(source);
-        });*/
+//        hits.forEach(x->{
+//            System.out.println(x.getSourceAsString());
+//            Map<String, Object> source = x.getSource();
+//            Map<String, HighlightField> highlightFields = x.getHighlightFields();
+//            System.out.println(source);
+//        });
     }
 }

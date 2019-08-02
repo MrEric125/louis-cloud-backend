@@ -1,5 +1,6 @@
 package com.louis.common.api.dto;
 
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -8,8 +9,7 @@ import lombok.Setter;
  * @author John·Louis
  * @date create in 2019/5/12
  */
-@Setter
-@Getter
+@Data
 public class BaseDto<ID>  {
 
 

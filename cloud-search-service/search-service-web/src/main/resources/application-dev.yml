@@ -4,9 +4,9 @@ spring:
   data:
     elasticsearch:
       cluster-name: elasticsearch
-      cluster-nodes: 127.0.0.1:9300
-      repositories:
-        enabled: true
+      cluster-nodes: 10.118.65.56:9300
+#      repositories:
+#        enabled: true
   jackson:
     date-format: java.text.SimpleDateFormat
 #  jpa:

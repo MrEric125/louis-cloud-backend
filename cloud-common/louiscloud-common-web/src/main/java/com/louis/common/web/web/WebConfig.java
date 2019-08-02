@@ -4,7 +4,6 @@ import com.louis.common.web.web.bind.annotation.method.SearchableMethodArgumentR
 import org.springframework.beans.factory.config.MethodInvokingFactoryBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.context.support.ResourceBundleMessageSource;
 import org.springframework.format.support.DefaultFormattingConversionService;
 import org.springframework.format.support.FormattingConversionService;
@@ -30,7 +29,7 @@ public class WebConfig extends WebMvcConfigurationSupport {
         argumentResolvers.add(searchableMethodArgumentResolver());
     }
 
-    //    private CurrentUserMethodArgumentResolver currentUserMethodArgumentResolver() {
+//        private CurrentUserMethodArgumentResolver currentUserMethodArgumentResolver() {
 //        return new CurrentUserMethodArgumentResolver();
 //    }
     private SearchableMethodArgumentResolver searchableMethodArgumentResolver() {
@@ -42,11 +41,11 @@ public class WebConfig extends WebMvcConfigurationSupport {
 //        addFormatters(conversionService);
 //        return conversionService;
 //    }
-//
+////
 //    @Bean
 //    public MethodInvokingFactoryBean methodInvokingFactoryBean() {
 //        MethodInvokingFactoryBean m = new MethodInvokingFactoryBean();
-//        m.setStaticMethod("com.louis.core.search.utils.SearchableConvertUtils.setConversionService");
+//        m.setStaticMethod("com.louis.common.api.search.utils.SearchableConvertUtils.setConversionService");
 //        m.setArguments(conversionService());
 //        return m;
 //    }
@@ -58,7 +57,7 @@ public class WebConfig extends WebMvcConfigurationSupport {
      * @param registry
      */
     @Override
-    protected void addResourceHandlers(ResourceHandlerRegistry registry) {
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
       /*  // 解决静态资源无法访问
         registry.addResourceHandler("/**")
                 .addResourceLocations("classpath:/static/");*/

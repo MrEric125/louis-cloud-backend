@@ -45,6 +45,7 @@ public class AwareAuthenticationSuccessHandler implements AuthenticationSuccessH
         this.tokenFactory = tokenFactory;
     }
 
+    @SuppressWarnings("unchecked")
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
                                         Authentication authentication) throws IOException, ServletException {

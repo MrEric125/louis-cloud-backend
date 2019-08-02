@@ -3,6 +3,7 @@ package com.louis.es.base.repository;
 import com.louis.es.base.entity.BaseDocument;
 import org.springframework.data.elasticsearch.repository.ElasticsearchRepository;
 import org.springframework.data.repository.NoRepositoryBean;
+import org.springframework.stereotype.Repository;
 
 import java.io.Serializable;
 

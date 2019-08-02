@@ -16,6 +16,10 @@ import org.springframework.stereotype.Service;
 @Service
 public class ProductESServiceImpl extends BaseEsCRUDServiceImpl<ProductDocument, Long> implements ProductESService {
 
+  /*  public ProductESRepository getRepository() {
+       return (ProductESRepository) baseESRepository;
+    }*/
+
 
 
 }

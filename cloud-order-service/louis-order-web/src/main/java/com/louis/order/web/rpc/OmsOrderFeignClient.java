@@ -27,6 +27,7 @@ public class OmsOrderFeignClient extends BaseController implements OmsOrderClien
     private OmsOrderService orderService;
 
 
+    @SuppressWarnings("unchecked")
     @Override
     public Wrapper<OmsOrderDto> createOrder(OmsOrderDto orderDto) {
         orderService.createEntity(orderDto);
@@ -43,6 +44,7 @@ public class OmsOrderFeignClient extends BaseController implements OmsOrderClien
 
     }
 
+    @SuppressWarnings("unchecked")
     @Override
     public Wrapper<OmsOrderDto> findByOrderId(long orderId) {
         OmsOrder omsOrder = orderService.findById(orderId);

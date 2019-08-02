@@ -4,7 +4,6 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.elasticsearch.client.transport.TransportClient;
 import org.elasticsearch.common.settings.Settings;
-import org.elasticsearch.common.transport.InetSocketTransportAddress;
 import org.elasticsearch.common.xcontent.XContentBuilder;
 import org.elasticsearch.common.xcontent.XContentFactory;
 import org.elasticsearch.common.xcontent.XContentType;
@@ -33,19 +32,19 @@ public class EsInitDemo {
 
     Settings settings = Settings.builder().build();
 
-    public static final String INDEX = "create_by_ava";
+    public static final String INDEX = "article";
 
     TransportClient client = null;
 
     @Before
     public void before() {
-        try {
-            client = new PreBuiltTransportClient(settings)
-                    .addTransportAddress(new InetSocketTransportAddress
-                            (InetAddress.getByName("129.28.189.234"), 9300));
-        } catch (UnknownHostException e) {
-            e.printStackTrace();
-        }
+//        try {
+//            client = new PreBuiltTransportClient(settings)
+//                    .addTransportAddress(new InetSocketTransportAddress
+//                            (InetAddress.getByName("localhost"), 9300));
+//        } catch (UnknownHostException e) {
+//            e.printStackTrace();
+//        }
     }
 
     /**
@@ -68,7 +67,7 @@ public class EsInitDemo {
         try {
             XContentBuilder contentBuilder = XContentFactory.jsonBuilder()
                     .startObject()
-                        .startObject("article")
+                        .startObject("license")
                             .startObject("properties")
                                 .startObject("id")
                                     .field("type", "long")
@@ -90,9 +89,9 @@ public class EsInitDemo {
 
             client.admin().indices()
 //                    设置要做映射的索引
-                    .preparePutMapping(INDEX)
+                    .preparePutMapping("article")
 //                    设置type
-                    .setType("article")
+                    .setType("license")
                     .setSource(contentBuilder)
 
                     .get();
@@ -128,32 +127,41 @@ public class EsInitDemo {
             e.printStackTrace();
         }
     }
+
+    /**
+     * 批量产生测试数据
+     */
     @Test
     public void creteDocumentByDomain() {
         ObjectMapper objectMapper = new ObjectMapper();
         LicenseWord licenseWord = new LicenseWord();
         licenseWord.initList(null);
+        int size = licenseWord.list.size();
+        int id = 0;
 
-        for (int i = 3; i <100 ; i++) {
+
+        for (int i = 0; i <size-1 ; i=i+2) {
             Article article = Article
                     .builder()
-                    .id(i)
-                    .content(licenseWord.getContentWord(i))
+                    .id(id)
                     .title(licenseWord.getContentWord(i))
+                    .content(licenseWord.getContentWord(i+1))
                     .build();
 
             try {
                 String string = objectMapper.writeValueAsString(article);
                 System.out.println(string);
                 client.prepareIndex().setIndex(INDEX)
-                        .setType("article")
-                        .setId(String.valueOf(i))
+                        .setType("license")
+                        .setId(String.valueOf(id))
                         .setSource(string, XContentType.JSON).get();
-                Thread.sleep(100);
+//                Thread.sleep();
 
-                System.out.println(i);
-            } catch (JsonProcessingException | InterruptedException e) {
+
+            } catch (JsonProcessingException e) {
                 e.printStackTrace();
+            }finally {
+                id++;
             }
 
         }

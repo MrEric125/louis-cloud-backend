@@ -27,7 +27,7 @@ public class MapSourceCode {
 
     @Test
     public void test2() {
-        HashMap<Integer, String> map = new HashMap(16);
+        HashMap<Integer, String> map = new HashMap<>(16);
         map.put(7, "");
         map.put(11, "");
         map.put(43, "");
@@ -42,7 +42,7 @@ public class MapSourceCode {
         }
         System.out.println();
 
-        HashMap<Integer, String> map1 = new HashMap(32);
+        HashMap<Integer, String> map1 = new HashMap<>(32);
         map1.put(7, "");
         map1.put(11, "");
         map1.put(43, "");

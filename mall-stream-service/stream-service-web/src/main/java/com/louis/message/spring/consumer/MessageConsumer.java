@@ -20,7 +20,7 @@ import org.springframework.stereotype.Component;
 public class MessageConsumer {
 
 
-    @KafkaListener(groupId = "simpleGroup",topics = "message")
+    @KafkaListener(groupId = "simpleGroup",topics = "#2")
     public void consumer(ConsumerRecord<String, Object> record, @Header(KafkaHeaders.RECEIVED_TOPIC) String topic, Consumer consumer) {
 
         log.info("收到的消息为：{}，topic为：{}", record.value(), topic);
