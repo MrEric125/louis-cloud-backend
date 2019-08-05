@@ -1,5 +1,5 @@
 server:
-  port: 7888
+  port: 9261
 spring:
   application:
     name: producer

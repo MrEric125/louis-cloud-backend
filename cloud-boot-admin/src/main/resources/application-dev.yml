@@ -1,15 +1,8 @@
-
-eureka:
-  instance:
-    prefer-ip-address: true
-  client:
-    register-with-eureka: true
-    fetch-registry: true
-    service-url:
-      defaultZone: http://localhost:8761/eureka/
+server:
+  port: 9091
 spring:
   application:
-    name: gatway-server-A
+    name: boot-admin-A
   jpa:
     database: MYSQL
     show-sql: true
@@ -21,5 +14,3 @@ spring:
     username: root
     password: Root
     driver-class-name: com.mysql.cj.jdbc.Driver
-server:
-  port: 9531

@@ -1,6 +1,11 @@
 server:
-  port: 9882
+  port: 9641
 spring:
+  cloud:
+    config:
+      profile: dev
+      uri: http://localhost:8871
+
   data:
     elasticsearch:
       cluster-name: elasticsearch

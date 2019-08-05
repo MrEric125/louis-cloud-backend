@@ -37,7 +37,20 @@ cloud-zuul-----> cloud-oauth------> order service--->goods service---> payment s
 | elasticsearch                    | 5.6.16        |
 |                                  |               |
 
+各服务之间的端口列表：（尽量满足模块在后期部署的时候集群端口能够连续）
 
-
+| 模块                     | 端口        |
+| -------------------------------- | ------------- |
+| cloud-eureka-server              | 8761          |
+| cloud-config-service             | 8871          |
+| cloud-zuul-service               | 8981          |
+| cloud-boot-admin                 | 9091          |
+| mall-stream-service              | 9201          |
+| mall-security-service            | 9311          |
+| mall-products-service            | 9421          |
+| mall-voucher-service             | 9531          |
+| cloud-search-service             | 9641          |
+| cloud-order-service              | 9751          |
+| cloud-comment-service            | 9861          |
 
 

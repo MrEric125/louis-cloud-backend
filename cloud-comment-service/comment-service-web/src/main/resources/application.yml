@@ -8,27 +8,6 @@ eureka:
     fetch-registry: true
     service-url:
       defaultZone: http://localhost:8761/eureka/
-
-server:
-  port: 9872
 spring:
-  application:
-    name: comment-service-web
-  jpa:
-    database: MYSQL
-    show-sql: true
-    hibernate:
-      ddl-auto: update
-    generate-ddl: true
-  datasource:
-    platform: MYSQL
-    url: jdbc:mysql://localhost:3306/spring_cloud?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=UTC
-    username: root
-    password: Root
-    driver-class-name: com.mysql.cj.jdbc.Driver
-  main:
-    allow-bean-definition-overriding: true
-#指定在feign中的callback生效，一般在服务调用方需要指定，服务提供方可以不配置
-feign:
-  hystrix:
-    enabled: true
+  profiles:
+    active: dev

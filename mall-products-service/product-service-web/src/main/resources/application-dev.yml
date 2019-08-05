@@ -8,8 +8,13 @@ eureka:
     service-url:
       defaultZone: http://localhost:8761/eureka/
 server:
-  port: 9874
+  port: 9421
 spring:
+
+  cloud:
+    config:
+      profile: dev
+      uri: http://localhost:8871
 
   jpa:
     database: MYSQL
