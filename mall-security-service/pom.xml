@@ -11,7 +11,7 @@
         <module>security-web3</module>
     </modules>
     <parent>
-        <artifactId>cloud-mall-project</artifactId>
+        <artifactId>louis-cloud-project</artifactId>
         <groupId>com.louis</groupId>
         <version>0.0.1-SNAPSHOT</version>
         <relativePath>../pom.xml</relativePath>

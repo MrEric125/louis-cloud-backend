@@ -34,7 +34,9 @@ public class KafkaConsumerTest {
             ConsumerRecords<String, String> records = consumer.poll(Duration.ofSeconds(10));
 
             for (ConsumerRecord<String, String> record : records) {
+                System.out.println("=============================");
                 System.out.printf("topic= %s, offset = %d, key = %s, value = %s\n", record.topic(), record.offset(), record.key(), record.value());
+                System.out.println("=============================");
 
             }
             flag = false;

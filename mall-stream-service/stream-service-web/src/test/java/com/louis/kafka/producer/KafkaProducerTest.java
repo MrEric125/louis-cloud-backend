@@ -1,10 +1,10 @@
 package com.louis.kafka.producer;
 
-import org.apache.kafka.clients.producer.KafkaProducer;
-import org.apache.kafka.clients.producer.Producer;
-import org.apache.kafka.clients.producer.ProducerRecord;
+import org.apache.kafka.clients.producer.*;
 
 import java.util.Properties;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.Future;
 
 /**
  * @author louis
@@ -14,7 +14,7 @@ import java.util.Properties;
  */
 public class KafkaProducerTest {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws ExecutionException, InterruptedException {
         Properties props = new Properties();
         props.put("bootstrap.servers", "localhost:9092");
         props.put("acks", "all");
@@ -26,8 +26,11 @@ public class KafkaProducerTest {
         props.put("value.serializer", "org.apache.kafka.common.serialization.StringSerializer");
 
         Producer<String, String> producer = new KafkaProducer<>(props);
-        for(int i = 0; i < 10; i++)
-            producer.send(new ProducerRecord<String, String>("louis_topic", Integer.toString(i), Integer.toString(i)));
+        for (int i = 99; i < 110; i++) {
+             producer.send(new ProducerRecord<String, String>("louis_topic", Integer.toString(i), "this is kafka value " + i),
+                     (recordMetadata, e) -> System.out.println("recordMetadata ===="+recordMetadata.topic()+"  "+recordMetadata.offset()+" "+recordMetadata.partition()));
+
+        }
         producer.close();
     }
 }
