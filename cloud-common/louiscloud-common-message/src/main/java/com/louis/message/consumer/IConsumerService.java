@@ -13,9 +13,9 @@ import java.util.List;
 public interface IConsumerService {
 
 
-    void consumerMessage(List<Message> messages, String topic, String systemCode);
+    void consumerMessage(List<String> messages, String topic, String systemCode);
 
-    void consumerToDb(List<Message> messages, String topic, String sysCode);
+    void consumerToDb(List<String> messages, String topic, String sysCode);
 
 
 

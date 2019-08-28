@@ -4,10 +4,10 @@ import com.louis.comment.dto.OrderCommentDto;
 import com.louis.comment.entity.OrderComment;
 import com.louis.comment.service.OrderCommentService;
 import com.louis.common.api.search.Searchable;
+import com.louis.common.api.wrapper.WrapMapper;
 import com.louis.common.api.wrapper.Wrapper;
 import com.louis.common.web.web.WebCRUDController;
-import io.micrometer.core.instrument.search.Search;
-import io.swagger.annotations.ApiParam;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -25,7 +25,16 @@ public class OrderCommentController extends WebCRUDController<OrderComment,Order
     @Autowired
     private OrderCommentService orderCommentService;
 
+    @Override
+    public Wrapper add(OrderCommentDto dto) {
+        if (StringUtils.isNotEmpty(dto.getOrderId().toString())) {
 
+
+            return super.add(dto);
+        }
+        return WrapMapper.error("orderNo为空");
+
+    }
 
     @GetMapping("/{orderId}/{userId}")
     public Wrapper getCommentByOrderId(@PathVariable("orderId") long orderId,

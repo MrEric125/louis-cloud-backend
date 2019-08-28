@@ -4,8 +4,10 @@ import com.louis.common.api.search.Searchable;
 import com.louis.common.api.wrapper.Wrapper;
 import com.louis.core.entity.BaseEntity;
 import com.louis.core.service.CRUDService;
+import com.louis.core.service.WebCRUDService;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.util.CollectionUtils;
@@ -23,10 +25,10 @@ import java.util.List;
  */
 public abstract class WebCRUDController<Entity extends BaseEntity, Dto extends BaseDto, ID extends Serializable> extends BaseController<Entity, ID> {
 
-    protected CRUDService<Entity, ID> webCrudService;
+    protected WebCRUDService<Entity, Dto,ID> webCrudService;
 
     @Autowired
-    public void setBaseService(CRUDService<Entity,ID> webCrudService) {
+    public void setBaseService(WebCRUDService<Entity,Dto,ID> webCrudService) {
         this.webCrudService = webCrudService;
     }
 
@@ -38,15 +40,15 @@ public abstract class WebCRUDController<Entity extends BaseEntity, Dto extends B
      */
     @ApiOperation("新增操作")
     @PostMapping(value = "/add",produces = "application/json")
-    public Wrapper add(@RequestBody Entity t) {
+    public Wrapper add(@RequestBody Dto t) {
         if (t == null) {
             return handleResult(null,"您没有传入数据");
         }
-//        Entity entity = new Entity();
+
 //        BeanUtils.copyProperties(t, entity);
         //新增和编辑是在一起的
-//        Entity entity = webCrudService.dtoToEntity(t);
-        Entity save = webCrudService.save(t);
+        Entity entity = webCrudService.dtoToEntity(t);
+        Entity save = webCrudService.save(entity);
         return handleResult(save);
     }
 
