@@ -2,9 +2,11 @@ package com.louis.web.controller;
 
 import com.google.common.collect.Maps;
 import com.louis.common.api.dto.IdName;
+import com.louis.common.api.wrapper.WrapMapper;
+import com.louis.common.api.wrapper.Wrapper;
+import com.louis.common.web.web.BaseController;
 import com.louis.exception.InvalidTokenException;
 import com.louis.security.extractor.TokenExtractor;
-import com.louis.common.ResponseCode;
 import com.louis.properties.TokenProperties;
 import com.louis.security.config.WebSecurityConfig;
 import com.louis.server.entity.SysUser;
@@ -103,22 +105,22 @@ public class UserController {
      * @return
      */
     @GetMapping("byName/{userName}")
-    public ResponseCode findByUserName(@PathVariable("userName") String userName) {
+    public Wrapper findByUserName(@PathVariable("userName") String userName) {
         SysUser sysUser = userService.findByUserName(userName);
         return Optional
                 .ofNullable(sysUser)
-                .map(sysUser1 -> new ResponseCode("success", new IdName<>(sysUser.getId(), sysUser.getUsername())))
-                .orElse(new ResponseCode("success", "您查找的用戶爲空"));
+                .map(sysUser1 -> WrapMapper.wrap(new IdName<>(sysUser.getId(), sysUser.getUsername())))
+                .orElse(WrapMapper.wrap(404, "您查找的用戶爲空"));
     }
 
 
 
     @GetMapping(value = "/manage/user",produces = "application/json")
-    public ResponseCode user(Authentication user) {
+    public Wrapper user(Authentication user) {
         Map<String, Object> userInfo = Maps.newHashMap();
         userInfo.put("user", user.getPrincipal());
         userInfo.put("authorities", AuthorityUtils.authorityListToSet(user.getAuthorities()));
-        return new ResponseCode("200", userInfo);
+        return WrapMapper.wrap( userInfo);
 
     }
 }

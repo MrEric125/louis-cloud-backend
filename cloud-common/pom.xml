@@ -19,6 +19,7 @@
         <module>louiscloud-common-feign</module>
         <module>louis-common-dubbo</module>
         <module>louiscloud-common-es</module>
+        <module>louiscloud-common-message</module>
     </modules>
 
     <dependencies>

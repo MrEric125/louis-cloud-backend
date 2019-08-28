@@ -7,23 +7,9 @@ eureka:
     service-url:
       defaultZone: http://localhost:8761/eureka/
     registry-fetch-interval-seconds: 60
-
-server:
-  port: 9875
 spring:
-  application:
-    name: boot-admin-A
-  jpa:
-    database: MYSQL
-    show-sql: true
-    hibernate:
-      ddl-auto: update
-  datasource:
-    platform: MYSQL
-    url: jdbc:mysql://localhost:3306/spring_cloud?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=UTC
-    username: root
-    password: Root
-    driver-class-name: com.mysql.cj.jdbc.Driver
+  profiles:
+    active: dev
 
 logging:
   level:
