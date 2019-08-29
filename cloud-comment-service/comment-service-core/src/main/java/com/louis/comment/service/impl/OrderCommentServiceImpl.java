@@ -48,6 +48,11 @@ public class OrderCommentServiceImpl  extends WebCRUDService<OrderComment, Order
     }
 
     @Override
+    public void checkParams(OrderCommentDto dto) {
+
+    }
+
+    @Override
     public OrderCommentDto entityToDto(OrderComment orderComment) {
         OrderCommentDto dto = new OrderCommentDto();
         BeanUtils.copyProperties(orderComment, dto);

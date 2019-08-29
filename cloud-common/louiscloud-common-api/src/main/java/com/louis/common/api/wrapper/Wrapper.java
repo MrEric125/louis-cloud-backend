@@ -25,17 +25,23 @@ public class Wrapper<T> implements Serializable {
 	private static final long serialVersionUID = 4893280118017319089L;
 
 	/**
-	 * 编号.
+	 * 基本上成功就返回200<=code<300
+	 * 常用的错误提示码
+	 * @see com.louis.exception.ErrorCodeEnum
+	 *
 	 */
 	private int code;
 
 	/**
 	 * 信息.
+	 * 常用的错误提示信息
+	 * @see com.louis.exception.ErrorCodeEnum
 	 */
 	private String message;
 
 	/**
 	 * 结果数据
+	 * 包装我们需要返回给View端的数据
 	 */
 	private T result;
 
@@ -49,7 +55,7 @@ public class Wrapper<T> implements Serializable {
 	/**
 	 * Instantiates a new wrapper.
 	 *
-	 * @param code    the code
+	 * @param code
 	 * @param message the message
 	 */
 	Wrapper(int code, String message) {

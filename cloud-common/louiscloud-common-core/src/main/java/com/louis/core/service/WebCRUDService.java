@@ -24,6 +24,15 @@ public abstract class WebCRUDService<T extends BaseEntity, DTO extends BaseDto, 
     public abstract T dtoToEntity(DTO dto);
 
 
+    /**
+     * 模板方法，主要是用在所有新增功能中校验必选字段是否合法的逻辑，具体的实现是在每个实现类中
+     * @param dto
+     */
+    public  void checkParams(DTO dto){
+
+    }
+
+
     public abstract DTO entityToDto(T t);
 
     public List<DTO> entitiesToDtos(List<T> entities) {

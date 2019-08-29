@@ -5,7 +5,7 @@ import com.louis.common.api.dto.ClientMessageDto;
 import com.louis.common.api.dto.LoginAuthDto;
 import com.louis.common.web.web.utils.ClientMessageUtil;
 import com.louis.core.redis.RedisOperate;
-import com.louis.core.service.CRUDService;
+import com.louis.core.service.WebCRUDService;
 import com.louis.exception.UserException;
 import com.louis.oauth.dto.ModifyPswDto;
 import com.louis.oauth.dto.RegistryUserDto;
@@ -44,7 +44,7 @@ import java.util.stream.Collectors;
  */
 @Service
 @Slf4j
-public class SysUserServiceImpl extends CRUDService<SysUser, Long> implements SysUserService {
+public class SysUserServiceImpl extends WebCRUDService<SysUser,UserDto, Long> implements SysUserService {
 
     @Autowired
     private PasswordService passwordService;

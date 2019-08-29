@@ -47,8 +47,7 @@ import java.util.Map;
 @Service
 public class UserTokenServiceImpl extends CRUDService<UserToken,Long> implements UserTokenService {
 
-//    @Value("${louis.auth.refresh-token-url}")
-//    private String refreshTokenUrl;
+
 
     @Autowired
     UserTokenRepository userTokenRepository;

@@ -44,6 +44,7 @@ public abstract class WebCRUDController<Entity extends BaseEntity, Dto extends B
         if (t == null) {
             return handleResult(null,"您没有传入数据");
         }
+        webCrudService.checkParams(t);
 
 //        BeanUtils.copyProperties(t, entity);
         //新增和编辑是在一起的
