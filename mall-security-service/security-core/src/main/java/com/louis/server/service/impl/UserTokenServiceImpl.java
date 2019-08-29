@@ -10,7 +10,7 @@ import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.louis.common.api.dto.LoginAuthDto;
 import com.louis.core.constant.SecurityConstan;
-import com.louis.core.service.CRUDService;
+import com.louis.core.service.AbstractCRUDService;
 import com.louis.core.utils.PublicUtil;
 import com.louis.oauth.dto.TokenDto;
 import com.louis.security.properties.OAuth2ClientProperties;
@@ -45,7 +45,7 @@ import java.util.Map;
 
 
 @Service
-public class UserTokenServiceImpl extends CRUDService<UserToken,Long> implements UserTokenService {
+public class UserTokenServiceImpl extends AbstractCRUDService<UserToken,Long> implements UserTokenService {
 
 
 

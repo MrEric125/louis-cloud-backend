@@ -3,8 +3,7 @@ package com.louis.order.entity;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.louis.core.entity.MallEntity;
 import io.swagger.annotations.ApiModelProperty;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import lombok.*;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -23,6 +22,9 @@ import java.util.List;
 @Data
 @Entity
 @Table(name = "oms_order")
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class OmsOrder extends MallEntity<Long> {
 
@@ -33,31 +35,34 @@ public class OmsOrder extends MallEntity<Long> {
     private String orderCode;
 
     /**
-     * 交易號
+     * 确认收货的时候生成交易号
      */
     @Column(name = "tran_no")
     private String transactionNumber;
 
-
-
+    @Column(name = "deliver_code")
+    private String deliverCode;
     /**
      * 支付多少钱
      */
     private BigDecimal payment;
 
 
+    /**
+     *
+     */
     @Column(name = "order_status")
     private Integer orderStatus;
 
     /**
-     * 支付方式
+     * 支付方式，在支付的时候选择
      */
     @Column(name = "pay_channel")
     private int payChannel;
 
 
     /**
-     * 产生的积分,
+     * 产生的积分,在完成支付之后产生
      */
     private int integral;
 

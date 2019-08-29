@@ -129,7 +129,7 @@ public class DateUtils {
 		return DateUtils.DateToStr(format, new Date(time));
 	}
 	
-	public static String dateToOrderno(Date date){
+	public static String dateToOrderNo(Date date){
 		
 		String no = DateToStr(YYYYMMDDHHMMSSSSS,date);
 		Random random = new Random();

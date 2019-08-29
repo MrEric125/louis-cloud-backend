@@ -4,7 +4,7 @@ import com.louis.comment.dto.OrderCommentDto;
 import com.louis.comment.entity.OrderComment;
 import com.louis.comment.repository.OrderCommentRepository;
 import com.louis.comment.service.OrderCommentService;
-import com.louis.core.service.WebCRUDService;
+import com.louis.core.service.AbstractWebCRUDService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
@@ -18,7 +18,7 @@ import java.util.List;
  * description:
  */
 @Service
-public class OrderCommentServiceImpl  extends WebCRUDService<OrderComment, OrderCommentDto, Long> implements OrderCommentService {
+public class OrderCommentServiceImpl  extends AbstractWebCRUDService<OrderComment, OrderCommentDto, Long> implements OrderCommentService {
 
     @Autowired
     private OrderCommentRepository orderCommentRepository;
@@ -47,7 +47,6 @@ public class OrderCommentServiceImpl  extends WebCRUDService<OrderComment, Order
         return orderComment;
     }
 
-    @Override
     public void checkParams(OrderCommentDto dto) {
 
     }

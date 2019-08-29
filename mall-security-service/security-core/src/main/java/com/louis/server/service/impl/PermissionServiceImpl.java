@@ -2,7 +2,7 @@ package com.louis.server.service.impl;
 
 import com.google.common.base.Joiner;
 import com.louis.core.constant.GlobalConstant;
-import com.louis.core.service.CRUDService;
+import com.louis.core.service.AbstractCRUDService;
 import com.louis.security.utils.SecurityUtils;
 import com.louis.server.entity.SysPermission;
 import com.louis.server.service.PermissionService;
@@ -26,7 +26,7 @@ import java.util.Set;
  */
 @Slf4j
 @Service("permissionService")
-public class PermissionServiceImpl extends CRUDService<SysPermission, Long> implements PermissionService {
+public class PermissionServiceImpl extends AbstractCRUDService<SysPermission, Long> implements PermissionService {
 
     private AntPathMatcher antPathMatcher = new AntPathMatcher();
     private static final String OAUTH2_CLIENT_PREFIX = "paascloud-client-";

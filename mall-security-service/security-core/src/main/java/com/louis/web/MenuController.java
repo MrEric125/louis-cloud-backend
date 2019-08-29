@@ -29,7 +29,7 @@ public class MenuController extends WebCRUDController<SysMenu, SysMenuDto, Long>
 
     @Autowired
     public MenuService getMenuService() {
-        return (MenuService) webCrudService;
+        return (MenuService) abstractWebCRUDService;
     }
 
 

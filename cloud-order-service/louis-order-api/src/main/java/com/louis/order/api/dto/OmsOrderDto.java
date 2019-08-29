@@ -26,7 +26,6 @@ public class OmsOrderDto extends BaseDto<Long> {
     private long userId;
 
     @ApiModelProperty("收货地址")
-    @NonNull
     private String userAddr;
 
     @ApiModelProperty("支付方式")

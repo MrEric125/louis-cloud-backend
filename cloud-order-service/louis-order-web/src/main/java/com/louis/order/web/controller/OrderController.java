@@ -22,8 +22,8 @@ import org.springframework.web.bind.annotation.*;
 @Api(tags = "orderController",description = "订单服务相关操作")
 @RestController
 @Slf4j
+@RequestMapping("/order")
 public class OrderController extends WebCRUDController<OmsOrder, OmsOrderDto,Long > {
-
 
     private final OmsOrderService orderService;
 
@@ -32,22 +32,12 @@ public class OrderController extends WebCRUDController<OmsOrder, OmsOrderDto,Lon
         this.orderService = orderService;
     }
 
-
-    /**
-     * 新增订单，新增完成->调用支付系统->调用库存系统->调用积分系统
-     * @return
-     */
-
-
-
     @ApiOperation("通过id查找")
     @GetMapping("/findById/{id}")
     public Wrapper findOrderById(@PathVariable("id") Long id)  {
         OmsOrder omsOrder = orderService.findById(id);
         return handleResult(omsOrder);
     }
-
-
 
 
 }
