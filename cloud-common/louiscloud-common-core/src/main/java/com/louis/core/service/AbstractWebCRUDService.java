@@ -8,6 +8,7 @@ import com.louis.core.entity.MallEntity;
 import com.louis.core.utils.ThreadLocalMap;
 import com.louis.exception.BusinessException;
 import com.louis.exception.ErrorCodeEnum;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.io.Serializable;
@@ -22,27 +23,24 @@ import java.util.stream.Collectors;
  * Date: 2019/6/21
  * Description:
  */
+@Service
 @Transactional
 public abstract class AbstractWebCRUDService<E extends BaseEntity, DTO extends BaseDto, ID extends Serializable>
         extends AbstractCRUDService<E,ID> implements IWebService<E,DTO,ID>{
 
     @Override
-    public void postHandle(DTO dto) {
+    public <T> void preHandle(T t,int hook) {
     }
 
     @Override
-    public void afterHandler(E e) {
+    public <T> void postHandler(T t,int hook) {
     }
 
     public abstract E dtoToEntity(DTO dto);
 
     public abstract DTO entityToDto(E e);
 
-    /**
-     * 模板方法，
-     * @param entities
-     * @return
-     */
+
     public List<DTO> entitiesToDtos(List<E> entities) {
         return entities.stream().map(this::entityToDto).collect(Collectors.toList());
     }
@@ -58,6 +56,7 @@ public abstract class AbstractWebCRUDService<E extends BaseEntity, DTO extends B
         return save(entity);
     }
 
+    @SuppressWarnings("unchecked")
     private E createBaseData(E e) {
         if (e instanceof MallEntity) {
             MallEntity mallEntity = (MallEntity) e;

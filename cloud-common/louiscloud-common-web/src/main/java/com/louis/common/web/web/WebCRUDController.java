@@ -2,12 +2,15 @@ package com.louis.common.web.web;
 import com.louis.common.api.dto.BaseDto;
 import com.louis.common.api.search.Searchable;
 import com.louis.common.api.wrapper.Wrapper;
+import com.louis.common.web.constant.SearchHookConstant;
 import com.louis.core.entity.BaseEntity;
 import com.louis.core.service.AbstractWebCRUDService;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.data.domain.Page;
+import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.*;
 
@@ -27,6 +30,10 @@ public abstract class WebCRUDController<Entity extends BaseEntity, Dto extends B
     protected AbstractWebCRUDService<Entity, Dto,ID> abstractWebCRUDService;
 
     @Autowired
+    SearchHookConstant searchHookConstant;
+
+    @Lazy
+    @Autowired
     public void setBaseService(AbstractWebCRUDService<Entity,Dto,ID> abstractWebCRUDService) {
         this.abstractWebCRUDService = abstractWebCRUDService;
     }
@@ -44,13 +51,13 @@ public abstract class WebCRUDController<Entity extends BaseEntity, Dto extends B
             return handleResult(null,"您没有传入数据");
         }
 
-        abstractWebCRUDService.postHandle(t);
+        abstractWebCRUDService.preHandle(t, searchHookConstant.ADD);
 
         Entity entity = abstractWebCRUDService.dtoToEntity(t);
 
-         abstractWebCRUDService.save(entity);
+        abstractWebCRUDService.save(entity);
 
-        abstractWebCRUDService.afterHandler(entity);
+        abstractWebCRUDService.postHandler(entity,searchHookConstant.ADD);
         return handleResult(entity);
     }
 
@@ -62,7 +69,12 @@ public abstract class WebCRUDController<Entity extends BaseEntity, Dto extends B
     @ApiOperation("通过id 删除")
     @DeleteMapping(value = "/delete",produces = "application/json")
     public Wrapper delete(@ApiParam("实体id") ID id) {
+
+        abstractWebCRUDService.preHandle(id, searchHookConstant.DELETE);
+
         abstractWebCRUDService.deleteById(id);
+
+        abstractWebCRUDService.postHandler(id,searchHookConstant.DELETE);
         return handleResult("success");
     }
 
@@ -75,11 +87,16 @@ public abstract class WebCRUDController<Entity extends BaseEntity, Dto extends B
     @ApiOperation("通过id查询，如果没有回抛出异常")
     @GetMapping(value = "/findOne/{id}",produces = "application/json")
     public Wrapper findById(@ApiParam("实体id") @PathVariable ID id) {
+
+        abstractWebCRUDService.preHandle(id, searchHookConstant.QUERY);
+
         Entity entity = abstractWebCRUDService.findById(id);
         if (entity == null) {
             return handlerNullResult();
         }
         Dto dto = abstractWebCRUDService.entityToDto(entity);
+
+        abstractWebCRUDService.postHandler(dto, searchHookConstant.QUERY);
         return handleResult(dto);
     }
 
@@ -97,7 +114,12 @@ public abstract class WebCRUDController<Entity extends BaseEntity, Dto extends B
         if (!searchable.hasPageable())
             searchable.setPage(0, 10);
 
+        abstractWebCRUDService.preHandle(searchable,searchHookConstant.QUERY);
+
         Page<Entity> entityPage = abstractWebCRUDService.findAll(searchable);
+
+        abstractWebCRUDService.postHandler(entityPage, searchHookConstant.QUERY);
+
         if (CollectionUtils.isEmpty(entityPage.getContent())) {
             return handlerNullResult();
         }

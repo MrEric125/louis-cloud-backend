@@ -5,6 +5,7 @@ import com.louis.comment.entity.OrderComment;
 import com.louis.comment.service.impl.OrderCommentServiceImpl;
 import com.louis.common.api.wrapper.WrapMapper;
 import com.louis.common.api.wrapper.Wrapper;
+import com.louis.common.web.constant.SearchHookConstant;
 import com.louis.common.web.web.WebCRUDController;
 import com.louis.exception.ErrorCodeEnum;
 import com.louis.order.api.dto.OmsOrderDto;
@@ -29,6 +30,9 @@ public class OrderCommentController extends WebCRUDController<OrderComment,Order
     @Autowired
     private OmsOrderClientApi orderClientApi;
 
+    @Autowired
+    SearchHookConstant hookConstant;
+
 
     /**
      * 需要校验orderNo是否已经存在
@@ -37,8 +41,6 @@ public class OrderCommentController extends WebCRUDController<OrderComment,Order
      */
     @Override
     public Wrapper add(OrderCommentDto dto) {
-
-
 
             //调用订单模块，校验订单是否存在
             OmsOrderDto omsOrderDto = orderClientApi.findByOrderId(dto.getOrderId());

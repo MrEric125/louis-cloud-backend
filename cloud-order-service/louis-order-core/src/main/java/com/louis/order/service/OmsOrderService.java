@@ -3,7 +3,7 @@ package com.louis.order.service;
 
 import com.google.common.base.Preconditions;
 import com.louis.core.service.AbstractWebCRUDService;
-import com.louis.core.utils.DateUtils;
+import com.louis.core.utils.StringGenerateUtil;
 import com.louis.order.api.dto.OmsOrderDto;
 import com.louis.order.entity.OmsOrder;
 import com.louis.order.repository.OmsOrderRepository;
@@ -15,7 +15,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.Date;
 import java.util.List;
-import java.util.UUID;
 
 /**
  * @author Louis
@@ -29,6 +28,8 @@ public class OmsOrderService extends AbstractWebCRUDService<OmsOrder, OmsOrderDt
 
     @Value("${order.length}")
     private int orderLength;
+
+    private static final String ORDER_PRE = "O";
 
     @Autowired
     OrderStatusService orderStatusService;
@@ -49,19 +50,20 @@ public class OmsOrderService extends AbstractWebCRUDService<OmsOrder, OmsOrderDt
     }
 
     @Override
-    public void postHandle(OmsOrderDto dto) {
-        checkParams(dto);
+    public <T> void preHandle(T t, int hook) {
+        checkParams((OmsOrderDto) t);
+
     }
 
     @Override
-    public void afterHandler(OmsOrder order) {
-
+    public <T> void postHandler(T t, int hook) {
+        super.postHandler(t, hook);
     }
 
     @Override
     public OmsOrder dtoToEntity(OmsOrderDto dto) {
         OmsOrder order = OmsOrder.builder()
-                .orderCode(generateOrderCode(new Date(), orderLength == 0 ? 30 : orderLength))
+                .orderCode(StringGenerateUtil.generateCode(ORDER_PRE,new Date(), orderLength == 0 ? 30 : orderLength))
                 .beganTime(new Date())
                 .build();
         BeanUtils.copyProperties(dto, order);
@@ -76,18 +78,5 @@ public class OmsOrderService extends AbstractWebCRUDService<OmsOrder, OmsOrderDt
         BeanUtils.copyProperties(omsOrder, dto);
         return dto;
     }
-
-    /**
-     * 生成订单号的工具类
-     * @param date
-     * @param num
-     * @return
-     */
-    private static String generateOrderCode(Date date,int num) {
-        String uuid = UUID.randomUUID().toString().replace("-", "");
-        return DateUtils.DateToStr(DateUtils.YYYYMMDDHHMMSSSSS, date)
-                .concat(uuid.substring(0, num - DateUtils.YYYYMMDDHHMMSSSSS.length()));
-    }
-
 
 }
