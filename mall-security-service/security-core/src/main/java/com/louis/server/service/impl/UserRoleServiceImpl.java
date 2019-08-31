@@ -3,7 +3,7 @@ package com.louis.server.service.impl;
 import com.louis.common.api.search.SearchOperator;
 import com.louis.common.api.search.Searchable;
 import com.louis.core.redis.RedisOperate;
-import com.louis.core.service.WebCRUDService;
+import com.louis.core.service.AbstractWebCRUDService;
 import com.louis.oauth.dto.RoleDto;
 import com.louis.constant.RedisConstant;
 import com.louis.oauth.dto.UserRoleDto;
@@ -25,7 +25,7 @@ import java.util.stream.Collectors;
  * @date create in 2019/4/15
  */
 @Service
-public class UserRoleServiceImpl extends WebCRUDService<UserRole, UserRoleDto, Long> implements UserRoleService {
+public class UserRoleServiceImpl extends AbstractWebCRUDService<UserRole, UserRoleDto, Long> implements UserRoleService {
 
 
     @Autowired

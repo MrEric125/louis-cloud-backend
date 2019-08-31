@@ -1,7 +1,5 @@
-package com.louis.order.api.feign.hystrix;
+package com.louis.order.web.rpc.hystrix;
 
-import com.louis.common.api.wrapper.WrapMapper;
-import com.louis.common.api.wrapper.Wrapper;
 import com.louis.order.api.dto.OmsOrderDto;
 import com.louis.order.api.feign.OmsOrderClientApi;
 import org.springframework.stereotype.Component;
@@ -16,7 +14,7 @@ public class OmsOrderHystrix implements OmsOrderClientApi {
 
 
     @Override
-    public Wrapper<OmsOrderDto> createOrder(OmsOrderDto orderDto) {
+    public OmsOrderDto createOrder(OmsOrderDto orderDto) {
         return null;
     }
 
@@ -32,10 +30,11 @@ public class OmsOrderHystrix implements OmsOrderClientApi {
     }
 
     @Override
-    public Wrapper<OmsOrderDto> findByOrderId(long orderId) {
-        OmsOrderDto dto = new OmsOrderDto();
-        dto.setUserAddr("测试Hystrix");
-        return WrapMapper.wrap(dto);
+    public OmsOrderDto findByOrderId(long orderId) {
+//        OmsOrderDto dto = new OmsOrderDto();
+//        dto.setUserAddr("测试Hystrix");
+//        return dto;
+        return null;
     }
 
     @Override

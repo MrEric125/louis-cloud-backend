@@ -2,7 +2,7 @@ package com.louis.server.service.impl;
 
 import com.louis.common.api.search.SearchOperator;
 import com.louis.common.api.search.Searchable;
-import com.louis.core.service.WebCRUDService;
+import com.louis.core.service.AbstractWebCRUDService;
 import com.louis.oauth.dto.RolePermissionDto;
 import com.louis.server.entity.RolePermission;
 import com.louis.server.entity.SysPermission;
@@ -24,7 +24,7 @@ import java.util.stream.Collectors;
  * Description:
  */
 @Service
-public class RolePermissionServiceImpl extends WebCRUDService<RolePermission, RolePermissionDto, Long> implements RolePermissionService {
+public class RolePermissionServiceImpl extends AbstractWebCRUDService<RolePermission, RolePermissionDto, Long> implements RolePermissionService {
 
 
     @Autowired

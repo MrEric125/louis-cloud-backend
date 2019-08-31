@@ -23,7 +23,7 @@ import java.util.List;
  */
 @Transactional
 @Slf4j
-public abstract class CRUDService <T extends BaseEntity,ID extends Serializable> implements ICRUDService<T,ID>{
+public abstract class AbstractCRUDService <T extends BaseEntity,ID extends Serializable> implements ICRUDService<T,ID>{
 
 
     protected BaseRepository<T, ID> baseRepository;

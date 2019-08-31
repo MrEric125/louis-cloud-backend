@@ -1,6 +1,6 @@
 package com.louis.server.service.impl;
 
-import com.louis.core.service.WebCRUDService;
+import com.louis.core.service.AbstractWebCRUDService;
 import com.louis.exception.BaseException;
 import com.louis.oauth.dto.SysMenuDto;
 import com.louis.server.entity.SysMenu;
@@ -21,7 +21,7 @@ import java.util.List;
  * Description:
  */
 @Service
-public class MenuServiceImpl extends WebCRUDService<SysMenu, SysMenuDto,Long> implements MenuService {
+public class MenuServiceImpl extends AbstractWebCRUDService<SysMenu, SysMenuDto,Long> implements MenuService {
 
     @Autowired
     MenuRepository menuRepository;

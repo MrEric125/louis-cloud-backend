@@ -2,6 +2,7 @@ package com.louis.message.consumer;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.louis.message.Message;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +18,7 @@ import java.util.stream.Collectors;
  * Description:
  */
 
+@Slf4j
 @Service
 public abstract class AbstractConsumerService<T> implements IConsumerService {
 
@@ -25,11 +27,17 @@ public abstract class AbstractConsumerService<T> implements IConsumerService {
 
     private Class<T> getGenericClass() {
         return null;
-
     }
 
-    private T convertJson(String json) throws IOException {
-        return objectMapper.readValue(json, getGenericClass());
+    private T convertJson(String json) {
+        try {
+
+            return objectMapper.readValue(json, getGenericClass());
+        } catch (IOException e) {
+            log.error("json转换异常：json:{},class{}", json, getGenericClass().getSimpleName());
+            e.printStackTrace();
+        }
+        return null;
     }
 
     /**
@@ -38,14 +46,9 @@ public abstract class AbstractConsumerService<T> implements IConsumerService {
      * @return
      * @throws IOException
      */
-    public List<T> convertJson(List<String> json) throws IOException {
+    public List<T> convertJson(List<String> json)  {
 
-        List<T> list = new ArrayList<>();
-        for (String s : json) {
-            T convertJson = convertJson(s);
-            list.add(convertJson);
-        }
-        return list;
+        return json.stream().map(this::convertJson).collect(Collectors.toList());
 
     }
 

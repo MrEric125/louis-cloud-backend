@@ -1,6 +1,6 @@
 package com.louis.product.service;
 
-import com.louis.core.service.CRUDService;
+import com.louis.core.service.AbstractCRUDService;
 import com.louis.product.entity.ProductCategory;
 import com.louis.product.repository.PmsProductCategoryRepository;
 import org.springframework.stereotype.Service;
@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
  * Description:
  */
 @Service
-public class PmsProductCategoryService extends CRUDService<ProductCategory, Long> {
+public class PmsProductCategoryService extends AbstractCRUDService<ProductCategory, Long> {
 
 
     public PmsProductCategoryRepository getBaseRepository() {

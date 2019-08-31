@@ -1,6 +1,6 @@
 package com.louis.order.service;
 
-import com.louis.core.service.CRUDService;
+import com.louis.core.service.AbstractCRUDService;
 import com.louis.order.entity.OmsPayInfo;
 import com.louis.order.repository.OmsPayInfoRepository;
 import lombok.extern.slf4j.Slf4j;
@@ -14,7 +14,7 @@ import org.springframework.stereotype.Service;
  */
 @Service
 @Slf4j
-public class OmsPayInfoService extends CRUDService<OmsPayInfo,Long> {
+public class OmsPayInfoService extends AbstractCRUDService<OmsPayInfo,Long> {
     public OmsPayInfoRepository getRepository() {
         return (OmsPayInfoRepository) baseRepository;
     }

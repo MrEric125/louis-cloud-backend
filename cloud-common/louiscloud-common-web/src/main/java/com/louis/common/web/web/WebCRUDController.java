@@ -3,7 +3,7 @@ import com.louis.common.api.dto.BaseDto;
 import com.louis.common.api.search.Searchable;
 import com.louis.common.api.wrapper.Wrapper;
 import com.louis.core.entity.BaseEntity;
-import com.louis.core.service.CRUDService;
+import com.louis.core.service.AbstractWebCRUDService;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,13 +21,14 @@ import java.util.List;
  * Description:
  * 封装的一些简单的增删改查功能的controller
  */
-public abstract class WebCRUDController<Entity extends BaseEntity, Dto extends BaseDto, ID extends Serializable> extends BaseController<Entity, ID> {
+public abstract class WebCRUDController<Entity extends BaseEntity, Dto extends BaseDto, ID extends Serializable>
+        extends BaseController<Entity, ID> {
 
-    protected CRUDService<Entity, ID> webCrudService;
+    protected AbstractWebCRUDService<Entity, Dto,ID> abstractWebCRUDService;
 
     @Autowired
-    public void setBaseService(CRUDService<Entity,ID> webCrudService) {
-        this.webCrudService = webCrudService;
+    public void setBaseService(AbstractWebCRUDService<Entity,Dto,ID> abstractWebCRUDService) {
+        this.abstractWebCRUDService = abstractWebCRUDService;
     }
 
     /**
@@ -38,48 +39,32 @@ public abstract class WebCRUDController<Entity extends BaseEntity, Dto extends B
      */
     @ApiOperation("新增操作")
     @PostMapping(value = "/add",produces = "application/json")
-    public Wrapper add(@RequestBody Entity t) {
+    public Wrapper add(@RequestBody Dto t) {
         if (t == null) {
             return handleResult(null,"您没有传入数据");
         }
-//        Entity entity = new Entity();
-//        BeanUtils.copyProperties(t, entity);
-        //新增和编辑是在一起的
-//        Entity entity = webCrudService.dtoToEntity(t);
-        Entity save = webCrudService.save(t);
-        return handleResult(save);
-    }
 
+        abstractWebCRUDService.postHandle(t);
+
+        Entity entity = abstractWebCRUDService.dtoToEntity(t);
+
+         abstractWebCRUDService.save(entity);
+
+        abstractWebCRUDService.afterHandler(entity);
+        return handleResult(entity);
+    }
 
     /**
      * 通过id 删除
-     *
      * @param id id
      * @return 返回数据
      */
     @ApiOperation("通过id 删除")
     @DeleteMapping(value = "/delete",produces = "application/json")
     public Wrapper delete(@ApiParam("实体id") ID id) {
-        webCrudService.deleteById(id);
+        abstractWebCRUDService.deleteById(id);
         return handleResult("success");
     }
-
-    /**
-     * 查询所有数据
-     *
-     * @return 返回数据
-     */
-//    @Deprecated
-//    @ApiOperation("查询所有")
-//    @GetMapping(value = "/queryAll",produces = "application/json" )
-//    public Wrapper findAll() {
-//        List<Entity> all = webCrudService.findAll();
-//        if (CollectionUtils.isEmpty(all)) {
-//            return handlerNullResult();
-//        }
-////        List<Dto> dtos = webCrudService.entitiesToDtos(all);
-//        return handleResult(all);
-//    }
 
     /**
      * 通过id查询
@@ -90,12 +75,12 @@ public abstract class WebCRUDController<Entity extends BaseEntity, Dto extends B
     @ApiOperation("通过id查询，如果没有回抛出异常")
     @GetMapping(value = "/findOne/{id}",produces = "application/json")
     public Wrapper findById(@ApiParam("实体id") @PathVariable ID id) {
-        Entity entity = webCrudService.findById(id);
+        Entity entity = abstractWebCRUDService.findById(id);
         if (entity == null) {
             return handlerNullResult();
         }
-//        Dto dto = webCrudService.entityToDto(entity);
-        return handleResult(entity);
+        Dto dto = abstractWebCRUDService.entityToDto(entity);
+        return handleResult(dto);
     }
 
     /**
@@ -112,7 +97,7 @@ public abstract class WebCRUDController<Entity extends BaseEntity, Dto extends B
         if (!searchable.hasPageable())
             searchable.setPage(0, 10);
 
-        Page<Entity> entityPage = webCrudService.findAll(searchable);
+        Page<Entity> entityPage = abstractWebCRUDService.findAll(searchable);
         if (CollectionUtils.isEmpty(entityPage.getContent())) {
             return handlerNullResult();
         }
@@ -126,7 +111,7 @@ public abstract class WebCRUDController<Entity extends BaseEntity, Dto extends B
         searchable = searchable == null ? Searchable.newSearchable() : searchable;
         if (searchable.hasPageable())
            searchable.removePageable();
-        List<Entity> allList = webCrudService.findAllList(searchable);
+        List<Entity> allList = abstractWebCRUDService.findAllList(searchable);
         return handleResult(allList);
     }
 

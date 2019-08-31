@@ -11,6 +11,7 @@ package com.louis.exception;
  * description
  */
 public enum ErrorCodeEnum {
+	OMS99990987(9999987, "未找到相关订单信息"),
 	/**
 	 * Gl 99990100 error code enum.
 	 */
