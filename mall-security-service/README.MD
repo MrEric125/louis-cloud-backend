@@ -45,4 +45,6 @@ oauth2默认有两个授权服务器端点
 @EnableAuthorizationServer 启用授权服务器 
 在我的系统中 不论是order-server,还是products-server都是资源服务器，security-servier是授权认证服务器
 
-https://github.com/newnil/oauth2-family-barrel  仅仅只有spring security oauth2
+当用户需要请求资源服务器的时候，首先通过`oauth/authorize`获取授权码
+
+然后通过`oauth/token`获取token,然后每次请求资源的时候就需要带上token,就能听访问

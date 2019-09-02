@@ -24,9 +24,9 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.louis</groupId>
-    <artifactId>cloud-mall-project</artifactId>
+    <artifactId>louis-cloud-project</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>cloud-mall-project</name>
+    <name>louis-cloud-project</name>
     <description>Demo project for Spring Boot</description>
 
     <properties>
