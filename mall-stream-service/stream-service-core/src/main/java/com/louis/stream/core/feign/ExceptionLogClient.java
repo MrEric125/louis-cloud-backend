@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
  * <p>
  * Date: 2019/8/30
  * Description:
+ * // TODO: 2019/8/30  后期实现通过kafka 对日志文件的处理
  */
 @Service
 public class ExceptionLogClient extends BaseHandler implements ExceptionLogFeignApi  {
