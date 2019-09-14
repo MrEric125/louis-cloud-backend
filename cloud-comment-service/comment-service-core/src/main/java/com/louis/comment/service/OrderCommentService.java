@@ -2,7 +2,6 @@ package com.louis.comment.service;
 
 import com.louis.comment.dto.OrderCommentDto;
 import com.louis.comment.entity.OrderComment;
-import com.louis.core.service.ICRUDService;
 import com.louis.core.service.IWebService;
 
 import java.util.List;

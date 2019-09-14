@@ -1,6 +1,6 @@
 package com.louis.server.service.impl;
 
-import com.louis.core.service.WebCRUDService;
+import com.louis.core.service.AbstractWebCRUDService;
 import com.louis.oauth.dto.RoleDto;
 import com.louis.oauth.dto.RolePermissionDto;
 import com.louis.server.entity.RolePermission;
@@ -21,9 +21,7 @@ import java.util.stream.Collectors;
  * @date create in 2019/5/18
  */
 @Service
-public class SysRoleServiceImpl extends WebCRUDService<SysRole, RoleDto, Long> implements SysRoleService {
-
-
+public class SysRoleServiceImpl extends AbstractWebCRUDService<SysRole, RoleDto, Long> implements SysRoleService {
 
     /**
      *
@@ -41,11 +39,6 @@ public class SysRoleServiceImpl extends WebCRUDService<SysRole, RoleDto, Long> i
     public SysRole findByRoleName(String roleName) {
        return getBaseRepository().findByRoleName(roleName);
     }
-
-
-
-
-
 
     /**
      *

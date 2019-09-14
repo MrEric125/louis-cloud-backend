@@ -20,15 +20,6 @@ import java.util.stream.Collectors;
  * Description:
  */
 public abstract class BaseHandler<T> {
-
-/*
-   protected final Class<T> entityClass;
-
-    public BaseHandler() {
-        this.entityClass = ReflectUtils.findParameterizedType(getClass(), 0);
-    }*/
-
-
     /**
      *
      * @param result the result
@@ -61,21 +52,17 @@ public abstract class BaseHandler<T> {
         }
     }
 
-
     /**
-     *
      * @param
      * @param errorMsg
      * @param <T>
      * @return
      */
-    protected <T> Wrapper<T> handlerNullResult( String errorMsg) {
-
-        if (errorMsg == null) {
-            return WrapMapper.wrap(WrapperMassage.SUCCESS_CODE, "success");
-        } else {
-            return WrapMapper.wrap(WrapperMassage.ERROR_CODE, errorMsg);
+    protected <T> Wrapper<T> handlerNullResult(String errorMsg, Exception e) {
+        if (e != null) {
+            return WrapMapper.wrap(WrapperMassage.ERROR_CODE, errorMsg == null ? e.getMessage() : errorMsg);
         }
+        return WrapMapper.wrap(WrapperMassage.SUCCESS_CODE, "success");
     }
 
     /**
@@ -112,7 +99,6 @@ public abstract class BaseHandler<T> {
         } else {
             throw new UnablePageException("当前查询不可分页");
         }
-
     }
 
     /**
@@ -123,7 +109,7 @@ public abstract class BaseHandler<T> {
      * @return
      */
     protected <T> Wrapper<T> handlerNullResult() {
-        return handlerNullResult( null);
+        return handlerNullResult(null,null);
     }
 
     /**
@@ -142,7 +128,4 @@ public abstract class BaseHandler<T> {
         }
         return flag;
     }
-
-
-
 }

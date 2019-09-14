@@ -1,6 +1,6 @@
 package com.louis.server.service.impl;
 
-import com.louis.core.service.WebCRUDService;
+import com.louis.core.service.AbstractWebCRUDService;
 import com.louis.oauth.dto.SysMenuDto;
 import com.louis.oauth.dto.RoleMenuDto;
 import com.louis.server.entity.RoleMenu;
@@ -24,7 +24,7 @@ import java.util.stream.Collectors;
  * Description:
  */
 @Service
-public class RoleMenuServiceImpl extends WebCRUDService<RoleMenu, RoleMenuDto,Long> implements RoleMenuService {
+public class RoleMenuServiceImpl extends AbstractWebCRUDService<RoleMenu, RoleMenuDto,Long> implements RoleMenuService {
 
     @Autowired
     RoleMenuRepository roleMenuRepository;

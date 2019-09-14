@@ -53,6 +53,7 @@ import java.util.Map;
  * <p>User: Louis
  * <p>Date: 2019年5月30日22:59:24
  * <p>Version: 1.0
+ * 这个使用的时候，是需要配合角色一起使用的，否则会数据不安全
  *
  * @since 3.1
  */

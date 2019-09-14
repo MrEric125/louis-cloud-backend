@@ -8,7 +8,7 @@
     </modules>
     <parent>
         <groupId>com.louis</groupId>
-        <artifactId>cloud-mall-project</artifactId>
+        <artifactId>louis-cloud-project</artifactId>
         <version>0.0.1-SNAPSHOT</version>
         <relativePath>../pom.xml</relativePath>
     </parent>

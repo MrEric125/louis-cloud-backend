@@ -1,6 +1,5 @@
 package com.louis.order.web.rpc;
 
-import com.louis.common.api.wrapper.Wrapper;
 import com.louis.common.web.web.BaseController;
 import com.louis.order.api.dto.OmsOrderDto;
 import com.louis.order.api.feign.OmsOrderClientApi;
@@ -8,18 +7,18 @@ import com.louis.order.entity.OmsOrder;
 import com.louis.order.service.OmsOrderService;
 import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
 
 /**
  * @author John·Louis
  * <p>
  * Date: 2019/5/15
  * Description:
+ * 实现类中不能使用 {@link @RequestMapping},否则，通过Feign路由过来的地址，就会和实现类中的地址对不上，
  */
 @RestController
 @Api("order feign clientAPI")
-//@RequestMapping("/order/feign")
 public class OmsOrderFeignClient extends BaseController implements OmsOrderClientApi {
 
 
@@ -27,11 +26,10 @@ public class OmsOrderFeignClient extends BaseController implements OmsOrderClien
     private OmsOrderService orderService;
 
 
-    @SuppressWarnings("unchecked")
     @Override
-    public Wrapper<OmsOrderDto> createOrder(OmsOrderDto orderDto) {
-        orderService.createEntity(orderDto);
-        return handlerNullResult();
+    public OmsOrderDto createOrder(OmsOrderDto orderDto) {
+        OmsOrder entity = orderService.createEntity(orderDto);
+        return orderService.entityToDto(entity);
     }
 
     @Override
@@ -44,16 +42,10 @@ public class OmsOrderFeignClient extends BaseController implements OmsOrderClien
 
     }
 
-    @SuppressWarnings("unchecked")
     @Override
-    public Wrapper<OmsOrderDto> findByOrderId(long orderId) {
+    public OmsOrderDto findByOrderId(long orderId) {
         OmsOrder omsOrder = orderService.findById(orderId);
-        OmsOrderDto omsOrderDto = orderService.entityToDto(omsOrder);
-        if (orderId == 3) {
-            throw new IllegalArgumentException("3");
-        }
-        return handleResult(omsOrderDto);
-
+        return  orderService.entityToDto(omsOrder);
     }
 
     @Override

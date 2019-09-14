@@ -21,7 +21,7 @@ import java.util.Date;
 public class OrderCommentDto extends BaseDto<Long> {
 
 
-    private long orderId;
+    private Long orderId;
 
     private long commentUserId;
 

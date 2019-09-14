@@ -1,7 +1,5 @@
 
-
 package com.louis.common.web.web;
-
 import com.louis.common.api.BaseHandler;
 import com.louis.common.api.dto.LoginAuthDto;
 import com.louis.core.entity.BaseEntity;
@@ -20,8 +18,6 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.Serializable;
 import java.util.Optional;
 import java.util.function.Supplier;
-
-
 /**
  * @author John·Louis
  * @date 2019年5月30日22:53:36
@@ -30,7 +26,6 @@ import java.util.function.Supplier;
  */
 @Slf4j
 public abstract class BaseController<Entity extends BaseEntity, ID extends Serializable> extends BaseHandler<Entity> {
-
 
 	protected HttpServletRequest request;
 
@@ -41,18 +36,8 @@ public abstract class BaseController<Entity extends BaseEntity, ID extends Seria
 		this.request = servletRequest;
 		this.response = servletResponse;
 	}
-
-
-//	protected final Class<Entity> entityClass;
-
-	public BaseController() {
-//		this.entityClass = ReflectUtils.findParameterizedType(getClass(), 0);
-	}
-
-
 	/**
-	 * Gets login auth dto.
-	 *
+	 * Gets login auth dto
 	 * @return the login auth dto
 	 */
 	protected LoginAuthDto getLoginAuthDto() {
@@ -60,15 +45,8 @@ public abstract class BaseController<Entity extends BaseEntity, ID extends Seria
 		return Optional.ofNullable(loginAuthDto).orElseThrow(() -> new BusinessException(ErrorCodeEnum.UAC10011041));
 	}
 
-
-	protected <T> void resolve(Supplier<T> resolver) {
-
-	}
-
 	protected long generateId() {
 		return UniqueIdGenerator.getInstance(IncrementIdGenerator.getServiceId()).nextId();
 	}
-
-
 }
   

@@ -1,7 +1,7 @@
 package com.louis.server.service.impl;
 
 import com.louis.common.api.dto.LoginAuthDto;
-import com.louis.core.service.CRUDService;
+import com.louis.core.service.AbstractCRUDService;
 import com.louis.common.api.dto.IdName;
 import com.louis.common.api.dto.ClientMessageDto;
 import com.louis.server.entity.UserLoginLog;
@@ -19,7 +19,7 @@ import java.util.Date;
  */
 @Service
 @Slf4j
-public class LoginLogService extends CRUDService<UserLoginLog, Long>  {
+public class LoginLogService extends AbstractCRUDService<UserLoginLog, Long>  {
 
     @Autowired
     private  LoginRepository loginRepository;
