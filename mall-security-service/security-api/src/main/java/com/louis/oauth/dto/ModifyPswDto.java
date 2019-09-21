@@ -4,12 +4,14 @@ import com.louis.common.api.dto.BaseDto;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 /**
  * @author John·Louis
  * @date create in 2019/6/29
  * description:
  */
+@EqualsAndHashCode(callSuper = false)
 @Data
 @ApiModel("修改密码Dto")
 public class ModifyPswDto extends BaseDto {

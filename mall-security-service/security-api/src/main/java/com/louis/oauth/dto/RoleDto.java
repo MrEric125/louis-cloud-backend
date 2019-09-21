@@ -1,15 +1,13 @@
 package com.louis.oauth.dto;
 
 import com.louis.common.api.dto.BaseDto;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 /**
  * @author John·Louis
  * @date create in 2019/5/19
  */
+@EqualsAndHashCode(callSuper = false)
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

@@ -10,12 +10,9 @@ louis:
         clientId: admin
         clientSecret: admin
 
-#spring:
-#  #配置配置中心
-#  cloud:
-#    config:
-#      profile: dev
-#      uri: http://localhost:8871
+#配置配置中心
 spring:
-  profiles:
-    active: dev
+  cloud:
+    config:
+      profile: dev
+      uri: http://localhost:8871

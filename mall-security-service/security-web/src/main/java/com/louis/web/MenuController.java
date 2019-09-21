@@ -6,6 +6,7 @@ import com.louis.common.web.web.WebCRUDController;
 import com.louis.oauth.dto.SysMenuDto;
 import com.louis.server.entity.SysMenu;
 import com.louis.server.service.MenuService;
+import com.louis.server.service.impl.MenuServiceImpl;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
@@ -26,18 +27,15 @@ import org.springframework.web.bind.annotation.*;
 public class MenuController extends WebCRUDController<SysMenu, SysMenuDto, Long> {
 
 
-
     @Autowired
-    public MenuService getMenuService() {
-        return (MenuService) abstractWebCRUDService;
-    }
+    private MenuServiceImpl menuService;
 
 
     @ApiOperation("修改目录的状态")
     @PostMapping("/changeStatus/{menuId}")
     public Wrapper changeStatus(@PathVariable("menuId") long menuId) {
         log.info("change menu item status");
-        getMenuService().changeItemStatus(menuId);
+        menuService.changeItemStatus(menuId);
         return WrapMapper.success("修改成功");
 
     }
@@ -46,7 +44,7 @@ public class MenuController extends WebCRUDController<SysMenu, SysMenuDto, Long>
     @DeleteMapping("deleteMenu/{menuId}")
     public Wrapper deleteMenu(@PathVariable("menuId") long menuId) {
         log.info("delete menu item menuId:{}", menuId);
-        getMenuService().deleteById(menuId);
+        menuService.deleteById(menuId);
         return WrapMapper.success("删除成功");
 
     }

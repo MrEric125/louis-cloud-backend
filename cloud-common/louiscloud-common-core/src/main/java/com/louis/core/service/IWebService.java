@@ -56,7 +56,6 @@ public interface IWebService<E extends BaseEntity, Dto extends BaseDto, ID exten
     /**
      * 后置处理是考虑到对某些操作完之后，需要对其他的数据进行再调度，再处理
      * {@link AbstractWebCRUDService}默认是不做任何处理的
-     * @param e 传入的参数
      * @param hook 钩子类型
      * @param <T> 传入参数类型
      */

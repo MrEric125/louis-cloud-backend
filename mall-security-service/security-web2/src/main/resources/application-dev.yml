@@ -1,22 +1,19 @@
+server:
+  port: 9880
 spring:
+  application:
+    name: security-service-B
   jpa:
     database: MYSQL
     show-sql: true
-    #    hibernate:
-    #      ddl-auto: update
-    #    generate-ddl: true
+  #    hibernate:
+  #      ddl-auto: update
+  #    generate-ddl: true
   datasource:
     platform: MYSQL
     url: jdbc:mysql://localhost:3306/spring_cloud?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=UTC
     username: root
     password: Root
     driver-class-name: com.mysql.cj.jdbc.Driver
-
-
-  application:
-    name: security-service-A
-
   main:
     allow-bean-definition-overriding: true
-server:
-  port: 9311

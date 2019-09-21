@@ -8,12 +8,9 @@
 - cloud-config-service : 配置中心系统
 - cloud-zuul :  服务路由系统
 
-2019年5月20日19:13:21
-工作任务计划完成顺序
-cloud-zuul-----> cloud-oauth------> order service--->goods service---> payment service---> comment service
+在common模块封装了基本的MVC类，常用增删改查基本不用写，只需要实现自己特殊的业务场景逻辑代码即可
 
-分为前台用户系统，和后台商户系统
-
+查询可以使用动态的search参数封装了一下，使用起来还是比较方便的
 
 服务与服务之间是通过接口相互调用的，为了将接口与具体的实现相互解耦，规定 所有api的module 全部存放 接口定义和DTO,
 这个时候当其他的系统调用这个api的时候就完全不用知道具体实现方式以及实体类是什么了
@@ -54,3 +51,4 @@ cloud-zuul-----> cloud-oauth------> order service--->goods service---> payment s
 | cloud-comment-service            | 9861          |
 
 
+喜欢的小伙伴可以联系我，共同学习

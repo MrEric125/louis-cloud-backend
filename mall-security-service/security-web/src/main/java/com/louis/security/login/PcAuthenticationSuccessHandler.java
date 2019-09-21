@@ -2,7 +2,7 @@ package com.louis.security.login;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.louis.common.api.wrapper.WrapMapper;
-import com.louis.common.web.web.utils.RequestUtil;
+import com.louis.core.utils.RequestUtil;
 import com.louis.security.core.SecurityUser;
 import com.louis.server.service.SysUserService;
 import lombok.extern.slf4j.Slf4j;

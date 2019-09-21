@@ -13,6 +13,7 @@ import java.util.Set;
  * Date: 2019/6/20
  * Description:
  */
+@EqualsAndHashCode(callSuper = false)
 @Data
 @AllArgsConstructor
 @NoArgsConstructor

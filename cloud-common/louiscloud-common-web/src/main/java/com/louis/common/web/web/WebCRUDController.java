@@ -32,7 +32,6 @@ public abstract class WebCRUDController<Entity extends BaseEntity, Dto extends B
     @Autowired
     SearchHookConstant searchHookConstant;
 
-    @Lazy
     @Autowired
     public void setBaseService(AbstractWebCRUDService<Entity,Dto,ID> abstractWebCRUDService) {
         this.abstractWebCRUDService = abstractWebCRUDService;

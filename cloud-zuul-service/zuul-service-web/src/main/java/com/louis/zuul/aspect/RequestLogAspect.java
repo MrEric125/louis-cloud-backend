@@ -1,7 +1,7 @@
 package com.louis.zuul.aspect;
 
 import com.louis.common.api.dto.ClientMessageDto;
-import com.louis.common.web.web.utils.ClientMessageUtil;
+import com.louis.core.utils.ClientMessageUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.annotation.After;
 import org.aspectj.lang.annotation.Aspect;
