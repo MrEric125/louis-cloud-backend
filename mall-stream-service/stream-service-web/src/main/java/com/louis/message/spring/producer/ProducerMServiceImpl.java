@@ -20,7 +20,7 @@ import org.springframework.util.concurrent.ListenableFutureCallback;
 public class ProducerMServiceImpl implements MessageProducer {
 
     @Autowired
-    private KafkaTemplate<String ,Object> kafkaTemplate;
+    private KafkaTemplate<String, Object> kafkaTemplate;
 
 
 
