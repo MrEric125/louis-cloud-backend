@@ -2,7 +2,7 @@ package com.louis.order.service;
 
 import com.louis.common.api.search.SearchOperator;
 import com.louis.common.api.search.Searchable;
-import com.louis.core.service.CRUDService;
+import com.louis.core.service.AbstractCRUDService;
 
 import com.louis.order.entity.OmsCart;
 import com.louis.order.repository.OmsCartRepository;
@@ -18,7 +18,7 @@ import java.util.List;
  */
 @Slf4j
 @Service
-public class OmsCartService extends CRUDService<OmsCart, Long> {
+public class OmsCartService extends AbstractCRUDService<OmsCart, Long> {
 
 
 

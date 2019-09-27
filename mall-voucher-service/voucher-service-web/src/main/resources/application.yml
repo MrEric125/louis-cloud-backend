@@ -1,3 +1,4 @@
+
 eureka:
   instance:
     prefer-ip-address: true
@@ -20,3 +21,5 @@ spring:
     username: root
     password: Root
     driver-class-name: com.mysql.cj.jdbc.Driver
+server:
+  port: 9531

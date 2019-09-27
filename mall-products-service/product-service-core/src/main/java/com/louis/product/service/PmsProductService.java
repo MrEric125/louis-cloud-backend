@@ -1,6 +1,6 @@
 package com.louis.product.service;
 
-import com.louis.core.service.CRUDService;
+import com.louis.core.service.AbstractCRUDService;
 import com.louis.product.entity.PmsProduct;
 import com.louis.product.entity.ProductCategory;
 import com.louis.product.repository.PmsProductRepository;
@@ -14,7 +14,7 @@ import java.util.List;
  * @date create in 2019/5/26
  */
 @Service
-public class PmsProductService extends CRUDService<PmsProduct, Long> {
+public class PmsProductService extends AbstractCRUDService<PmsProduct, Long> {
 
     private PmsProductRepository getRepository() {
         return (PmsProductRepository)baseRepository;

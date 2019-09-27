@@ -7,7 +7,7 @@ import com.louis.common.api.wrapper.WrapperMassage;
 import com.louis.core.constant.GlobalConstant;
 import com.louis.core.entity.AjaxUploadResponse;
 import com.louis.core.entity.BaseEntity;
-import com.louis.core.service.CRUDService;
+import com.louis.core.service.AbstractCRUDService;
 import com.louis.core.service.FileUploadService;
 import com.louis.core.utils.FileUploadUtils;
 import com.louis.exception.FileNameLengthLimitExceededException;
@@ -46,7 +46,7 @@ public class FileUploadController<ID extends Serializable,M extends BaseEntity> 
 
     private String[] allowedExtension = FileUploadUtils.DEFAULT_ALLOWED_EXTENSION;
 //    @Autowired
-//    CRUDService<M, ID> crudService;
+//    AbstractCRUDService<M, ID> crudService;
 
     @Autowired
     FileUploadService fileUploadService;

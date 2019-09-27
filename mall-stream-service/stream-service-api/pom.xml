@@ -11,6 +11,14 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>stream-service-api</artifactId>
+    <dependencies>
+
+
+        <dependency>
+            <groupId>com.louis</groupId>
+            <artifactId>louiscloud-common-api</artifactId>
+        </dependency>
+    </dependencies>
 
 
 </project>

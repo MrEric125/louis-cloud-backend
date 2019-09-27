@@ -1,20 +1,3 @@
 spring:
-  application:
-    name: provider-A
-server:
-  port: 8761
-eureka:
-  instance:
-    hostname: provider-A
-      # 此处建议写，不写默认是机器名
-    prefer-ip-address: true
-    # instance-id: ${eureka.instance.hostname}:${server.port}:@project.version@
-  client:
-      # eureka server 没必要自己把自己注册上去，所以可以设置成 false
-    register-with-eureka: true
-    fetch-registry: true #是否从注册中心拉取注册服务列表
-
-    service-url:
-      defaultZone: http://localhost:${server.port}/eureka/
-
-
+  profiles:
+    active: dev

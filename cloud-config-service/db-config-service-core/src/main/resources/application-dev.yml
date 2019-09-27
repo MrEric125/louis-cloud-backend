@@ -1,0 +1,15 @@
+
+
+server:
+  port: 8871
+
+#  基于git的配置
+spring:
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://gitee.com/Eric125/config-rep
+          search-paths: /*
+          username: 627460581@qq.com
+          password:

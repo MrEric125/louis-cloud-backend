@@ -5,11 +5,11 @@ import com.louis.common.api.dto.BaseDto;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
+import lombok.NonNull;
 import lombok.Setter;
 
 import java.math.BigDecimal;
 import java.util.Date;
-import java.util.List;
 
 /**
  * @author John·Louis
@@ -34,10 +34,14 @@ public class OmsOrderDto extends BaseDto<Long> {
     /**
      * 简化流程先把这些复杂的业务场景去掉。后期整个模块搭建好了，
      * 再把这些加进来
+     *
      */
 //    @ApiModelProperty(value = "商品明细",notes = "一个订单可能会有多个明细")
 //    private List<OmsOrderDetailDto> itemDtoList;
 
+    /**
+     * 应支付金额
+      */
     @ApiModelProperty("总价格：=商品单价*商品件数+运费-优惠券")
     private BigDecimal totalCost;
 
@@ -49,6 +53,7 @@ public class OmsOrderDto extends BaseDto<Long> {
 
     @ApiModelProperty("优惠价")
     private int coupon;
+
 
     @ApiModelProperty(value = "订单状态",notes ="订单状态:0-已取消-10-未付款, 20-已付款, 40-已发货, 50-交易成功, 60-交易关闭" )
     private int orderStatus;
