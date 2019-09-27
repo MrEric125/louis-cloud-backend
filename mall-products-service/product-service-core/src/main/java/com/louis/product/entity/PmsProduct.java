@@ -3,8 +3,7 @@ package com.louis.product.entity;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.louis.core.entity.BaseEntity;
 import com.louis.core.entity.LogicDeleteable;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -20,14 +19,17 @@ import java.util.Date;
 @Setter
 @Getter
 @Entity
-@Table(name = "pms_product",indexes ={@Index(name = "pms_p_category_id",columnList ="category_id" )})
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
+@Table(name = "pms_product",indexes ={@Index(name = "pms_p_category_id",columnList ="category_id" )})
 public class PmsProduct extends BaseEntity<Long> implements LogicDeleteable {
 
     private static final long serialVersionUID = -5326322245586530418L;
 
     @Column(name = "category_id")
-    private int categoryId;
+    private Long categoryId;
 
     @Column(name = "product_title")
     private String productTitle;
@@ -68,6 +70,8 @@ public class PmsProduct extends BaseEntity<Long> implements LogicDeleteable {
     @Column(name = "deleted")
     private boolean deleted;
 
+    private long stock;
+
 
 
     @Override
@@ -86,3 +90,4 @@ public class PmsProduct extends BaseEntity<Long> implements LogicDeleteable {
         this.deleted = true;
     }
 }
+

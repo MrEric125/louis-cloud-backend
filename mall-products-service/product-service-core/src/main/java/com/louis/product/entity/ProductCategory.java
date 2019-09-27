@@ -2,12 +2,12 @@ package com.louis.product.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.louis.core.entity.TreeEntity;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
+
 
 /**
  * @author John louis
@@ -15,8 +15,11 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "product_category")
-@Setter
-@Getter
+@Data
+@EqualsAndHashCode(callSuper = false)
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ProductCategory extends TreeEntity<Long> {
 

@@ -10,7 +10,6 @@ eureka:
 server:
   port: 9874
 spring:
-
   jpa:
     database: MYSQL
     show-sql: true
@@ -19,6 +18,8 @@ spring:
       ddl-auto: update
     properties:
       hibernate:
+        jdbc:
+          batch_size: 100
         dialect:
           storage_engine: innodb
   datasource:
