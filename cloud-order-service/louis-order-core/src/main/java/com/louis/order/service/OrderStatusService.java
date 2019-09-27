@@ -1,7 +1,7 @@
 package com.louis.order.service;
 
 import com.louis.order.entity.OmsOrder;
-import com.louis.order.entity.OrderStatusEnum;
+import com.louis.order.enums.OrderStatusEnum;
 import org.springframework.stereotype.Service;
 
 import java.util.Objects;

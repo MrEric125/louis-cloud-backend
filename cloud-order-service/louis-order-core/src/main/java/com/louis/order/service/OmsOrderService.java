@@ -63,8 +63,8 @@ public class OmsOrderService extends AbstractWebCRUDService<OmsOrder, OmsOrderDt
     @Override
     public OmsOrder dtoToEntity(OmsOrderDto dto) {
         OmsOrder order = OmsOrder.builder()
-                .orderCode(StringGenerateUtil.generateCode(ORDER_PRE,new Date(), orderLength == 0 ? 30 : orderLength))
-                .beganTime(new Date())
+                .orderCode(dto.getOrderCode()!=null?dto.getOrderCode():StringGenerateUtil.generateCode(ORDER_PRE,new Date(), orderLength == 0 ? 30 : orderLength))
+                .beganTime(dto.getBeganTime()==null?null:new Date())
                 .build();
         BeanUtils.copyProperties(dto, order);
         order.setOrderStatus(orderStatusService.createOrderStatus(order));

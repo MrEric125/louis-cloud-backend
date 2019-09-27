@@ -6,6 +6,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.List;
 
 /**
@@ -37,6 +38,8 @@ public interface ICRUDService<T extends BaseEntity, ID extends Serializable> {
      * @return
      */
     T saveAndFlush(T t);
+
+    List<T> saveBatch(List<T> collection);
 
     /**
      * 通过页码信息查找分页

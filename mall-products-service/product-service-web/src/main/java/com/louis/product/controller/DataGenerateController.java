@@ -8,7 +8,6 @@ import com.louis.product.entity.PmsProduct;
 import com.louis.product.entity.ProductCategory;
 import com.louis.product.service.PmsProductCategoryService;
 import com.louis.product.service.PmsProductService;
-import com.sun.scenario.effect.impl.prism.PrCropPeer;
 import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;

@@ -21,7 +21,5 @@ public class PmsProductCategoryService extends AbstractCRUDService<ProductCatego
         return (PmsProductCategoryRepository) baseRepository;
     }
 
-    public List<ProductCategory> saveBatch(List<ProductCategory> lists) {
-        return getBaseRepository().saveAll(lists);
-    }
+
 }
