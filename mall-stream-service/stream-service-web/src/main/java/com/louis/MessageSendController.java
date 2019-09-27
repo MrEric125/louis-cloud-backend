@@ -26,10 +26,7 @@ public class MessageSendController {
 
     @Autowired
     private MessageProducer producer;
-    @Autowired
-    private KafkaTemplate kafkaTemplate;
 
-    AdminClient adminClient;
 
     /***
      * 发送消息体为基本类型的消息

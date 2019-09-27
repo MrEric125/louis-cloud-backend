@@ -1,5 +1,6 @@
 package com.louis.core.entity;
 
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -12,8 +13,7 @@ import java.util.Date;
  * @author John·Louis
  * @date create in 2019/5/26
  */
-@Setter
-@Getter
+@Data
 @MappedSuperclass
 public class TreeEntity<Id extends Serializable> extends BaseEntity<Id> {
 

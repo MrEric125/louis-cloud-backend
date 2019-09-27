@@ -43,6 +43,14 @@
             <artifactId>javamelody-core</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>com.louis</groupId>
+            <artifactId>product-service-api</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+
+
+
     </dependencies>
 
     <build>

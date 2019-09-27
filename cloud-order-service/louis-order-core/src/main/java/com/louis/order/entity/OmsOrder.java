@@ -23,7 +23,7 @@ import java.util.List;
 @Entity
 @Table(name = "oms_order")
 @NoArgsConstructor
-@AllArgsConstructor
+@AllArgsConstructor()
 @Builder
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class OmsOrder extends MallEntity<Long> {

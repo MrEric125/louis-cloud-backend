@@ -31,6 +31,10 @@ public class OmsOrderDto extends BaseDto<Long> {
     @ApiModelProperty("支付方式")
     private Integer payChannel;
 
+
+    @ApiModelProperty("订单Code")
+    private String orderCode;
+
     /**
      * 简化流程先把这些复杂的业务场景去掉。后期整个模块搭建好了，
      * 再把这些加进来

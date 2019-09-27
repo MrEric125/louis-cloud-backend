@@ -1,4 +1,4 @@
-package com.louis.order;
+package com.louis;
 
 import com.louis.common.web.web.anontation.SpringCloudClient;
 import com.louis.core.repository.SimpleBaseRepository;

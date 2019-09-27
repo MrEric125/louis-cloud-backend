@@ -1,4 +1,4 @@
-package com.louis.order;
+package com.louis;
 
 import com.louis.core.utils.SwaggerUtil;
 import org.springframework.core.env.Environment;

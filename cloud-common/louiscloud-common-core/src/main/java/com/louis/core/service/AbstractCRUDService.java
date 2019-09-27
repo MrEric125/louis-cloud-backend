@@ -11,6 +11,7 @@ import org.springframework.data.domain.Sort;
 
 import javax.transaction.Transactional;
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.List;
 
 /**
@@ -40,6 +41,10 @@ public abstract class AbstractCRUDService <T extends BaseEntity,ID extends Seria
     public T save(T t) {
 
        return baseRepository.save(t);
+    }
+
+    public List<T> saveBatch(List<T> list) {
+        return baseRepository.saveAll(list);
     }
 
     /**

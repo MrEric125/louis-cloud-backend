@@ -1,4 +1,4 @@
-package com.louis.order.entity;
+package com.louis.order.enums;
 
 /**
  * @author louis

@@ -2,12 +2,9 @@ package com.louis.order.service;
 
 import com.louis.core.service.AbstractWebCRUDService;
 import com.louis.order.api.dto.OmsPayInfoDto;
-import com.louis.order.api.feign.OmsOrderClientApi;
-import com.louis.order.api.feign.OmsOrderDetailFeignClientApi;
 import com.louis.order.entity.OmsPayInfo;
 import com.louis.order.repository.OmsPayInfoRepository;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**

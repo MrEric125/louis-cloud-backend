@@ -31,7 +31,7 @@ public class OmsPayInfo extends MallEntity<Long> {
 	 * 订单号
 	 */
 	@Column(name = "order_no")
-	private String orderNo;
+	private Long orderNo;
 
 	@Column(name = "payment_amount")
 	private BigDecimal paymentAmount;
