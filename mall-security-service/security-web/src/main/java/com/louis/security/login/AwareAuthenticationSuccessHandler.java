@@ -9,7 +9,7 @@ import com.louis.security.core.SecurityUser;
 import com.louis.security.token.AccessToken;
 import com.louis.security.token.Token;
 import com.louis.security.token.TokenFactory;
-import com.louis.common.web.web.utils.IpUtils;
+import com.louis.core.utils.IpUtils;
 import com.louis.server.service.impl.LoginLogService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

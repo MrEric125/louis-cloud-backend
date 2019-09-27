@@ -23,7 +23,6 @@ import java.util.stream.Collectors;
  * Date: 2019/6/21
  * Description:
  */
-@Service
 @Transactional
 public abstract class AbstractWebCRUDService<E extends BaseEntity, DTO extends BaseDto, ID extends Serializable>
         extends AbstractCRUDService<E,ID> implements IWebService<E,DTO,ID>{

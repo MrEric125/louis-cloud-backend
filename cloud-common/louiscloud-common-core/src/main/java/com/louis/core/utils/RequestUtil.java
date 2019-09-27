@@ -1,11 +1,10 @@
-package com.louis.common.web.web.utils;
+package com.louis.core.utils;
 
 import com.google.common.net.HttpHeaders;
 import com.louis.exception.BusinessException;
 import com.louis.exception.ErrorCodeEnum;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
-import org.springframework.security.authentication.BadCredentialsException;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
@@ -42,13 +41,14 @@ public class RequestUtil {
     public static String[] extractAndDecodeHeader(String header) throws IOException {
 
         byte[] base64Token = header.substring(6).getBytes(StandardCharsets.UTF_8);
-        byte[] decoded;
+        byte[] decoded = null;
         try {
 //            decoded = Base64.decode(base64Token);
 //            优化过时代码
            decoded= Base64.getDecoder().decode(base64Token);
         } catch (IllegalArgumentException e) {
-            throw new BadCredentialsException("Failed to decode basic authentication token");
+//            throw new BadCredentialsException("Failed to decode basic authentication token");
+            e.printStackTrace();
         }
 
         String token = new String(decoded, StandardCharsets.UTF_8);
@@ -56,7 +56,8 @@ public class RequestUtil {
         int delim = token.indexOf(":");
 
         if (delim == -1) {
-            throw new BadCredentialsException("Invalid basic authentication token");
+//            |throw new BadCredentialsException("Invalid basic authentication token");
+            throw new IllegalArgumentException("nvalid basic authentication token");
         }
         return new String[]{token.substring(0, delim), token.substring(delim + 1)};
     }

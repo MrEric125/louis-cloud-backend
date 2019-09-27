@@ -1,27 +1,17 @@
-server:
-  port: 9880
-spring:
-  application:
-    name: security-service-B
-  jpa:
-    database: MYSQL
-    show-sql: true
-#    hibernate:
-#      ddl-auto: update
-#    generate-ddl: true
-  datasource:
-    platform: MYSQL
-    url: jdbc:mysql://localhost:3306/spring_cloud?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=UTC
-    username: root
-    password: Root
-    driver-class-name: com.mysql.cj.jdbc.Driver
-  main:
-    allow-bean-definition-overriding: true
+
 eureka:
+  instance:
+    prefer-ip-address: true
+    appname: comment-service-web
   client:
+    register-with-eureka: true
+    fetch-registry: true
     service-url:
-      defaultZone:
-        http://localhost:8761/eureka/
+      defaultZone: http://localhost:8761/eureka/
+spring:
+  profiles:
+    active: dev
+
 logging:
   level:
     org.springframework.security:  DEBUG

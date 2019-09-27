@@ -1,3 +1,6 @@
+#配置配置中心
 spring:
-  profiles:
-    active: dev
+  cloud:
+    config:
+      profile: dev
+      uri: http://localhost:8871

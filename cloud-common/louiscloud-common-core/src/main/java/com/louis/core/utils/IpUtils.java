@@ -1,4 +1,4 @@
-package com.louis.common.web.web.utils;
+package com.louis.core.utils;
 
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;

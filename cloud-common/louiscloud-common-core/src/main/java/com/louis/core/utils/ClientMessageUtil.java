@@ -1,4 +1,4 @@
-package com.louis.common.web.web.utils;
+package com.louis.core.utils;
 
 import com.louis.common.api.dto.ClientMessageDto;
 import eu.bitwalker.useragentutils.UserAgent;
