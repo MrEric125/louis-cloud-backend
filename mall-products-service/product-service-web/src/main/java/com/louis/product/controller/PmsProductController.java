@@ -33,15 +33,9 @@ import java.util.Optional;
 @ResponseBody
 public class PmsProductController extends WebCRUDController<PmsProduct,PmsProductDto,Long> {
 
-    private final PmsProductService productService;
 
     @Autowired
-    public PmsProductController(PmsProductService productService) {
-        this.productService = productService;
-    }
-
-
-
+    private PmsProductService productService;
 
     /**
      * 用于卖家修改商品

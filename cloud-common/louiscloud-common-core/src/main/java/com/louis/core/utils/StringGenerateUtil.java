@@ -22,8 +22,9 @@ public class StringGenerateUtil {
      * @return
      */
     public static String generateCode(String pre,Date date, int num) {
+        assert num > DateUtils.YYYYMMDDHHMMSSSSS.length();
         String uuid = UUID.randomUUID().toString().replace("-", "");
-        return DateUtils.DateToStr(DateUtils.YYYYMMDDHHMMSSSSS, date)
+        return pre+DateUtils.DateToStr(DateUtils.YYYYMMDDHHMMSSSSS, date)
                 .concat(uuid.substring(0, num - DateUtils.YYYYMMDDHHMMSSSSS.length()));
     }
 

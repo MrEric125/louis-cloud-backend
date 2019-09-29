@@ -35,6 +35,7 @@ public abstract class WebCRUDController<Entity extends BaseEntity, Dto extends B
     @Autowired
     public void setBaseService(AbstractWebCRUDService<Entity,Dto,ID> abstractWebCRUDService) {
         this.abstractWebCRUDService = abstractWebCRUDService;
+        System.out.println(this.abstractWebCRUDService.toString());
     }
 
     /**

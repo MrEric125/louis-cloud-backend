@@ -2,6 +2,7 @@ package com.louis.product.api.feign.hystrix;
 
 import com.louis.product.api.dto.PmsProductDto;
 import com.louis.product.api.feign.PmsProductClientApi;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
@@ -11,14 +12,15 @@ import java.util.List;
  * Date: 2019/9/27
  * Description:
  */
+@Component
 public class ProductHystrix implements PmsProductClientApi {
     @Override
     public PmsProductDto findByProductId(Long id) {
-        return null;
+        throw new IllegalArgumentException("hystrix exception");
     }
 
     @Override
     public List<PmsProductDto> findBySellerName(String sellerName) {
-        return null;
+        throw new IllegalArgumentException("hystrix exception");
     }
 }

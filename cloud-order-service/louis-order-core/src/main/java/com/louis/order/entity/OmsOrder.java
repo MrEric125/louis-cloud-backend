@@ -58,13 +58,13 @@ public class OmsOrder extends MallEntity<Long> {
      * 支付方式，在支付的时候选择
      */
     @Column(name = "pay_channel")
-    private int payChannel;
+    private Integer payChannel;
 
 
     /**
      * 产生的积分,在完成支付之后产生
      */
-    private int integral;
+    private Integer integral;
 
     /**
      * 運費
