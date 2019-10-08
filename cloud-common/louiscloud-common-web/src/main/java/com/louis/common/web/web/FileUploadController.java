@@ -7,7 +7,6 @@ import com.louis.common.api.wrapper.WrapperMassage;
 import com.louis.core.constant.GlobalConstant;
 import com.louis.core.entity.AjaxUploadResponse;
 import com.louis.core.entity.BaseEntity;
-import com.louis.core.service.AbstractCRUDService;
 import com.louis.core.service.FileUploadService;
 import com.louis.core.utils.FileUploadUtils;
 import com.louis.exception.FileNameLengthLimitExceededException;
@@ -28,7 +27,6 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
-import java.util.Optional;
 
 /**
  * @author John·Louis
