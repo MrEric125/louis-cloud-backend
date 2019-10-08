@@ -15,6 +15,7 @@
         <module>cloud-search-service</module>
         <module>cloud-config-service</module>
         <module>mall-stream-service</module>
+        <module>cloud-zipkin-service</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>

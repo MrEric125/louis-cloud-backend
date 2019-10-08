@@ -19,6 +19,11 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
   main:
     allow-bean-definition-overriding: true
+  zipkin:
+    base-url: http:/127.0.0.1:9411
+  sleuth:
+    sampler:
+      probability: 1.0
 #指定在feign中的callback生效，一般在服务调用方需要指定，服务提供方可以不配置
 feign:
   hystrix:
