@@ -1,11 +1,6 @@
-spring:
-  profiles:
-    active: dev
-  application:
-    name: louis-order-web
-
 #配置配置中心
-
-#feign:
-#  hystrix:
-#    enabled: true
+spring:
+  cloud:
+    config:
+      profile: dev
+      uri: http://localhost:8871

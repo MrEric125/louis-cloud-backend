@@ -103,12 +103,12 @@ public class DataGenerateController extends BaseController {
                     .orderStatus(orderStatus[index].code())
                     .closeTime(closeDate)
                     .deliverCode(deliverCode)
-                    .integral(payChannel == null ? null : (int) (dto.getPrice().doubleValue() * 0.2))
+                    .integral(payChannel == null ? 0 : (int) (dto.getPrice().doubleValue() * 0.2))
                     .payChannel(payChannel)
-                    .payment(payChannel == null ? null : dto.getPrice())
+                    .payment(payChannel == null ? BigDecimal.ZERO : dto.getPrice())
                     .paymentTime(payChannel == null ? null : new Date())
                     .postage(5)
-                    .sendTime(deliverCode != null ? null : new Date())
+                    .sendTime(deliverCode == null ? null : new Date())
                     .transactionNumber(transactionNumber)
                     .userId(1L)
                     .build();
@@ -118,6 +118,7 @@ public class DataGenerateController extends BaseController {
             order.setLastOperator("admin");
             order.setLastOperatorId(1L);
             if (payChannel != null) {
+                String platformNum = StringGenerateUtil.generateCode(Constant.PAYPLATFORM_NUM, new Date(), 20);
                 OmsOrder saveOrder = orderService.save(order);
                 OmsPayInfo payInfo = new OmsPayInfo();
                 payInfo.setOrderNo(saveOrder.getId());
@@ -125,6 +126,7 @@ public class DataGenerateController extends BaseController {
                 payInfo.setUserId(1L);
                 payInfo.setPayPlatform(payChannel);
                 payInfo.setPlatformStatus("1");
+                payInfo.setPlatformNumber(platformNum);
                 omsPayInfoService.save(payInfo);
             } else {
                 omsOrders.add(order);

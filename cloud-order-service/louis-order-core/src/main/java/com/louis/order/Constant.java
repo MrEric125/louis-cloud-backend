@@ -12,4 +12,6 @@ public class Constant {
     public static final String ORDER_PRE = "O";
 
     public static final String DELIVERY_PRE = "D";
+
+    public static final String PAYPLATFORM_NUM = "P";
 }

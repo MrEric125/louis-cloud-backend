@@ -16,10 +16,10 @@ public class ProductTest {
 
     @Test
     public void test() {
+        String payChannel = null;
+        BigDecimal price = BigDecimal.valueOf(54.21);
 
-        Random random = new Random();
-        int index = random.nextInt(6);
-        System.out.println(index);
+        int value=payChannel == null ? null : (int) (price.doubleValue() * 0.2);
     }
 
     private BigDecimal randomValue(int value) {

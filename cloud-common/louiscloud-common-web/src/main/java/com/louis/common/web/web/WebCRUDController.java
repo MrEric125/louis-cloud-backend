@@ -8,9 +8,7 @@ import com.louis.core.service.AbstractWebCRUDService;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Lazy;
 import org.springframework.data.domain.Page;
-import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.*;
 
@@ -35,6 +33,7 @@ public abstract class WebCRUDController<Entity extends BaseEntity, Dto extends B
     @Autowired
     public void setBaseService(AbstractWebCRUDService<Entity,Dto,ID> abstractWebCRUDService) {
         this.abstractWebCRUDService = abstractWebCRUDService;
+        System.out.println(this.abstractWebCRUDService.toString());
     }
 
     /**

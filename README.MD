@@ -49,6 +49,8 @@
 | cloud-search-service             | 9641          |
 | cloud-order-service              | 9751          |
 | cloud-comment-service            | 9861          |
+| cloud-zipkin-service             | 9971          |
+
 
 
 喜欢的小伙伴可以联系我，共同学习
