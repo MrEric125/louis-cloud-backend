@@ -1,4 +1,4 @@
-package com.louis.product.api.feign.hystrix;
+package com.louis.product.rpc.hystrix;
 
 import com.louis.product.api.dto.PmsProductDto;
 import com.louis.product.api.feign.PmsProductClientApi;
