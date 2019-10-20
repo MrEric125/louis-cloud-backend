@@ -17,4 +17,8 @@ public class UserRoleDto extends BaseDto {
 
     private long roleId;
 
+    private String roleName;
+
+    private String userName;
+
 }

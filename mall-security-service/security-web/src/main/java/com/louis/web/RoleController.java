@@ -55,6 +55,15 @@ public class RoleController extends WebCRUDController<SysRole, RoleDto,Long> {
         return handleResult(map);
     }
 
+    @ApiOperation("通过条件查询唯一role")
+    @GetMapping("selectOne")
+    public Wrapper selectOne(@RequestBody RoleDto roleDto) {
+        SysRole sysRole = sysRoleService.findByRoleName(roleDto.getRoleName());
+        return handlerNullResult(sysRole);
+
+
+    }
+
 
 
 

@@ -58,11 +58,11 @@ public abstract class BaseHandler<T> {
      * @param <T>
      * @return
      */
-    protected <T> Wrapper<T> handlerNullResult(String errorMsg, Exception e) {
+    protected <T> Wrapper<T> handlerNullResult(String errorMsg, Exception e,T result) {
         if (e != null) {
             return WrapMapper.wrap(WrapperMassage.ERROR_CODE, errorMsg == null ? e.getMessage() : errorMsg);
         }
-        return WrapMapper.wrap(WrapperMassage.SUCCESS_CODE, "success");
+        return WrapMapper.wrap(WrapperMassage.SUCCESS_CODE, "success", result);
     }
 
     /**
@@ -109,7 +109,17 @@ public abstract class BaseHandler<T> {
      * @return
      */
     protected <T> Wrapper<T> handlerNullResult() {
-        return handlerNullResult(null,null);
+        return handlerNullResult(null, null, null);
+    }
+
+    /**
+     * 结果可以为空的
+     * @param result
+     * @param <T>
+     * @return
+     */
+    protected <T> Wrapper<T> handlerNullResult(T result){
+        return handlerNullResult(null, null, result);
     }
 
     /**

@@ -18,6 +18,7 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 
 /**
@@ -46,15 +47,20 @@ public class UserController extends WebCRUDController<SysUser, UserDto,Long> {
         return WrapMapper.success();
     }
 
+    /**
+     * 查询绑定到当前角色的用户人
+     * @param roleId
+     * @return
+     */
     @GetMapping("/getByRoleId/{roleId}")
     public Wrapper getRelativeUserByRole(@PathVariable("roleId") long roleId) {
         List<UserRole> userRoleList = userRoleService.findByRoleId(roleId);
-        List<UserDto> userDtoList = Lists.newArrayList();
-        userRoleList.forEach(x->{
+        List<UserDto> userDtoList =userRoleList
+                .stream()
+                .map(x -> {
             SysUser sysUser = sysUserService.findById(x.getUserId());
-            UserDto dto = sysUserService.entityToDto(sysUser);
-            userDtoList.add(dto);
-        });
+            return sysUserService.entityToDto(sysUser);
+        }).collect(Collectors.toList());
         return WrapMapper.success(userDtoList);
     }
 

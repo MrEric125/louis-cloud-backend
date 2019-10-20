@@ -31,6 +31,13 @@ public class RolePermission extends BaseEntity<Long> {
     @Column(name = "permission_id")
     private long permissionId;
 
+    @Column(name = "role_name")
+    private String roleName;
+
+    @Column(name = "permission_name")
+    private String permissionName;
+
+
 
 
 
