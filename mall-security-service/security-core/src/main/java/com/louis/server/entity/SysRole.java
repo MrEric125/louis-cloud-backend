@@ -11,6 +11,17 @@ import java.util.Date;
 /**
  * @author John·Louis
  * @date create in 2019/5/18
+ *
+ * 基于RBAC模型
+ *
+ * 新建 user---------->  指定一个默认的role
+ * 删除 user---------->  直接删除
+ * 新建 role---------->  必须绑定一个 permission
+ * 删除 role---------->  校验是否绑定用户，如果没有绑定直接删除，如果已经绑定了，提示是否删除，如果删除则将关联关系一并删除
+ * 删除 permission---->  校验绑定的role
+ *
+ *
+ *
  */
 @AllArgsConstructor
 @NoArgsConstructor
