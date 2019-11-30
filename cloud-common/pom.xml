@@ -22,9 +22,6 @@
         <module>louiscloud-common-message</module>
     </modules>
 
-    <dependencies>
-
-    </dependencies>
 
 
 </project>
