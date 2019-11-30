@@ -31,14 +31,26 @@ zuul:
       path: /search/**
 # 设置一个公共的前缀
 #  prefix: /api
+#security:
+#  oauth2:
+#    resource:
+#      prefer-token-info: true
+#      user-info-uri: http://localhost:9881/user
+#    client:
+#      access-token-uri: http://localhost:9881/oauth/token
+#      user-authorization-uri: http://localhost:9881/oauth/authorize
+#      client-id: client
+#      grant-type: authorization_code,password
+#      scope: webclient
+##      registered-redirect-uri: http://www.baidu.com
 security:
   oauth2:
     resource:
       prefer-token-info: true
-      user-info-uri: http://localhost:9881/security/user
+      user-info-uri: http://localhost:9991/user
     client:
-      access-token-uri: http://localhost:9881/security/oauth/token
-      user-authorization-uri: http://localhost:9881/security/oauth/authorize
+      access-token-uri: http://localhost:9991/oauth/token
+      user-authorization-uri: http://localhost:9991/oauth/authorize
       client-id: client
       grant-type: authorization_code,password
       scope: webclient

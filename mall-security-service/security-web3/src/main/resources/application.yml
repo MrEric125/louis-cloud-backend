@@ -1,5 +1,5 @@
 server:
-  port: 9882
+  port: 9881
 spring:
   application:
     name: security-service-C

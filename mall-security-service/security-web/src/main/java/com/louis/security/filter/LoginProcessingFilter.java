@@ -65,15 +65,18 @@ public class LoginProcessingFilter extends AbstractAuthenticationProcessingFilte
         String password = request.getParameter("password");
         try {
 
-            BufferedReader reader = new BufferedReader(new InputStreamReader(request.getInputStream()));
-            StringBuilder stringBuilder = new StringBuilder();
-            String inputStr;
-            while ((inputStr = reader.readLine()) != null)
-                stringBuilder.append(inputStr);
+            if (StringUtils.isEmpty(username) || StringUtils.isEmpty(password)) {
+                BufferedReader reader = new BufferedReader(new InputStreamReader(request.getInputStream()));
+                StringBuilder stringBuilder = new StringBuilder();
+                String inputStr;
+                while ((inputStr = reader.readLine()) != null)
+                    stringBuilder.append(inputStr);
 
-            JSONObject jsonObject = JSONObject.parseObject(stringBuilder.toString());
-            username=jsonObject.getString("username");
-            password=jsonObject.getString("password");
+                JSONObject jsonObject = JSONObject.parseObject(stringBuilder.toString());
+                username = jsonObject.getString("username");
+                password = jsonObject.getString("password");
+            }
+
 
 
         } catch (IOException e) {

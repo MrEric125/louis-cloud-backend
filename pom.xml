@@ -17,6 +17,7 @@
         <module>mall-stream-service</module>
         <module>cloud-zipkin-service</module>
         <module>louis-cloud-dependencies</module>
+        <module>cloud-oauth-service</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>

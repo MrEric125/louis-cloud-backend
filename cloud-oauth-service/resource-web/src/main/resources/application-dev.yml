@@ -11,16 +11,25 @@ spring:
     username: root
     password: Root
     driver-class-name: com.mysql.cj.jdbc.Driver
-
-
   application:
-    name: security-service-A
-
+    name: resource-service-A
   main:
     allow-bean-definition-overriding: true
+  security:
+    user:
+      name: admin
+      password: admin
+security:
+  oauth2:
+    client:
+      client-id: client
+      client-secret: secret
+      access-token-uri: http://localhost:9991/oauth/token
+      user-authorization-uri: http://localhost:9991/oauth/authorize
+    resource:
+      token-info-uri: http://localhost:9991/user
 server:
-  port: 9311
-
+  port: 9999
 logging:
   level:
     org:

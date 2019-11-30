@@ -2,7 +2,7 @@
 eureka:
   instance:
     prefer-ip-address: true
-    appname: comment-service-web
+    appname: resource-service-A
   client:
     register-with-eureka: true
     fetch-registry: true
@@ -11,4 +11,3 @@ eureka:
 spring:
   profiles:
     active: dev
-

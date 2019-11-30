@@ -142,7 +142,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .addFilterBefore(buildLoginProcessingFilter(), UsernamePasswordAuthenticationFilter.class)
                 .addFilterBefore(buildTokenAuthenticationProcessingFilter(), UsernamePasswordAuthenticationFilter.class);
         http.formLogin()
+//                登录跳转的页面
                 .loginPage(FORM_BASED_LOGIN_ENTRY_POINT)
+//                登录逻辑处理页面，也就是表单提交的真正地址
+                .loginProcessingUrl("/login")
                 .failureUrl("/error")
                 .and()
                 .httpBasic();
