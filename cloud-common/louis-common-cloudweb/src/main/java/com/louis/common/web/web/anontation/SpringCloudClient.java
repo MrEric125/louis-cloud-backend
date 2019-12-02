@@ -1,4 +1,4 @@
-package com.louis.common.web.web.anonttion;
+package com.louis.common.web.web.anontation;
 
 import org.springframework.cloud.client.SpringCloudApplication;
 import org.springframework.cloud.netflix.hystrix.EnableHystrix;
