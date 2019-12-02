@@ -20,6 +20,8 @@
         <module>louis-common-dubbo</module>
         <module>louiscloud-common-es</module>
         <module>louiscloud-common-message</module>
+        <module>louis-common-clouddependence</module>
+        <module>louis-common-cloudweb</module>
     </modules>
 
 
