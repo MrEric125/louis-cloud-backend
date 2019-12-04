@@ -4,7 +4,6 @@ import com.louis.common.api.wrapper.Wrapper;
 import com.louis.es.base.controller.BaseESController;
 import com.louis.es.entity.Article;
 import com.louis.es.service.ArticleEsService;
-import com.louis.es.service.ProductESService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

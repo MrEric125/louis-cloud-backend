@@ -20,7 +20,7 @@ public class SecurityConstants {
     /**
      * 默认的用户名密码登录请求处理url
      */
-    public static final String DEFAULT_SIGN_IN_PROCESSING_URL_FORM = "/auth/form";
+    public static final String DEFAULT_SIGN_IN_PROCESSING_URL_FORM = "/user/login";
     /**
      * 默认的手机验证码登录请求处理url
      */

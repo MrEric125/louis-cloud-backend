@@ -37,7 +37,7 @@ public class AwareAuthenticationFailureHandler implements AuthenticationFailureH
         response.setStatus(HttpStatus.UNAUTHORIZED.value());
         response.setContentType(MediaType.APPLICATION_JSON_VALUE);
 
-        mapper.writeValue(response.getWriter(), WrapMapper.error(ErrorCodeEnum.GL99990401.code(), ErrorCodeEnum.GL99990401.msg()));
+        mapper.writeValue(response.getWriter(), WrapMapper.error(ErrorCodeEnum.GL99990401.code(), e.getMessage()));
     }
 
 }

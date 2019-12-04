@@ -1,6 +1,8 @@
 package com.louis.server.service.impl;
 
 import com.google.common.base.Preconditions;
+import com.google.common.cache.Cache;
+import com.google.common.cache.CacheBuilder;
 import com.louis.common.api.dto.ClientMessageDto;
 import com.louis.common.api.dto.LoginAuthDto;
 import com.louis.core.redis.RedisOperate;
@@ -73,17 +75,18 @@ public class SysUserServiceImpl extends AbstractWebCRUDService<SysUser,UserDto, 
     @Autowired
     RedisTemplate<Object ,Object> redisTemplate;
 
+    private Cache<String, SysUser> usernameCache = CacheBuilder.newBuilder().build();
+
 
 
     public SysUser findByUserName(String userName) {
 
         log.info(" find user by user name ; username:{}", userName);
-//        SysUser user =  getUserFromRedisCache(RedisConstant.SYS_USER + userName);
-        SysUser user = null;
+        SysUser user = usernameCache.getIfPresent(userName);
         if (user == null) {
             user = sysUserRepository.findByUsername(userName);
             if (user!=null) {
-//                putUserToRedisCache(user);
+                usernameCache.put(userName, user);
             }
         }
         return user;

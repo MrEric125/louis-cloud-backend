@@ -41,12 +41,11 @@
             <groupId>io.springfox</groupId>
             <artifactId>springfox-swagger-ui</artifactId>
         </dependency>
-
-
-
-
-
-
+        <dependency>
+            <groupId>com.louis</groupId>
+            <artifactId>louis-common-clouddependence</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
     </dependencies>
 
     <build>

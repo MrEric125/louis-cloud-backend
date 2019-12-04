@@ -7,7 +7,6 @@ import com.louis.common.api.wrapper.WrapMapper;
 import com.louis.oauth.model.UserContext;
 import com.louis.security.core.SecurityUser;
 import com.louis.security.token.AccessToken;
-import com.louis.security.token.Token;
 import com.louis.security.token.TokenFactory;
 import com.louis.core.utils.IpUtils;
 import com.louis.server.service.impl.LoginLogService;
@@ -53,7 +52,7 @@ public class AwareAuthenticationSuccessHandler implements AuthenticationSuccessH
 
         UserContext userContext = UserContext.create(securityUser.getUsername(), (List<GrantedAuthority>) securityUser.getAuthorities());
         AccessToken accessToken = tokenFactory.createAccessToken(userContext);
-        Token refreshToken = tokenFactory.createRefreshToken(userContext);
+//        Token refreshToken = tokenFactory.createRefreshToken(userContext);
         String ipAddr = IpUtils.getIpAddr(request);
         loginService.saveLoginMessage(new IdName<>(userContext.getUserId(), userContext.getUsername()), ipAddr);
 
@@ -61,7 +60,7 @@ public class AwareAuthenticationSuccessHandler implements AuthenticationSuccessH
         JSONObject tokenMap = new JSONObject();
         tokenMap.put("claims", accessToken.getClaims());
         tokenMap.put("token", accessToken.getToken());
-        tokenMap.put("refreshToken", refreshToken.getToken());
+//        tokenMap.put("refreshToken", refreshToken.getToken());
 
         userContext.setAuthToken(accessToken.getToken());
 

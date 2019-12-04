@@ -1,6 +1,7 @@
 package com.louis.security.config;
 
 import com.google.common.collect.Lists;
+import com.louis.constant.SecurityConstants;
 import com.louis.security.login.AwareAuthenticationFailureHandler;
 import com.louis.security.login.AwareAuthenticationSuccessHandler;
 import com.louis.security.login.LoginAuthenticationProvider;
@@ -48,7 +49,7 @@ import java.util.List;
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     public static final String TOKEN_HEADER_PARAM = "Authorization";
-    private static final String FORM_BASED_LOGIN_ENTRY_POINT = "/auth/form";
+//    private static final String FORM_BASED_LOGIN_ENTRY_POINT = "/auth/form";
     private static final String TOKEN_BASED_AUTH_ENTRY_POINT = "/api/**";
     private static final String MANAGE_TOKEN_BASED_AUTH_ENTRY_POINT = "/manage/**";
     private static final String TOKEN_REFRESH_ENTRY_POINT = "/api/auth/refresh_token";
@@ -70,7 +71,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 
     private LoginProcessingFilter buildLoginProcessingFilter() throws Exception {
-        LoginProcessingFilter filter = new LoginProcessingFilter(FORM_BASED_LOGIN_ENTRY_POINT, successHandler, failureHandler);
+        LoginProcessingFilter filter = new LoginProcessingFilter(SecurityConstants.DEFAULT_SIGN_IN_PROCESSING_URL_FORM, successHandler, failureHandler);
         filter.setAuthenticationManager(super.authenticationManager());
         return filter;
     }
@@ -131,7 +132,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .authorizeRequests()
-                .antMatchers(FORM_BASED_LOGIN_ENTRY_POINT).permitAll() // Login end-point
+                .antMatchers(SecurityConstants.DEFAULT_SIGN_IN_PROCESSING_URL_FORM).permitAll() // Login end-point
                 .antMatchers(TOKEN_REFRESH_ENTRY_POINT).permitAll() // Token refresh end-point
                 .and()
                 .authorizeRequests()
@@ -143,7 +144,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .addFilterBefore(buildTokenAuthenticationProcessingFilter(), UsernamePasswordAuthenticationFilter.class);
         http.formLogin()
 //                登录跳转的页面
-                .loginPage(FORM_BASED_LOGIN_ENTRY_POINT)
+                .loginPage(SecurityConstants.DEFAULT_SIGN_IN_PROCESSING_URL_FORM)
 //                登录逻辑处理页面，也就是表单提交的真正地址
                 .loginProcessingUrl("/login")
                 .failureUrl("/error")

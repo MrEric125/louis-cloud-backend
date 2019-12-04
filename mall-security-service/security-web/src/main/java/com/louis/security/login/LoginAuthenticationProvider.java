@@ -18,6 +18,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 import org.springframework.util.Assert;
 
@@ -34,18 +35,18 @@ import java.util.stream.Collectors;
 @Component
 public class LoginAuthenticationProvider implements AuthenticationProvider {
 
-    private final BCryptPasswordEncoder encoder;
+    private final PasswordEncoder passwordEncoder;
     private final SysUserService userService;
     private final UserRoleService roleService;
 
     private final PasswordService passwordService;
 
 
-    public LoginAuthenticationProvider(BCryptPasswordEncoder encoder,
+    public LoginAuthenticationProvider(PasswordEncoder encoder,
                                        SysUserService userService,
                                        UserRoleService roleService,
                                        PasswordService passwordService) {
-        this.encoder = encoder;
+        this.passwordEncoder = encoder;
         this.userService = userService;
         this.roleService = roleService;
         this.passwordService = passwordService;
@@ -60,7 +61,8 @@ public class LoginAuthenticationProvider implements AuthenticationProvider {
 
         SysUser user = userService.findByUserName(username);
         if(user == null) throw new UsernameNotFoundException("User not found: " + username);
-        boolean matches = passwordService.matches(user, password);
+//        boolean matches = passwordService.matches(user, password);
+        boolean matches = passwordEncoder.matches(password, user.getPassword());
         if (!matches) {
             throw new BadCredentialsException("Authentication Failed. Username or Password not valid.");
         }

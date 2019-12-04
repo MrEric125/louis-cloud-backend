@@ -1,6 +1,8 @@
 package com.louis.web;
 
+import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
 import com.louis.common.api.wrapper.WrapMapper;
 import com.louis.common.api.wrapper.Wrapper;
 import com.louis.common.web.web.WebCRUDController;
@@ -15,9 +17,13 @@ import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Collection;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 
@@ -45,6 +51,20 @@ public class UserController extends WebCRUDController<SysUser, UserDto,Long> {
         log.info("绑定用户到角色");
         userRoleService.blindRole(dto);
         return WrapMapper.success();
+    }
+
+    @ApiOperation("获取用户信息")
+    @RequestMapping("/info")
+    public Wrapper info(Authentication user) {
+        log.info("获取用户信息");
+//        Collection<? extends GrantedAuthority> authorities = user.getAuthorities();
+        Map<String, Object> returnMap = Maps.newHashMap();
+        returnMap.put("avatar", "https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif");
+        returnMap.put("introduction","i am user");
+        returnMap.put("name", "admin");
+        returnMap.put("roles", Lists.newArrayList("ADMIN"));
+        Map<String, Map<String, Object>> infoMap = ImmutableMap.of("info", returnMap);
+        return WrapMapper.wrap(infoMap);
     }
 
     /**

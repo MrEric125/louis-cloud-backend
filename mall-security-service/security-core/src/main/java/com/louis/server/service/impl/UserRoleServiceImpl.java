@@ -1,5 +1,7 @@
 package com.louis.server.service.impl;
 
+import com.google.common.cache.Cache;
+import com.google.common.cache.CacheBuilder;
 import com.louis.common.api.search.SearchOperator;
 import com.louis.common.api.search.Searchable;
 import com.louis.core.redis.RedisOperate;
@@ -18,6 +20,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 /**
@@ -40,8 +43,15 @@ public class UserRoleServiceImpl extends AbstractWebCRUDService<UserRole, UserRo
     @Autowired
     RedisOperate<UserRole> redisOperate;
 
+    private Cache<Long, List<UserRole>> userRoleCache = CacheBuilder.newBuilder().build();
+
     public List<UserRole> findByUserId(long userId) {
-        return userRoleRepository.findAllByUserId(userId);
+        List<UserRole> userRole = userRoleCache.getIfPresent(userId);
+       return Optional.ofNullable(userRole).orElseGet(() -> {
+            List<UserRole> byJdbc = userRoleRepository.findAllByUserId(userId);
+            userRoleCache.put(userId, byJdbc);
+            return byJdbc;
+        });
     }
 
     public List<UserRole> findByRoleId(long roleId) {

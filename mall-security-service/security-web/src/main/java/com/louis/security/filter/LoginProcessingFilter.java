@@ -73,21 +73,18 @@ public class LoginProcessingFilter extends AbstractAuthenticationProcessingFilte
                     stringBuilder.append(inputStr);
 
                 JSONObject jsonObject = JSONObject.parseObject(stringBuilder.toString());
-                username = jsonObject.getString("username");
-                password = jsonObject.getString("password");
+                if (jsonObject != null) {
+                    username = jsonObject.getString("username");
+                    password = jsonObject.getString("password");
+                }
             }
-
-
-
         } catch (IOException e) {
             e.printStackTrace();
         }
-//        LoginRequest loginRequest = new LoginRequest(username, password);
         if (StringUtils.isBlank(username) || StringUtils.isBlank(password)) {
             throw new AuthenticationServiceException("Username or Password not provided");
         }
-        UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(username,
-                password);
+        UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(username, password);
         return this.getAuthenticationManager().authenticate(token);
     }
 
