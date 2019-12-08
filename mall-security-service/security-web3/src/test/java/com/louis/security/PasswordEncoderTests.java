@@ -20,7 +20,7 @@ public class PasswordEncoderTests {
 //        System.out.println("" + a + "   " + b);
 
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-        String zhangsan = encoder.encode("admin");
+        String zhangsan = encoder.encode("123456");
         System.out.println(zhangsan);
 
     }

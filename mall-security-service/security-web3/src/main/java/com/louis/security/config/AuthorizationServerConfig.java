@@ -1,4 +1,3 @@
-/*
 package com.louis.security.config;
 
 import com.louis.security.server.SecurityClientDetailService;
@@ -15,11 +14,11 @@ import org.springframework.security.oauth2.config.annotation.web.configurers.Aut
 import org.springframework.security.oauth2.provider.ClientDetailsService;
 import org.springframework.security.oauth2.provider.token.TokenStore;
 
-*/
+
 /**
  * @author John·Louis
  * @date create in 2019/6/15
- *//*
+ */
 
 @Configuration
 @EnableAuthorizationServer
@@ -58,21 +57,21 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     SecurityUserDetailService userDetailsService;
 
 
-    */
 /**
      * （重点）授权模式，但是前提要钱是要认证(登陆成功)的时候才会授权
      * @param clients
      * @throws Exception
-     *//*
+     */
+
 
     @Override
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
-//        clients.inMemory().withClient("client")
-//                .secret(passwordEncoder.encode("secret"))
-//                .authorizedGrantTypes("authorization_code")
-//                .scopes("webclient")
-//                .redirectUris("https://www.baidu.com");
-        clients.withClientDetails(clientDetailsService());
+        clients.inMemory().withClient("client")
+                .secret(passwordEncoder.encode("secret"))
+                .authorizedGrantTypes("authorization_code")
+                .scopes("webclient")
+                .redirectUris("https://www.baidu.com");
+//        clients.withClientDetails(clientDetailsService());
     }
 
     @Override
@@ -81,21 +80,18 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
         endpoints.authenticationManager(authenticationManager)
                 .userDetailsService(userDetailsService);
 //                .tokenStore(tokenStore);
-
 //        endpoints.tokenStore(tokenStore());
     }
 
-    */
-/**
+    /*
      * 设置表单
      * @param security
      * @throws Exception
-     *//*
-
+     *
+     */
     @Override
     public void configure(AuthorizationServerSecurityConfigurer security) throws Exception {
         security.tokenKeyAccess("permitAll()");
         security.allowFormAuthenticationForClients();
     }
 }
-*/

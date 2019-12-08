@@ -22,7 +22,7 @@ import java.util.Map;
  */
 @SpringCloudClient
 @RestController
-@EnableResourceServer
+//@EnableResourceServer
 @EnableJpaRepositories(repositoryBaseClass = SimpleBaseRepository.class)
 public class OauthApp {
     @RequestMapping(value = { "/user" }, produces = "application/json")
