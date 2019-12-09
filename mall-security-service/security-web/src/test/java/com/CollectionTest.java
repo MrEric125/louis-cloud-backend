@@ -2,6 +2,8 @@ package com;
 
 import com.google.common.collect.Maps;
 import org.junit.Test;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.HashMap;
 
@@ -20,6 +22,11 @@ public class CollectionTest {
         hashMap.putIfAbsent("K", 1);
         hashMap.merge("K", 2, (oldVal, newVal) -> oldVal + newVal);
         System.out.println(hashMap.get("K"));
+        PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        String client = passwordEncoder.encode("client");
+        System.out.println(client);
 
     }
+
+
 }

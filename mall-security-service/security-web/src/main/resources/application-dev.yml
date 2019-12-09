@@ -18,7 +18,7 @@ spring:
   main:
     allow-bean-definition-overriding: true
 server:
-  port: 9311
+  port: 9319
 
 logging:
   level:

@@ -65,7 +65,7 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
                 // client_id
                 .withClient("client")
                 // client_secret
-                .secret(passwordEncoder.encode("secret"))
+                .secret(passwordEncoder.encode("client"))
                 // 授权类型
                 .authorizedGrantTypes("password","authorization_code")
                 // 授权范围

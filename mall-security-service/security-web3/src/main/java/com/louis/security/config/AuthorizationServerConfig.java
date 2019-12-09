@@ -1,4 +1,4 @@
-/*
+
 package com.louis.security.config;
 
 import com.louis.security.server.SecurityClientDetailService;
@@ -13,13 +13,12 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.E
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerEndpointsConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerSecurityConfigurer;
 import org.springframework.security.oauth2.provider.ClientDetailsService;
-import org.springframework.security.oauth2.provider.token.TokenStore;
 
-*/
+
 /**
  * @author John·Louis
  * @date create in 2019/6/15
- *//*
+ */
 
 @Configuration
 @EnableAuthorizationServer
@@ -35,16 +34,6 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     @Autowired
     private BCryptPasswordEncoder passwordEncoder;
 
-    //    @Primary
-//    @Bean
-//    @ConfigurationProperties(prefix = "spring.datasource")
-//    public DataSource dataSource() {
-//        return DataSourceBuilder.create().build();
-//    }
-//
-//    @Autowired
-//    private TokenStore tokenStore;
-
 
     public ClientDetailsService clientDetailsService() {
         return new SecurityClientDetailService();
@@ -58,44 +47,39 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     SecurityUserDetailService userDetailsService;
 
 
-    */
+
 /**
      * （重点）授权模式，但是前提要钱是要认证(登陆成功)的时候才会授权
      * @param clients
      * @throws Exception
-     *//*
+     */
 
     @Override
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
-//        clients.inMemory().withClient("client")
-//                .secret(passwordEncoder.encode("secret"))
-//                .authorizedGrantTypes("authorization_code")
-//                .scopes("webclient")
-//                .redirectUris("https://www.baidu.com");
-        clients.withClientDetails(clientDetailsService());
+        clients.inMemory().withClient("client")
+                .secret(passwordEncoder.encode("client"))
+                .authorizedGrantTypes("authorization_code","password","token_refresh")
+                .scopes("web")
+                .redirectUris("https://www.baidu.com");
     }
 
     @Override
     public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
-//        super.configure(endpoints);
         endpoints.authenticationManager(authenticationManager)
                 .userDetailsService(userDetailsService);
-//                .tokenStore(tokenStore);
-
-//        endpoints.tokenStore(tokenStore());
     }
 
-    */
+
 /**
      * 设置表单
      * @param security
      * @throws Exception
-     *//*
+     */
 
     @Override
     public void configure(AuthorizationServerSecurityConfigurer security) throws Exception {
         security.tokenKeyAccess("permitAll()");
+        security.checkTokenAccess("permitAll()");
         security.allowFormAuthenticationForClients();
     }
 }
-*/
