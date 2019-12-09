@@ -33,6 +33,7 @@ public class SecurityClientDetailService implements ClientDetailsService {
      */
     @PostConstruct
     public void init() {
+
         InMemoryClientDetailsServiceBuilder builder = new InMemoryClientDetailsServiceBuilder();
         OAuth2ClientProperties[] clients = securityProperties.getOauth2().getClients();
         if (ArrayUtils.isNotEmpty(clients)) {
