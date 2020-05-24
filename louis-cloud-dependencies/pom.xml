@@ -27,7 +27,7 @@
         <springfox-swagger2>2.6.1</springfox-swagger2>
         <spring-social>1.1.6.RELEASE</spring-social>
         <commons-beanutils>1.9.3</commons-beanutils>
-        <javamelody-core>1.73.1</javamelody-core>
+        <javamelody-core>1.74.0</javamelody-core>
         <lombok.version>1.18.6</lombok.version>
         <de.codecentric>1.5.7</de.codecentric>
         <userAgentUtils>1.20</userAgentUtils>
