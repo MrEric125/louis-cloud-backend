@@ -32,7 +32,7 @@
         <de.codecentric>1.5.7</de.codecentric>
         <userAgentUtils>1.20</userAgentUtils>
         <guava.version>20.0</guava.version>
-        <commons-io>2.6</commons-io>
+        <commons-io>2.7</commons-io>
         <fastjson>1.2.46</fastjson>
         <kaptcha>2.3.2</kaptcha>
         <itext>2.1.7</itext>
